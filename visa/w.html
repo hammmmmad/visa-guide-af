@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>ویزای بشردوستانه سوئیس ۲۰۲۶ | فرصت ویژه برای افغان‌ها</title>
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap"
+        rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f0f9ff 0%, #e6f0fa 100%);
+            color: #0f172a;
+            line-height: 1.55;
+            padding: 2rem 1rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .page-header {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            border-radius: 2rem;
+            padding: 1rem 2rem;
+            margin-bottom: 2.5rem;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+        }
+
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo-img {
+            width: 60px;
+            height: 60px;
+            object-fit: contain;
+            padding: 8px;
+        }
+
+        .logo-text {
+            font-weight: 500;
+            color: #1e293b;
+            font-size: 0.9rem;
+            background: #f1f5f9;
+            padding: 6px 16px;
+            border-radius: 40px;
+            color: #1e40af;
+        }
+
+        .btn-back {
+            background: #1e293b;
+            color: white;
+            text-decoration: none;
+            padding: 0.7rem 1.5rem;
+            border-radius: 40px;
+            font-weight: 500;
+            font-size: 0.95rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.25s;
+        }
+
+        .btn-back:hover {
+            background: #0f172a;
+            transform: translateY(-2px);
+        }
+
+        .country-banner {
+            background: linear-gradient(135deg, #1e3a5f, #0f2b3d);
+            border-radius: 2rem;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .country-flag {
+            width: 100px;
+            height: 100px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            box-shadow: 0 0 0 5px rgba(255, 255, 255, 0.3), 0 0 0 8px #1e3a5f, 0 10px 20px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            animation: borderPulse 2s infinite;
+        }
+
+        .country-flag img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        @keyframes borderPulse {
+            0% {
+                box-shadow: 0 0 0 5px rgba(255, 255, 255, 0.3), 0 0 0 8px #1e3a5f, 0 10px 20px rgba(0, 0, 0, 0.2);
+            }
+
+            50% {
+                box-shadow: 0 0 0 8px rgba(255, 255, 255, 0.5), 0 0 0 12px #3b82f6, 0 15px 25px rgba(0, 0, 0, 0.25);
+            }
+
+            100% {
+                box-shadow: 0 0 0 5px rgba(255, 255, 255, 0.3), 0 0 0 8px #1e3a5f, 0 10px 20px rgba(0, 0, 0, 0.2);
+            }
+        }
+
+        .country-flag:hover {
+            transform: scale(1.05);
+            transition: transform 0.3s ease;
+        }
+
+        .country-title h1 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .country-title p {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        .details-section {
+            background: white;
+            border-radius: 1.8rem;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05);
+        }
+
+        .details-section h2 {
+            color: #0c4a6e;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+            border-right: 4px solid #3b82f6;
+            padding-right: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .details-section h2:first-of-type {
+            margin-top: 0;
+        }
+
+        .details-section p {
+            line-height: 1.8;
+            margin-bottom: 1rem;
+            color: #334155;
+        }
+
+        .info-list {
+            list-style: none;
+            margin: 1.5rem 0;
+        }
+
+        .info-list li {
+            padding: 0.75rem 0;
+            border-bottom: 1px solid #e2e8f0;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .info-list li i {
+            color: #3b82f6;
+            width: 24px;
+        }
+
+        .eligible-list {
+            list-style: none;
+            margin: 1rem 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 0.5rem;
+        }
+
+        .eligible-list li {
+            padding: 0.5rem;
+            background: #fef2f2;
+            border-right: 3px solid #ef4444;
+            margin-bottom: 0.5rem;
+            border-radius: 8px;
+        }
+
+        .btn-whatsapp {
+            display: inline-block;
+            background: #25D366;
+            color: white;
+            text-decoration: none;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            margin-top: 1rem;
+            transition: all 0.25s;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .btn-whatsapp i {
+            margin-left: 10px;
+            font-size: 1.2rem;
+        }
+
+        .btn-whatsapp:hover {
+            background: #128C7E;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 18px rgba(0, 0, 0, 0.12);
+        }
+
+        .warning-note {
+            background: #fef3c7;
+            border-right: 4px solid #f59e0b;
+            padding: 1rem;
+            border-radius: 1rem;
+            margin: 1rem 0;
+        }
+
+        .footer-note {
+            text-align: center;
+            margin-top: 2rem;
+            font-size: 0.8rem;
+            color: #5b6e8c;
+            border-top: 1px solid #e2e8f0;
+            padding-top: 1.8rem;
+        }
+
+        @media (max-width: 640px) {
+            .page-header {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .country-banner {
+                text-align: center;
+                justify-content: center;
+            }
+
+            .country-title h1 {
+                font-size: 1.3rem;
+            }
+
+            .btn-whatsapp {
+                display: block;
+                text-align: center;
+            }
+
+            .country-flag {
+                width: 80px;
+                height: 80px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="page-header">
+            <div class="logo-area">
+                <img class="logo-img" src="../images/logo.png" alt="لوگو">
+                <span class="logo-text"><i class="fas fa-hand-holding-heart"></i> ویزای بشردوستانه</span>
+            </div>
+            <a href="visa.html" class="btn-back">
+                <i class="fas fa-arrow-right"></i> برگشت به لیست کشورها
+            </a>
+        </div>
+
+        <div class="country-banner">
+            <div class="country-flag">
+                <img src="visa-pic/swiss.png" alt="پرچم سوئیس">
+            </div>
+            <div class="country-title">
+                <h1><i class="fas fa-map-marker-alt"></i> ویزای بشردوستانه سوئیس ۲۰۲۶</h1>
+                <p>کشوری پیشرو در پذیرش پناهندگان و حمایت از افغان‌ها</p>
+            </div>
+        </div>
+
+        <div class="details-section">
+            <h2><i class="fas fa-star-of-life"></i> معرفی برنامه</h2>
+            <p>
+                ویزای بشردوستانه سوئیس برای سال ۲۰۲۶، این کشور به عنوان یکی از کشورهای پیشرو در پذیرش پناهندگان و افرادی
+                که به دلیل جنگ، آزار و اذیت یا نقض حقوق بشر در کشور خود در معرض خطر هستند، امکانات حمایتی مختلفی برای
+                پناهجویان فراهم کرده است. افغان‌ها که در حال حاضر تحت تهدیدات امنیتی در افغانستان هستند، می‌توانند برای
+                دریافت ویزای بشردوستانه سوئیس اقدام کنند.
+            </p>
+
+            <h2><i class="fas fa-users"></i> افراد واجد شرایط</h2>
+            <ul class="eligible-list">
+                <li><i class="fas fa-user-tie"></i> فعالان مدنی</li>
+                <li><i class="fas fa-female"></i> زنان از تحصیل مانده</li>
+                <li><i class="fas fa-gavel"></i> زنان فعال حقوق بشر</li>
+                <li><i class="fas fa-church"></i> زنان اقلیت‌های مذهبی</li>
+                <li><i class="fas fa-newspaper"></i> خبرنگاران</li>
+                <li><i class="fas fa-bomb"></i> افراد آسیب دیده از جنگ</li>
+                <li><i class="fas fa-futbol"></i> ورزشکاران</li>
+                <li><i class="fas fa-shield-alt"></i> نظامیان پیشین</li>
+                <li><i class="fas fa-users"></i> اقلیت‌های مذهبی (هزاره‌ها، سادات‌ها، سیک‌ها، عرب‌ها)</li>
+                <li><i class="fas fa-chalkboard-teacher"></i> مربیان ورزشی</li>
+            </ul>
+
+            <h2><i class="fas fa-clock"></i> زمان پروسس</h2>
+            <p>
+                بین <strong>شش ماه</strong> کیس شما در جریان پروسیس قرار می‌گیرد و کیس شما نظر به اولویت کاری
+                وزارتخانه‌ها است در چند مدت پروسیس می‌شود. هر کس متفاوت پردازش می‌شود.
+            </p>
+
+            <h2><i class="fas fa-file-alt"></i> اسناد مورد نیاز</h2>
+            <ul class="info-list">
+                <li><i class="fas fa-id-card"></i> تذکره</li>
+                <li><i class="fas fa-camera"></i> عکس امضای شما با بگروند سفید</li>
+                <li><i class="fas fa-file-signature"></i> اسناد شغلی</li>
+                <li><i class="fas fa-passport"></i> پاسپورت (در صورت وجود)</li>
+                <li><i class="fas fa-phone"></i> شماره تماس</li>
+                <li><i class="fas fa-envelope"></i> ایمیل آدرس</li>
+                <li><i class="fas fa-map-marker-alt"></i> آدرس کنونی شما</li>
+                <li><i class="fas fa-user-friends"></i> نام پدر</li>
+                <li><i class="fas fa-female"></i> نام مادر</li>
+                <li><i class="fas fa-child"></i> تذکره‌های فرزندان (همراه خانم/شوهر)</li>
+            </ul>
+
+            <!-- دکمه واتساپ -->
+            <a href="https://wa.me/message/ZY2KWEKZLQCXF1?src=qr" class="btn-whatsapp" target="_blank">
+                <i class="fab fa-whatsapp"></i> ثبت درخواست از طریق واتساپ
+            </a>
+        </div>
+
+        <div class="footer-note">
+            <i class="fas fa-heart" style="color: #e11d48;"></i> همراه شما تا امنیت و آرامش
+        </div>
+    </div>
+</body>
+
+</html>
