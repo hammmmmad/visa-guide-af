@@ -1,94 +1,177 @@
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>سوالات متداول | Sarfraz Refugee Service</title>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-<link rel="stylesheet" href="style.css">
-<style>
-.faq-container{max-width:900px;margin:2rem auto;padding:0 16px;}
-.faq-tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:1.5rem;justify-content:center;}
-.faq-tab{padding:8px 20px;border-radius:30px;border:1px solid var(--border);background:transparent;color:var(--text-muted);cursor:pointer;font-family:inherit;font-size:0.85rem;transition:all 0.25s;}
-.faq-tab.active,.faq-tab:hover{background:var(--primary);color:#fff;border-color:var(--primary);box-shadow:0 0 16px rgba(108,71,255,0.4);}
-.faq-item{border-radius:16px;margin-bottom:10px;overflow:hidden;border:1px solid var(--border);background:rgba(255,255,255,0.04);transition:border-color 0.3s;}
-.faq-item:hover{border-color:var(--border-hover);}
-.faq-q{padding:1.1rem 1.4rem;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:12px;}
-.faq-q span{font-size:0.95rem;font-weight:600;line-height:1.5;}
-.faq-q i{color:var(--primary);transition:transform 0.3s;flex-shrink:0;}
-.faq-item.open .faq-q i{transform:rotate(45deg);}
-.faq-a{max-height:0;overflow:hidden;transition:max-height 0.4s ease,padding 0.3s;}
-.faq-item.open .faq-a{max-height:300px;padding:0 1.4rem 1.2rem;}
-.faq-a p{font-size:0.88rem;color:var(--text-muted);line-height:1.8;}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>سوالات متداول | Sarfraz Refugee Service</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .faq-container {
+      max-width: 900px;
+      margin: 2rem auto;
+      padding: 0 16px;
+    }
+
+    .faq-tabs {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 1.5rem;
+      justify-content: center;
+    }
+
+    .faq-tab {
+      padding: 8px 20px;
+      border-radius: 30px;
+      border: 1px solid var(--border);
+      background: transparent;
+      color: var(--text-muted);
+      cursor: pointer;
+      font-family: inherit;
+      font-size: 0.85rem;
+      transition: all 0.25s;
+    }
+
+    .faq-tab.active,
+    .faq-tab:hover {
+      background: var(--primary);
+      color: #fff;
+      border-color: var(--primary);
+      box-shadow: 0 0 16px rgba(108, 71, 255, 0.4);
+    }
+
+    .faq-item {
+      border-radius: 16px;
+      margin-bottom: 10px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      background: rgba(255, 255, 255, 0.04);
+      transition: border-color 0.3s;
+    }
+
+    .faq-item:hover {
+      border-color: var(--border-hover);
+    }
+
+    .faq-q {
+      padding: 1.1rem 1.4rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .faq-q span {
+      font-size: 0.95rem;
+      font-weight: 600;
+      line-height: 1.5;
+    }
+
+    .faq-q i {
+      color: var(--primary);
+      transition: transform 0.3s;
+      flex-shrink: 0;
+    }
+
+    .faq-item.open .faq-q i {
+      transform: rotate(45deg);
+    }
+
+    .faq-a {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease, padding 0.3s;
+    }
+
+    .faq-item.open .faq-a {
+      max-height: 300px;
+      padding: 0 1.4rem 1.2rem;
+    }
+
+    .faq-a p {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      line-height: 1.8;
+    }
+  </style>
 </head>
+
 <body class="dark-mode">
-<div class="bg-scene"></div><div class="bg-orb"></div><div class="bg-orb"></div>
-<div class="particles" id="particles"></div>
+  <div class="bg-scene"></div>
+  <div class="bg-orb"></div>
+  <div class="bg-orb"></div>
+  <div class="particles" id="particles"></div>
 
-<nav class="navbar">
-  <a href="index.html" class="logo-wrap"><img src="images/khamoosh.webp" alt="logo"><div class="logo-name">SARFRAZ<br>REFUGEE SERVICE</div></a>
-  <button class="menu-btn" id="menuBtn">☰</button>
-  <ul class="nav-links" id="navLinks">
-    <li><a href="index.html"><img src="images/home.png"> خانه</a></li>
-    <li><a href="services.html"><img src="images/customer.png"> خدمات</a></li>
-    <li><a href="ai.html"><img src="images/ai.png"> AI</a></li>
-    <li><a href="contact.html"><img src="images/call.png"> تماس</a></li>
-    <li><a href="faq.html" class="active"><img src="images/f&a.png"> سوالات</a></li>
-    <li><a href="news/day-news/day.html"><img src="images/event.png"> اخبار</a></li>
-  </ul>
-  <div class="nav-actions">
-    <button class="theme-btn" id="themeBtn"><i class="fas fa-moon"></i></button>
+  <nav class="navbar">
+    <a href="index.html" class="logo-wrap"><img src="images/kha.jpg" alt="logo">
+      <div class="logo-name">SARFRAZ<br>REFUGEE SERVICE</div>
+    </a>
+    <button class="menu-btn" id="menuBtn">☰</button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html"><img src="images/home.png"> خانه</a></li>
+      <li><a href="services.html"><img src="images/customer.png"> خدمات</a></li>
+      <li><a href="ai.html"><img src="images/ai.png"> AI</a></li>
+      <li><a href="contact.html"><img src="images/call.png"> تماس</a></li>
+      <li><a href="faq.html" class="active"><img src="images/f&a.png"> سوالات</a></li>
+      <li><a href="news/day-news/day.html"><img src="images/event.png"> اخبار</a></li>
+    </ul>
+    <div class="nav-actions">
+      <button class="theme-btn" id="themeBtn"><i class="fas fa-moon"></i></button>
+    </div>
+  </nav>
+
+  <div class="hero">
+    <div class="hero-inner">
+      <div class="badge"><i class="fas fa-question-circle"></i> سوالات متداول</div>
+      <h1>پرسش‌های پرتکرار</h1>
+      <p style="color:var(--text-muted)">پاسخ سوالات مهاجرتی شما — SIV، اسپانسرشیپ، USRAP</p>
+    </div>
   </div>
-</nav>
 
-<div class="hero"><div class="hero-inner">
-  <div class="badge"><i class="fas fa-question-circle"></i> سوالات متداول</div>
-  <h1>پرسش‌های پرتکرار</h1>
-  <p style="color:var(--text-muted)">پاسخ سوالات مهاجرتی شما — SIV، اسپانسرشیپ، USRAP</p>
-</div></div>
-
-<div class="faq-container">
-  <div class="faq-tabs">
-    <button class="faq-tab active" data-cat="siv">🇺🇸 SIV</button>
-    <button class="faq-tab" data-cat="sponsor">💚 اسپانسرشیپ</button>
-    <button class="faq-tab" data-cat="usrap">🔵 USRAP</button>
+  <div class="faq-container">
+    <div class="faq-tabs">
+      <button class="faq-tab active" data-cat="siv">🇺🇸 SIV</button>
+      <button class="faq-tab" data-cat="sponsor">💚 اسپانسرشیپ</button>
+      <button class="faq-tab" data-cat="usrap">🔵 USRAP</button>
+    </div>
+    <div id="faqList"></div>
   </div>
-  <div id="faqList"></div>
-</div>
 
-<footer class="footer" style="margin-top:3rem">
-  <div class="footer-bottom">© 2026 Sarfraz Refugee Service</div>
-</footer>
+  <footer class="footer" style="margin-top:3rem">
+    <div class="footer-bottom">© 2026 Sarfraz Refugee Service</div>
+  </footer>
 
-<script>
-const faqs={
-  siv:[
-    {q:"آیا برنامه SIV آغاز شده است؟",a:"طبق اعلام وزارت امور خارجه ایالات متحده، این برنامه بر اساس تخصیص سال مالی ۲۰۲۴ همچنان در حال اجرا می‌باشد."},
-    {q:"آیا روند دریافت COM جریان دارد؟",a:"بلی، روند دریافت تأییدیه مأموریت (COM) برای متقاضیان SIV ادامه دارد."},
-    {q:"آیا روند صدور ویزا برای متقاضیان SIV آغاز شده است؟",a:"در حال حاضر، صدور ویزا برای برخی متقاضیان SIV با محدودیت یا توقف مواجه است."},
-    {q:"آیا رفتن به مصاحبه در کشور ثالث مفاد دارد؟",a:"در شرایط فعلی، رفتن به مصاحبه ممکن است نتیجه قطعی در پی نداشته باشد."},
-    {q:"فرمان F-212 چیست؟",a:"فرمان F-212 به محدودیت‌های مرتبط با ورود و سفر اشاره دارد که شامل برخی کشورها از جمله افغانستان می‌شود."},
-    {q:"چه زمانی برنامه SIV دوباره آغاز خواهد شد؟",a:"زمان ازسرگیری برنامه وابسته به پایان محدودیت‌های سفر و تصمیم‌گیری‌های وزارت امور خارجه است. تاریخ دقیق مشخص نشده."},
-    {q:"آیا متقاضیان SIV می‌توانند به سایر برنامه‌های مهاجرتی درخواست بدهند؟",a:"بلی، متقاضیان می‌توانند به سایر برنامه‌ها نیز درخواست ارائه کنند و این مشکلی ایجاد نخواهد کرد."}
-  ],
-  sponsor:[
-    {q:"آیا روند مصاحبه برای متقاضیان اسپانسرشیپ جریان دارد؟",a:"بلی، روند مصاحبه در برخی موارد ادامه دارد، اما صدور ویزا با محدودیت مواجه است."},
-    {q:"آیا رفتن به مصاحبه مفاد دارد؟",a:"در شرایط فعلی، رفتن به مصاحبه تضمینی برای دریافت ویزا ایجاد نمی‌کند."},
-    {q:"آیا امکان به تعویق انداختن مصاحبه وجود دارد؟",a:"بلی، در بسیاری از موارد متقاضیان می‌توانند درخواست تعویق مصاحبه ارائه دهند."},
-    {q:"آیا متقاضیان اسپانسرشیپ تحت ممنوعیت سفر قرار دارند؟",a:"برخی از متقاضیان ممکن است مشمول محدودیت‌های سفر باشند، بسته به شرایط و سیاست‌های جاری."},
-    {q:"آیا دریافت ویزا برای این دسته مسدود است؟",a:"صدور ویزا در برخی پرونده‌ها با تأخیر یا محدودیت مواجه می‌باشد."}
-  ],
-  usrap:[
-    {q:"آیا برنامه USRAP برای متقاضیان P1 و P2 آغاز شده است؟",a:"در حال حاضر، این برنامه در وضعیت تعلیق قرار دارد."},
-    {q:"آیا امکان شامل شدن متقاضیان در سال ۲۰۲۷ وجود دارد؟",a:"این موضوع در حد احتمال مطرح است و به تصمیمات آینده دولت ایالات متحده بستگی دارد."},
-    {q:"در سال ۲۰۲۶ چه کسانی می‌توانند از طریق USRAP سفر کنند؟",a:"اولویت‌بندی پذیرش پناهندگان بر اساس سیاست‌های جاری تعیین می‌شود."}
-  ]
-};
-let cat='siv';
-function render(){
-  const list=document.getElementById('faqList');
-  list.innerHTML=faqs[cat].map((f,i)=>`
+  <script>
+    const faqs = {
+      siv: [
+        { q: "آیا برنامه SIV آغاز شده است؟", a: "طبق اعلام وزارت امور خارجه ایالات متحده، این برنامه بر اساس تخصیص سال مالی ۲۰۲۴ همچنان در حال اجرا می‌باشد." },
+        { q: "آیا روند دریافت COM جریان دارد؟", a: "بلی، روند دریافت تأییدیه مأموریت (COM) برای متقاضیان SIV ادامه دارد." },
+        { q: "آیا روند صدور ویزا برای متقاضیان SIV آغاز شده است؟", a: "در حال حاضر، صدور ویزا برای برخی متقاضیان SIV با محدودیت یا توقف مواجه است." },
+        { q: "آیا رفتن به مصاحبه در کشور ثالث مفاد دارد؟", a: "در شرایط فعلی، رفتن به مصاحبه ممکن است نتیجه قطعی در پی نداشته باشد." },
+        { q: "فرمان F-212 چیست؟", a: "فرمان F-212 به محدودیت‌های مرتبط با ورود و سفر اشاره دارد که شامل برخی کشورها از جمله افغانستان می‌شود." },
+        { q: "چه زمانی برنامه SIV دوباره آغاز خواهد شد؟", a: "زمان ازسرگیری برنامه وابسته به پایان محدودیت‌های سفر و تصمیم‌گیری‌های وزارت امور خارجه است. تاریخ دقیق مشخص نشده." },
+        { q: "آیا متقاضیان SIV می‌توانند به سایر برنامه‌های مهاجرتی درخواست بدهند؟", a: "بلی، متقاضیان می‌توانند به سایر برنامه‌ها نیز درخواست ارائه کنند و این مشکلی ایجاد نخواهد کرد." }
+      ],
+      sponsor: [
+        { q: "آیا روند مصاحبه برای متقاضیان اسپانسرشیپ جریان دارد؟", a: "بلی، روند مصاحبه در برخی موارد ادامه دارد، اما صدور ویزا با محدودیت مواجه است." },
+        { q: "آیا رفتن به مصاحبه مفاد دارد؟", a: "در شرایط فعلی، رفتن به مصاحبه تضمینی برای دریافت ویزا ایجاد نمی‌کند." },
+        { q: "آیا امکان به تعویق انداختن مصاحبه وجود دارد؟", a: "بلی، در بسیاری از موارد متقاضیان می‌توانند درخواست تعویق مصاحبه ارائه دهند." },
+        { q: "آیا متقاضیان اسپانسرشیپ تحت ممنوعیت سفر قرار دارند؟", a: "برخی از متقاضیان ممکن است مشمول محدودیت‌های سفر باشند، بسته به شرایط و سیاست‌های جاری." },
+        { q: "آیا دریافت ویزا برای این دسته مسدود است؟", a: "صدور ویزا در برخی پرونده‌ها با تأخیر یا محدودیت مواجه می‌باشد." }
+      ],
+      usrap: [
+        { q: "آیا برنامه USRAP برای متقاضیان P1 و P2 آغاز شده است؟", a: "در حال حاضر، این برنامه در وضعیت تعلیق قرار دارد." },
+        { q: "آیا امکان شامل شدن متقاضیان در سال ۲۰۲۷ وجود دارد؟", a: "این موضوع در حد احتمال مطرح است و به تصمیمات آینده دولت ایالات متحده بستگی دارد." },
+        { q: "در سال ۲۰۲۶ چه کسانی می‌توانند از طریق USRAP سفر کنند؟", a: "اولویت‌بندی پذیرش پناهندگان بر اساس سیاست‌های جاری تعیین می‌شود." }
+      ]
+    };
+    let cat = 'siv';
+    function render() {
+      const list = document.getElementById('faqList');
+      list.innerHTML = faqs[cat].map((f, i) => `
     <div class="faq-item" id="fi${i}">
       <div class="faq-q" onclick="toggle(${i})">
         <span>${f.q}</span>
@@ -96,20 +179,22 @@ function render(){
       </div>
       <div class="faq-a"><p>${f.a}</p></div>
     </div>`).join('');
-}
-function toggle(i){
-  document.getElementById('fi'+i).classList.toggle('open');
-}
-document.querySelectorAll('.faq-tab').forEach(t=>t.addEventListener('click',()=>{
-  cat=t.getAttribute('data-cat');
-  document.querySelectorAll('.faq-tab').forEach(x=>x.classList.remove('active'));
-  t.classList.add('active');
-  render();
-}));
-render();
-const pc=document.getElementById('particles');
-for(let i=0;i<40;i++){const p=document.createElement('div');p.className='p';const s=Math.random()*8+3;p.style.cssText=`width:${s}px;height:${s}px;left:${Math.random()*100}%;top:${Math.random()*100}%;animation-delay:${Math.random()*12}s;animation-duration:${12+Math.random()*10}s`;pc.appendChild(p);}
-const tb=document.getElementById('themeBtn');const saved=localStorage.getItem('srs-theme')||'dark';document.body.className=saved+'-mode';tb.innerHTML=saved==='dark'?'<i class="fas fa-moon"></i>':'<i class="fas fa-sun"></i>';tb.addEventListener('click',()=>{const d=document.body.classList.contains('dark-mode');document.body.className=(d?'light':'dark')+'-mode';tb.innerHTML=d?'<i class="fas fa-sun"></i>':'<i class="fas fa-moon"></i>';localStorage.setItem('srs-theme',d?'light':'dark');});
-document.getElementById('menuBtn').addEventListener('click',()=>document.getElementById('navLinks').classList.toggle('open'));
-</script>
-</body></html>
+    }
+    function toggle(i) {
+      document.getElementById('fi' + i).classList.toggle('open');
+    }
+    document.querySelectorAll('.faq-tab').forEach(t => t.addEventListener('click', () => {
+      cat = t.getAttribute('data-cat');
+      document.querySelectorAll('.faq-tab').forEach(x => x.classList.remove('active'));
+      t.classList.add('active');
+      render();
+    }));
+    render();
+    const pc = document.getElementById('particles');
+    for (let i = 0; i < 40; i++) { const p = document.createElement('div'); p.className = 'p'; const s = Math.random() * 8 + 3; p.style.cssText = `width:${s}px;height:${s}px;left:${Math.random() * 100}%;top:${Math.random() * 100}%;animation-delay:${Math.random() * 12}s;animation-duration:${12 + Math.random() * 10}s`; pc.appendChild(p); }
+    const tb = document.getElementById('themeBtn'); const saved = localStorage.getItem('srs-theme') || 'dark'; document.body.className = saved + '-mode'; tb.innerHTML = saved === 'dark' ? '<i class="fas fa-moon"></i>' : '<i class="fas fa-sun"></i>'; tb.addEventListener('click', () => { const d = document.body.classList.contains('dark-mode'); document.body.className = (d ? 'light' : 'dark') + '-mode'; tb.innerHTML = d ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>'; localStorage.setItem('srs-theme', d ? 'light' : 'dark'); });
+    document.getElementById('menuBtn').addEventListener('click', () => document.getElementById('navLinks').classList.toggle('open'));
+  </script>
+</body>
+
+</html>

@@ -1,97 +1,105 @@
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>خدمات | Sarfraz Refugee Service</title>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-<link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>خدمات | Sarfraz Refugee Service</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
 </head>
+
 <body class="dark-mode">
-<div class="bg-scene"></div>
-<div class="bg-orb"></div><div class="bg-orb"></div><div class="bg-orb"></div>
-<div class="particles" id="particles"></div>
+  <div class="bg-scene"></div>
+  <div class="bg-orb"></div>
+  <div class="bg-orb"></div>
+  <div class="bg-orb"></div>
+  <div class="particles" id="particles"></div>
 
-<nav class="navbar">
-  <a href="index.html" class="logo-wrap">
-    <img src="images/khamoosh.webp" alt="logo">
-    <div class="logo-name">SARFRAZ<br>REFUGEE SERVICE</div>
-  </a>
-  <button class="menu-btn" id="menuBtn">☰</button>
-  <ul class="nav-links" id="navLinks">
-    <li><a href="index.html"><img src="images/home.png"> <span data-k="home">خانه</span></a></li>
-    <li><a href="services.html" class="active"><img src="images/customer.png"> <span data-k="services">خدمات</span></a></li>
-    <li><a href="ai.html"><img src="images/ai.png"> AI</a></li>
-    <li><a href="contact.html"><img src="images/call.png"> <span data-k="contact">تماس</span></a></li>
-    <li><a href="faq.html"><img src="images/f&a.png"> <span data-k="faq">سوالات</span></a></li>
-    <li><a href="news/day-news/day.html"><img src="images/event.png"> <span data-k="news">اخبار</span></a></li>
-  </ul>
-  <div class="nav-actions">
-    <button class="lang-btn active" data-l="fa">🇦🇫 فارسی</button>
-    <button class="lang-btn" data-l="en">🇬🇧 EN</button>
-    <button class="lang-btn" data-l="ps">پښتو</button>
-    <button class="theme-btn" id="themeBtn"><i class="fas fa-moon"></i></button>
-  </div>
-</nav>
-
-<div class="hero">
-  <div class="hero-inner">
-    <div class="badge"><i class="fas fa-concierge-bell"></i> <span data-k="pageTag">خدمات تخصصی</span></div>
-    <h1 data-k="pageTitle">خدمات ما</h1>
-    <p style="color:var(--text-muted);max-width:600px;margin:0 auto;line-height:1.8" data-k="pageDesc">راهنمایی کامل در تمام مراحل مهاجرت، از مشاوره تا دریافت ویزا</p>
-  </div>
-</div>
-
-<div class="cards-grid" id="servicesGrid" style="grid-template-columns:repeat(auto-fill,minmax(280px,1fr))"></div>
-
-<footer class="footer">
-  <div class="footer-inner">
-    <div class="footer-col">
-      <h4>Sarfraz Refugee Service</h4>
-      <p><i class="fas fa-map-marker-alt"></i> ایبک، سمنگان</p>
-      <p><i class="fas fa-phone-alt"></i> 0792665622</p>
+  <nav class="navbar">
+    <a href="index.html" class="logo-wrap">
+      <img src="images/kha.jpg" alt="logo">
+      <div class="logo-name">SARFRAZ<br>REFUGEE SERVICE</div>
+    </a>
+    <button class="menu-btn" id="menuBtn">☰</button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html"><img src="images/home.png"> <span data-k="home">خانه</span></a></li>
+      <li><a href="services.html" class="active"><img src="images/customer.png"> <span
+            data-k="services">خدمات</span></a></li>
+      <li><a href="ai.html"><img src="images/ai.png"> AI</a></li>
+      <li><a href="contact.html"><img src="images/call.png"> <span data-k="contact">تماس</span></a></li>
+      <li><a href="faq.html"><img src="images/f&a.png"> <span data-k="faq">سوالات</span></a></li>
+      <li><a href="news/day-news/day.html"><img src="images/event.png"> <span data-k="news">اخبار</span></a></li>
+    </ul>
+    <div class="nav-actions">
+      <button class="lang-btn active" data-l="fa">🇦🇫 فارسی</button>
+      <button class="lang-btn" data-l="en">🇬🇧 EN</button>
+      <button class="lang-btn" data-l="ps">پښتو</button>
+      <button class="theme-btn" id="themeBtn"><i class="fas fa-moon"></i></button>
     </div>
-    <div class="footer-col">
-      <h4 data-k="social">شبکه‌های اجتماعی</h4>
-      <a href="https://t.me/visaguidee" target="_blank"><i class="fab fa-telegram" style="color:#29b6f6"></i> Telegram</a>
-      <a href="https://whatsapp.com/channel/0029Vae7U29AzNbpZIv5T81R" target="_blank"><i class="fab fa-whatsapp" style="color:#25d366"></i> WhatsApp</a>
+  </nav>
+
+  <div class="hero">
+    <div class="hero-inner">
+      <div class="badge"><i class="fas fa-concierge-bell"></i> <span data-k="pageTag">خدمات تخصصی</span></div>
+      <h1 data-k="pageTitle">خدمات ما</h1>
+      <p style="color:var(--text-muted);max-width:600px;margin:0 auto;line-height:1.8" data-k="pageDesc">راهنمایی کامل
+        در تمام مراحل مهاجرت، از مشاوره تا دریافت ویزا</p>
     </div>
   </div>
-  <div class="footer-bottom">© 2026 Sarfraz Refugee Service</div>
-</footer>
 
-<script>
-const T={fa:{home:"خانه",services:"خدمات",contact:"تماس",faq:"سوالات",news:"اخبار",pageTag:"خدمات تخصصی",pageTitle:"خدمات ما",pageDesc:"راهنمایی کامل در تمام مراحل مهاجرت، از مشاوره تا دریافت ویزا",social:"شبکه‌های اجتماعی",visitBtn:"مشاهده"},en:{home:"Home",services:"Services",contact:"Contact",faq:"FAQ",news:"News",pageTag:"Specialized Services",pageTitle:"Our Services",pageDesc:"Complete guidance through all stages of immigration, from consultation to visa",social:"Social Networks",visitBtn:"Visit"},ps:{home:"کور",services:"خدمات",contact:"اړیکه",faq:"پوښتنې",news:"خبرونه",pageTag:"تخصصي خدمات",pageTitle:"زموږ خدمات",pageDesc:"د مهاجرت ټولو مرحلو کې بشپړ لارښود",social:"ټولنیزې شبکې",visitBtn:"وګورئ"}};
-const services={
-  fa:[{title:"مشاوره رایگان مهاجرت",desc:"ارائه مشاوره ابتدایی و تخصصی به‌صورت رایگان، جهت آشنایی شما با مسیرهای مختلف مهاجرت.",icon:"fas fa-handshake",color:"#b8a0ff",link:"contact/consulting.html"},
-  {title:"نشر اخبار مهاجرتی",desc:"پوشش تازه‌ترین اخبار و تحولات مهاجرتی تا شما همیشه از آخرین تغییرات آگاه باشید.",icon:"fas fa-newspaper",color:"#06d6a0",link:"news/day-news/day.html"},
-  {title:"ثبت‌نام ویزاهای بشردوستانه",desc:"راهنمایی و همراهی در پروسه ثبت‌نام ویزاهای بشردوستانه با معلومات دقیق.",icon:"fas fa-passport",color:"#ffd166",link:"visa/visa.html"},
-  {title:"رهنمودهای مهاجرتی",desc:"رهنمودهای گام به گام از انتخاب مقصد تا آماده‌سازی مدارک.",icon:"fas fa-map-signs",color:"#ff6b6b",link:"guide.html"},
-  {title:"سمینارهای تقویتی",desc:"جلسات آموزشی و سمینارهای کاربردی جهت ارتقای دانش شما در زمینه مهاجرت.",icon:"fas fa-chalkboard-teacher",color:"#29b6f6",link:"sem/sem.html"},
-  {title:"مشاور هوش مصنوعی",desc:"استفاده از هوش مصنوعی برای پاسخ به سوالات مهاجرتی به صورت فوری.",icon:"fas fa-robot",color:"#e879f9",link:"ai.html"}],
-  en:[{title:"Free Migration Consultation",desc:"Free initial and specialized consultation to help you choose the best immigration path.",icon:"fas fa-handshake",color:"#b8a0ff",link:"contact/consulting.html"},
-  {title:"Immigration News",desc:"Latest immigration news so you stay updated with all changes.",icon:"fas fa-newspaper",color:"#06d6a0",link:"news/day-news/day.html"},
-  {title:"Humanitarian Visa Registration",desc:"Guidance in humanitarian visa registration with accurate information.",icon:"fas fa-passport",color:"#ffd166",link:"visa/visa.html"},
-  {title:"Immigration Guidelines",desc:"Step-by-step guidance from destination selection to document preparation.",icon:"fas fa-map-signs",color:"#ff6b6b",link:"guide.html"},
-  {title:"Strengthening Seminars",desc:"Educational sessions to enhance your immigration knowledge.",icon:"fas fa-chalkboard-teacher",color:"#29b6f6",link:"sem/sem.html"},
-  {title:"AI Advisor",desc:"Use AI to get instant answers to your immigration questions.",icon:"fas fa-robot",color:"#e879f9",link:"ai.html"}],
-  ps:[{title:"وړیا د مهاجرت مشوره",desc:"د کډوالۍ لپاره وړیا تخصصي مشوره.",icon:"fas fa-handshake",color:"#b8a0ff",link:"contact/consulting.html"},
-  {title:"د کډوالۍ خبرونه",desc:"د کډوالۍ وروستي خبرونه.",icon:"fas fa-newspaper",color:"#06d6a0",link:"news/day-news/day.html"},
-  {title:"د بشري ویزې ثبتنام",desc:"د بشري ویزې ثبتنام کې لارښوونه.",icon:"fas fa-passport",color:"#ffd166",link:"visa/visa.html"},
-  {title:"د کډوالۍ لارښودونه",desc:"د مهاجرت مرحلو ګام پرګام لارښوونه.",icon:"fas fa-map-signs",color:"#ff6b6b",link:"guide.html"},
-  {title:"سیمینارونه",desc:"ستاسو د مهاجرت پوهه لوړوي.",icon:"fas fa-chalkboard-teacher",color:"#29b6f6",link:"sem/sem.html"},
-  {title:"AI مشاور",desc:"AI سره د مهاجرت پوښتنو ځوابونه.",icon:"fas fa-robot",color:"#e879f9",link:"ai.html"}]
-};
-let lang='fa';
-function applyLang(l){
-  lang=l;
-  document.querySelectorAll('[data-k]').forEach(el=>{const k=el.getAttribute('data-k');if(T[l][k])el.innerHTML=T[l][k];});
-  document.querySelectorAll('.lang-btn').forEach(b=>b.classList.toggle('active',b.getAttribute('data-l')===l));
-  renderServices();
-}
-function renderServices(){
-  const g=document.getElementById('servicesGrid');
-  g.innerHTML=services[lang].map(s=>`
+  <div class="cards-grid" id="servicesGrid" style="grid-template-columns:repeat(auto-fill,minmax(280px,1fr))"></div>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-col">
+        <h4>Sarfraz Refugee Service</h4>
+        <p><i class="fas fa-map-marker-alt"></i> ایبک، سمنگان</p>
+        <p><i class="fas fa-phone-alt"></i> 0792665622</p>
+      </div>
+      <div class="footer-col">
+        <h4 data-k="social">شبکه‌های اجتماعی</h4>
+        <a href="https://t.me/visaguidee" target="_blank"><i class="fab fa-telegram" style="color:#29b6f6"></i>
+          Telegram</a>
+        <a href="https://whatsapp.com/channel/0029Vae7U29AzNbpZIv5T81R" target="_blank"><i class="fab fa-whatsapp"
+            style="color:#25d366"></i> WhatsApp</a>
+      </div>
+    </div>
+    <div class="footer-bottom">© 2026 Sarfraz Refugee Service</div>
+  </footer>
+
+  <script>
+    const T = { fa: { home: "خانه", services: "خدمات", contact: "تماس", faq: "سوالات", news: "اخبار", pageTag: "خدمات تخصصی", pageTitle: "خدمات ما", pageDesc: "راهنمایی کامل در تمام مراحل مهاجرت، از مشاوره تا دریافت ویزا", social: "شبکه‌های اجتماعی", visitBtn: "مشاهده" }, en: { home: "Home", services: "Services", contact: "Contact", faq: "FAQ", news: "News", pageTag: "Specialized Services", pageTitle: "Our Services", pageDesc: "Complete guidance through all stages of immigration, from consultation to visa", social: "Social Networks", visitBtn: "Visit" }, ps: { home: "کور", services: "خدمات", contact: "اړیکه", faq: "پوښتنې", news: "خبرونه", pageTag: "تخصصي خدمات", pageTitle: "زموږ خدمات", pageDesc: "د مهاجرت ټولو مرحلو کې بشپړ لارښود", social: "ټولنیزې شبکې", visitBtn: "وګورئ" } };
+    const services = {
+      fa: [{ title: "مشاوره رایگان مهاجرت", desc: "ارائه مشاوره ابتدایی و تخصصی به‌صورت رایگان، جهت آشنایی شما با مسیرهای مختلف مهاجرت.", icon: "fas fa-handshake", color: "#b8a0ff", link: "contact/consulting.html" },
+      { title: "نشر اخبار مهاجرتی", desc: "پوشش تازه‌ترین اخبار و تحولات مهاجرتی تا شما همیشه از آخرین تغییرات آگاه باشید.", icon: "fas fa-newspaper", color: "#06d6a0", link: "news/day-news/day.html" },
+      { title: "ثبت‌نام ویزاهای بشردوستانه", desc: "راهنمایی و همراهی در پروسه ثبت‌نام ویزاهای بشردوستانه با معلومات دقیق.", icon: "fas fa-passport", color: "#ffd166", link: "visa/visa.html" },
+      { title: "رهنمودهای مهاجرتی", desc: "رهنمودهای گام به گام از انتخاب مقصد تا آماده‌سازی مدارک.", icon: "fas fa-map-signs", color: "#ff6b6b", link: "guide.html" },
+      { title: "سمینارهای تقویتی", desc: "جلسات آموزشی و سمینارهای کاربردی جهت ارتقای دانش شما در زمینه مهاجرت.", icon: "fas fa-chalkboard-teacher", color: "#29b6f6", link: "sem/sem.html" },
+      { title: "مشاور هوش مصنوعی", desc: "استفاده از هوش مصنوعی برای پاسخ به سوالات مهاجرتی به صورت فوری.", icon: "fas fa-robot", color: "#e879f9", link: "ai.html" }],
+      en: [{ title: "Free Migration Consultation", desc: "Free initial and specialized consultation to help you choose the best immigration path.", icon: "fas fa-handshake", color: "#b8a0ff", link: "contact/consulting.html" },
+      { title: "Immigration News", desc: "Latest immigration news so you stay updated with all changes.", icon: "fas fa-newspaper", color: "#06d6a0", link: "news/day-news/day.html" },
+      { title: "Humanitarian Visa Registration", desc: "Guidance in humanitarian visa registration with accurate information.", icon: "fas fa-passport", color: "#ffd166", link: "visa/visa.html" },
+      { title: "Immigration Guidelines", desc: "Step-by-step guidance from destination selection to document preparation.", icon: "fas fa-map-signs", color: "#ff6b6b", link: "guide.html" },
+      { title: "Strengthening Seminars", desc: "Educational sessions to enhance your immigration knowledge.", icon: "fas fa-chalkboard-teacher", color: "#29b6f6", link: "sem/sem.html" },
+      { title: "AI Advisor", desc: "Use AI to get instant answers to your immigration questions.", icon: "fas fa-robot", color: "#e879f9", link: "ai.html" }],
+      ps: [{ title: "وړیا د مهاجرت مشوره", desc: "د کډوالۍ لپاره وړیا تخصصي مشوره.", icon: "fas fa-handshake", color: "#b8a0ff", link: "contact/consulting.html" },
+      { title: "د کډوالۍ خبرونه", desc: "د کډوالۍ وروستي خبرونه.", icon: "fas fa-newspaper", color: "#06d6a0", link: "news/day-news/day.html" },
+      { title: "د بشري ویزې ثبتنام", desc: "د بشري ویزې ثبتنام کې لارښوونه.", icon: "fas fa-passport", color: "#ffd166", link: "visa/visa.html" },
+      { title: "د کډوالۍ لارښودونه", desc: "د مهاجرت مرحلو ګام پرګام لارښوونه.", icon: "fas fa-map-signs", color: "#ff6b6b", link: "guide.html" },
+      { title: "سیمینارونه", desc: "ستاسو د مهاجرت پوهه لوړوي.", icon: "fas fa-chalkboard-teacher", color: "#29b6f6", link: "sem/sem.html" },
+      { title: "AI مشاور", desc: "AI سره د مهاجرت پوښتنو ځوابونه.", icon: "fas fa-robot", color: "#e879f9", link: "ai.html" }]
+    };
+    let lang = 'fa';
+    function applyLang(l) {
+      lang = l;
+      document.querySelectorAll('[data-k]').forEach(el => { const k = el.getAttribute('data-k'); if (T[l][k]) el.innerHTML = T[l][k]; });
+      document.querySelectorAll('.lang-btn').forEach(b => b.classList.toggle('active', b.getAttribute('data-l') === l));
+      renderServices();
+    }
+    function renderServices() {
+      const g = document.getElementById('servicesGrid');
+      g.innerHTML = services[lang].map(s => `
     <a href="${s.link}" class="card" style="text-decoration:none;display:block;">
       <div style="padding:2rem;text-align:center;">
         <div style="font-size:2.5rem;color:${s.color};margin-bottom:1rem;transition:transform 0.3s"><i class="${s.icon}"></i></div>
@@ -100,18 +108,20 @@ function renderServices(){
         <div style="margin-top:1rem;display:inline-block;background:rgba(108,71,255,0.15);border:1px solid rgba(108,71,255,0.3);color:#b8a0ff;padding:6px 18px;border-radius:30px;font-size:0.8rem">${T[lang].visitBtn} →</div>
       </div>
     </a>`).join('');
-}
-// particles
-const pc=document.getElementById('particles');
-for(let i=0;i<50;i++){const p=document.createElement('div');p.className='p';const s=Math.random()*8+3;p.style.cssText=`width:${s}px;height:${s}px;left:${Math.random()*100}%;top:${Math.random()*100}%;animation-delay:${Math.random()*12}s;animation-duration:${12+Math.random()*10}s`;pc.appendChild(p);}
-// theme
-const tb=document.getElementById('themeBtn');
-const saved=localStorage.getItem('srs-theme')||'dark';
-document.body.className=saved+'-mode';
-tb.innerHTML=saved==='dark'?'<i class="fas fa-moon"></i>':'<i class="fas fa-sun"></i>';
-tb.addEventListener('click',()=>{const d=document.body.classList.contains('dark-mode');document.body.className=(d?'light':'dark')+'-mode';tb.innerHTML=d?'<i class="fas fa-sun"></i>':'<i class="fas fa-moon"></i>';localStorage.setItem('srs-theme',d?'light':'dark');});
-document.querySelectorAll('.lang-btn').forEach(b=>b.addEventListener('click',()=>applyLang(b.getAttribute('data-l'))));
-document.getElementById('menuBtn').addEventListener('click',()=>document.getElementById('navLinks').classList.toggle('open'));
-applyLang('fa');
-</script>
-</body></html>
+    }
+    // particles
+    const pc = document.getElementById('particles');
+    for (let i = 0; i < 50; i++) { const p = document.createElement('div'); p.className = 'p'; const s = Math.random() * 8 + 3; p.style.cssText = `width:${s}px;height:${s}px;left:${Math.random() * 100}%;top:${Math.random() * 100}%;animation-delay:${Math.random() * 12}s;animation-duration:${12 + Math.random() * 10}s`; pc.appendChild(p); }
+    // theme
+    const tb = document.getElementById('themeBtn');
+    const saved = localStorage.getItem('srs-theme') || 'dark';
+    document.body.className = saved + '-mode';
+    tb.innerHTML = saved === 'dark' ? '<i class="fas fa-moon"></i>' : '<i class="fas fa-sun"></i>';
+    tb.addEventListener('click', () => { const d = document.body.classList.contains('dark-mode'); document.body.className = (d ? 'light' : 'dark') + '-mode'; tb.innerHTML = d ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>'; localStorage.setItem('srs-theme', d ? 'light' : 'dark'); });
+    document.querySelectorAll('.lang-btn').forEach(b => b.addEventListener('click', () => applyLang(b.getAttribute('data-l'))));
+    document.getElementById('menuBtn').addEventListener('click', () => document.getElementById('navLinks').classList.toggle('open'));
+    applyLang('fa');
+  </script>
+</body>
+
+</html>
