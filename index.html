@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sarfraz Refugee Service | خدمات مهاجرتی افغان‌ها</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="dark-mode">
+
+  <div class="bg-scene"></div>
+  <div class="bg-orb"></div>
+  <div class="bg-orb"></div>
+  <div class="bg-orb"></div>
+  <div class="particles" id="particles"></div>
+
+  <nav class="navbar" id="navbar">
+    <a href="index.html" class="logo-wrap">
+      <img src="/images/kha.jpg">
+      <div class=" logo-name">VISA<br>GUIDE AF </div>
+    </a>
+    <button class="menu-btn" id="menuBtn">☰</button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html" class="active"><img src="images/home.png"> <span data-k="home">خانه</span></a></li>
+      <li><a href="services.html"><img src="images/customer.png"> <span data-k="services">خدمات</span></a></li>
+      <li><a href="ai.html"><img src="images/ai.png"> <span data-k="ai">هوش مصنوعی</span></a></li>
+      <li><a href="contact.html"><img src="images/call.png"> <span data-k="contact">تماس</span></a></li>
+      <li><a href="faq.html"><img src="images/f&a.png"> <span data-k="faq">سوالات</span></a></li>
+      <li><a href="news/day-news/day.html"><img src="images/event.png"> <span data-k="news">اخبار</span></a></li>
+    </ul>
+    <div class="nav-actions">
+      <button class="lang-btn active" data-l="fa">🇦🇫 فارسی</button>
+      <button class="lang-btn" data-l="en">🇬🇧 EN</button>
+      <button class="lang-btn" data-l="ps">پښتو</button>
+      <button class="theme-btn" id="themeBtn"><i class="fas fa-moon"></i></button>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-inner">
+      <div class="badge"><i class="fas fa-star"></i> <span data-k="trusted">خدمات معتبر مهاجرت</span></div>
+      <img src="images/kha.jpg" alt="Sarfraz" class="hero-logo">
+      <h1 data-k="heroTitle">خدمات مهاجرت برای افغان‌ها</h1>
+      <div class="hero-desc">
+        <p id="heroDesc"><strong>VISA GUIDE AF</strong> بزرگترین مرجع مشاوره مهاجرت و ثبت‌نام ویزای بشردوستانه
+          برای <strong>افغان‌ها</strong> — همراه مطمئن شما تا امنیت و آرامش.</p>
+      </div>
+      <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:1.5rem;">
+        <a href="services.html" class="card-btn"><i class="fas fa-compass"></i> <span data-k="seeServices">مشاهده
+            خدمات</span></a>
+        <a href="contact.html" class="card-btn" style="background:linear-gradient(95deg,#ff6b6b,#ff9b6b)"><i
+            class="fas fa-headset"></i> <span data-k="getHelp">دریافت مشاوره</span></a>
+      </div>
+    </div>
+  </div>
+
+  <!-- STATS -->
+  <div
+    style="max-width:1200px;margin:2rem auto;padding:0 16px;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem;">
+    <div class="glass" style="padding:1.5rem;text-align:center">
+      <div style="font-size:2rem;font-weight:900;color:#b8a0ff">۵۰۰۰+</div>
+      <div style="font-size:0.85rem;color:var(--text-muted)" data-k="stat1">پرونده موفق</div>
+    </div>
+    <div class="glass" style="padding:1.5rem;text-align:center">
+      <div style="font-size:2rem;font-weight:900;color:#06d6a0">۱۵+</div>
+      <div style="font-size:0.85rem;color:var(--text-muted)" data-k="stat2">کشور مقصد</div>
+    </div>
+    <div class="glass" style="padding:1.5rem;text-align:center">
+      <div style="font-size:2rem;font-weight:900;color:#ffd166">۲۴/۷</div>
+      <div style="font-size:0.85rem;color:var(--text-muted)" data-k="stat3">پشتیبانی آنلاین</div>
+    </div>
+    <div class="glass" style="padding:1.5rem;text-align:center">
+      <div style="font-size:2rem;font-weight:900;color:#ff6b6b">۱۰+</div>
+      <div style="font-size:0.85rem;color:var(--text-muted)" data-k="stat4">سال تجربه</div>
+    </div>
+  </div>
+
+  <!-- NEWS -->
+  <div style="max-width:1300px;margin:0 auto;padding:0 16px">
+    <h2 class="section-title" data-k="latestNews">آخرین اخبار</h2>
+  </div>
+  <div class="cards-grid" id="newsGrid"></div>
+
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-col">
+        <h4 data-k="footTitle1">خدمات مهاجرت</h4>
+        <p><i class="fas fa-check-circle"></i> <span data-k="footDesc1">معتبرترین خدمات در افغانستان</span></p>
+        <p><i class="fas fa-globe"></i> <span data-k="footDesc2">خدمات مهاجرتی جهانی</span></p>
+      </div>
+      <div class="footer-col">
+        <h4 data-k="footTitle2">تماس با ما</h4>
+        <p><i class="fas fa-map-marker-alt"></i> <span data-k="footAddr">ایبک، سمنگان، افغانستان</span></p>
+        <p><i class="fas fa-phone-alt"></i> 0792665622</p>
+        <p><i class="fas fa-envelope"></i> sarfraz2026@zohomail.com</p>
+      </div>
+      <div class="footer-col">
+        <h4 data-k="footTitle3">شبکه‌های اجتماعی</h4>
+        <a href="https://whatsapp.com/channel/0029Vae7U29AzNbpZIv5T81R" target="_blank"><i class="fab fa-whatsapp"
+            style="color:#25d366"></i> WhatsApp</a>
+        <a href="https://t.me/visaguidee" target="_blank"><i class="fab fa-telegram" style="color:#29b6f6"></i>
+          Telegram</a>
+        <a href="https://www.facebook.com/profile.php?id=61576472791614" target="_blank"><i class="fab fa-facebook-f"
+            style="color:#1877f2"></i> Facebook</a>
+        <a href="https://www.instagram.com/sarfraz_refugee_service" target="_blank"><i class="fab fa-instagram"
+            style="color:#e1306c"></i> Instagram</a>
+      </div>
+    </div>
+    <div class="footer-bottom"><span data-k="copy">© 2026 Sarfraz Refugee Service — همه حقوق محفوظ است</span></div>
+  </footer>
+
+  <script>
+    const T = {
+      fa: { home: "خانه", services: "خدمات", ai: "هوش مصنوعی", contact: "تماس", faq: "سوالات", news: "اخبار", trusted: "خدمات معتبر مهاجرت", heroTitle: "خدمات مهاجرت برای افغان‌ها", heroDesc: '<strong>Sarfraz Refugee Service</strong> بزرگترین مرجع مشاوره مهاجرت و ثبت‌نام ویزای بشردوستانه برای <strong>افغان‌ها</strong> — همراه مطمئن شما تا امنیت و آرامش.', seeServices: "مشاهده خدمات", getHelp: "دریافت مشاوره", stat1: "پرونده موفق", stat2: "کشور مقصد", stat3: "پشتیبانی آنلاین", stat4: "سال تجربه", latestNews: "آخرین اخبار", ourServices: "خدمات ما", footTitle1: "خدمات مهاجرت", footDesc1: "معتبرترین خدمات در افغانستان", footDesc2: "خدمات مهاجرتی جهانی", footTitle2: "تماس با ما", footAddr: "ایبک، سمنگان، افغانستان", footTitle3: "شبکه‌های اجتماعی", copy: "© 2026 Sarfraz Refugee Service — همه حقوق محفوظ است", readMore: "بیشتر بخوانید", breaking: "لحظاتی پیش" },
+      en: { home: "Home", services: "Services", ai: "AI Assistant", contact: "Contact", faq: "FAQ", news: "News", trusted: "Trusted Migration Services", heroTitle: "Migration Services for Afghans", heroDesc: '<strong>Sarfraz Refugee Service</strong> — the largest immigration consulting center for <strong>Afghans</strong>. Your trusted partner to safety and peace.', seeServices: "View Services", getHelp: "Get Consultation", stat1: "Successful Cases", stat2: "Destination Countries", stat3: "Online Support", stat4: "Years Experience", latestNews: "Latest News", ourServices: "Our Services", footTitle1: "Immigration Services", footDesc1: "Most reliable services in Afghanistan", footDesc2: "Global immigration services", footTitle2: "Contact Us", footAddr: "Aibak, Samangan, Afghanistan", footTitle3: "Social Networks", copy: "© 2026 Sarfraz Refugee Service — All rights reserved", readMore: "Read More", breaking: "Moments ago" },
+      ps: { home: "کور", services: "خدمات", ai: "AI", contact: "اړیکه", faq: "پوښتنې", news: "خبرونه", trusted: "د مهاجرت باوري خدمات", heroTitle: "د افغانانو لپاره د مهاجرت خدمات", heroDesc: '<strong>Sarfraz Refugee Service</strong> د افغانانو لپاره ترټولو لوی د کډوالۍ مرکز — ستاسو باوري ملګری.', seeServices: "خدمات وګورئ", getHelp: "مشوره ترلاسه کړئ", stat1: "بریالي قضیې", stat2: "مقصد هیوادونه", stat3: "آنلاین ملاتړ", stat4: "کلونه تجربه", latestNews: "وروستي خبرونه", ourServices: "زموږ خدمات", footTitle1: "د کډوالۍ خدمات", footDesc1: "افغانستان کې ترټولو معتبر خدمات", footDesc2: "نړیوال د کډوالۍ خدمات", footTitle2: "اړیکه", footAddr: "ایبک، سمنګان، افغانستان", footTitle3: "ټولنیزې شبکې", copy: "© 2026 Sarfraz Refugee Service — ټول حقونه خوندي", readMore: "نور ولولئ", breaking: "شیبې مخکې" }
+    };
+
+    const news = [
+      { fa: "خبر فوری: ممنوعیت پناهندگان آمریکا وارد مرحله سرنوشت‌ساز شد", en: "Breaking: US refugee ban enters final stage", ps: "بیړنی خبر: د امریکا پناهندګۍ بند وروستي پړاو ته ننوت", img: "news/pic/p.jpg", link: "news/7.html", breaking: true, date: "۵ می ۲۰۲۶" },
+      { fa: "بلاتکلیفی ۱۱۰۰ افغان در کمپ قطر", en: "Uncertainty of 1100 Afghans in Qatar camp", ps: "د ۱۱۰۰ افغانانو ناڅرګنده حالت", img: "news/pic/us.jpg", link: "news/6.html", breaking: false, date: "۲۸ اپریل ۲۰۲۶" },
+      { fa: "افغان‌ها در قطر از اقدام ترامپ ابراز خیانت کردند", en: "Afghans in Qatar express betrayal over Trump plan", ps: "افغانان د ترامپ پلان خیانت بولي", img: "news/pic/qater.jpg", link: "news/1.html", breaking: false, date: "۲۵ اپریل" },
+      { fa: "طالبان به افغان‌های همراه آمریکا وعده عفو داد", en: "Taliban promises amnesty to Afghans who helped US", ps: "طالبان هغو افغانانو ته بښنه ورکوي", img: "news/pic/talib.webp", link: "news/2.html", breaking: false, date: "۲۵ اپریل" },
+      { fa: "سرنوشت نامعلوم پناهجویان در قطر", en: "Unknown fate of Afghan refugees in Qatar", ps: "د کډوالو ناڅرګند برخلیک", img: "news/pic/afghan.jpg", link: "news/3.html", breaking: false, date: "۲۷ اپریل" },
+      { fa: "پناهجوی افغان در آستانه اخراج از آمریکا", en: "Afghan refugee faces deportation from US", ps: "افغان پناه غوښتونکی د شړلو ګواښ", img: "news/pic/homeland.jpg", link: "news/4.html", breaking: false, date: "۲۷ اپریل" }
+    ];
+
+    const services = [
+      { icon: "fas fa-passport", color: "#b8a0ff", fa: "خدمات ویزا", en: "Visa Services", ps: "د ویزې خدمات", link: "visa/visa.html" },
+      { icon: "fas fa-handshake", color: "#06d6a0", fa: "مشاوره مهاجرت", en: "Migration Consulting", ps: "د مهاجرت مشوره", link: "contact/consulting.html" },
+      { icon: "fas fa-university", color: "#ffd166", fa: "بورسیه تحصیلی", en: "Scholarships", ps: "سکالرشپونه", link: "services.html" },
+      { icon: "fas fa-globe-europe", color: "#ff6b6b", fa: "پناهندگی", en: "Asylum Applications", ps: "د پناه غوښتنه", link: "services.html" },
+      { icon: "fas fa-file-alt", color: "#29b6f6", fa: "مدارک رسمی", en: "Official Documents", ps: "رسمي اسناد", link: "services.html" },
+      { icon: "fas fa-robot", color: "#e879f9", fa: "مشاور هوش مصنوعی", en: "AI Advisor", ps: "AI مشاور", link: "ai.html" }
+    ];
+
+    let lang = 'fa';
+
+    function applyLang(l) {
+      lang = l;
+      document.querySelectorAll('[data-k]').forEach(el => {
+        const k = el.getAttribute('data-k');
+        if (T[l][k] !== undefined) el.innerHTML = T[l][k];
+      });
+      document.getElementById('heroDesc').innerHTML = T[l].heroDesc;
+      renderNews(); renderServices();
+      document.querySelectorAll('.lang-btn').forEach(b => b.classList.toggle('active', b.getAttribute('data-l') === l));
+    }
+
+    function renderNews() {
+      const g = document.getElementById('newsGrid'); if (!g) return;
+      g.innerHTML = news.map(n => `
+    <div class="card${n.breaking ? ' breaking-news' : ''}">
+      ${n.breaking ? `<div class="breaking-badge"><i class="fas fa-broadcast-tower"></i></div>` : ''}
+      <img src="${n.img}" class="card-img" alt="">
+      <div class="card-body">
+        <div class="card-title">${n[lang === 'fa' ? 'fa' : lang === 'en' ? 'en' : 'ps']}</div>
+        <div class="card-meta"><i class="fas fa-calendar-alt"></i> ${n.date}${n.breaking ? ` 🔴 ${T[lang].breaking}` : ''}</div>
+        <a href="${n.link}" class="card-btn">${T[lang].readMore} →</a>
+      </div>
+    </div>`).join('');
+    }
+
+    function renderServices() {
+      const g = document.getElementById('servicesPreview'); if (!g) return;
+      g.innerHTML = services.map(s => `
+    <a href="${s.link}" class="glass" style="padding:1.5rem;text-align:center;text-decoration:none;display:block;border-radius:20px;">
+      <div style="font-size:2rem;margin-bottom:0.8rem;color:${s.color}"><i class="${s.icon}"></i></div>
+      <div style="font-size:0.9rem;font-weight:600;color:var(--text)">${s[lang === 'fa' ? 'fa' : lang === 'en' ? 'en' : 'ps']}</div>
+    </a>`).join('');
+    }
+
+    // particles
+    const pc = document.getElementById('particles');
+    for (let i = 0; i < 60; i++) {
+      const p = document.createElement('div'); p.className = 'p';
+      const s = Math.random() * 10 + 3;
+      p.style.cssText = `width:${s}px;height:${s}px;left:${Math.random() * 100}%;top:${Math.random() * 100}%;animation-delay:${Math.random() * 12}s;animation-duration:${12 + Math.random() * 10}s`;
+      pc.appendChild(p);
+    }
+
+    // theme
+    const tb = document.getElementById('themeBtn');
+    const saved = localStorage.getItem('srs-theme') || 'dark';
+    document.body.className = saved + '-mode';
+    tb.innerHTML = saved === 'dark' ? '<i class="fas fa-moon"></i>' : '<i class="fas fa-sun"></i>';
+    tb.addEventListener('click', () => {
+      const isDark = document.body.classList.contains('dark-mode');
+      document.body.className = (isDark ? 'light' : 'dark') + '-mode';
+      tb.innerHTML = isDark ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+      localStorage.setItem('srs-theme', isDark ? 'light' : 'dark');
+    });
+
+    // lang
+    document.querySelectorAll('.lang-btn').forEach(b => b.addEventListener('click', () => applyLang(b.getAttribute('data-l'))));
+    // menu
+    document.getElementById('menuBtn').addEventListener('click', () => document.getElementById('navLinks').classList.toggle('open'));
+
+    applyLang('fa');
+  </script>
+</body>
+
+</html>

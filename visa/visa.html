@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>ویزای بشردوستانه | فرصت ویژه برای افغان‌ها</title>
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- گوگل فونت Inter -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap"
+        rel="stylesheet">
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #ffffff 0%, #d4d4d4 10%);
+            color: #0f172a;
+            line-height: 1.55;
+            padding: 2rem 1rem;
+            overflow-x: hidden;
+        }
+
+        /* انیمیشن بارگذاری صفحه */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        .services-header {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            border-radius: 2rem;
+            padding: 1rem 2rem;
+            margin-bottom: 2.5rem;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.03), 0 2px 4px rgba(0, 0, 0, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .services-header:hover {
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+        }
+
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo-img {
+            width: 60px;
+            height: 60px;
+            object-fit: contain;
+            padding: 8px;
+            transition: transform 0.3s ease;
+        }
+
+        .logo-img:hover {
+            transform: scale(1.05) rotate(5deg);
+        }
+
+        .logo-text {
+            font-weight: 500;
+            color: #1e293b;
+            font-size: 0.9rem;
+            background: #f1f5f9;
+            padding: 6px 16px;
+            border-radius: 40px;
+            color: #1e40af;
+        }
+
+        .btn-home {
+            background: #1e293b;
+            color: white;
+            text-decoration: none;
+            padding: 0.7rem 1.5rem;
+            border-radius: 40px;
+            font-weight: 500;
+            font-size: 0.95rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.25s;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-home i {
+            font-size: 1rem;
+        }
+
+        .btn-home:hover {
+            background: #0f172a;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 18px rgba(0, 0, 0, 0.12);
+        }
+
+        .hero-section {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .hero-section h1 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #0f2b3d, #1e4a76);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            margin-bottom: 0.75rem;
+        }
+
+        .commitment-text {
+            max-width: 800px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.7);
+            padding: 1.2rem 2rem;
+            border-radius: 2rem;
+            font-size: 1rem;
+            color: #1e3a5f;
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            backdrop-filter: blur(4px);
+            line-height: 1.7;
+            transition: all 0.3s ease;
+        }
+
+        .commitment-text:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+        }
+
+        .commitment-text i {
+            color: #000000;
+            margin-left: 6px;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 1.8rem;
+            margin-bottom: 3rem;
+        }
+
+        .service-card {
+            background: rgb(107, 0, 80);
+            border-radius: 1.8rem;
+            padding: 1.8rem 1.5rem;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.02);
+            border: 1px solid #eef2ff;
+            text-align: center;
+        }
+
+        .service-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 25px 40px -12px rgba(0, 0, 0, 0.2);
+            border-color: #ff6b6b;
+        }
+
+        .service-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 1.2rem;
+            background: #eef2ff;
+            border-radius: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .service-card:hover .service-icon {
+            transform: scale(1.1) rotate(5deg);
+            background: white;
+        }
+
+        .service-icon img {
+            width: 55px;
+            height: 55px;
+            object-fit: contain;
+        }
+
+        .service-card h3 {
+            font-size: 1.35rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+            color: #ffffff;
+            transition: color 0.3s ease;
+        }
+
+        .service-card:hover h3 {
+            color: #ffcc00;
+        }
+
+        .service-card p {
+            color: #ffffff;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .btn-info {
+            display: inline-block;
+            background: #ffffff;
+            color: rgb(107, 0, 80);
+            text-decoration: none;
+            padding: 0.6rem 1.2rem;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            margin-top: 1rem;
+            transition: all 0.25s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-info i {
+            margin-left: 8px;
+        }
+
+        .btn-info:hover {
+            background: #f0f0f0;
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 5px 15px rgba(255, 255, 255, 0.3);
+        }
+
+        .service-link {
+            display: block;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* فوتر جدید */
+        .footer {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: #aaa;
+            margin-top: 3rem;
+            padding: 2rem 2rem 1rem;
+            border-radius: 2rem 2rem 0 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #3b82f6, #f97316, #3b82f6);
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 2rem;
+        }
+
+        .footer-section {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .footer-section h4 {
+            color: #3b82f6;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .footer-section h4::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            right: 0;
+            width: 40px;
+            height: 2px;
+            background: #3b82f6;
+        }
+
+        .footer-section p {
+            color: #aaa;
+            line-height: 1.8;
+            margin-bottom: 0.5rem;
+            transition: transform 0.3s;
+        }
+
+        .footer-section p:hover {
+            transform: translateX(-5px);
+            color: #fff;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 15px;
+            margin-top: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-social a {
+            background: rgba(255, 255, 255, 0.1);
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: 0.3s;
+            color: #aaa;
+            text-decoration: none;
+        }
+
+        .footer-social a:hover {
+            background: #3b82f6;
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding: 1.5rem;
+            border-top: 1px solid #333;
+            margin-top: 2rem;
+        }
+
+        .footer-note {
+            text-align: center;
+            margin-top: 2rem;
+            font-size: 0.8rem;
+            color: #5b6e8c;
+            border-top: 1px solid #e2e8f0;
+            padding-top: 1.8rem;
+        }
+
+        @media (max-width: 640px) {
+            .services-header {
+                flex-direction: column;
+                align-items: stretch;
+                text-align: center;
+            }
+
+            .logo-area {
+                justify-content: center;
+            }
+
+            .btn-home {
+                justify-content: center;
+            }
+
+            .hero-section h1 {
+                font-size: 1.7rem;
+            }
+
+            .commitment-text {
+                font-size: 0.9rem;
+                padding: 1rem;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+                gap: 1.2rem;
+            }
+
+            .footer-container {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .footer-section h4::after {
+                right: 50%;
+                transform: translateX(50%);
+            }
+
+            .footer-social {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="services-header" data-aos="fade-down">
+            <div class="logo-area">
+                <img id="serviceLogo" class="logo-img" src="../images/kha.jpg" alt="لوگو موسسه">
+                <span class="logo-text"><i class="fas fa-hand-holding-heart"></i> ویزای بشردوستانه</span>
+            </div>
+            <a href="../index.html" id="homeButton" class="btn-home">
+                <i class="fas fa-home"></i> برگشت به خانه
+            </a>
+        </div>
+
+        <div class="hero-section" data-aos="fade-up">
+            <h1><i class="fas fa-globe-americas"></i> ویزای بشردوستانه برای افغان‌ها</h1>
+            <div class="commitment-text">
+                <i class="fas fa-quote-right"></i>
+                <h4>
+                    فرصتی برای زندگی بهتر - حمایت از افغان‌های آسیب‌ پـذیر در سراسر جهان </h4>
+            </div>
+        </div>
+
+        <div class="services-grid" id="servicesGrid"></div>
+    </div>
+
+    <!-- فوتر جدید -->
+    <div class="footer" data-aos="fade-up">
+        <div class="footer-container">
+            <div class="footer-section">
+                <h4><i class="fas fa-globe"></i> خدمات مهاجرت</h4>
+                <p>معتبرترین خدمات مهاجرت در افغانستان</p>
+                <p>ارایه خدمات مهاجرتی در سراسر جهان</p>
+            </div>
+
+            <div class="footer-section">
+                <h4><i class="fas fa-map-marker-alt"></i> تماس با ما</h4>
+                <p><i class="fas fa-location-dot"></i> شهر ایبک، سمنگان، افغانستان</p>
+                <p><i class="fas fa-phone"></i> 0792665622</p>
+                <p><i class="fas fa-envelope"></i> sarfraz2026@zohomail.com</p>
+            </div>
+
+            <div class="footer-section">
+                <h4><i class="fas fa-share-alt"></i> شبکه‌های اجتماعی</h4>
+                <div class="footer-social">
+                    <a href="https://www.facebook.com/profile.php?id=61576472791614" target="_blank"><i
+                            class="fab fa-facebook-f"></i></a>
+                    <a href="https://www.instagram.com/sarfraz_refugee_service" target="_blank"><i
+                            class="fab fa-instagram"></i></a>
+                    <a href="https://t.me/visaguidee" target="_blank"><i class="fab fa-telegram"></i></a>
+                    <a href="https://wa.me/message/ZY2KWEKZLQCXF1" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 Sarfraz Refugee Service - همه حقوق محفوظ است</p>
+        </div>
+    </div>
+
+    <!-- AOS Script -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 800,
+            once: true,
+            offset: 100
+        });
+
+        const servicesData = [
+            { title: "ویزای بشردوستانه استرالیا", desc: "فرصت ویژه برای افغان‌های آسیب‌پذیر | برنامه حمایت از پناهندگان استرالیا", iconSrc: "visa-pic/australia.png", link: "a.html" },
+            { title: "ویزای بشردوستانه کانادا", desc: "فرصت ویژه برای افغان‌های آسیب‌پذیر | برنامه ویژه پناهندگی کانادا", iconSrc: "visa-pic/canada.png", link: "c.html" },
+            { title: "ویزای بشردوستانه آلمان", desc: "فرصت ویژه برای افغان‌های آسیب‌پذیر | برنامه پذیرش بشردوستانه آلمان", iconSrc: "visa-pic/germany.png", link: "g.html" },
+            { title: "ویزای بشردوستانه اسپانیا", desc: "فرصت ویژه برای افغان‌های آسیب‌پذیر | حمایت بشردوستانه اسپانیا", iconSrc: "visa-pic/spania.png", link: "s.html" },
+            { title: "ویزای بشردوستانه ایتالیا", desc: "فرصت ویژه برای افغان‌های آسیب‌پذیر | برنامه حفاظت ایتالیا", iconSrc: "visa-pic/italia.png", link: "i.html" },
+            { title: "ویزای بشردوستانه فنلاند", desc: "فرصت ویژه برای افغان‌های آسیب‌پذیر | برنامه پناهندگی فنلاند", iconSrc: "visa-pic/finland.png", link: "f.html" },
+            { title: "ویزای بشردوستانه سوئیس", desc: "فرصت ویژه برای افغان‌های آسیب‌پذیر | برنامه حمایت سوئیس", iconSrc: "visa-pic/swiss.png", link: "w.html" },
+            { title: "ویزای بشردوستانه برزیل", desc: "فرصت ویژه برای افغان‌های آسیب‌پذیر | ویزای بشردوستانه برزیل", iconSrc: "visa-pic/brazil.png", link: "b.html" },
+            { title: "ویزای بشردوستانه نیوزلند", desc: "فرصت ویژه برای افغان‌های آسیب‌پذیر | برنامه حمایت نیوزلند", iconSrc: "visa-pic/newzealand.png", link: "n.html" }
+        ];
+
+        function renderServices() {
+            const grid = document.getElementById('servicesGrid');
+            if (!grid) return;
+            grid.innerHTML = '';
+            servicesData.forEach((service, index) => {
+                const link = document.createElement('a');
+                link.href = service.link;
+                link.className = 'service-link';
+
+                const iconDiv = document.createElement('div');
+                iconDiv.className = 'service-icon';
+                const img = document.createElement('img');
+                img.src = service.iconSrc;
+                img.alt = service.title;
+                iconDiv.appendChild(img);
+
+                const titleElem = document.createElement('h3');
+                titleElem.innerText = service.title;
+                const descElem = document.createElement('p');
+                descElem.innerText = service.desc;
+
+                link.appendChild(iconDiv);
+                link.appendChild(titleElem);
+                link.appendChild(descElem);
+
+                const btn = document.createElement('a');
+                btn.href = service.link;
+                btn.className = 'btn-info';
+                btn.innerHTML = '<i class="fas fa-info-circle"></i> معلومات و ثبت نام';
+
+                const card = document.createElement('div');
+                card.className = 'service-card';
+                card.setAttribute('data-aos', 'zoom-in');
+                card.setAttribute('data-aos-delay', (index * 50) + '');
+                card.appendChild(link);
+                card.appendChild(btn);
+                grid.appendChild(card);
+            });
+        }
+
+        renderServices();
+    </script>
+</body>
+
+</html>

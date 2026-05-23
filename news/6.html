@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>بلاتکلیفی ۱۱۰۰ افغان در کمپ CAS قطر | خدمات مهاجرت سرفراز</title>
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Reset CSS */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* بدنه اصلی */
+        body {
+            font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
+            background: #f5f5f5;
+        }
+
+        /* ========== منو ========== */
+        .navbar {
+            background: white;
+            padding: 0.8rem 2rem;
+            border-bottom: 1px solid #eaeaea;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-img {
+            width: 50px;
+            height: 50px;
+        }
+
+        .logo-text {
+            font-size: 1rem;
+            font-weight: bold;
+            color: #667eea;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .nav-menu li {
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-menu a {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-menu a:hover {
+            color: #667eea;
+        }
+
+        .nav-menu a img {
+            width: 22px;
+            height: 22px;
+            object-fit: contain;
+        }
+
+        .menu-toggle {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* ========== مقاله ========== */
+        .article-container {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 0 1.5rem;
+        }
+
+        .article-category {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            color: #667eea;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .article-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            line-height: 1.3;
+        }
+
+        .article-deck {
+            font-size: 1.1rem;
+            color: #555;
+            margin-bottom: 1.5rem;
+            border-right: 3px solid #667eea;
+            padding-right: 1rem;
+        }
+
+        .article-byline {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #eaeaea;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .author-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .author-avatar-large {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .author-name {
+            font-weight: 600;
+            color: #1a1a1a;
+        }
+
+        .author-title {
+            font-size: 0.8rem;
+            color: #888;
+        }
+
+        .article-date {
+            font-size: 0.85rem;
+            color: #888;
+        }
+
+        .featured-image {
+            width: 100%;
+            border-radius: 12px;
+            margin: 1.5rem 0;
+        }
+
+        .image-caption {
+            font-size: 0.8rem;
+            color: #777;
+            text-align: center;
+            margin-top: -1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .article-content {
+            font-size: 1.05rem;
+            line-height: 1.8;
+            color: #2a2a2a;
+        }
+
+        .article-content p {
+            margin-bottom: 1.2rem;
+        }
+
+        .article-content blockquote {
+            border-right: 4px solid #667eea;
+            padding: 1rem 1.5rem;
+            margin: 1.5rem 0;
+            background: #f9f9f9;
+            font-style: italic;
+            color: #555;
+        }
+
+        .info-box {
+            background: #e8f4fd;
+            border-right: 4px solid #17a2b8;
+            padding: 1rem;
+            border-radius: 12px;
+            margin: 1.5rem 0;
+        }
+
+        /* ========== دکمه بازگشت ========== */
+        .back-button {
+            display: inline-flex;
+            margin-top: 2rem;
+            padding: 10px 20px;
+            color: #667eea;
+            text-decoration: none;
+            border: 1px solid #667eea;
+            border-radius: 30px;
+            transition: all 0.3s;
+        }
+
+        .back-button:hover {
+            background: #667eea;
+            color: white;
+        }
+
+        /* ========== فوتر ========== */
+        .footer {
+            background: #1a1a2e;
+            color: #aaa;
+            margin-top: 3rem;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        /* ========== موبایل ========== */
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+
+            .nav-menu {
+                display: none;
+                width: 100%;
+                flex-direction: column;
+                gap: 1rem;
+                margin-top: 1rem;
+            }
+
+            .nav-menu.active {
+                display: flex;
+            }
+
+            .article-title {
+                font-size: 1.5rem;
+            }
+
+            .article-deck {
+                font-size: 0.95rem;
+            }
+
+            .article-byline {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+
+
+    <!-- ========== محتوای خبر ========== -->
+    <div class="article-container">
+        <div class="article-category">بین‌الملل / مهاجرتی</div>
+        <h1 class="article-title">بلاتکلیفی ۱۱۰۰ افغان در کمپ CAS قطر؛ درخواست برای اولویت‌دهی در برنامه پناهندگی امریکا
+            (FY2026)</h1>
+        <div class="article-deck">نزدیک به ۱۱۰۰ افغان که هنوز در کمپ As Sayliayah (CAS) در Doha، کشور Qatar حضور
+            دارند—از جمله اعضای خانواده نیروهای نظامی و کهنه‌سربازان امریکایی—برای مراحل نهایی بررسی در برنامه U.S.
+            Refugee Admissions Program (USRAP) به این مرکز منتقل شده‌اند.</div>
+
+        <div class="article-byline">
+            <div class="author-info">
+                <img src="../news/pic/khamoosh.jpg" alt="سرفراز" class="author-avatar-large">
+                <div class="author-details">
+                    <span class="author-name">Sarfraz khamoosh</span>
+                    <span class="author-title">گزارشگر و ادمین</span>
+                </div>
+            </div>
+            <div class="article-date"><i class="fas fa-calendar-alt"></i> ۲۸ اپریل ۲۰۲۶ - <i class="fas fa-clock"></i>
+                ۹:۴۲ شب</div>
+        </div>
+
+        <img src="pic/us.jpg" alt="کمپ CAS قطر" class="featured-image"
+            onerror="this.src='https://via.placeholder.com/800x400?text=Qatar+Camp'">
+        <div class="image-caption">کمپ As Sayliayah (CAS) در دوحه، قطر</div>
+
+        <div class="article-content">
+            <p>
+                نزدیک به ۱۱۰۰ افغان که هنوز در کمپ As Sayliayah (CAS) در Doha، کشور Qatar حضور دارند—از جمله اعضای
+                خانواده نیروهای نظامی و کهنه‌سربازان امریکایی—برای مراحل نهایی بررسی در برنامه U.S. Refugee Admissions
+                Program (USRAP) به این مرکز منتقل شده‌اند. برخی از این افراد همچنین دارای درخواست‌های در حال بررسی برای
+                ویزای ویژه مهاجرتی افغان‌ها Special Immigrant Visa (SIV) هستند.
+            </p>
+
+            <p>
+                این افراد در انتظار تکمیل مراحل نهایی برای آغاز زندگی جدید خود در خارج از افغانستانِ تحت کنترل طالبان
+                هستند، اما بیش از یک سال است که در این تأسیسات مربوط به ایالات متحده متوقف مانده‌اند. اکنون یک فرصت
+                واقعی برای تکمیل امن مأموریت CAS به‌وجود آمده است.
+            </p>
+
+            <p>
+                علاوه بر بحث‌هایی درباره انتقال افغان‌های حاضر در CAS به Democratic Republic of Congo (جمهوری دموکراتیک
+                کنگو)، گزارش‌هایی نیز منتشر شده که نشان می‌دهد مقامات امریکایی در حال بررسی اصلاحاتی در تعیینیه
+                ریاست‌جمهوری برنامه پذیرش پناهندگان برای سال مالی ۲۰۲۶ (FY26) هستند تا سقف پذیرش را افزایش دهند و
+                جمعیت‌های اولویت‌دار بیشتری را شامل شوند (فراتر از سقف اولیه ۷۵۰۰ نفر).
+            </p>
+
+            <div class="info-box">
+                <i class="fas fa-exclamation-triangle" style="color: #17a2b8;"></i>
+                <strong>درخواست اولویت‌دهی:</strong> افغان‌های حاضر در CAS که به‌طور کامل بررسی و تأیید شده‌اند—از جمله
+                اعضای خانواده نظامیان امریکایی، نیروهای ویژه ارتش افغانستان، و زنان و دختران در معرض خطر—باید در این
+                سهمیه FY26 شامل شده و در اولویت قرار گیرند.
+            </div>
+
+            <p>
+                سازمان No One Left Behind از دولت می‌خواهد که سقف پذیرش پناهندگان در FY26 را اصلاح کرده و افغان‌های CAS
+                را شامل سازد.
+            </p>
+
+            <blockquote>
+                "این افراد بیش از یک سال در بلاتکلیفی به سر می‌برند. وقت آن رسیده که ایالات متحده به تعهدات خود در قبال
+                متحدان افغان عمل کند." - سازمان No One Left Behind
+            </blockquote>
+        </div>
+
+        <a href="../index.html" class="back-button">← بازگشت به صفحه اصلی</a>
+    </div>
+
+    <!-- ========== فوتر ========== -->
+    <div class="footer">
+        <p>© 2026 Sarfraz Refugee service - همه حقوق محفوظ است</p>
+    </div>
+
+    <!-- ========== جاوااسکریپت منو موبایل ========== -->
+    <script>
+        const menuToggle = document.querySelector('.menu-toggle');
+        const navMenu = document.querySelector('.nav-menu');
+        if (menuToggle) {
+            menuToggle.addEventListener('click', () => {
+                navMenu.classList.toggle('active');
+            });
+        }
+    </script>
+
+</body>
+
+</html>
