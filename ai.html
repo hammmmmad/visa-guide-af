@@ -4,110 +4,109 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>سرفراز خموش | Sarfraz AI - دستیار هوشمند پناهندگی</title>
+    <title>دستیار هوشمند | VISA GUIDE AF</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@300;400;500;600;700;800&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
     <style>
+        /* تعریف متغیرهای رنگی و استایل پایه */
+        :root {
+            --bg: #070b13;
+            --panel: rgba(255, 255, 255, 0.03);
+            --border: rgba(255, 255, 255, 0.08);
+            --text: #f1f5f9;
+            --text-muted: #94a3b8;
+            --primary: linear-gradient(135deg, #7c3aed, #4f46e5);
+            --primary-glow: rgba(124, 58, 237, 0.4);
+            --accent: linear-gradient(135deg, #38bdf8, #0369a1);
+            --accent-glow: rgba(56, 189, 248, 0.4);
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --font: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        }
+
+        .light-mode {
+            --bg: #f8fafc;
+            --panel: rgba(0, 0, 0, 0.03);
+            --border: rgba(0, 0, 0, 0.08);
+            --text: #0f172a;
+            /* متن تیره برای حالت روز */
+            --text-muted: #475569;
+            --primary-glow: rgba(124, 58, 237, 0.15);
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            font-family: var(--font);
+            transition: background-color 0.3s, border-color 0.3s, color 0.3s, filter 0.3s;
         }
 
         body {
-            font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
             min-height: 100vh;
             padding: 30px 20px;
-            transition: all 0.3s ease;
+            overflow-x: hidden;
+            perspective: 1000px;
         }
 
-        /* انیمیشن پس‌زمینه */
-        @keyframes gradientShift {
-            0% {
-                background-position: 0% 0%;
-            }
+        /* جلوه ذرات و اورب‌های سه‌بعدی پس‌زمینه */
+        .bg-scene {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -3;
+            background: radial-gradient(circle at 50% 50%, rgba(15, 23, 42, 0.5) 0%, var(--bg) 100%);
+        }
 
-            50% {
-                background-position: 100% 100%;
+        .bg-orb {
+            position: fixed;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            filter: blur(80px);
+            z-index: -2;
+            opacity: 0.6;
+            pointer-events: none;
+            animation: floatOrb 20s infinite alternate ease-in-out;
+        }
+
+        .bg-orb:nth-child(2) {
+            background: radial-gradient(circle, #7c3aed 0%, transparent 70%);
+            top: -10%;
+            left: -10%;
+        }
+
+        .bg-orb:nth-child(3) {
+            background: radial-gradient(circle, #38bdf8 0%, transparent 70%);
+            bottom: -10%;
+            right: -10%;
+            animation-delay: -5s;
+        }
+
+        .bg-orb:nth-child(4) {
+            background: radial-gradient(circle, #ec4899 0%, transparent 70%);
+            top: 40%;
+            left: 50%;
+            width: 400px;
+            height: 400px;
+            animation-delay: -10s;
+        }
+
+        @keyframes floatOrb {
+            0% {
+                transform: translate(0, 0) scale(1);
             }
 
             100% {
-                background-position: 0% 0%;
+                transform: translate(80px, 50px) scale(1.2);
             }
-        }
-
-        /* ===== حالت روز (Light Mode) ===== */
-        body.light-mode {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
-            background-size: 200% 200%;
-            animation: gradientShift 8s ease infinite;
-        }
-
-        body.light-mode .glass-card {
-            background: rgba(255, 255, 255, 0.25);
-            backdrop-filter: blur(15px);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-        }
-
-        body.light-mode .message.ai-message .bubble {
-            background: rgba(255, 255, 255, 0.9);
-            color: #1e293b;
-        }
-
-        body.light-mode .input-area {
-            background: rgba(255, 255, 255, 0.2);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-        }
-
-        body.light-mode .input-area input {
-            color: #1e293b;
-        }
-
-        body.light-mode .input-area input::placeholder {
-            color: rgba(30, 41, 59, 0.6);
-        }
-
-        /* ===== حالت شب (Dark Mode) ===== */
-        body.dark-mode {
-            background: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
-            background-size: 200% 200%;
-            animation: gradientShift 8s ease infinite;
-        }
-
-        body.dark-mode .glass-card {
-            background: rgba(15, 25, 45, 0.6);
-            backdrop-filter: blur(15px);
-            border: 1px solid rgba(255, 255, 255, 0.15);
-        }
-
-        body.dark-mode .message.ai-message .bubble {
-            background: rgba(30, 41, 59, 0.9);
-            color: #e2e8f0;
-        }
-
-        body.dark-mode .input-area {
-            background: rgba(30, 41, 59, 0.5);
-            border: 1px solid rgba(255, 255, 255, 0.15);
-        }
-
-        body.dark-mode .input-area input {
-            color: #f1f5f9;
-        }
-
-        body.dark-mode .input-area input::placeholder {
-            color: rgba(255, 255, 255, 0.5);
-        }
-
-        body.dark-mode .home-btn {
-            background: rgba(255, 255, 255, 0.1);
-            color: white;
-            border-color: rgba(255, 255, 255, 0.2);
-        }
-
-        body.dark-mode .home-btn:hover {
-            background: #f97316;
-            color: white;
         }
 
         /* کانتینر اصلی */
@@ -116,13 +115,12 @@
             margin: 0 auto;
         }
 
-        /* دکمه برگشت به خانه با انیمیشن */
+        /* دکمه بازگشت با انیمیشن */
         .home-btn {
             display: inline-flex;
             align-items: center;
             gap: 10px;
-            background: rgba(255, 255, 255, 0.2);
-            backdrop-filter: blur(10px);
+            background: var(--primary);
             padding: 10px 24px;
             border-radius: 60px;
             text-decoration: none;
@@ -130,27 +128,35 @@
             font-weight: 600;
             font-size: 0.9rem;
             margin-bottom: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            box-shadow: 0 4px 10px var(--primary-glow);
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
         .home-btn:hover {
-            background: #f97316;
             transform: translateY(-3px) scale(1.02);
-            box-shadow: 0 10px 25px rgba(249, 115, 22, 0.3);
+            box-shadow: 0 10px 25px var(--primary-glow);
         }
 
-        /* کارت شیشه‌ای */
+        /* کارت شیشه‌ای پنل چت */
         .glass-card {
+            background: var(--panel);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--border);
             border-radius: 48px;
             overflow: hidden;
+            box-shadow: 0 20px 50px -10px rgba(0, 0, 0, 0.3);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             animation: fadeInUp 0.6s ease-out;
         }
 
+        .light-mode .glass-card {
+            background: rgba(255, 255, 255, 0.85);
+            box-shadow: 0 20px 50px -10px rgba(0, 0, 0, 0.05);
+        }
+
         .glass-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 30px 50px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
         }
 
         @keyframes fadeInUp {
@@ -171,32 +177,37 @@
             padding: 32px 32px 20px;
         }
 
+        /* حلقه دوتایی درخشان دور لوگوی ربات هوشمند */
         .logo-icon {
             width: 90px;
             height: 90px;
+            border-radius: 50%;
+            border: 3px solid #7c3aed;
+            box-shadow: 0 0 0 4px rgba(124, 58, 237, 0.2), 0 0 25px var(--primary-glow);
             display: flex;
             align-items: center;
             justify-content: center;
             margin: 0 auto 15px;
-            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
             animation: pulse 2s infinite;
-            filter: brightness(1) invert(1);
+            object-fit: cover;
+            overflow: hidden;
+        }
+
+        .light-mode .logo-icon {
+            box-shadow: 0 0 0 4px rgba(124, 58, 237, 0.1), 0 0 15px rgba(124, 58, 237, 0.2);
         }
 
         @keyframes pulse {
             0% {
                 transform: scale(1);
-                box-shadow: 0 0 0 0 rgba(249, 115, 22, 0.4);
             }
 
             70% {
                 transform: scale(1.02);
-                box-shadow: 0 0 0 15px rgba(249, 115, 22, 0);
             }
 
             100% {
                 transform: scale(1);
-                box-shadow: 0 0 0 0 rgba(249, 115, 22, 0);
             }
         }
 
@@ -206,7 +217,8 @@
 
         .logo-icon img {
             width: 100%;
-            height:100%; 
+            height: 100%;
+            object-fit: cover;
         }
 
         .logo-icon .default-logo {
@@ -217,18 +229,26 @@
         .brand-header h1 {
             font-size: 1.8rem;
             font-weight: 800;
-            background: linear-gradient(115deg, #f97316, #ef4444, #fbbf24);
+            background: linear-gradient(115deg, #7c3aed, #00f2fe, #38bdf8);
             background-clip: text;
             -webkit-background-clip: text;
             color: transparent;
+            margin-bottom: 8px;
+        }
+
+        .light-mode .brand-header h1 {
+            background: linear-gradient(115deg, #4f46e5, #0891b2, #0284c7);
+            background-clip: text;
+            -webkit-background-clip: text;
         }
 
         .brand-header p {
-            color: rgba(255, 255, 255, 0.9);
+            color: var(--text-muted);
             margin-top: 8px;
+            font-weight: 500;
         }
 
-        /* دکمه‌های زبان و تم - کنار هم */
+        /* نوار کنترل تم و زبان */
         .controls-bar {
             display: flex;
             align-items: center;
@@ -236,7 +256,7 @@
             padding: 15px 25px;
             flex-wrap: wrap;
             gap: 15px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            border-bottom: 1px solid var(--border);
         }
 
         .lang-row {
@@ -246,33 +266,33 @@
         }
 
         .lang-btn {
-            background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(5px);
+            background: var(--panel);
+            border: 1px solid var(--border);
+            color: var(--text-muted);
             padding: 8px 20px;
             border-radius: 60px;
             font-weight: 600;
             font-size: 0.85rem;
-            color: white;
             cursor: pointer;
-            border: 1px solid rgba(255, 255, 255, 0.2);
             transition: all 0.3s ease;
         }
 
         .lang-btn.active {
-            background: #f97316;
-            border-color: #f97316;
-            box-shadow: 0 0 15px rgba(249, 115, 22, 0.5);
+            background: var(--primary);
+            color: white;
+            border-color: transparent;
+            box-shadow: 0 0 15px var(--primary-glow);
         }
 
         .lang-btn:hover {
             transform: translateY(-2px);
-            background: rgba(249, 115, 22, 0.8);
+            background: rgba(124, 58, 237, 0.1);
+            color: var(--text);
         }
 
-        /* دکمه شب/روز */
+        /* دکمه تم شب و روز */
         .theme-toggle {
-            background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(5px);
+            background: var(--primary);
             width: 45px;
             height: 45px;
             border-radius: 50%;
@@ -281,21 +301,20 @@
             justify-content: center;
             cursor: pointer;
             transition: all 0.3s ease;
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            border: none;
+            box-shadow: 0 4px 10px var(--primary-glow);
         }
 
         .theme-toggle i {
             font-size: 1.2rem;
-            color: #ffd966;
-            transition: transform 0.3s;
+            color: #ffffff;
         }
 
         .theme-toggle:hover {
-            background: #f97316;
-            transform: rotate(15deg);
+            transform: scale(1.05) rotate(15deg);
         }
 
-        /* بخش چت */
+        /* بخش گفتگو (Chat Area) */
         .chat-container {
             padding: 0 25px 25px;
         }
@@ -309,6 +328,12 @@
             display: flex;
             flex-direction: column;
             gap: 12px;
+            background: rgba(0, 0, 0, 0.15);
+            border: 1px solid var(--border);
+        }
+
+        .light-mode .messages {
+            background: rgba(0, 0, 0, 0.02);
         }
 
         /* اسکرول بار زیبا */
@@ -317,12 +342,11 @@
         }
 
         .messages::-webkit-scrollbar-track {
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 10px;
+            background: transparent;
         }
 
         .messages::-webkit-scrollbar-thumb {
-            background: #f97316;
+            background: #7c3aed;
             border-radius: 10px;
         }
 
@@ -362,21 +386,27 @@
         }
 
         .user-message .bubble {
-            background: linear-gradient(135deg, #f97316, #ef4444);
+            background: var(--primary);
             color: white;
             border-bottom-right-radius: 5px;
+            box-shadow: 0 4px 12px var(--primary-glow);
         }
 
         .ai-message .bubble {
+            background: var(--panel);
+            color: var(--text);
+            border: 1px solid var(--border);
             border-bottom-left-radius: 5px;
         }
 
-        /* ناحیه ورودی */
+        /* بخش تایپ متن */
         .input-area {
             display: flex;
             gap: 12px;
             padding: 8px;
             border-radius: 60px;
+            background: var(--panel);
+            border: 1px solid var(--border);
             transition: all 0.3s;
         }
 
@@ -387,17 +417,26 @@
             border-radius: 60px;
             font-size: 1rem;
             font-family: inherit;
-            background: rgba(255, 255, 255, 0.15);
+            background: rgba(255, 255, 255, 0.03);
+            color: var(--text);
             transition: all 0.3s;
+        }
+
+        .light-mode .input-area input {
+            background: rgba(0, 0, 0, 0.02);
         }
 
         .input-area input:focus {
             outline: none;
-            background: rgba(255, 255, 255, 0.25);
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .input-area input::placeholder {
+            color: var(--text-muted);
         }
 
         .input-area button {
-            background: linear-gradient(135deg, #f97316, #ef4444);
+            background: var(--primary);
             color: white;
             border: none;
             padding: 0 28px;
@@ -405,10 +444,11 @@
             cursor: pointer;
             font-weight: 700;
             font-size: 1rem;
-            transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             display: flex;
             align-items: center;
             gap: 8px;
+            box-shadow: 0 4px 10px var(--primary-glow);
         }
 
         .input-area button i {
@@ -417,7 +457,7 @@
 
         .input-area button:hover {
             transform: scale(1.02);
-            box-shadow: 0 5px 20px rgba(249, 115, 22, 0.4);
+            box-shadow: 0 8px 20px var(--primary-glow);
         }
 
         .input-area button:active {
@@ -429,9 +469,11 @@
             transform: none;
         }
 
-        /* تایپینگ انیمیشن */
+        /* انیمیشن لودینگ تایپ هوش مصنوعی */
         .typing {
-            background: rgba(255, 255, 255, 0.15);
+            background: var(--panel);
+            border: 1px solid var(--border);
+            color: var(--text-muted);
             padding: 12px 20px;
             border-radius: 25px;
             display: flex;
@@ -442,7 +484,7 @@
         .typing span {
             width: 8px;
             height: 8px;
-            background: #f97316;
+            background: #7c3aed;
             border-radius: 50%;
             animation: typingBounce 1.4s infinite;
         }
@@ -475,14 +517,14 @@
             text-align: center;
             padding: 20px;
             font-size: 0.75rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            border-top: 1px solid var(--border);
         }
 
         .footer p {
-            color: rgba(255, 255, 255, 0.7);
+            color: var(--text-muted);
         }
 
-        /* ریسپانسیو */
+        /* واکنش‌گرایی موبایل */
         @media (max-width: 600px) {
             body {
                 padding: 15px;
@@ -522,7 +564,13 @@
     </style>
 </head>
 
-<body class="light-mode">
+<body class="dark-mode">
+
+    <div class="bg-scene"></div>
+    <div class="bg-orb"></div>
+    <div class="bg-orb"></div>
+    <div class="bg-orb"></div>
+    <div class="particles" id="particles"></div>
 
     <div class="container">
         <a href="index.html" class="home-btn">
@@ -534,8 +582,8 @@
                 <div class="logo-icon" id="logoIcon">
                     <span class="default-logo">⭐</span>
                 </div>
-                <h1>سرفراز خموش | Sarfraz Refugee Service</h1>
-                <p>دستیار هوشمند | پاسخ به هر سوال در دری، پشتو و انگلیسی</p>
+                <h1>دستیار هوشمند | VISA GUIDE AF</h1>
+                <p>پاسخ سریع و دقیق به سوالات مهاجرتی شما به زبان‌های دری، پشتو و انگلیسی</p>
             </div>
 
             <div class="controls-bar">
@@ -553,9 +601,9 @@
                 <div class="messages" id="messages">
                     <div class="message ai-message">
                         <div class="bubble">
-                            🌟 به سرفراز خوش آمدید! سوال خود را بپرسید.<br>
-                            ✨ Sarfraz ته ښه راغلاست! خپله پوښتنه وکړئ.<br>
-                            Welcome to Sarfraz! Ask your question.
+                            🌟 به دستیار هوشمند VISA GUIDE AF خوش آمدید! سوال خود را بپرسید.<br>
+                            ✨ VISA GUIDE AF ځیرک مرستیال ته ښه راغلاست! خپله پوښتنه وکړئ.<br>
+                            Welcome to VISA GUIDE AF Smart AI Assistant! Ask your question.
                         </div>
                     </div>
                 </div>
@@ -571,7 +619,7 @@
             </div>
 
             <div class="footer">
-                <p>🔗 قدرت گرفته توسط <strong>Sarfraz Khamoosh</strong> — سریع، دقیق و رایگان</p>
+                <p>🔗 قدرت گرفته توسط <strong>VISA GUIDE AF</strong> — سریع، دقیق و رایگان</p>
             </div>
         </div>
     </div>
@@ -652,13 +700,13 @@
 
         function getSystemPrompt(lang) {
             if (lang === 'dari') {
-                return `شما یک دستیار حرفه‌ای به نام "سرفراز خموش" هستید برای "Sarfraz Refugee Service". فقط به زبان دری پاسخ دهید. مستقیم، مفید و کوتاه پاسخ دهید.`;
+                return `شما یک دستیار حرفه‌ای به نام "دستیار هوشمند" هستید برای وب‌سایت "VISA GUIDE AF". فقط به زبان دری پاسخ دهید. مستقیم، مفید و کوتاه پاسخ دهید.`;
             }
             else if (lang === 'pashto') {
-                return `تاسو د "سرفراز خموش" په نوم مسلکي مرستیال یاست. یوازې په پښتو ژبه ځواب ورکړئ. لنډ او ګټور ځواب ورکړئ.`;
+                return `تاسو د "ځیرک مرستیال" په نوم مسلکي مرستیال یاست د "VISA GUIDE AF" لپاره. یوازې په پښتو ژبه ځواب ورکړئ. لنډ او ګټور ځواب ورکړئ.`;
             }
             else {
-                return `You are "Sarfraz Khamoosh", a professional AI assistant for "Sarfraz Refugee Service". Respond ONLY in English. Be direct and helpful.`;
+                return `You are "AI Assistant", a professional AI assistant for "VISA GUIDE AF". Respond ONLY in English. Be direct and helpful.`;
             }
         }
 
@@ -674,7 +722,7 @@
             });
         });
 
-        // دکمه شب/روز
+        // هماهنگی تم شب و روز با حافظه سراسری مرورگر (srs-theme)
         const themeToggle = document.getElementById('themeToggle');
         const body = document.body;
         const themeIcon = themeToggle.querySelector('i');
@@ -684,17 +732,17 @@
                 body.classList.remove('dark-mode');
                 body.classList.add('light-mode');
                 themeIcon.className = 'fas fa-moon';
-                localStorage.setItem('theme', 'light');
+                localStorage.setItem('srs-theme', 'light');
             } else {
                 body.classList.remove('light-mode');
                 body.classList.add('dark-mode');
                 themeIcon.className = 'fas fa-sun';
-                localStorage.setItem('theme', 'dark');
+                localStorage.setItem('srs-theme', 'dark');
             }
         }
 
-        const savedTheme = localStorage.getItem('theme');
-        setTheme(savedTheme === 'light' ? 'light' : 'dark');
+        const savedTheme = localStorage.getItem('srs-theme') || 'dark';
+        setTheme(savedTheme);
 
         themeToggle.addEventListener('click', () => {
             setTheme(body.classList.contains('dark-mode') ? 'light' : 'dark');
@@ -752,6 +800,16 @@
         questionInput.addEventListener('keypress', (e) => {
             if (e.key === 'Enter') sendMessage();
         });
+
+        // ذرات معلق پس‌زمینه
+        const pc = document.getElementById('particles');
+        for (let i = 0; i < 45; i++) {
+            const p = document.createElement('div');
+            p.className = 'p';
+            const s = Math.random() * 8 + 3;
+            p.style.cssText = `width:${s}px;height:${s}px;left:${Math.random() * 100}%;top:${Math.random() * 100}%;animation-delay:${Math.random() * 12}s;animation-duration:${12 + Math.random() * 10}s`;
+            pc.appendChild(p);
+        }
     </script>
 </body>
 

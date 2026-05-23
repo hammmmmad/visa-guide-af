@@ -4,121 +4,346 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>افغان‌ها در قطر | خدمات مهاجرت سرفراز</title>
+    <title>افغان‌ها در قطر | VISA GUIDE AF</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
     <style>
-        /* Reset CSS */
+        /* تعریف متغیرهای رنگی و استایل پایه */
+        :root {
+            --bg: #070b13;
+            --panel: rgba(255, 255, 255, 0.03);
+            --border: rgba(255, 255, 255, 0.08);
+            --text: #f1f5f9;
+            --text-muted: #94a3b8;
+            --primary: linear-gradient(135deg, #7c3aed, #4f46e5);
+            --primary-glow: rgba(124, 58, 237, 0.4);
+            --accent: linear-gradient(135deg, #38bdf8, #0369a1);
+            --accent-glow: rgba(56, 189, 248, 0.4);
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --font: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        }
+
+        .light-mode {
+            --bg: #f8fafc;
+            --panel: rgba(0, 0, 0, 0.03);
+            --border: rgba(0, 0, 0, 0.08);
+            --text: #0f172a;
+            /* متن تیره برای حالت روز */
+            --text-muted: #475569;
+            --primary-glow: rgba(124, 58, 237, 0.15);
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            font-family: var(--font);
+            transition: background-color 0.3s, border-color 0.3s, color 0.3s, filter 0.3s;
         }
 
-        /* بدنه اصلی */
         body {
-            font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
-            background: #f5f5f5;
+            background-color: var(--bg);
+            color: var(--text);
+            overflow-x: hidden;
+            perspective: 1000px;
         }
 
-        /* ========== منو ========== */
+        /* جلوه ذرات و اورب‌های سه‌بعدی پس‌زمینه */
+        .bg-scene {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -3;
+            background: radial-gradient(circle at 50% 50%, rgba(15, 23, 42, 0.5) 0%, var(--bg) 100%);
+        }
+
+        .bg-orb {
+            position: fixed;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            filter: blur(80px);
+            z-index: -2;
+            opacity: 0.6;
+            pointer-events: none;
+            animation: floatOrb 20s infinite alternate ease-in-out;
+        }
+
+        .bg-orb:nth-child(2) {
+            background: radial-gradient(circle, #7c3aed 0%, transparent 70%);
+            top: -10%;
+            left: -10%;
+        }
+
+        .bg-orb:nth-child(3) {
+            background: radial-gradient(circle, #38bdf8 0%, transparent 70%);
+            bottom: -10%;
+            right: -10%;
+            animation-delay: -5s;
+        }
+
+        .bg-orb:nth-child(4) {
+            background: radial-gradient(circle, #ec4899 0%, transparent 70%);
+            top: 40%;
+            left: 50%;
+            width: 400px;
+            height: 400px;
+            animation-delay: -10s;
+        }
+
+        @keyframes floatOrb {
+            0% {
+                transform: translate(0, 0) scale(1);
+            }
+
+            100% {
+                transform: translate(80px, 50px) scale(1.2);
+            }
+        }
+
+        /* منوی ناوبری مدرن */
         .navbar {
-            background: white;
-            padding: 0.8rem 2rem;
-            border-bottom: 1px solid #eaeaea;
-        }
-
-        .nav-container {
+            position: sticky;
+            top: 15px;
             max-width: 1200px;
             margin: 0 auto;
+            z-index: 100;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            flex-wrap: wrap;
+            padding: 12px 24px;
+            background: rgba(15, 23, 42, 0.4);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--border);
+            border-radius: 50px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
         }
 
-        .logo-area {
+        .light-mode .navbar {
+            background: rgba(255, 255, 255, 0.8);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        }
+
+        .logo-wrap {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
+            text-decoration: none;
+            color: var(--text);
         }
 
-        .logo-img {
-            width: 50px;
-            height: 50px;
-
+        /* حلقه دوتایی درخشان دور لوگو */
+        .logo-wrap img {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            border: 2px solid #7c3aed;
+            box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.2), 0 0 15px var(--primary-glow);
+            object-fit: cover;
         }
 
-        .logo-text {
-            font-size: 1rem;
-            font-weight: bold;
-            color: #667eea;
+        .light-mode .logo-wrap img {
+            box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.1), 0 0 10px rgba(124, 58, 237, 0.2);
+        }
+
+        .logo-name {
+            font-size: 0.85rem;
+            font-weight: 800;
+            letter-spacing: 0.5px;
+            line-height: 1.2;
+            background: linear-gradient(120deg, #fff, #94a3b8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .light-mode .logo-name {
+            background: linear-gradient(120deg, #0f172a, #475569);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
         .nav-menu {
             display: flex;
             list-style: none;
-            gap: 1.5rem;
-            flex-wrap: wrap;
+            gap: 15px;
         }
 
-        .nav-menu li {
-            display: flex;
-            align-items: center;
-        }
-
+        /* استایل و انیمیشن لینک‌های منو */
         .nav-menu a {
             display: flex;
             align-items: center;
             gap: 8px;
+            padding: 8px 16px;
             text-decoration: none;
-            color: #333;
+            color: var(--text-muted);
+            font-size: 0.9rem;
             font-weight: 500;
-            transition: color 0.3s;
-        }
-
-        .nav-menu a:hover {
-            color: #667eea;
+            border-radius: 30px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
         }
 
         .nav-menu a img {
-            width: 22px;
-            height: 22px;
-            object-fit: contain;
+            width: 18px;
+            height: 18px;
+            transition: transform 0.3s ease, filter 0.3s ease;
+        }
+
+        .nav-menu a:hover img {
+            transform: translateY(-2px);
+        }
+
+        /* تغییر خودکار رنگ آیکون‌های تصویر منو در حالت روز و شب */
+        .dark-mode .nav-menu a img {
+            filter: brightness(0) invert(1);
+        }
+
+        .light-mode .nav-menu a img {
+            filter: brightness(0);
+        }
+
+        /* انیمیشن خط زیرین دکمه‌های منو دسکتاپ */
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            bottom: 2px;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #7c3aed, #38bdf8);
+            border-radius: 2px;
+            transition: width 0.3s ease, transform 0.3s ease;
+            transform: translateX(-50%);
+        }
+
+        .nav-menu a:hover::after {
+            width: 60%;
+        }
+
+        /* تنظیم رنگ متن‌های منو در حالت روز و شب */
+        .dark-mode .nav-menu a {
+            color: #e2e8f0;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.05);
+        }
+
+        .light-mode .nav-menu a {
+            color: #334155;
+        }
+
+        .light-mode .nav-menu a:hover {
+            color: #0f172a;
+            background: rgba(0, 0, 0, 0.05);
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .lang-btn {
+            background: transparent;
+            border: 1px solid var(--border);
+            color: var(--text-muted);
+            padding: 6px 12px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 0.8rem;
+        }
+
+        .lang-btn.active {
+            color: var(--text);
+            background: rgba(255, 255, 255, 0.1);
+            border-color: #7c3aed;
+        }
+
+        .theme-btn {
+            background: var(--primary);
+            border: none;
+            color: white;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 10px var(--primary-glow);
         }
 
         .menu-toggle {
             display: none;
+            background: none;
+            border: none;
+            color: var(--text);
             font-size: 1.5rem;
             cursor: pointer;
         }
 
-        /* ========== مقاله ========== */
+        /* کادر شیشه‌ای محتوای مقاله */
         .article-container {
             max-width: 800px;
-            margin: 2rem auto;
-            padding: 0 1.5rem;
+            margin: 40px auto 80px auto;
+            padding: 2.5rem;
+            background: var(--panel);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--border);
+            border-radius: 28px;
+            box-shadow: 0 20px 50px -10px rgba(0, 0, 0, 0.3);
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        .light-mode .article-container {
+            background: rgba(255, 255, 255, 0.85);
+            box-shadow: 0 20px 50px -10px rgba(0, 0, 0, 0.05);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .article-category {
             font-size: 0.75rem;
             text-transform: uppercase;
-            color: #667eea;
+            color: #a78bfa;
             font-weight: 600;
             margin-bottom: 1rem;
         }
 
+        .light-mode .article-category {
+            color: #4f46e5;
+        }
+
         .article-title {
             font-size: 2rem;
-            font-weight: 700;
+            font-weight: 800;
             margin-bottom: 1rem;
-            line-height: 1.3;
+            line-height: 1.4;
+            color: var(--text);
         }
 
         .article-deck {
             font-size: 1.1rem;
-            color: #555;
+            color: var(--text-muted);
             margin-bottom: 1.5rem;
-            border-right: 3px solid #667eea;
+            border-right: 3px solid #7c3aed;
             padding-right: 1rem;
+            line-height: 1.6;
         }
 
         .article-byline {
@@ -127,7 +352,7 @@
             align-items: center;
             margin-bottom: 1.5rem;
             padding-bottom: 1rem;
-            border-bottom: 1px solid #eaeaea;
+            border-bottom: 1px solid var(--border);
             flex-wrap: wrap;
             gap: 1rem;
         }
@@ -143,41 +368,36 @@
             height: 48px;
             border-radius: 50%;
             object-fit: cover;
+            border: 2px solid #7c3aed;
+            box-shadow: 0 0 10px var(--primary-glow);
         }
 
         .author-name {
-            font-weight: 600;
-            color: #1a1a1a;
+            font-weight: 700;
+            color: var(--text);
         }
 
         .author-title {
             font-size: 0.8rem;
-            color: #888;
+            color: var(--text-muted);
         }
 
         .article-date {
             font-size: 0.85rem;
-            color: #888;
+            color: var(--text-muted);
         }
 
         .featured-image {
             width: 100%;
-            border-radius: 12px;
+            border-radius: 16px;
             margin: 1.5rem 0;
-        }
-
-        .image-caption {
-            font-size: 0.8rem;
-            color: #777;
-            text-align: center;
-            margin-top: -1rem;
-            margin-bottom: 1.5rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
         }
 
         .article-content {
             font-size: 1.05rem;
-            line-height: 1.8;
-            color: #2a2a2a;
+            line-height: 1.9;
+            color: var(--text);
         }
 
         .article-content p {
@@ -185,56 +405,197 @@
         }
 
         .article-content blockquote {
-            border-right: 4px solid #667eea;
+            border-right: 4px solid #7c3aed;
             padding: 1rem 1.5rem;
             margin: 1.5rem 0;
-            background: #f9f9f9;
+            background: rgba(255, 255, 255, 0.02);
             font-style: italic;
-            color: #555;
+            color: var(--text);
+            border-radius: 4px;
         }
 
-        /* ========== دکمه بازگشت ========== */
+        .light-mode .article-content blockquote {
+            background: #f8fafc;
+            border-right-color: #4f46e5;
+        }
+
+        /* دکمه بازگشت سه بعدی */
         .back-button {
             display: inline-flex;
             margin-top: 2rem;
-            padding: 10px 20px;
-            color: #667eea;
+            padding: 12px 24px;
+            color: white;
+            background: var(--primary);
             text-decoration: none;
-            border: 1px solid #667eea;
             border-radius: 30px;
-            transition: all 0.3s;
+            font-weight: 600;
+            box-shadow: 0 4px 10px var(--primary-glow);
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
         .back-button:hover {
-            background: #667eea;
-            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px var(--primary-glow);
         }
 
-        /* ========== فوتر ========== */
+        /* پانویس (Footer) متناسب با حالت روز و شب */
         .footer {
-            background: #1a1a2e;
-            color: #aaa;
-            margin-top: 3rem;
-            padding: 2rem;
-            text-align: center;
+            background: rgba(10, 15, 30, 0.8);
+            border-top: 1px solid var(--border);
+            padding: 60px 16px 20px 16px;
+            margin-top: 100px;
         }
 
-        /* ========== موبایل ========== */
+        .light-mode .footer {
+            background: #f1f5f9;
+            border-top: 1px solid rgba(0, 0, 0, 0.08);
+        }
+
+        .footer-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-col h4 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: var(--text);
+            position: relative;
+        }
+
+        .footer-col p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            line-height: 1.8;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: transform 0.3s, color 0.3s;
+        }
+
+        .footer-col p:hover {
+            transform: translateX(-5px);
+            color: var(--text);
+        }
+
+        .footer-col a {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.9rem;
+            margin-bottom: 12px;
+            transition: color 0.3s;
+        }
+
+        .footer-col a:hover {
+            color: var(--text);
+        }
+
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-top: 20px;
+            border-top: 1px solid var(--border);
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
+        .light-mode .footer-bottom {
+            border-top: 1px solid rgba(0, 0, 0, 0.08);
+        }
+
+        /* انیمیشن ذرات معلق */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .p {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            animation: rise 15s infinite linear;
+        }
+
+        @keyframes rise {
+            0% {
+                transform: translateY(110vh) rotate(0deg);
+                opacity: 0;
+            }
+
+            10% {
+                opacity: 1;
+            }
+
+            90% {
+                opacity: 1;
+            }
+
+            100% {
+                transform: translateY(-10vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* موبایل */
         @media (max-width: 768px) {
+            .navbar {
+                width: 90%;
+                border-radius: 24px;
+            }
+
             .menu-toggle {
                 display: block;
             }
 
             .nav-menu {
                 display: none;
-                width: 100%;
+                position: absolute;
+                top: 75px;
+                left: 5%;
+                width: 90%;
+                background: rgba(15, 23, 42, 0.95);
+                backdrop-filter: blur(20px);
+                border: 1px solid var(--border);
+                border-radius: 20px;
+                padding: 20px;
                 flex-direction: column;
-                gap: 1rem;
-                margin-top: 1rem;
+                box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+            }
+
+            .light-mode .nav-menu {
+                background: rgba(255, 255, 255, 0.98);
             }
 
             .nav-menu.active {
                 display: flex;
+                animation: menuFadeIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+            }
+
+            @keyframes menuFadeIn {
+                from {
+                    opacity: 0;
+                    transform: translateY(-15px) scale(0.95);
+                }
+
+                to {
+                    opacity: 1;
+                    transform: translateY(0) scale(1);
+                }
             }
 
             .article-title {
@@ -249,112 +610,249 @@
                 flex-direction: column;
                 align-items: flex-start;
             }
+
+            .footer-container {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
         }
     </style>
 </head>
 
-<body>
+<body class="dark-mode">
 
-    <!-- ========== منو با آیکن از پوشه images ========== -->
-    <nav class="navbar">
+    <div class="bg-scene"></div>
+    <div class="bg-orb"></div>
+    <div class="bg-orb"></div>
+    <div class="bg-orb"></div>
+    <div class="particles" id="particles"></div>
+
+    <!-- منوی بالایی -->
+    <nav class="navbar" id="navbar">
         <div class="nav-container">
-            <div class="logo-area">
-                <img src="../images/logo.png" alt="لوگو" class="logo-img">
-                <div class="logo-text">خدمات مهاجرت</div>
-            </div>
-            <div class="menu-toggle">☰</div>
-            <ul class="nav-menu">
-                <li>
-                    <a href="index.html">
-                        <img src="../images/home.png" alt="خانه">
-                        خانه
-                    </a>
-                </li>
-                <li>
-                    <a href="../services.html">
-                        <img src="../images/customer.png" alt="خدمات">
-                        خدمات
-                    </a>
-                </li>
-                <li>
-                    <a href="../ai.html">
-                        <img src="../images/bot.png" alt="AI">
-                        AI
-                    </a>
-                </li>
-                <li>
-                    <a href="../contact.html">
-                        <img src="../images/call.png" alt="تماس با ما">
-                        تماس با ما
-                    </a>
-                </li>
-                <li>
-                    <a href="../faq.html">
-                        <img src="../images/f&a.png" alt="سوالات متداول">
-                        سوالات متداول
-                    </a>
-                </li>
+            <a href="../index.html" class="logo-wrap">
+                <img src="../images/kha.jpg" alt="لوگو" class="logo-img">
+                <div class="logo-name">VISA<br>GUIDE AF</div>
+            </a>
+            <button class="menu-toggle">☰</button>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="../index.html"><img src="../images/home.png"> <span data-k="home">خانه</span></a></li>
+                <li><a href="../services.html"><img src="../images/customer.png"> <span
+                            data-k="services">خدمات</span></a></li>
+                <li><a href="../ai.html"><img src="../images/bot.png"> <span data-k="ai">هوش مصنوعی</span></a></li>
+                <li><a href="../contact.html"><img src="../images/call.png"> <span data-k="contact">تماس</span></a></li>
+                <li><a href="../faq.html"><img src="../images/f&a.png"> <span data-k="faq">سوالات</span></a></li>
             </ul>
+            <div class="nav-actions">
+                <button class="lang-btn active" data-l="fa">🇦🇫 فارسی</button>
+                <button class="lang-btn" data-l="en">🇬🇧 EN</button>
+                <button class="lang-btn" data-l="ps">پښتو</button>
+                <button class="theme-btn" id="themeBtn"><i class="fas fa-moon"></i></button>
+            </div>
         </div>
     </nav>
 
-    <!-- ========== محتوای خبر ========== -->
+    <!-- محتوای خبر -->
     <div class="article-container">
-        <div class="article-category">اخبار روز</div>
-        <h1 class="article-title">افغان‌های گیرمانده در قطر از اقدام ترامپ برای فرستادن به کنگو ابراز خیانت کردند</h1>
-        <div class="article-deck">صدها خانواده افغان که سال‌ها در قطر منتظر انتقال به آمریکا هستند، با شنیدن خبر انتقال
-            احتمالی به کنگو، احساس خیانت و ناامیدی عمیقی کرده‌اند.</div>
+        <div class="article-category" data-k="category">اخبار روز</div>
+        <h1 class="article-title" id="articleTitle">افغان‌های گیرمانده در قطر از اقدام ترامپ برای فرستادن به کنگو ابراز
+            خیانت کردند</h1>
+        <div class="article-deck" id="articleDeck">صدها خانواده افغان که سال‌ها در قطر منتظر انتقال به آمریکا هستند، با
+            شنیدن خبر انتقال احتمالی به کنگو، احساس خیانت و ناامیدی عمیقی کرده‌اند.</div>
 
         <div class="article-byline">
             <div class="author-info">
-                <img src="../news/pic/khamoosh.jpg" alt="سرفراز" class="author-avatar-large">
+                <img src="../images/kha.jpg" alt="نویسنده" class="author-avatar-large">
                 <div class="author-details">
-                    <span class="author-name">Sarfraz khamoosh</span>
-                    <span class="author-title">گزارشگر و ادمین</span>
+                    <span class="author-name" data-k="author">گزارشگر VISA GUIDE AF</span>
+                    <span class="author-title" data-k="authorTitle">گزارشگر و ادمین</span>
                 </div>
             </div>
-            <div class="article-date">🕒 ۲۵ اپریل ۲۰۲۶ - ۱۴:۳۰</div>
+            <div class="article-date" id="articleDate">🕒 ۲۵ اپریل ۲۰۲۶ - ۱۴:۳۰</div>
         </div>
 
         <img src="pic/qater.jpg" alt="کمپ پناهندگان در قطر" class="featured-image">
 
-        <div class="article-content">
-            <p>در تازه‌ترین تحولات مربوط به پناهندگان افغان، گروه‌های مدافع حقوق بشر گزارش داده‌اند که دولت دونالد
-                ترامپ، رئیس‌جمهور آمریکا، به طور جدی در حال بررسی طرح انتقال هزاران پناهجوی افغان مقیم قطر به جمهوری
-                دموکراتیک کنگو (DRC) است. این خبر با واکنش شدید و احساس خیانت گسترده از سوی این خانواده‌ها مواجه شده
-                است.</p>
-
-            <p>بیش از دو سال از خروج نیروهای آمریکایی از افغانستان می‌گذرد و بسیاری از افغان‌هایی که با دولت آمریکا
-                همکاری داشتند، همچنان در مراکز موقت در قطر سرگردان هستند.</p>
-
-            <blockquote>"ما جان خود را برای آمریکا به خطر انداختیم، حالا پاداش ما فرستادن به کشوری جنگ‌زده در آفریقاست؟
-                این بزرگ‌ترین خیانتی است که در حق ما شد." - یکی از پناهجویان.</blockquote>
-
-            <p>سازمان ملل نسبت به سرنوشت این پناهجویان ابراز نگرانی کرده و خواستار شفافیت در این طرح شده است.</p>
-
-            <p>احساس خیانت در حالی ابراز می‌شود که شماری از کارشناسان معتقدند فشارهای انتخاباتی، دولت ترامپ را به سمت
-                چنین تصمیمات غیرانسانی سوق داده است.</p>
+        <div class="article-content" id="articleContent">
+            <!-- محتوای خبر به صورت داینامیک بر اساس زبان تغییر می‌کند -->
         </div>
 
-        <a href="../index.html" class="back-button">← بازگشت به صفحه اصلی</a>
+        <a href="../index.html" class="back-button" data-k="backBtn">← بازگشت به صفحه اصلی</a>
     </div>
 
-    <!-- ========== فوتر ========== -->
-    <div class="footer">
-        <p>© 2026 Sarfraz Refugee service - همه حقوق محفوظ است</p>
-    </div>
+    <!-- فوتر ۳ ستونه هماهنگ و شیشه‌ای -->
+    <footer class="footer">
+        <div class="footer-inner">
+            <div class="footer-col">
+                <h4 data-k="footTitle1">خدمات مهاجرت</h4>
+                <p><i class="fas fa-check-circle" style="color:var(--success)"></i> <span data-k="footDesc1">معتبرترین
+                        خدمات در افغانستان</span></p>
+                <p><i class="fas fa-globe" style="color:#38bdf8"></i> <span data-k="footDesc2">خدمات مهاجرتی
+                        جهانی</span></p>
+            </div>
+            <div class="footer-col">
+                <h4 data-k="footTitle2">تماس با ما</h4>
+                <p><i class="fas fa-map-marker-alt" style="color:#f59e0b"></i> <span data-k="footAddr">ایبک، سمنگان،
+                        افغانستان</span></p>
+                <p><i class="fas fa-phone-alt" style="color:#10b981"></i> 0792665622</p>
+                <p><i class="fas fa-envelope" style="color:#ef4444"></i> visa.guide.af.123@gmail.com</p>
+            </div>
+            <div class="footer-col">
+                <h4 data-k="footTitle3">شبکه‌های اجتماعی</h4>
+                <a href="https://whatsapp.com/channel/0029Vae7U29AzNbpZIv5T81R" target="_blank"><i
+                        class="fab fa-whatsapp" style="color:#25d366"></i> WhatsApp</a>
+                <a href="https://t.me/visaguidee" target="_blank"><i class="fab fa-telegram" style="color:#29b6f6"></i>
+                    Telegram</a>
+                <a href="https://www.facebook.com/profile.php?id=61589943461514" target="_blank"><i
+                        class="fab fa-facebook-f" style="color:#1877f2"></i> Facebook</a>
+                <a href="https://www.instagram.com/sarfraz_refugee_service" target="_blank"><i class="fab fa-instagram"
+                        style="color:#e1306c"></i> Instagram</a>
+            </div>
+        </div>
+        <div class="footer-bottom"><span data-k="copy">© 2026 VISA GUIDE AF — همه حقوق محفوظ است</span></div>
+    </footer>
 
-    <!-- ========== جاوااسکریپت منو موبایل ========== -->
+    <!-- جاوااسکریپت منو، تم و دوزبانه بودن صفحه -->
     <script>
+        const T = {
+            fa: {
+                home: "خانه",
+                services: "خدمات",
+                ai: "هوش مصنوعی",
+                contact: "تماس",
+                faq: "سوالات",
+                category: "اخبار روز",
+                author: "گزارشگر VISA GUIDE AF",
+                authorTitle: "گزارشگر و ادمین",
+                backBtn: "← بازگشت به صفحه اصلی",
+                title: "افغان‌های گیرمانده در قطر از اقدام ترامپ برای فرستادن به کنگو ابراز خیانت کردند",
+                deck: "صدها خانواده افغان که سال‌ها در قطر منتظر انتقال به آمریکا هستند، با شنیدن خبر انتقال احتمالی به کنگو، احساس خیانت و ناامیدی عمیقی کرده‌اند.",
+                date: "🕒 ۲۵ اپریل ۲۰۲۶ - ۱۴:۳۰",
+                content: `
+                    <p>در تازه‌ترین تحولات مربوط به پناهندگان افغان، گروه‌های مدافع حقوق بشر گزارش داده‌اند که دولت دونالد ترامپ، رئیس‌جمهور آمریکا، به طور جدی در حال بررسی طرح انتقال هزاران پناهجوی افغان مقیم قطر به جمهوری دموکراتیک کنگو (DRC) است. این خبر با واکنش شدید و احساس خیانت گسترده از سوی این خانواده‌ها مواجه شده است.</p>
+                    <p>بیش از دو سال از خروج نیروهای آمریکایی از افغانستان می‌گذرد و بسیاری از افغان‌هایی که با دولت آمریکا همکاری داشتند، همچنان در مراکز موقت در قطر سرگردان هستند.</p>
+                    <blockquote>"ما جان خود را برای آمریکا به خطر انداختیم، حالا پاداش ما فرستادن به کشوری جنگ‌زده در آفریقاست؟ این بزرگ‌ترین خیانتی است که در حق ما شد." - یکی از پناهجویان.</blockquote>
+                    <p>سازمان ملل نسبت به سرنوشت این پناهجویان ابراز نگرانی کرده و خواستار شفافیت در این طرح شده است.</p>
+                    <p>احساس خیانت در حالی ابراز می‌شود که شماری از کارشناسان معتقدند فشارهای انتخاباتی، دولت ترامپ را به سمت چنین تصمیمات غیرانسانی سوق داده است.</p>
+                `,
+                footTitle1: "خدمات مهاجرت",
+                footDesc1: "معتبرترین خدمات در افغانستان",
+                footDesc2: "خدمات مهاجرتی جهانی",
+                footTitle2: "تماس با ما",
+                footAddr: "ایبک، سمنگان، افغانستان",
+                footTitle3: "شبکه‌های اجتماعی",
+                copy: "© 2026 VISA GUIDE AF — همه حقوق محفوظ است"
+            },
+            en: {
+                home: "Home",
+                services: "Services",
+                ai: "AI Assistant",
+                contact: "Contact",
+                faq: "FAQ",
+                category: "Latest News",
+                author: "VISA GUIDE AF Reporter",
+                authorTitle: "Reporter & Admin",
+                backBtn: "← Back to Home",
+                title: "Afghans Stuck in Qatar Express Betrayal Over Trump's Plan to Send Them to Congo",
+                deck: "Hundreds of Afghan families who have been waiting for years in Qatar to be transferred to the US felt a deep sense of betrayal and hopelessness upon hearing the news of a possible transfer to Congo.",
+                date: "🕒 April 25, 2026 - 14:30",
+                content: `
+                    <p>In the latest developments regarding Afghan refugees, human rights groups have reported that the administration of US President Donald Trump is seriously considering a plan to transfer thousands of Afghan refugees from Qatar to the Democratic Republic of Congo (DRC). This news has met with strong reactions and widespread feelings of betrayal from these families.</p>
+                    <p>More than two years after the withdrawal of US forces from Afghanistan, many Afghans who worked with the US government remain stuck in temporary facilities in Qatar.</p>
+                    <blockquote>"We risked our lives for America, now our reward is being sent to a war-torn country in Africa? This is the greatest betrayal we have suffered." - one of the refugees.</blockquote>
+                    <p>The United Nations has expressed concern over the fate of these refugees and has called for transparency in this plan.</p>
+                    <p>The feeling of betrayal comes as some experts believe that electoral pressures have driven the Trump administration toward such inhumane decisions.</p>
+                `,
+                footTitle1: "Immigration Services",
+                footDesc1: "Most reliable services in Afghanistan",
+                footDesc2: "Global immigration services",
+                footTitle2: "Contact Us",
+                footAddr: "Aibak, Samangan, Afghanistan",
+                footTitle3: "Social Networks",
+                copy: "© 2026 VISA GUIDE AF — All rights reserved"
+            },
+            ps: {
+                home: "کور",
+                services: "خدمات",
+                ai: "AI",
+                contact: "اړیکه",
+                faq: "پوښتنې",
+                category: "وروستي خبرونه",
+                author: "د VISA GUIDE AF خبریال",
+                authorTitle: "خبریال او مدیر",
+                backBtn: "← بیرته کور پاڼې ته",
+                title: "په قطر کې پاتې شوي افغانان د کانګو ته د لیږلو لپاره د ترامپ د اقدام په اړه د خیانت څرګندونه کوي",
+                deck: "سلګونو افغان کورنیو چې کلونه کیږي په قطر کې امریکا ته د لیږد انتظار کوي، د کانګو ته د احتمالي لیږد خبر اوریدو سره د خیانت او ناهیلی ژور احساس وکړ.",
+                date: "🕒 د ۲۰۲۶ کال د اپریل ۲۵ - ۱۴:۳۰",
+                content: `
+                    <p>د افغان کډوالو په اړه په وروستیو پرمختګونو کې، د بشري حقونو ډلو راپور ورکړی چې د امریکا ولسمشر ډونالډ ټرمپ اداره په جدي توګه د قطر څخه زرګونو افغان کډوالو د کانګو دیموکراتیک جمهوریت ته د لیږد پلان په پام کې نیسي. دا خبر د دې کورنیو له خوا د سخت عکس العمل او پراخه خیانت احساس سره مخ شوی دی.</p>
+                    <p>له افغانستانه د امریکا ځواکونو تر وتلو دوه کاله تیریږي او ډیری افغانان چې له امریکا سره یې کار کاوه لا هم په قطر کې په موقتو مرکزونو کې سرگردان دي.</p>
+                    <blockquote>"موږ د امریکا لپاره خپل ژوند له خطر سره مخ کړ، او زموږ انعام د افریقا یو جګړې ځپلي هیواد ته لیږل دي؟ دا هغه لوی خیانت دی چې په موږ شوی دی." - یو کډوال.</blockquote>
+                    <p>ملګرو ملتونو د دې کډوالو د برخلیک په اړه اندیښنه څرګنده کړې او د دې پلان په اړه یې روڼتیا غوښتې ده.</p>
+                    <p>د خیانت احساس په داسې حال کې څرګندیږي چې یو شمیر کارپوهان پدې باور دي چې ټاکنیز فشارونه د ټرمپ اداره د داسې غیر انساني پریکړو لور ته هڅولې ده.</p>
+                `,
+                footTitle1: "د کډوالۍ خدمات",
+                footDesc1: "افغانستان کې ترټولو معتبر خدمات",
+                footDesc2: "نظریاتي د کډوالۍ خدمات",
+                footTitle2: "اړیکه",
+                footAddr: "ایبک, سمنګان، افغانستان",
+                footTitle3: "ټولنیزې شبکې",
+                copy: "© 2026 VISA GUIDE AF — ټول حقونه خوندي دي"
+            }
+        };
+
+        let lang = 'fa';
+
+        function applyLang(l) {
+            lang = l;
+            document.querySelectorAll('[data-k]').forEach(el => {
+                const k = el.getAttribute('data-k');
+                if (T[l][k] !== undefined) el.innerHTML = T[l][k];
+            });
+
+            // بروزرسانی داینامیک مشخصات مقاله
+            document.getElementById('articleTitle').innerHTML = T[l].title;
+            document.getElementById('articleDeck').innerHTML = T[l].deck;
+            document.getElementById('articleDate').innerHTML = T[l].date;
+            document.getElementById('articleContent').innerHTML = T[l].content;
+
+            document.querySelectorAll('.lang-btn').forEach(b => b.classList.toggle('active', b.getAttribute('data-l') === l));
+        }
+
+        // منو موبایل
         const menuToggle = document.querySelector('.menu-toggle');
-        const navMenu = document.querySelector('.nav-menu');
+        const navMenu = document.getElementById('navMenu');
         if (menuToggle) {
             menuToggle.addEventListener('click', () => {
                 navMenu.classList.toggle('active');
             });
         }
-    </script>
 
+        // تم شب و روز
+        const tb = document.getElementById('themeBtn');
+        const saved = localStorage.getItem('srs-theme') || 'dark';
+        document.body.className = saved + '-mode';
+        tb.innerHTML = saved === 'dark' ? '<i class="fas fa-moon"></i>' : '<i class="fas fa-sun"></i>';
+
+        tb.addEventListener('click', () => {
+            const d = document.body.classList.contains('dark-mode');
+            document.body.className = (d ? 'light' : 'dark') + '-mode';
+            tb.innerHTML = d ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+            localStorage.setItem('srs-theme', d ? 'light' : 'dark');
+        });
+
+        // ایجاد ذرات متحرک پس‌زمینه
+        const pc = document.getElementById('particles');
+        for (let i = 0; i < 40; i++) {
+            const p = document.createElement('div');
+            p.className = 'p';
+            const s = Math.random() * 8 + 3;
+            p.style.cssText = `width:${s}px;height:${s}px;left:${Math.random() * 100}%;top:${Math.random() * 100}%;animation-delay:${Math.random() * 12}s;animation-duration:${12 + Math.random() * 10}s`;
+            pc.appendChild(p);
+        }
+
+        applyLang('fa');
+    </script>
 </body>
 
 </html>

@@ -4,121 +4,363 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>حمایت از دانش‌آموزان پناهجو | خدمات مهاجرت سرفراز</title>
+    <title>خطر اخراج پناهجو | VISA GUIDE AF</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <!-- فونت استاندارد وزیرمتن برای بهبود نمایش متون فارسی، دری و پشتو -->
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;700;800&display=swap"
+        rel="stylesheet">
+
     <style>
-        /* Reset CSS */
+        /* تعریف متغیرهای رنگی و استایل پایه */
+        :root {
+            --bg: #070b13;
+            --panel: rgba(255, 255, 255, 0.03);
+            --border: rgba(255, 255, 255, 0.08);
+            --text: #f1f5f9;
+            --text-muted: #94a3b8;
+            --primary: linear-gradient(135deg, #7c3aed, #4f46e5);
+            --primary-glow: rgba(124, 58, 237, 0.4);
+            --accent: linear-gradient(135deg, #38bdf8, #0369a1);
+            --accent-glow: rgba(56, 189, 248, 0.4);
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --font: 'Vazirmatn', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        }
+
+        .light-mode {
+            --bg: #f8fafc;
+            --panel: rgba(0, 0, 0, 0.03);
+            --border: rgba(0, 0, 0, 0.08);
+            --text: #0f172a;
+            --text-muted: #475569;
+            --primary-glow: rgba(124, 58, 237, 0.15);
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            font-family: var(--font);
+            transition: background-color 0.3s, border-color 0.3s, color 0.3s, filter 0.3s;
         }
 
-        /* بدنه اصلی */
         body {
-            font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
-            background: #f5f5f5;
+            background-color: var(--bg);
+            color: var(--text);
+            overflow-x: hidden;
+            perspective: 1000px;
         }
 
-        /* ========== منو ========== */
+        /* جلوه ذرات و اورب‌های سه‌بعدی پس‌زمینه */
+        .bg-scene {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -3;
+            background: radial-gradient(circle at 50% 50%, rgba(15, 23, 42, 0.5) 0%, var(--bg) 100%);
+        }
+
+        .bg-orb {
+            position: fixed;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            filter: blur(80px);
+            z-index: -2;
+            opacity: 0.6;
+            pointer-events: none;
+            animation: floatOrb 20s infinite alternate ease-in-out;
+        }
+
+        .bg-orb:nth-child(2) {
+            background: radial-gradient(circle, #7c3aed 0%, transparent 70%);
+            top: -10%;
+            left: -10%;
+        }
+
+        .bg-orb:nth-child(3) {
+            background: radial-gradient(circle, #38bdf8 0%, transparent 70%);
+            bottom: -10%;
+            right: -10%;
+            animation-delay: -5s;
+        }
+
+        .bg-orb:nth-child(4) {
+            background: radial-gradient(circle, #ec4899 0%, transparent 70%);
+            top: 40%;
+            left: 50%;
+            width: 400px;
+            height: 400px;
+            animation-delay: -10s;
+        }
+
+        @keyframes floatOrb {
+            0% {
+                transform: translate(0, 0) scale(1);
+            }
+
+            100% {
+                transform: translate(80px, 50px) scale(1.2);
+            }
+        }
+
+        /* منوی ناوبری مدرن */
         .navbar {
-            background: white;
-            padding: 0.8rem 2rem;
-            border-bottom: 1px solid #eaeaea;
-        }
-
-        .nav-container {
+            position: sticky;
+            top: 15px;
             max-width: 1200px;
             margin: 0 auto;
+            z-index: 100;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            flex-wrap: wrap;
+            padding: 12px 24px;
+            background: rgba(15, 23, 42, 0.4);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--border);
+            border-radius: 50px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
         }
 
-        .logo-area {
+        .light-mode .navbar {
+            background: rgba(255, 255, 255, 0.8);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        }
+
+        .logo-wrap {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
+            text-decoration: none;
+            color: var(--text);
         }
 
-        .logo-img {
-            width: 50px;
-            height: 50px;
-
+        /* حلقه دوتایی درخشان دور لوگو */
+        .logo-wrap img {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            border: 2px solid #7c3aed;
+            box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.2), 0 0 15px var(--primary-glow);
+            object-fit: cover;
         }
 
-        .logo-text {
-            font-size: 1rem;
-            font-weight: bold;
-            color: #667eea;
+        .light-mode .logo-wrap img {
+            box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.1), 0 0 10px rgba(124, 58, 237, 0.2);
+        }
+
+        .logo-name {
+            font-size: 0.85rem;
+            font-weight: 800;
+            letter-spacing: 0.5px;
+            line-height: 1.2;
+            background: linear-gradient(120deg, #fff, #94a3b8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .light-mode .logo-name {
+            background: linear-gradient(120deg, #0f172a, #475569);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
         .nav-menu {
             display: flex;
             list-style: none;
-            gap: 1.5rem;
-            flex-wrap: wrap;
+            gap: 15px;
         }
 
-        .nav-menu li {
-            display: flex;
-            align-items: center;
-        }
-
+        /* استایل و انیمیشن لینک‌های منو */
         .nav-menu a {
             display: flex;
             align-items: center;
             gap: 8px;
+            padding: 8px 16px;
             text-decoration: none;
-            color: #333;
+            color: var(--text-muted);
+            font-size: 0.9rem;
             font-weight: 500;
-            transition: color 0.3s;
-        }
-
-        .nav-menu a:hover {
-            color: #667eea;
+            border-radius: 30px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
         }
 
         .nav-menu a img {
-            width: 22px;
-            height: 22px;
-            object-fit: contain;
+            width: 18px;
+            height: 18px;
+            transition: transform 0.3s ease, filter 0.3s ease;
+        }
+
+        .nav-menu a:hover img {
+            transform: translateY(-2px);
+        }
+
+        /* تغییر خودکار رنگ آیکون‌های تصویر منو در حالت روز و شب */
+        .dark-mode .nav-menu a img {
+            filter: brightness(0) invert(1);
+        }
+
+        .light-mode .nav-menu a img {
+            filter: brightness(0);
+        }
+
+        /* انیمیشن خط زیرین دکمه‌های منو دسکتاپ */
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            bottom: 2px;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #7c3aed, #38bdf8);
+            border-radius: 2px;
+            transition: width 0.3s ease, transform 0.3s ease;
+            transform: translateX(-50%);
+        }
+
+        .nav-menu a:hover::after {
+            width: 60%;
+        }
+
+        /* تنظیم رنگ متن‌های منو در حالت روز و شب */
+        .dark-mode .nav-menu a {
+            color: #e2e8f0;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.05);
+        }
+
+        .light-mode .nav-menu a {
+            color: #334155;
+        }
+
+        .light-mode .nav-menu a:hover {
+            color: #0f172a;
+            background: rgba(0, 0, 0, 0.05);
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .lang-btn {
+            background: transparent;
+            border: 1px solid var(--border);
+            color: var(--text-muted);
+            padding: 6px 12px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            transition: all 0.2s ease;
+        }
+
+        .lang-btn.active {
+            color: var(--text);
+            background: rgba(255, 255, 255, 0.1);
+            border-color: #7c3aed;
+        }
+
+        .theme-btn {
+            background: var(--primary);
+            border: none;
+            color: white;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 10px var(--primary-glow);
         }
 
         .menu-toggle {
             display: none;
+            background: none;
+            border: none;
+            color: var(--text);
             font-size: 1.5rem;
             cursor: pointer;
         }
 
-        /* ========== مقاله ========== */
+        /* کادر شیشه‌ای محتوای مقاله */
         .article-container {
             max-width: 800px;
-            margin: 2rem auto;
-            padding: 0 1.5rem;
+            margin: 40px auto 80px auto;
+            padding: 2.5rem;
+            background: var(--panel);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--border);
+            border-radius: 28px;
+            box-shadow: 0 20px 50px -10px rgba(0, 0, 0, 0.3);
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        .light-mode .article-container {
+            background: rgba(255, 255, 255, 0.85);
+            box-shadow: 0 20px 50px -10px rgba(0, 0, 0, 0.05);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .article-category {
             font-size: 0.75rem;
             text-transform: uppercase;
-            color: #667eea;
+            color: #a78bfa;
             font-weight: 600;
             margin-bottom: 1rem;
         }
 
+        .light-mode .article-category {
+            color: #4f46e5;
+        }
+
         .article-title {
-            font-size: 2rem;
-            font-weight: 700;
+            font-size: 1.8rem;
+            font-weight: 800;
             margin-bottom: 1rem;
-            line-height: 1.3;
+            line-height: 1.45;
+            color: var(--text);
         }
 
         .article-deck {
             font-size: 1.1rem;
-            color: #555;
+            color: var(--text-muted);
             margin-bottom: 1.5rem;
-            border-right: 3px solid #667eea;
+            line-height: 1.65;
+        }
+
+        /* تنظیم پویای حاشیه چپ و راست خلاصه متن بر اساس جهت صفحه */
+        html[dir="rtl"] .article-deck {
+            border-right: 3px solid #7c3aed;
+            border-left: none;
             padding-right: 1rem;
+            padding-left: 0;
+        }
+
+        html[dir="ltr"] .article-deck {
+            border-left: 3px solid #7c3aed;
+            border-right: none;
+            padding-left: 1rem;
+            padding-right: 0;
         }
 
         .article-byline {
@@ -127,7 +369,7 @@
             align-items: center;
             margin-bottom: 1.5rem;
             padding-bottom: 1rem;
-            border-bottom: 1px solid #eaeaea;
+            border-bottom: 1px solid var(--border);
             flex-wrap: wrap;
             gap: 1rem;
         }
@@ -143,32 +385,37 @@
             height: 48px;
             border-radius: 50%;
             object-fit: cover;
+            border: 2px solid #7c3aed;
+            box-shadow: 0 0 10px var(--primary-glow);
         }
 
         .author-name {
-            font-weight: 600;
-            color: #1a1a1a;
+            font-weight: 700;
+            color: var(--text);
+            display: block;
         }
 
         .author-title {
             font-size: 0.8rem;
-            color: #888;
+            color: var(--text-muted);
+            display: block;
         }
 
         .article-date {
             font-size: 0.85rem;
-            color: #888;
+            color: var(--text-muted);
         }
 
         .featured-image {
             width: 100%;
-            border-radius: 12px;
+            border-radius: 16px;
             margin: 1.5rem 0;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
         }
 
         .image-caption {
             font-size: 0.8rem;
-            color: #777;
+            color: var(--text-muted);
             text-align: center;
             margin-top: -1rem;
             margin-bottom: 1.5rem;
@@ -176,8 +423,8 @@
 
         .article-content {
             font-size: 1.05rem;
-            line-height: 1.8;
-            color: #2a2a2a;
+            line-height: 1.9;
+            color: var(--text);
         }
 
         .article-content p {
@@ -185,64 +432,244 @@
         }
 
         .article-content blockquote {
-            border-right: 4px solid #667eea;
             padding: 1rem 1.5rem;
             margin: 1.5rem 0;
-            background: #f9f9f9;
+            background: rgba(255, 255, 255, 0.02);
             font-style: italic;
-            color: #555;
+            color: var(--text);
+            border-radius: 4px;
         }
 
-        .info-box {
-            background: #e8f4fd;
-            border-right: 4px solid #17a2b8;
-            padding: 1rem;
-            border-radius: 12px;
+        /* هماهنگی بلاک نقل‌قول با جهت زبان */
+        html[dir="rtl"] .article-content blockquote {
+            border-right: 4px solid #7c3aed;
+            border-left: none;
+        }
+
+        html[dir="ltr"] .article-content blockquote {
+            border-left: 4px solid #7c3aed;
+            border-right: none;
+        }
+
+        .light-mode .article-content blockquote {
+            background: #f8fafc;
+            border-color: #4f46e5;
+        }
+
+        /* باکس هشدار چندزبانه */
+        .warning-box {
+            background: rgba(245, 158, 11, 0.08);
+            padding: 1.2rem;
+            border-radius: 16px;
             margin: 1.5rem 0;
+            color: #fbbf24;
+            line-height: 1.7;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
         }
 
-        /* ========== دکمه بازگشت ========== */
+        html[dir="rtl"] .warning-box {
+            border-right: 4px solid #f59e0b;
+            border-left: none;
+        }
+
+        html[dir="ltr"] .warning-box {
+            border-left: 4px solid #f59e0b;
+            border-right: none;
+        }
+
+        .light-mode .warning-box {
+            background: #fffbeb;
+            color: #92400e;
+        }
+
+        /* دکمه بازگشت سه بعدی */
         .back-button {
             display: inline-flex;
+            align-items: center;
+            gap: 8px;
             margin-top: 2rem;
-            padding: 10px 20px;
-            color: #667eea;
+            padding: 12px 24px;
+            color: white;
+            background: var(--primary);
             text-decoration: none;
-            border: 1px solid #667eea;
             border-radius: 30px;
-            transition: all 0.3s;
+            font-weight: 600;
+            box-shadow: 0 4px 10px var(--primary-glow);
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
         .back-button:hover {
-            background: #667eea;
-            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px var(--primary-glow);
         }
 
-        /* ========== فوتر ========== */
+        /* پانویس (Footer) متناسب با حالت روز و شب */
         .footer {
-            background: #1a1a2e;
-            color: #aaa;
-            margin-top: 3rem;
-            padding: 2rem;
-            text-align: center;
+            background: rgba(10, 15, 30, 0.8);
+            border-top: 1px solid var(--border);
+            padding: 60px 16px 20px 16px;
+            margin-top: 100px;
         }
 
-        /* ========== موبایل ========== */
+        .light-mode .footer {
+            background: #f1f5f9;
+            border-top: 1px solid rgba(0, 0, 0, 0.08);
+        }
+
+        .footer-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-col h4 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: var(--text);
+            position: relative;
+        }
+
+        .footer-col p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            line-height: 1.8;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: transform 0.3s, color 0.3s;
+        }
+
+        html[dir="rtl"] .footer-col p:hover {
+            transform: translateX(-5px);
+        }
+
+        html[dir="ltr"] .footer-col p:hover {
+            transform: translateX(5px);
+        }
+
+        .footer-col p:hover {
+            color: var(--text);
+        }
+
+        .footer-col a {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.9rem;
+            margin-bottom: 12px;
+            transition: color 0.3s;
+        }
+
+        .footer-col a:hover {
+            color: var(--text);
+        }
+
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-top: 20px;
+            border-top: 1px solid var(--border);
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
+        .light-mode .footer-bottom {
+            border-top: 1px solid rgba(0, 0, 0, 0.08);
+        }
+
+        /* انیمیشن ذرات معلق */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .p {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            animation: rise 15s infinite linear;
+        }
+
+        @keyframes rise {
+            0% {
+                transform: translateY(110vh) rotate(0deg);
+                opacity: 0;
+            }
+
+            10% {
+                opacity: 1;
+            }
+
+            90% {
+                opacity: 1;
+            }
+
+            100% {
+                transform: translateY(-10vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* موبایل */
         @media (max-width: 768px) {
+            .navbar {
+                width: 90%;
+                border-radius: 24px;
+            }
+
             .menu-toggle {
                 display: block;
             }
 
             .nav-menu {
                 display: none;
-                width: 100%;
+                position: absolute;
+                top: 75px;
+                left: 5%;
+                width: 90%;
+                background: rgba(15, 23, 42, 0.95);
+                backdrop-filter: blur(20px);
+                border: 1px solid var(--border);
+                border-radius: 20px;
+                padding: 20px;
                 flex-direction: column;
-                gap: 1rem;
-                margin-top: 1rem;
+                box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+            }
+
+            .light-mode .nav-menu {
+                background: rgba(255, 255, 255, 0.98);
             }
 
             .nav-menu.active {
                 display: flex;
+                animation: menuFadeIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+            }
+
+            @keyframes menuFadeIn {
+                from {
+                    opacity: 0;
+                    transform: translateY(-15px) scale(0.95);
+                }
+
+                to {
+                    opacity: 1;
+                    transform: translateY(0) scale(1);
+                }
             }
 
             .article-title {
@@ -257,128 +684,304 @@
                 flex-direction: column;
                 align-items: flex-start;
             }
+
+            .footer-inner {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 30px;
+            }
+
+            .footer-col p,
+            .footer-col a {
+                justify-content: center;
+            }
         }
     </style>
 </head>
 
-<body>
+<body class="dark-mode">
 
-    <!-- ========== منو با آیکن از پوشه images ========== -->
-    <nav class="navbar">
+    <div class="bg-scene"></div>
+    <div class="bg-orb"></div>
+    <div class="bg-orb"></div>
+    <div class="bg-orb"></div>
+    <div class="particles" id="particles"></div>
+
+    <!-- منوی بالایی -->
+    <nav class="navbar" id="navbar">
         <div class="nav-container">
-            <div class="logo-area">
-                <img src="../images/logo.png" alt="لوگو" class="logo-img">
-                <div class="logo-text">خدمات مهاجرت</div>
-            </div>
-            <div class="menu-toggle">☰</div>
-            <ul class="nav-menu">
-                <li>
-                    <a href="index.html">
-                        <img src="../images/home.png" alt="خانه">
-                        خانه
-                    </a>
+            <a href="../index.html" class="logo-wrap">
+                <img src="../images/kha.jpg" alt="لوگو" class="logo-img">
+                <div class="logo-name">VISA<br>GUIDE AF</div>
+            </a>
+            <button class="menu-toggle">☰</button>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="../index.html"><img src="../images/home.png" alt=""> <span data-k="home">خانه</span></a>
                 </li>
-                <li>
-                    <a href="../services.html">
-                        <img src="../images/customer.png" alt="خدمات">
-                        خدمات
-                    </a>
+                <li><a href="../services.html"><img src="../images/customer.png" alt=""> <span
+                            data-k="services">خدمات</span></a></li>
+                <li><a href="../ai.html"><img src="../images/bot.png" alt=""> <span data-k="ai">هوش مصنوعی</span></a>
                 </li>
-                <li>
-                    <a href="../ai.html">
-                        <img src="../images/bot.png" alt="AI">
-                        AI
-                    </a>
-                </li>
-                <li>
-                    <a href="../contact.html">
-                        <img src="../images/call.png" alt="تماس با ما">
-                        تماس با ما
-                    </a>
-                </li>
-                <li>
-                    <a href="../faq.html">
-                        <img src="../images/f&a.png" alt="سوالات متداول">
-                        سوالات متداول
-                    </a>
-                </li>
+                <li><a href="../contact.html"><img src="../images/call.png" alt=""> <span
+                            data-k="contact">تماس</span></a></li>
+                <li><a href="../faq.html"><img src="../images/f&a.png" alt=""> <span data-k="faq">سوالات</span></a></li>
             </ul>
+            <div class="nav-actions">
+                <button class="lang-btn active" data-l="fa">🇦🇫 دری</button>
+                <button class="lang-btn" data-l="ps">پښتو</button>
+                <button class="lang-btn" data-l="en">🇬🇧 EN</button>
+                <button class="theme-btn" id="themeBtn"><i class="fas fa-sun"></i></button>
+            </div>
         </div>
     </nav>
 
-    <!-- ========== محتوای خبر جدید ========== -->
+    <!-- محتوای خبر -->
     <div class="article-container">
-        <div class="article-category">آموزشی / اجتماعی</div>
-        <h1 class="article-title">حمایت از دانش‌آموزان پناهجو در فضای سیاسی نامطمئن؛ نقش حیاتی مکاتب و آموزگاران</h1>
-        <div class="article-deck">در حالی که بحث‌های سیاسی درباره مهاجرت و اسکان پناهجویان در ایالات متحده شدت گرفته
-            است، آموزگاران در ایالت کارولینای شمالی با چالش‌های جدی در حمایت از دانش‌آموزان پناهجو روبه‌رو هستند.</div>
+        <div class="article-category" data-k="category">اخبار روز</div>
+        <h1 class="article-title" id="articleTitle">پناهجوی افغان در آمریکا با خطر اخراج روبه‌رو شد؛ بازداشت در جریان
+            بررسی مهاجرتی</h1>
+        <div class="article-deck" id="articleDeck">یک پناهجوی افغان که سال گذشته به‌دلیل تهدیدهای طالبان از افغانستان
+            فرار کرده بود، اکنون در ایالات متحده با خطر اخراج و بازگردانده شدن به کشورش مواجه شده است.</div>
 
         <div class="article-byline">
             <div class="author-info">
-                <img src="../news/pic/khamoosh.jpg" alt="سرفراز" class="author-avatar-large">
+                <img src="../images/kha.jpg" alt="نویسنده" class="author-avatar-large">
                 <div class="author-details">
-                    <span class="author-name">Sarfraz khamoosh</span>
-                    <span class="author-title">گزارشگر و ادمین</span>
+                    <span class="author-name" data-k="author">گزارشگر VISA GUIDE AF</span>
+                    <span class="author-title" data-k="authorTitle">گزارشگر و ادمین</span>
                 </div>
             </div>
-            <div class="article-date">🕒 ۲۷ اپریل ۲۰۲۶ - ۱۴:۰۰</div>
+            <div class="article-date" id="articleDate">🕒 ۲۷ اپریل ۲۰۲۶ - ۱۰:۳۰</div>
         </div>
 
-        <img src="pic/student.jpg" alt="دانش‌آموزان پناهجو" class="featured-image"
-            onerror="this.src='https://via.placeholder.com/800x400?text=Students'">
+        <img src="../news/pic/homeland.jpg" alt="پناهجوی افغان" class="featured-image"
+            onerror="this.src='https://via.placeholder.com/800x400?text=Asylum+Seeker'">
+        <div class="image-caption" id="imageCaption">مرکز بازداشت مهاجرتی در نیوجرسی</div>
 
-        <div class="article-content">
-            <p>در حالی‌که بحث‌های سیاسی درباره مهاجرت و اسکان پناهجویان در ایالات متحده شدت گرفته است، آموزگاران در
-                ایالت کارولینای شمالی با چالش‌های جدی در حمایت از دانش‌آموزان پناهجو روبه‌رو هستند. این دانش‌آموزان که
-                اغلب با تجربیات دشوار مانند جنگ، بی‌جاشدگی و وقفه در آموزش وارد مکاتب می‌شوند، نیازمند حمایت‌های ویژه
-                آموزشی و روانی هستند.</p>
+        <div class="article-content" id="articleContent">
+            <!-- محتوای خبر به صورت داینامیک بر اساس زبان تغییر می‌کند -->
+        </div>
 
-            <p>در یک دهه گذشته، نزدیک به ۲۰ هزار خانواده پناهجو در این ایالت اسکان یافته‌اند، اما بسیاری از کودکان آنان
-                با مشکلاتی مانند ناآشنایی با زبان، آسیب‌های روانی و ناپایداری در روند آموزش مواجه‌اند. مکاتب در بسیاری
-                موارد امکانات کافی برای پاسخ‌گویی به این نیازها را ندارند.</p>
+        <a href="../index.html" class="back-button" data-k="backBtn">← بازگشت به صفحه اصلی</a>
+    </div>
 
-            <p>کارشناسان تأکید می‌کنند که استفاده از روش‌های آموزشی مبتنی بر درک تروما (آسیب روانی) می‌تواند به بهبود
-                وضعیت این دانش‌آموزان کمک کند. ایجاد محیط‌های امن، حمایت عاطفی، و تشخیص نشانه‌های اضطراب و افسردگی از
-                جمله اقداماتی است که آموزگاران می‌توانند انجام دهند.</p>
-
-            <div class="info-box">
-                <i class="fas fa-lightbulb" style="color: #17a2b8;"></i>
-                <strong>نکته مهم:</strong> ایجاد فضای همدلانه و فراگیر در صنف‌های درسی، مانند احترام به فرهنگ‌ها،
-                یادگیری درست نام دانش‌آموزان و ایجاد ارتباط میان آنان، نقش مهمی در افزایش حس تعلق و اعتماد به نفس این
-                دانش‌آموزان دارد.
+    <!-- فوتر ۳ ستونه هماهنگ و شیشه‌ای -->
+    <footer class="footer">
+        <div class="footer-inner">
+            <div class="footer-col">
+                <h4 data-k="footTitle1">خدمات مهاجرت</h4>
+                <p><i class="fas fa-check-circle" style="color:var(--success)"></i> <span data-k="footDesc1">معتبرترین
+                        خدمات در افغانستان</span></p>
+                <p><i class="fas fa-globe" style="color:#38bdf8"></i> <span data-k="footDesc2">خدمات مهاجرتی
+                        جهانی</span></p>
             </div>
-
-            <p>در کنار این، همکاری مکاتب با نهادهای محلی و سازمان‌های حمایتی پناهجویان می‌تواند دسترسی خانواده‌ها به
-                خدمات آموزشی، صحی و اجتماعی را بهبود بخشد.</p>
-
-            <blockquote>"با وجود تغییرات سیاسی و محدودیت‌ها، آموزگاران می‌توانند نقش مهمی در ایجاد امید و فرصت برای
-                دانش‌آموزان پناهجو ایفا کنند تا آنان نه‌تنها با شرایط جدید سازگار شوند، بلکه در جامعه جدید خود پیشرفت
-                کنند." - کارشناسان.</blockquote>
-
-            <p>کارشناسان می‌گویند با وجود تغییرات سیاسی و محدودیت‌ها، آموزگاران می‌توانند نقش مهمی در ایجاد امید و فرصت
-                برای دانش‌آموزان پناهجو ایفا کنند تا آنان نه‌تنها با شرایط جدید سازگار شوند، بلکه در جامعه جدید خود
-                پیشرفت کنند.</p>
+            <div class="footer-col">
+                <h4 data-k="footTitle2">تماس با ما</h4>
+                <p><i class="fas fa-map-marker-alt" style="color:#f59e0b"></i> <span data-k="footAddr">ایبک، سمنگان،
+                        افغانستان</span></p>
+                <p><i class="fas fa-envelope" style="color:#ef4444"></i> visa.guide.af.123@gmail.com</p>
+            </div>
+            <div class="footer-col">
+                <h4 data-k="footTitle3">شبکه‌های اجتماعی</h4>
+                <a href="https://www.facebook.com/profile.php?id=61589943461514" target="_blank"><i
+                        class="fab fa-facebook-f" style="color:#1877f2"></i> Facebook</a>
+                <a href="https://t.me/visaguidee" target="_blank"><i class="fab fa-telegram" style="color:#29b6f6"></i>
+                    Telegram</a>
+                <a href="https://whatsapp.com/channel/0029Vae7U29AzNbpZIv5T81R" target="_blank"><i
+                        class="fab fa-whatsapp" style="color:#25d366"></i> WhatsApp</a>
+            </div>
         </div>
+        <div class="footer-bottom"><span data-k="copy">© 2026 VISA GUIDE AF — همه حقوق محفوظ است</span></div>
+    </footer>
 
-        <a href="../index.html" class="back-button">← بازگشت به صفحه اصلی</a>
-    </div>
-
-    <!-- ========== فوتر ========== -->
-    <div class="footer">
-        <p>© 2026 Sarfraz Refugee service - همه حقوق محفوظ است</p>
-    </div>
-
-    <!-- ========== جاوااسکریپت منو موبایل ========== -->
+    <!-- جاوااسکریپت منو، تم و دوزبانه بودن صفحه -->
     <script>
+        const T = {
+            fa: {
+                home: "خانه",
+                services: "خدمات",
+                ai: "هوش مصنوعی",
+                contact: "تماس",
+                faq: "سوالات",
+                category: "اخبار روز",
+                author: "گزارشگر VISA GUIDE AF",
+                authorTitle: "گزارشگر و ادمین",
+                backBtn: "← بازگشت به صفحه اصلی",
+                caption: "مرکز بازداشت مهاجرتی در نیوجرسی",
+                title: "پناهجوی افغان در آمریکا با خطر اخراج روبه‌رو شد؛ بازداشت در جریان بررسی مهاجرتی",
+                deck: "یک پناهجوی افغان که سال گذشته به‌دلیل تهدیدهای طالبان از افغانستان فرار کرده بود، اکنون در ایالات متحده با خطر اخراج و بازگردانده شدن به کشورش مواجه شده است.",
+                date: "🕒 ۲۷ اپریل ۲۰۲۶ - ۱۰:۳۰",
+                content: `
+                    <p>یک پناهجوی افغان که سال گذشته به‌دلیل تهدیدهای طالبان از افغانستان فرار کرده بود، اکنون در ایالات متحده با خطر اخراج و بازگردانده شدن به کشورش مواجه شده است.</p>
+                    <p>به گفته وکیل او، الورا موکرجی، این فرد با وجود نداشتن هیچ‌گونه سابقه جرمی و در حالی‌که پرونده پناهندگی‌اش در حال بررسی است، هفته گذشته هنگام مراجعه عادی به اداره مهاجرت در شهر نیویارک بازداشت شد.</p>
+                    <p>بر اساس گزارش‌ها، این پناهجو پس از خروج از افغانستان به‌دلیل تهدید به مرگ و اخراج اجباری از سوی طالبان، وارد آمریکا شده بود. او مدتی در بازداشت اداره مهاجرت نگهداری شد و سپس به‌طور موقت آزاد گردید و برای دریافت پناهندگی درخواست داده بود. او همچنین در تمام جلسات محکمه مهاجرتی خود شرکت کرده و قرار بود در فبروری ۲۰۲۶ نیز در جلسه بعدی حضور یابد.</p>
+                    <blockquote>"موکلم تمام قوانین را رعایت کرده و در صورت بازگشت به افغانستان، با خطر جدی شکنجه یا حتی کشته شدن توسط طالبان روبه‌رو خواهد شد." - الورا موکرجی، وکیل پناهجو</blockquote>
+                    <p>با این حال، هنگام مراجعه برای یک «چک‌این» معمول، توسط مأموران اداره مهاجرت بازداشت و به یک مرکز نگهداری در ایالت نیوجرسی منتقل شد. وکیل او تأکید کرده که موکلش تمام قوانین را رعایت کرده و در صورت بازگشت به افغانستان، با خطر جدی شکنجه یا حتی کشته شدن توسط طالبان روبه‌رو خواهد شد.</p>
+                    <div class="warning-box">
+                        <i class="fas fa-exclamation-triangle" style="color: #f59e0b; font-size: 1.2rem;"></i>
+                        <div>
+                            <strong>هشدار:</strong> این رویداد در حالی رخ داده که پس از بازگشت دونالد ترامپ به قدرت، سیاست‌های مهاجرتی سخت‌گیرانه‌تری علیه شهروندان برخی کشورها، از جمله افغانستان، اعمال شده است. همچنین پس از یک رویداد تیراندازی در واشنگتن که به یک پناهجوی افغان نسبت داده شده، فشارها بر مهاجران افغان افزایش یافته است.
+                        </div>
+                    </div>
+                    <p>مقام‌های امنیت داخلی آمریکا اعلام کرده‌اند که این فرد به‌دلیل ورود غیرقانونی به خاک آمریکا تحت روند اخراج قرار گرفته، اما تأکید کرده‌اند که ادعاهای او توسط قاضی مهاجرت بررسی خواهد شد.</p>
+                    <p>در همین حال، یک قاضی فدرال از دولت آمریکا خواسته است تا به درخواست قانونی وکیل این پناهجو پاسخ دهد. خانواده این فرد نیز ابراز نگرانی کرده‌اند و گفته‌اند که بازگشت او به افغانستان می‌تواند جانش را به خطر بیندازد.</p>
+                    <p>این رویداد نگرانی‌ها را درباره وضعیت پناهجویان افغان در آمریکا افزایش داده و بار دیگر بحث تعهدات آمریکا در قبال کسانی که از این کشور حمایت کرده‌اند را برجسته ساخته است.</p>
+                `,
+                footTitle1: "خدمات مهاجرت",
+                footDesc1: "معتبرترین خدمات در افغانستان",
+                footDesc2: "خدمات مهاجرتی جهانی",
+                footTitle2: "تماس با ما",
+                footAddr: "ایبک، سمنگان، افغانستان",
+                footTitle3: "شبکه‌های اجتماعی",
+                copy: "© 2026 VISA GUIDE AF — همه حقوق محفوظ است"
+            },
+            en: {
+                home: "Home",
+                services: "Services",
+                ai: "AI Assistant",
+                contact: "Contact",
+                faq: "FAQ",
+                category: "Immigration News",
+                author: "VISA GUIDE AF Reporter",
+                authorTitle: "Reporter & Admin",
+                backBtn: "← Back to Home",
+                caption: "Immigration Detention Center in New Jersey",
+                title: "Afghan Refugee Faces Deportation from US; Arrested During Immigration Review",
+                deck: "An Afghan asylum seeker who fled Afghanistan last year due to Taliban threats now faces deportation and being returned to his country from the United States.",
+                date: "🕒 April 27, 2026 - 10:30",
+                content: `
+                    <p>An Afghan asylum seeker who fled Afghanistan last year due to threats from the Taliban now faces the risk of deportation and being returned to his country from the United States.</p>
+                    <p>According to his lawyer, Elora Mukherjee, the individual has no criminal record. Despite his active asylum case undergoing review, he was arrested last week during a routine check-in at the immigration office in New York City.</p>
+                    <p>Reports indicate that the asylum seeker entered the United States after fleeing death threats and forced displacement by the Taliban. He was initially detained by immigration authorities, later temporarily released, and had filed for asylum. He had attended all his immigration court hearings and was scheduled to appear at the next session in February 2026.</p>
+                    <blockquote>"My client has followed all the rules, and if returned to Afghanistan, he faces a serious risk of torture or even death by the Taliban." - Elora Mukherjee, defense attorney</blockquote>
+                    <p>However, during a routine check-in, he was arrested by immigration officers and transferred to a detention facility in the state of New Jersey. His lawyer emphasized that her client complied with all regulations, and returning him to Afghanistan puts his life in immediate danger.</p>
+                    <div class="warning-box">
+                        <i class="fas fa-exclamation-triangle" style="color: #f59e0b; font-size: 1.2rem;"></i>
+                        <div>
+                            <strong>Warning:</strong> This event comes as stricter immigration policies are enforced against citizens of certain countries, including Afghanistan, following Donald Trump's return to power. Pressure on Afghan migrants has also risen following a shooting incident in Washington attributed to an Afghan asylum seeker.
+                        </div>
+                    </div>
+                    <p>US Department of Homeland Security officials stated that this individual is undergoing deportation proceedings due to unlawful entry into the US, but stressed that his asylum claims will be reviewed by an immigration judge.</p>
+                    <p>Meanwhile, a federal judge has requested the US government to respond to the lawyer's legal request. The individual's family has expressed deep concern, stating that returning him to Afghanistan would endanger his life.</p>
+                    <p>This incident has increased concerns about the status of Afghan asylum seekers in the US, highlighting once again the debate over America's commitments to those who supported its missions.</p>
+                `,
+                footTitle1: "Immigration Services",
+                footDesc1: "Most reliable services in Afghanistan",
+                footDesc2: "Global immigration services",
+                footTitle2: "Contact Us",
+                footAddr: "Aibak, Samangan, Afghanistan",
+                footTitle3: "Social Networks",
+                copy: "© 2026 VISA GUIDE AF — All rights reserved"
+            },
+            ps: {
+                home: "کور",
+                services: "خدمات",
+                ai: "AI",
+                contact: "اړیکه",
+                faq: "پوښتنې",
+                category: "وروستي خبرونه",
+                author: "د VISA GUIDE AF خبریال",
+                authorTitle: "خبریال او مدیر",
+                backBtn: "← بیرته کور پاڼې ته",
+                caption: "په نیوجرسي کې د کډوالۍ توقیف ځای",
+                title: "افغان پناه غوښتونکی په امریکا کې د شړلو خطر سره مخ شو؛ د کډوالۍ بیاکتنې پرمهال ونیول شو",
+                deck: "یو افغان پناه غوښتونکی چې تیر کال د طالبانو د تهدیدونو له امله له افغانستان څخه تښتیدلی و، اوس په متحده ایالاتو کې د شړلو او خپل هیواد ته د بیرته ستنیدو له خطر سره مخ دی.",
+                date: "🕒 د ۲۰۲۶ کال د اپریل ۲۷ - ۱۰:۳۰",
+                content: `
+                    <p>یو افغان پناه غوښتونکی چې تیر کال د طالبانو د تهدیدونو له امله له افغانستان څخه تښتیدلی و، اوس په متحده ایالاتو کې د شړلو او خپل هیواد ته د بیرته ستنیدو له خطر سره مخ دی.</p>
+                    <p>د هغه د وکیلې، ایلورا مکرجي په وینا، دا کس هیڅ جنایي ریکارډ نه لري او سره له دې چې د پناه غوښتنې قضیه یې تر بیاکتنې لاندې ده، تیره اونۍ په نیویارک کې د کډوالۍ دفتر ته د عادي مراجعې پر مهال ونیول شو.</p>
+                    <p>د راپورونو له مخې، دا پناه غوښتونکی وروسته له هغه متحده ایالاتو ته داخل شو چې د طالبانو لخوا د مرګ له ګواښونو او جبري بې ځایه کیدو څخه وتښتید. هغه لومړی د کډوالۍ چارواکو لخوا توقیف شو، وروسته په موقتي توګه خوشې شو، او د پناه غوښتنې غوښتنلیک یې ثبت کړی و. هغه د کډوالۍ محکمې په ټولو غونډو کې ګډون کړی و او د شړلو پروسې تعقیب یې کاوه.</p>
+                    <blockquote>"زما مؤکل ټول قوانین مراعات کړي او که افغانستان ته واستول شي، د طالبانو لخوا د شکنجې او حتی د وژلو له جدي خطر سره مخ دی." - ایلورا مکرجي، د پناه غوښتونکي وکیله</blockquote>
+                    <p>خو د یوې عادي مراجعې پر مهال د کډوالۍ د افسرانو لخوا ونیول شو او په نیوجرسي ایالت کې یو توقیف ځای ته انتقال شو. د هغه وکیلې ټینګار کړی چې مؤکل یې ټول قوانین مراعات کړي او افغانستان ته د هغه ستنیدل د هغه ژوند په جدي خطر کې اچوي.</p>
+                    <div class="warning-box">
+                        <i class="fas fa-exclamation-triangle" style="color: #f59e0b; font-size: 1.2rem;"></i>
+                        <div>
+                            <strong>خبرداری:</strong> دا پیښه داسې مهال رامنځته کیږي چې ډونالډ ټرمپ د بیا ځل واک ته رسیدو وروسته، د افغانستان په ګډون د ځینو هیوادونو د اتباعو په وړاندې د کډوالۍ سختې پالیسۍ پلي کړې دي. همدارنګه په واشنګټن کې د ډزو له یوې پیښې وروسته چې یو افغان پناه غوښتونکي ته منسوب شوې، په افغان کډوالو فشارونه زیات شوي دي.
+                        </div>
+                    </div>
+                    <p>د امریکا د کورني امنیت چارواکو ویلي چې دا کس امریکا ته د غیرقانوني ننوتلو له امله د شړلو لاندې دی، خو ټینګار یې کړی چې د هغه ادعاګانې به د کډوالۍ قاضي لخوا وڅیړل شي.</p>
+                    <p>په ورته وخت کې، یو فدرال قاضي د امریکا له حکومت څخه غوښتي چې د وکیل غوښتنې ته ځواب ووایي. د دې کس کورنۍ هم ژوره اندیښنه څرګنده کړې ده.</p>
+                `,
+                footTitle1: "د کډوالۍ خدمات",
+                footDesc1: "افغانستان کې ترټولو معتبر خدمات",
+                footDesc2: "نظریاتي د کډوالۍ خدمات",
+                footTitle2: "اړیکه",
+                footAddr: "ایبک, سمنګان، افغانستان",
+                footTitle3: "ټولنیزې شبکې",
+                copy: "© 2026 VISA GUIDE AF — ټول حقونه خوندي دي"
+            }
+        };
+
+        let lang = 'fa';
+
+        function applyLang(l) {
+            lang = l;
+
+            // اعمال تغییرات جهت صفحه و استایل متنی بر اساس نوع زبان (RTL یا LTR)
+            const htmlTag = document.documentElement;
+            htmlTag.setAttribute('lang', l);
+            if (l === 'en') {
+                htmlTag.setAttribute('dir', 'ltr');
+            } else {
+                htmlTag.setAttribute('dir', 'rtl');
+            }
+
+            document.querySelectorAll('[data-k]').forEach(el => {
+                const k = el.getAttribute('data-k');
+                if (T[l][k] !== undefined) el.innerHTML = T[l][k];
+            });
+
+            // بروزرسانی بخش محتوای داینامیک خبر
+            document.getElementById('articleTitle').innerHTML = T[l].title;
+            document.getElementById('articleDeck').innerHTML = T[l].deck;
+            document.getElementById('articleDate').innerHTML = T[l].date;
+            document.getElementById('imageCaption').innerHTML = T[l].caption;
+            document.getElementById('articleContent').innerHTML = T[l].content;
+
+            document.querySelectorAll('.lang-btn').forEach(b => b.classList.toggle('active', b.getAttribute('data-l') === l));
+        }
+
+        // فعال‌سازی رویداد کلیک برای دکمه‌های تغییر زبان
+        document.querySelectorAll('.lang-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                applyLang(btn.getAttribute('data-l'));
+            });
+        });
+
+        // منو موبایل
         const menuToggle = document.querySelector('.menu-toggle');
-        const navMenu = document.querySelector('.nav-menu');
+        const navMenu = document.getElementById('navMenu');
         if (menuToggle) {
             menuToggle.addEventListener('click', () => {
                 navMenu.classList.toggle('active');
             });
         }
-    </script>
 
+        // مدیریت حالت تم شب و روز هوشمند
+        const tb = document.getElementById('themeBtn');
+        const saved = localStorage.getItem('srs-theme') || 'dark';
+        document.body.className = saved + '-mode';
+        tb.innerHTML = saved === 'dark' ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+
+        tb.addEventListener('click', () => {
+            const d = document.body.classList.contains('dark-mode');
+            document.body.className = (d ? 'light' : 'dark') + '-mode';
+            tb.innerHTML = d ? '<i class="fas fa-moon"></i>' : '<i class="fas fa-sun"></i>';
+            localStorage.setItem('srs-theme', d ? 'light' : 'dark');
+        });
+
+        // ایجاد ذرات متحرک پس‌زمینه
+        const pc = document.getElementById('particles');
+        for (let i = 0; i < 40; i++) {
+            const p = document.createElement('div');
+            p.className = 'p';
+            const s = Math.random() * 8 + 3;
+            p.style.cssText = `width:${s}px;height:${s}px;left:${Math.random() * 100}%;top:${Math.random() * 100}%;animation-delay:${Math.random() * 12}s;animation-duration:${12 + Math.random() * 10}s`;
+            pc.appendChild(p);
+        }
+
+        applyLang('fa');
+    </script>
 </body>
 
 </html>

@@ -4,184 +4,738 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>تماس | Sarfraz Refugee Service</title>
+  <title>تماس | VISA GUIDE AF</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  <link rel="stylesheet" href="style.css">
+
   <style>
-    .contact-grid {
-      max-width: 1100px;
-      margin: 2rem auto;
-      padding: 0 16px;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 2rem;
+    /* تعریف متغیرهای رنگی و استایل پایه */
+    :root {
+      --bg: #070b13;
+      --panel: rgba(255, 255, 255, 0.03);
+      --border: rgba(255, 255, 255, 0.08);
+      --text: #f1f5f9;
+      --text-muted: #94a3b8;
+      --primary: linear-gradient(135deg, #7c3aed, #4f46e5);
+      --primary-glow: rgba(124, 58, 237, 0.4);
+      --accent: linear-gradient(135deg, #38bdf8, #0369a1);
+      --accent-glow: rgba(56, 189, 248, 0.4);
+      --success: #10b981;
+      --warning: #f59e0b;
+      --danger: #ef4444;
+      --font: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
     }
 
-    @media(max-width:700px) {
+    .light-mode {
+      --bg: #f8fafc;
+      --panel: rgba(0, 0, 0, 0.03);
+      --border: rgba(0, 0, 0, 0.08);
+      --text: #0f172a;
+      /* متن تیره برای حالت روز */
+      --text-muted: #475569;
+      --primary-glow: rgba(124, 58, 237, 0.15);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: var(--font);
+      transition: background-color 0.3s, border-color 0.3s, color 0.3s, filter 0.3s;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      overflow-x: hidden;
+      perspective: 1000px;
+    }
+
+    /* جلوه ذرات و اورب‌های سه‌بعدی پس‌زمینه */
+    .bg-scene {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -3;
+      background: radial-gradient(circle at 50% 50%, rgba(15, 23, 42, 0.5) 0%, var(--bg) 100%);
+    }
+
+    .bg-orb {
+      position: fixed;
+      width: 300px;
+      height: 300px;
+      border-radius: 50%;
+      filter: blur(80px);
+      z-index: -2;
+      opacity: 0.6;
+      pointer-events: none;
+      animation: floatOrb 20s infinite alternate ease-in-out;
+    }
+
+    .bg-orb:nth-child(2) {
+      background: radial-gradient(circle, #7c3aed 0%, transparent 70%);
+      top: -10%;
+      left: -10%;
+    }
+
+    .bg-orb:nth-child(3) {
+      background: radial-gradient(circle, #38bdf8 0%, transparent 70%);
+      bottom: -10%;
+      right: -10%;
+      animation-delay: -5s;
+    }
+
+    .bg-orb:nth-child(4) {
+      background: radial-gradient(circle, #ec4899 0%, transparent 70%);
+      top: 40%;
+      left: 50%;
+      width: 400px;
+      height: 400px;
+      animation-delay: -10s;
+    }
+
+    @keyframes floatOrb {
+      0% {
+        transform: translate(0, 0) scale(1);
+      }
+
+      100% {
+        transform: translate(80px, 50px) scale(1.2);
+      }
+    }
+
+    /* ساختار شیشه‌ای (Glassmorphism) */
+    .glass {
+      background: var(--panel);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      box-shadow:
+        0 10px 30px -10px rgba(0, 0, 0, 0.1),
+        inset 0 1px 0px rgba(255, 255, 255, 0.1);
+      transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease;
+    }
+
+    .glass:hover {
+      transform: translateY(-8px) rotateX(3deg) rotateY(-1deg);
+      box-shadow:
+        0 20px 40px -15px rgba(0, 0, 0, 0.2),
+        0 0 25px var(--primary-glow);
+    }
+
+    /* منوی ناوبری مدرن */
+    .navbar {
+      position: sticky;
+      top: 15px;
+      max-width: 1200px;
+      margin: 0 auto;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 24px;
+      background: rgba(15, 23, 42, 0.4);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid var(--border);
+      border-radius: 50px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    }
+
+    .light-mode .navbar {
+      background: rgba(255, 255, 255, 0.8);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    }
+
+    .logo-wrap {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: var(--text);
+    }
+
+    /* حلقه دوتایی درخشان دور لوگو */
+    .logo-wrap img {
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      border: 2px solid #7c3aed;
+      box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.2), 0 0 15px var(--primary-glow);
+      object-fit: cover;
+    }
+
+    .light-mode .logo-wrap img {
+      box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.1), 0 0 10px rgba(124, 58, 237, 0.2);
+    }
+
+    .logo-name {
+      font-size: 0.85rem;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+      line-height: 1.2;
+      background: linear-gradient(120deg, #fff, #94a3b8);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .light-mode .logo-name {
+      background: linear-gradient(120deg, #0f172a, #475569);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: 15px;
+    }
+
+    /* استایل و انیمیشن لینک‌های منو */
+    .nav-links a {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 16px;
+      text-decoration: none;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      font-weight: 500;
+      border-radius: 30px;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+
+    .nav-links a img {
+      width: 18px;
+      height: 18px;
+      transition: transform 0.3s ease, filter 0.3s ease;
+    }
+
+    .nav-links a:hover img {
+      transform: translateY(-2px);
+    }
+
+    /* تغییر خودکار رنگ آیکون‌های تصویر منو در حالت روز و شب */
+    .dark-mode .nav-links a img {
+      filter: brightness(0) invert(1);
+    }
+
+    .light-mode .nav-links a img {
+      filter: brightness(0);
+    }
+
+    /* انیمیشن خط زیرین دکمه‌های منو دسکتاپ */
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: 2px;
+      left: 50%;
+      width: 0;
+      height: 2px;
+      background: linear-gradient(90deg, #7c3aed, #38bdf8);
+      border-radius: 2px;
+      transition: width 0.3s ease, transform 0.3s ease;
+      transform: translateX(-50%);
+    }
+
+    .nav-links a:hover::after,
+    .nav-links a.active::after {
+      width: 60%;
+    }
+
+    /* تنظیم رنگ متن‌های منو در حالت روز و شب */
+    .dark-mode .nav-links a {
+      color: #e2e8f0;
+      text-shadow: 0 0 10px rgba(255, 255, 255, 0.05);
+    }
+
+    .dark-mode .nav-links a:hover,
+    .dark-mode .nav-links a.active {
+      color: #ffffff;
+      background: rgba(255, 255, 255, 0.05);
+      text-shadow: 0 0 12px rgba(124, 58, 237, 0.6);
+    }
+
+    .light-mode .nav-links a {
+      color: #334155;
+    }
+
+    .light-mode .nav-links a:hover,
+    .light-mode .nav-links a.active {
+      color: #0f172a;
+      background: rgba(0, 0, 0, 0.05);
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .lang-btn {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      padding: 6px 12px;
+      border-radius: 30px;
+      cursor: pointer;
+      font-size: 0.8rem;
+    }
+
+    .lang-btn.active {
+      color: var(--text);
+      background: rgba(255, 255, 255, 0.1);
+      border-color: #7c3aed;
+    }
+
+    .theme-btn {
+      background: var(--primary);
+      border: none;
+      color: white;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 10px var(--primary-glow);
+    }
+
+    .menu-btn {
+      display: none;
+      background: none;
+      border: none;
+      color: var(--text);
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+
+    /* بخش هیرو و افکت کارت سه بعدی */
+    .hero {
+      max-width: 1200px;
+      margin: 80px auto 40px auto;
+      padding: 0 16px;
+      text-align: center;
+    }
+
+    .hero-inner {
+      padding: 60px 40px;
+      background: radial-gradient(circle at top left, rgba(124, 58, 237, 0.08), transparent), var(--panel);
+      backdrop-filter: blur(20px);
+      border: 1px solid var(--border);
+      border-radius: 32px;
+      box-shadow: 0 30px 60px -20px rgba(0, 0, 0, 0.3);
+      transform-style: preserve-3d;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 16px;
+      background: rgba(124, 58, 237, 0.1);
+      border: 1px solid rgba(124, 58, 237, 0.2);
+      border-radius: 30px;
+      color: #a78bfa;
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 24px;
+    }
+
+    .hero h1 {
+      font-size: 2.8rem;
+      font-weight: 900;
+      margin-bottom: 16px;
+      background: linear-gradient(135deg, #fff 30%, #a78bfa 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      transform: translateZ(20px);
+    }
+
+    .light-mode .hero h1 {
+      background: linear-gradient(135deg, #0f172a 30%, #4f46e5 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    /* استایل اختصاصی صفحه تماس */
+    .contact-grid {
+      max-width: 1100px;
+      margin: 2rem auto 80px auto;
+      padding: 0 16px;
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 2.5rem;
+    }
+
+    @media(max-width:850px) {
       .contact-grid {
         grid-template-columns: 1fr;
       }
     }
 
     .form-group {
-      margin-bottom: 1.2rem;
+      margin-bottom: 1.4rem;
     }
 
     .form-group label {
       display: block;
       font-size: 0.85rem;
-      color: var(--text-muted);
-      margin-bottom: 6px;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 8px;
     }
 
     .form-group input,
     .form-group textarea,
     .form-group select {
       width: 100%;
-      padding: 12px 16px;
-      border-radius: 14px;
-      background: rgba(255, 255, 255, 0.06);
+      padding: 14px 18px;
+      border-radius: 16px;
+      background: var(--panel);
       border: 1px solid var(--border);
       color: var(--text);
       font-family: inherit;
       font-size: 0.9rem;
-      transition: all 0.25s;
+      transition: all 0.25s ease;
       outline: none;
     }
 
+    /* رفع تداخل تم روشن با منوهای دراپ‌داون در سیستم عامل‌ها */
+    .light-mode .form-group select option {
+      background-color: #ffffff;
+      color: #0f172a;
+    }
+
+    .dark-mode .form-group select option {
+      background-color: #070b13;
+      color: #f1f5f9;
+    }
+
     .form-group input:focus,
-    .form-group textarea:focus {
-      border-color: var(--primary);
-      box-shadow: 0 0 0 3px rgba(108, 71, 255, 0.2);
+    .form-group textarea:focus,
+    .form-group select:focus {
+      border-color: #7c3aed;
+      box-shadow: 0 0 0 3px var(--primary-glow);
     }
 
     .form-group textarea {
-      min-height: 120px;
+      min-height: 140px;
       resize: vertical;
     }
 
     .submit-btn {
       width: 100%;
-      padding: 14px;
-      border-radius: 14px;
-      background: linear-gradient(95deg, #6c47ff, #9b6bff);
+      padding: 15px;
+      border-radius: 16px;
+      background: var(--primary);
       color: #fff;
       border: none;
       font-size: 1rem;
       font-weight: 700;
       cursor: pointer;
       font-family: inherit;
-      transition: all 0.3s;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 12px var(--primary-glow);
     }
 
     .submit-btn:hover {
       transform: translateY(-2px);
-      box-shadow: 0 10px 30px rgba(108, 71, 255, 0.5);
+      box-shadow: 0 8px 24px var(--primary-glow);
     }
 
     .info-card {
       display: flex;
       align-items: flex-start;
-      gap: 14px;
-      padding: 1.2rem;
-      background: rgba(255, 255, 255, 0.04);
+      gap: 16px;
+      padding: 1.4rem;
+      background: var(--panel);
       border: 1px solid var(--border);
-      border-radius: 16px;
-      margin-bottom: 1rem;
-      transition: 0.3s;
+      border-radius: 20px;
+      margin-bottom: 1.2rem;
+      transition: all 0.3s ease;
     }
 
     .info-card:hover {
-      border-color: var(--border-hover);
+      border-color: var(--primary-glow);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
     }
 
     .info-card .ico {
-      width: 44px;
-      height: 44px;
-      border-radius: 12px;
+      width: 48px;
+      height: 48px;
+      border-radius: 14px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.2rem;
+      font-size: 1.3rem;
       flex-shrink: 0;
     }
 
     .social-row {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 10px;
-      margin-top: 1.5rem;
+      gap: 12px;
+      margin-top: 2rem;
     }
 
     .social-card {
       display: flex;
       align-items: center;
-      gap: 10px;
-      padding: 12px 16px;
-      border-radius: 14px;
+      gap: 12px;
+      padding: 14px 18px;
+      border-radius: 16px;
       text-decoration: none;
       border: 1px solid var(--border);
       color: var(--text);
-      transition: all 0.25s;
+      background: var(--panel);
+      font-weight: 600;
+      font-size: 0.9rem;
+      transition: all 0.25s ease;
     }
 
     .social-card:hover {
-      transform: translateY(-3px);
+      transform: translateY(-4px);
+      border-color: var(--primary-glow);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+    }
+
+    /* پانویس (Footer) متناسب با حالت روز و شب */
+    .footer {
+      background: rgba(10, 15, 30, 0.8);
+      border-top: 1px solid var(--border);
+      padding: 60px 16px 20px 16px;
+      margin-top: 100px;
+    }
+
+    .light-mode .footer {
+      background: #f1f5f9;
+      border-top: 1px solid rgba(0, 0, 0, 0.08);
+    }
+
+    .footer-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 40px;
+      margin-bottom: 40px;
+    }
+
+    .footer-col h4 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 20px;
+      color: var(--text);
+      position: relative;
+    }
+
+    .footer-col p {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      line-height: 1.8;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transition: transform 0.3s, color 0.3s;
+    }
+
+    .footer-col p:hover {
+      transform: translateX(-5px);
+      color: var(--text);
+    }
+
+    .footer-col a {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.9rem;
+      margin-bottom: 12px;
+      transition: color 0.3s;
+    }
+
+    .footer-col a:hover {
+      color: var(--text);
+    }
+
+    .footer-bottom {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding-top: 20px;
+      border-top: 1px solid var(--border);
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+    }
+
+    .light-mode .footer-bottom {
+      border-top: 1px solid rgba(0, 0, 0, 0.08);
+    }
+
+    /* انیمیشن باران ذرات */
+    .particles {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    .p {
+      position: absolute;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+      animation: rise 15s infinite linear;
+    }
+
+    @keyframes rise {
+      0% {
+        transform: translateY(110vh) rotate(0deg);
+        opacity: 0;
+      }
+
+      10% {
+        opacity: 1;
+      }
+
+      90% {
+        opacity: 1;
+      }
+
+      100% {
+        transform: translateY(-10vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+
+    /* واکنش‌گرایی برای موبایل */
+    @media (max-width: 768px) {
+      .navbar {
+        width: 90%;
+        border-radius: 24px;
+      }
+
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 75px;
+        left: 5%;
+        width: 90%;
+        background: rgba(15, 23, 42, 0.95);
+        backdrop-filter: blur(20px);
+        border: 1px solid var(--border);
+        border-radius: 20px;
+        padding: 20px;
+        flex-direction: column;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+      }
+
+      .light-mode .nav-links {
+        background: rgba(255, 255, 255, 0.98);
+      }
+
+      .nav-links.open {
+        display: flex;
+        animation: menuFadeIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+      }
+
+      @keyframes menuFadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(-15px) scale(0.95);
+        }
+
+        to {
+          opacity: 1;
+          transform: translateY(0) scale(1);
+        }
+      }
+
+      .menu-btn {
+        display: block;
+      }
+
+      .hero h1 {
+        font-size: 1.8rem;
+      }
+
+      .hero-inner {
+        padding: 40px 20px;
+      }
     }
   </style>
 </head>
 
 <body class="dark-mode">
+
   <div class="bg-scene"></div>
+  <div class="bg-orb"></div>
   <div class="bg-orb"></div>
   <div class="bg-orb"></div>
   <div class="particles" id="particles"></div>
 
-  <nav class="navbar">
-    <a href="index.html" class="logo-wrap"><img src="images/kha.jpg" alt="logo">
-      <div class="logo-name">
-        SARFRAZ<br>REFUGEE SERVICE</div>
+  <!-- منوی بالایی -->
+  <nav class="navbar" id="navbar">
+    <a href="index.html" class="logo-wrap">
+      <img src="images/kha.jpg" alt="logo">
+      <div class="logo-name">VISA<br>GUIDE AF</div>
     </a>
     <button class="menu-btn" id="menuBtn">☰</button>
     <ul class="nav-links" id="navLinks">
-      <li><a href="index.html"><img src="images/home.png"> خانه</a></li>
-      <li><a href="services.html"><img src="images/customer.png"> خدمات</a></li>
-      <li><a href="ai.html"><img src="images/ai.png"> AI</a></li>
-      <li><a href="contact.html" class="active"><img src="images/call.png"> تماس</a></li>
-      <li><a href="faq.html"><img src="images/f&a.png"> سوالات</a></li>
-      <li><a href="news/day-news/day.html"><img src="images/event.png"> اخبار</a></li>
+      <li><a href="index.html"><img src="images/home.png"> <span data-k="home">خانه</span></a></li>
+      <li><a href="services.html"><img src="images/customer.png"> <span data-k="services">خدمات</span></a></li>
+      <li><a href="ai.html"><img src="images/ai.png"> <span data-k="ai">هوش مصنوعی</span></a></li>
+      <li><a href="contact.html" class="active"><img src="images/call.png"> <span data-k="contact">تماس</span></a></li>
+      <li><a href="faq.html"><img src="images/f&a.png"> <span data-k="faq">سوالات</span></a></li>
+      <li><a href="news/day-news/day.html"><img src="images/event.png"> <span data-k="news">اخبار</span></a></li>
     </ul>
     <div class="nav-actions">
+      <button class="lang-btn active" data-l="fa">🇦🇫 فارسی</button>
+      <button class="lang-btn" data-l="en">🇬🇧 EN</button>
+      <button class="lang-btn" data-l="ps">پښتو</button>
       <button class="theme-btn" id="themeBtn"><i class="fas fa-moon"></i></button>
     </div>
   </nav>
 
+  <!-- هیرو -->
   <div class="hero">
     <div class="hero-inner">
-      <div class="badge"><i class="fas fa-headset"></i> تماس با ما</div>
-      <h1>فورم تماس</h1>
-      <p style="color:var(--text-muted)">ما در کنار شما هستیم — پیام بگذارید</p>
+      <div class="badge"><i class="fas fa-headset"></i> <span data-k="pageTag">تماس با ما</span></div>
+      <h1 data-k="pageTitle">فورم تماس</h1>
+      <p style="color:var(--text-muted)" data-k="pageDesc">ما در کنار شما هستیم — پیام بگذارید</p>
     </div>
   </div>
 
   <div class="contact-grid">
-    <div class="glass" style="padding:2rem;border-radius:28px;">
-      <h2 style="font-size:1.2rem;margin-bottom:1.5rem;color:#b8a0ff"><i class="fas fa-paper-plane"></i> ارسال پیام</h2>
-      <div class="form-group"><label>نام کامل</label><input type="text" placeholder="نام شما..."></div>
-      <div class="form-group"><label>ایمیل / واتساپ</label><input type="text" placeholder="ایمیل یا شماره واتساپ...">
+    <div class="glass" style="padding:2.2rem;border-radius:28px;">
+      <h2 style="font-size:1.2rem;margin-bottom:1.5rem;color:#b8a0ff"><i class="fas fa-paper-plane"></i> <span
+          data-k="formSend">ارسال پیام</span></h2>
+      <div class="form-group"><label data-k="fullName">نام کامل</label><input type="text" placeholder="نام شما...">
       </div>
-      <div class="form-group"><label>موضوع</label>
+      <div class="form-group"><label data-k="emailOrWhatsapp">ایمیل / واتساپ</label><input type="text"
+          placeholder="ایمیل یا شماره واتساپ..."></div>
+      <div class="form-group"><label data-k="subject">موضوع</label>
         <select>
-          <option>مشاوره مهاجرت</option>
-          <option>ثبت‌نام ویزا</option>
-          <option>سوال عمومی</option>
-          <option>پناهندگی</option>
+          <option data-k="opt1">مشاوره مهاجرت</option>
+          <option data-k="opt2">ثبت‌نام ویزا</option>
+          <option data-k="opt3">سوال عمومی</option>
+          <option data-k="opt4">پناهندگی</option>
         </select>
       </div>
-      <div class="form-group"><label>پیام</label><textarea placeholder="پیام خود را بنویسید..."></textarea></div>
-      <button class="submit-btn"
-        onclick="this.innerHTML='<i class=\'fas fa-check\'></i> ارسال شد!';this.style.background='linear-gradient(95deg,#06d6a0,#0ba37d)'">ارسال
-        پیام <i class="fas fa-paper-plane"></i></button>
+      <div class="form-group"><label data-k="message">پیام</label><textarea
+          placeholder="پیام خود را بنویسید..."></textarea></div>
+      <button class="submit-btn" id="submitBtn">ارسال پیام <i class="fas fa-paper-plane"></i></button>
     </div>
 
     <div>
@@ -189,29 +743,30 @@
         <div class="ico" style="background:rgba(108,71,255,0.15);color:#b8a0ff"><i class="fas fa-map-marker-alt"></i>
         </div>
         <div>
-          <div style="font-weight:700;margin-bottom:4px">آدرس</div>
-          <div style="font-size:0.85rem;color:var(--text-muted)">ایبک، سمنگان، افغانستان</div>
+          <div style="font-weight:700;margin-bottom:4px" data-k="addr">آدرس</div>
+          <div style="font-size:0.85rem;color:var(--text-muted)" data-k="footAddr">ایبک، سمنگان، افغانستان</div>
         </div>
       </div>
       <div class="info-card">
         <div class="ico" style="background:rgba(6,214,160,0.15);color:#06d6a0"><i class="fas fa-phone-alt"></i></div>
         <div>
-          <div style="font-weight:700;margin-bottom:4px">تلفن</div>
+          <div style="font-weight:700;margin-bottom:4px" data-k="phone">تلفن</div>
           <div style="font-size:0.85rem;color:var(--text-muted)">0792665622</div>
         </div>
       </div>
       <div class="info-card">
         <div class="ico" style="background:rgba(255,209,102,0.15);color:#ffd166"><i class="fas fa-envelope"></i></div>
         <div>
-          <div style="font-weight:700;margin-bottom:4px">ایمیل</div>
-          <div style="font-size:0.85rem;color:var(--text-muted)">sarfraz2026@zohomail.com</div>
+          <div style="font-weight:700;margin-bottom:4px" data-k="email">ایمیل</div>
+          <div style="font-size:0.85rem;color:var(--text-muted)">visa.guide.af.123@gmail.com</div>
         </div>
       </div>
       <div class="info-card">
         <div class="ico" style="background:rgba(255,107,107,0.15);color:#ff6b6b"><i class="fas fa-clock"></i></div>
         <div>
-          <div style="font-weight:700;margin-bottom:4px">ساعات کاری</div>
-          <div style="font-size:0.85rem;color:var(--text-muted)">شنبه تا پنجشنبه — ۸ صبح تا ۶ عصر</div>
+          <div style="font-weight:700;margin-bottom:4px" data-k="hours">ساعات کاری</div>
+          <div style="font-size:0.85rem;color:var(--text-muted)" data-k="hoursValue">شنبه تا پنجشنبه — ۸ صبح تا ۶ عصر
+          </div>
         </div>
       </div>
       <div class="social-row">
@@ -221,7 +776,7 @@
         <a href="https://t.me/visaguidee" target="_blank" class="social-card"
           style="background:rgba(41,182,246,0.08);border-color:rgba(41,182,246,0.2)"><i class="fab fa-telegram"
             style="color:#29b6f6;font-size:1.3rem"></i><span>Telegram</span></a>
-        <a href="https://www.facebook.com/profile.php?id=61576472791614" target="_blank" class="social-card"
+        <a href="https://www.facebook.com/profile.php?id=61589943461514" target="_blank" class="social-card"
           style="background:rgba(24,119,242,0.08);border-color:rgba(24,119,242,0.2)"><i class="fab fa-facebook-f"
             style="color:#1877f2;font-size:1.3rem"></i><span>Facebook</span></a>
         <a href="https://www.instagram.com/sarfraz_refugee_service" target="_blank" class="social-card"
@@ -231,19 +786,132 @@
     </div>
   </div>
 
-  <footer class="footer" style="margin-top:3rem">
-    <div class="footer-bottom">© 2026 Sarfraz Refugee Service — همه حقوق محفوظ است</div>
+  <!-- فوتر هماهنگ و ۳ ستونه -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-col">
+        <h4 data-k="footTitle1">خدمات مهاجرت</h4>
+        <p><i class="fas fa-check-circle" style="color:var(--success)"></i> <span data-k="footDesc1">معتبرترین خدمات در
+            افغانستان</span></p>
+        <p><i class="fas fa-globe" style="color:#38bdf8"></i> <span data-k="footDesc2">خدمات مهاجرتی جهانی</span></p>
+      </div>
+      <div class="footer-col">
+        <h4 data-k="footTitle2">تماس با ما</h4>
+        <p><i class="fas fa-map-marker-alt" style="color:#f59e0b"></i> <span data-k="footAddr">ایبک، سمنگان،
+            افغانستان</span></p>
+        <p><i class="fas fa-phone-alt" style="color:#10b981"></i> 0792665622</p>
+        <p><i class="fas fa-envelope" style="color:#ef4444"></i> visa.guide.af.123@gmail.com</p>
+      </div>
+      <div class="footer-col">
+        <h4 data-k="footTitle3">شبکه‌های اجتماعی</h4>
+        <a href="https://whatsapp.com/channel/0029Vae7U29AzNbpZIv5T81R" target="_blank"><i class="fab fa-whatsapp"
+            style="color:#25d366"></i> WhatsApp</a>
+        <a href="https://t.me/visaguidee" target="_blank"><i class="fab fa-telegram" style="color:#29b6f6"></i>
+          Telegram</a>
+        <a href="https://www.facebook.com/profile.php?id=61589943461514" target="_blank"><i class="fab fa-facebook-f"
+            style="color:#1877f2"></i> Facebook</a>
+        <a href="https://www.instagram.com/sarfraz_refugee_service" target="_blank"><i class="fab fa-instagram"
+            style="color:#e1306c"></i> Instagram</a>
+      </div>
+    </div>
+    <div class="footer-bottom"><span data-k="copy">© 2026 VISA GUIDE AF — همه حقوق محفوظ است</span></div>
   </footer>
 
   <script>
+    const T = {
+      fa: {
+        home: "خانه", services: "خدمات", ai: "هوش مصنوعی", contact: "تماس", faq: "سوالات", news: "اخبار",
+        pageTag: "تماس با ما", pageTitle: "فورم تماس", pageDesc: "ما در کنار شما هستیم — پیام بگذارید",
+        formSend: "ارسال پیام", fullName: "نام کامل", emailOrWhatsapp: "ایمیل / واتساپ", subject: "موضوع", message: "پیام",
+        opt1: "مشاوره مهاجرت", opt2: "ثبت‌نام ویزا", opt3: "سوال عمومی", opt4: "پناهندگی",
+        addr: "آدرس", phone: "تلفن", email: "ایمیل", hours: "ساعات کاری", hoursValue: "شنبه تا پنجشنبه — ۸ صبح تا ۶ عصر",
+        submitSent: "ارسال شد!", submitOriginal: "ارسال پیام",
+        footTitle1: "خدمات مهاجرت", footDesc1: "معتبرترین خدمات در افغانستان", footDesc2: "خدمات مهاجرتی جهانی",
+        footTitle2: "تماس با ما", footAddr: "ایبک، سمنگان، افغانستان", footTitle3: "شبکه‌های اجتماعی",
+        copy: "© 2026 VISA GUIDE AF — همه حقوق محفوظ است"
+      },
+      en: {
+        home: "Home", services: "Services", ai: "AI Assistant", contact: "Contact", faq: "FAQ", news: "News",
+        pageTag: "Contact Us", pageTitle: "Contact Form", pageDesc: "We are with you — Leave a message",
+        formSend: "Send Message", fullName: "Full Name", emailOrWhatsapp: "Email / WhatsApp", subject: "Subject", message: "Message",
+        opt1: "Migration Consultation", opt2: "Visa Registration", opt3: "General Inquiry", opt4: "Asylum",
+        addr: "Address", phone: "Phone", email: "Email", hours: "Working Hours", hoursValue: "Saturday to Thursday — 8 AM to 6 PM",
+        submitSent: "Sent!", submitOriginal: "Send Message",
+        footTitle1: "Immigration Services", footDesc1: "Most reliable services in Afghanistan", footDesc2: "Global immigration services",
+        footTitle2: "Contact Us", footAddr: "Aibak, Samangan, Afghanistan", footTitle3: "Social Networks",
+        copy: "© 2026 VISA GUIDE AF — All rights reserved"
+      },
+      ps: {
+        home: "کور", services: "خدمات", ai: "AI", contact: "اړیکه", faq: "پوښتنې", news: "خبرونه",
+        pageTag: "اړیکه", pageTitle: "د اړیکې فورمه", pageDesc: "موږ ستاسو تر څنګ یو — پیغام پریږدئ",
+        formSend: "پیغام واستوئ", fullName: "بشپړ نوم", emailOrWhatsapp: "ایمیل / واټساپ", subject: "موضوع", message: "پیغام",
+        opt1: "د مهاجرت مشوره", opt2: "د ویزې ثبتنام", opt3: "عمومي پوښتنه", opt4: "پناه غوښتنه",
+        addr: "پته", phone: "تلیفون", email: "بریښنالیک", hours: "کاري ساعتونه", hoursValue: "شنبه تر پنجشنبه — ۸ سهار تر ۶ مازدیګر",
+        submitSent: "واستول شو!", submitOriginal: "پیغام واستوئ",
+        footTitle1: "د کډوالۍ خدمات", footDesc1: "افغانستان کې ترټولو معتبر خدمات", footDesc2: "نظریاتي د کډوالۍ خدمات",
+        footTitle2: "اړیکه", footAddr: "ایبک, سمنګان، افغانستان", footTitle3: "ټولنیزې شبکې",
+        copy: "© 2026 VISA GUIDE AF — ټول حقونه خوندي"
+      }
+    };
+
+    let lang = 'fa';
+
+    function applyLang(l) {
+      lang = l;
+      document.querySelectorAll('[data-k]').forEach(el => {
+        const k = el.getAttribute('data-k');
+        if (T[l][k]) el.innerHTML = T[l][k];
+      });
+      // اعمال پلیس‌هولدرها به صورت زبان انتخابی
+      document.querySelector('input[placeholder^="نام"]').setAttribute('placeholder', l === 'fa' ? 'نام شما...' : l === 'en' ? 'Your Name...' : 'ستاسو نوم...');
+      document.querySelector('input[placeholder^="ایمیل"]').setAttribute('placeholder', l === 'fa' ? 'ایمیل یا شماره واتساپ...' : l === 'en' ? 'Email or WhatsApp...' : 'بریښنالیک یا واټساپ...');
+      document.querySelector('textarea').setAttribute('placeholder', l === 'fa' ? 'پیام خود را بنویسید...' : l === 'en' ? 'Write your message...' : 'خپل پیغام ولیکئ...');
+
+      const btn = document.getElementById('submitBtn');
+      if (btn.classList.contains('sent')) {
+        btn.innerHTML = `<i class="fas fa-check"></i> ${T[lang].submitSent}`;
+      } else {
+        btn.innerHTML = `${T[lang].submitOriginal} <i class="fas fa-paper-plane"></i>`;
+      }
+
+      document.querySelectorAll('.lang-btn').forEach(b => b.classList.toggle('active', b.getAttribute('data-l') === l));
+    }
+
+    // انیمیشن ارسال دکمه فرم تماس
+    const submitBtn = document.getElementById('submitBtn');
+    submitBtn.addEventListener('click', () => {
+      submitBtn.classList.add('sent');
+      submitBtn.innerHTML = `<i class="fas fa-check"></i> ${T[lang].submitSent}`;
+      submitBtn.style.background = 'linear-gradient(95deg,#06d6a0,#0ba37d)';
+      submitBtn.style.boxShadow = '0 8px 24px rgba(6, 214, 160, 0.4)';
+    });
+
+    // particles
     const pc = document.getElementById('particles');
-    for (let i = 0; i < 40; i++) { const p = document.createElement('div'); p.className = 'p'; const s = Math.random() * 8 + 3; p.style.cssText = `width:${s}px;height:${s}px;left:${Math.random() * 100}%;top:${Math.random() * 100}%;animation-delay:${Math.random() * 12}s;animation-duration:${12 + Math.random() * 10}s`; pc.appendChild(p); }
+    for (let i = 0; i < 40; i++) {
+      const p = document.createElement('div');
+      p.className = 'p';
+      const s = Math.random() * 8 + 3;
+      p.style.cssText = `width:${s}px;height:${s}px;left:${Math.random() * 100}%;top:${Math.random() * 100}%;animation-delay:${Math.random() * 12}s;animation-duration:${12 + Math.random() * 10}s`;
+      pc.appendChild(p);
+    }
+
+    // theme
     const tb = document.getElementById('themeBtn');
     const saved = localStorage.getItem('srs-theme') || 'dark';
     document.body.className = saved + '-mode';
     tb.innerHTML = saved === 'dark' ? '<i class="fas fa-moon"></i>' : '<i class="fas fa-sun"></i>';
-    tb.addEventListener('click', () => { const d = document.body.classList.contains('dark-mode'); document.body.className = (d ? 'light' : 'dark') + '-mode'; tb.innerHTML = d ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>'; localStorage.setItem('srs-theme', d ? 'light' : 'dark'); });
+    tb.addEventListener('click', () => {
+      const d = document.body.classList.contains('dark-mode');
+      document.body.className = (d ? 'light' : 'dark') + '-mode';
+      tb.innerHTML = d ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+      localStorage.setItem('srs-theme', d ? 'light' : 'dark');
+    });
+
+    document.querySelectorAll('.lang-btn').forEach(b => b.addEventListener('click', () => applyLang(b.getAttribute('data-l'))));
     document.getElementById('menuBtn').addEventListener('click', () => document.getElementById('navLinks').classList.toggle('open'));
+
+    applyLang('fa');
   </script>
 </body>
 

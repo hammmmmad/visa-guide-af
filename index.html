@@ -4,9 +4,706 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sarfraz Refugee Service | خدمات مهاجرتی افغان‌ها</title>
+  <title>VISA GUIDE AF | خدمات مهاجرتی افغان‌ها</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  <link rel="stylesheet" href="style.css">
+
+  <style>
+    /* تعریف متغیرهای رنگی و استایل پایه */
+    :root {
+      --bg: #070b13;
+      --panel: rgba(255, 255, 255, 0.03);
+      --border: rgba(255, 255, 255, 0.08);
+      --text: #f1f5f9;
+      --text-muted: #94a3b8;
+      --primary: linear-gradient(135deg, #7c3aed, #4f46e5);
+      --primary-glow: rgba(124, 58, 237, 0.4);
+      --accent: linear-gradient(135deg, #38bdf8, #0369a1);
+      --accent-glow: rgba(56, 189, 248, 0.4);
+      --success: #10b981;
+      --warning: #f59e0b;
+      --danger: #ef4444;
+      --font: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    }
+
+    .light-mode {
+      --bg: #f8fafc;
+      --panel: rgba(0, 0, 0, 0.03);
+      --border: rgba(0, 0, 0, 0.08);
+      --text: #0f172a;
+      /* متن تیره برای حالت روز */
+      --text-muted: #475569;
+      --primary-glow: rgba(124, 58, 237, 0.15);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: var(--font);
+      transition: background-color 0.3s, border-color 0.3s, color 0.3s, filter 0.3s;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      overflow-x: hidden;
+      perspective: 1000px;
+    }
+
+    /* جلوه ذرات و اورب‌های سه‌بعدی پس‌زمینه */
+    .bg-scene {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -3;
+      background: radial-gradient(circle at 50% 50%, rgba(15, 23, 42, 0.5) 0%, var(--bg) 100%);
+    }
+
+    .bg-orb {
+      position: fixed;
+      width: 300px;
+      height: 300px;
+      border-radius: 50%;
+      filter: blur(80px);
+      z-index: -2;
+      opacity: 0.6;
+      pointer-events: none;
+      animation: floatOrb 20s infinite alternate ease-in-out;
+    }
+
+    .bg-orb:nth-child(2) {
+      background: radial-gradient(circle, #7c3aed 0%, transparent 70%);
+      top: -10%;
+      left: -10%;
+    }
+
+    .bg-orb:nth-child(3) {
+      background: radial-gradient(circle, #38bdf8 0%, transparent 70%);
+      bottom: -10%;
+      right: -10%;
+      animation-delay: -5s;
+    }
+
+    .bg-orb:nth-child(4) {
+      background: radial-gradient(circle, #ec4899 0%, transparent 70%);
+      top: 40%;
+      left: 50%;
+      width: 400px;
+      height: 400px;
+      animation-delay: -10s;
+    }
+
+    @keyframes floatOrb {
+      0% {
+        transform: translate(0, 0) scale(1);
+      }
+
+      100% {
+        transform: translate(80px, 50px) scale(1.2);
+      }
+    }
+
+    /* ساختار شیشه‌ای (Glassmorphism) */
+    .glass {
+      background: var(--panel);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      box-shadow:
+        0 10px 30px -10px rgba(0, 0, 0, 0.1),
+        inset 0 1px 0px rgba(255, 255, 255, 0.1);
+      transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease;
+    }
+
+    .glass:hover {
+      transform: translateY(-8px) rotateX(3deg) rotateY(-1deg);
+      box-shadow:
+        0 20px 40px -15px rgba(0, 0, 0, 0.2),
+        0 0 25px var(--primary-glow);
+    }
+
+    /* منوی ناوبری مدرن با پشتیبانی از روز و شب */
+    .navbar {
+      position: sticky;
+      top: 15px;
+      max-width: 1200px;
+      margin: 0 auto;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 24px;
+      background: rgba(15, 23, 42, 0.4);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid var(--border);
+      border-radius: 50px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    }
+
+    .light-mode .navbar {
+      background: rgba(255, 255, 255, 0.8);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    }
+
+    .logo-wrap {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: var(--text);
+    }
+
+    .logo-wrap img {
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      border: 2px solid #7c3aed;
+      box-shadow: 0 0 15px var(--primary-glow);
+    }
+
+    .logo-name {
+      font-size: 0.85rem;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+      line-height: 1.2;
+      background: linear-gradient(120deg, #fff, #94a3b8);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .light-mode .logo-name {
+      background: linear-gradient(120deg, #0f172a, #475569);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: 15px;
+    }
+
+    /* استایل و انیمیشن لینک‌های منو */
+    .nav-links a {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 16px;
+      text-decoration: none;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      font-weight: 500;
+      border-radius: 30px;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+
+    .nav-links a img {
+      width: 18px;
+      height: 18px;
+      transition: transform 0.3s ease, filter 0.3s ease;
+    }
+
+    .nav-links a:hover img {
+      transform: translateY(-2px);
+    }
+
+    /* تغییر خودکار رنگ آیکون‌های تصویر منو در حالت روز و شب */
+    .dark-mode .nav-links a img {
+      filter: brightness(0) invert(1);
+      /* سفید کردن تصاویر سیاه در شب */
+    }
+
+    .light-mode .nav-links a img {
+      filter: brightness(0);
+      /* سیاه کردن تصاویر در روز */
+    }
+
+    /* انیمیشن خط زیرین دکمه‌های منو دسکتاپ */
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: 2px;
+      left: 50%;
+      width: 0;
+      height: 2px;
+      background: linear-gradient(90deg, #7c3aed, #38bdf8);
+      border-radius: 2px;
+      transition: width 0.3s ease, transform 0.3s ease;
+      transform: translateX(-50%);
+    }
+
+    .nav-links a:hover::after,
+    .nav-links a.active::after {
+      width: 60%;
+    }
+
+    /* تنظیم رنگ متن‌های منو در حالت روز و شب */
+    .dark-mode .nav-links a {
+      color: #e2e8f0;
+      text-shadow: 0 0 10px rgba(255, 255, 255, 0.05);
+    }
+
+    .dark-mode .nav-links a:hover,
+    .dark-mode .nav-links a.active {
+      color: #ffffff;
+      background: rgba(255, 255, 255, 0.05);
+      text-shadow: 0 0 12px rgba(124, 58, 237, 0.6);
+    }
+
+    .light-mode .nav-links a {
+      color: #334155;
+    }
+
+    .light-mode .nav-links a:hover,
+    .light-mode .nav-links a.active {
+      color: #0f172a;
+      background: rgba(0, 0, 0, 0.05);
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .lang-btn {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      padding: 6px 12px;
+      border-radius: 30px;
+      cursor: pointer;
+      font-size: 0.8rem;
+    }
+
+    .lang-btn.active {
+      color: var(--text);
+      background: rgba(255, 255, 255, 0.1);
+      border-color: #7c3aed;
+    }
+
+    .theme-btn {
+      background: var(--primary);
+      border: none;
+      color: white;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 10px var(--primary-glow);
+    }
+
+    .menu-btn {
+      display: none;
+      background: none;
+      border: none;
+      color: var(--text);
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+
+    /* بخش هیرو و افکت کارت سه بعدی */
+    .hero {
+      max-width: 1200px;
+      margin: 80px auto 40px auto;
+      padding: 0 16px;
+      text-align: center;
+    }
+
+    .hero-inner {
+      padding: 60px 40px;
+      background: radial-gradient(circle at top left, rgba(124, 58, 237, 0.08), transparent), var(--panel);
+      backdrop-filter: blur(20px);
+      border: 1px solid var(--border);
+      border-radius: 32px;
+      box-shadow: 0 30px 60px -20px rgba(0, 0, 0, 0.3);
+      transform-style: preserve-3d;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 16px;
+      background: rgba(124, 58, 237, 0.1);
+      border: 1px solid rgba(124, 58, 237, 0.2);
+      border-radius: 30px;
+      color: #a78bfa;
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 24px;
+    }
+
+    .hero-logo {
+      width: 110px;
+      height: 110px;
+      border-radius: 50%;
+      border: 3px solid #7c3aed;
+      box-shadow: 0 0 30px var(--primary-glow);
+      margin-bottom: 24px;
+      transform: translateZ(30px);
+    }
+
+    .hero h1 {
+      font-size: 2.8rem;
+      font-weight: 900;
+      margin-bottom: 16px;
+      background: linear-gradient(135deg, #fff 30%, #a78bfa 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      transform: translateZ(20px);
+    }
+
+    .light-mode .hero h1 {
+      background: linear-gradient(135deg, #0f172a 30%, #4f46e5 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero-desc {
+      max-width: 700px;
+      margin: 0 auto 30px auto;
+      font-size: 1.1rem;
+      line-height: 1.8;
+      color: var(--text-muted);
+      transform: translateZ(10px);
+    }
+
+    /* دکمه‌های ۳ بعدی ارگونومیک */
+    .card-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 28px;
+      background: var(--primary);
+      border: none;
+      color: white;
+      text-decoration: none;
+      border-radius: 50px;
+      font-weight: 600;
+      box-shadow:
+        0 8px 20px var(--primary-glow),
+        inset 0 -4px 0 rgba(0, 0, 0, 0.2);
+      transform: translateY(0);
+      transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      cursor: pointer;
+    }
+
+    .card-btn:hover {
+      transform: translateY(-4px);
+      box-shadow:
+        0 12px 24px var(--primary-glow),
+        inset 0 -4px 0 rgba(0, 0, 0, 0.2);
+    }
+
+    .card-btn:active {
+      transform: translateY(2px);
+      box-shadow:
+        0 4px 10px var(--primary-glow),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.2);
+    }
+
+    /* شبکه‌های آماری (Stats) */
+    .stats-container {
+      max-width: 1200px;
+      margin: 40px auto;
+      padding: 0 16px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+    }
+
+    .stat-card {
+      padding: 30px 20px;
+      text-align: center;
+    }
+
+    .stat-num {
+      font-size: 2.5rem;
+      font-weight: 900;
+      background: linear-gradient(135deg, #fff 0%, var(--text-muted) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 8px;
+    }
+
+    .light-mode .stat-num {
+      background: linear-gradient(135deg, #0f172a 0%, #3b82f6 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    /* شبکه‌ی کارت‌های اخبار */
+    .section-title {
+      font-size: 1.8rem;
+      font-weight: 800;
+      margin: 60px 0 24px 0;
+      position: relative;
+      display: inline-block;
+    }
+
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      right: 0;
+      width: 50px;
+      height: 4px;
+      background: var(--primary);
+      border-radius: 2px;
+    }
+
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 24px;
+      margin-bottom: 80px;
+    }
+
+    .card {
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+
+    .card-img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 16px;
+      transition: transform 0.5s ease;
+    }
+
+    .card:hover .card-img {
+      transform: scale(1.05) rotate(0.5deg);
+    }
+
+    .card-body {
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+    }
+
+    .card-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      line-height: 1.5;
+      margin-bottom: 12px;
+      color: var(--text);
+    }
+
+    .card-meta {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .card-btn-small {
+      margin-top: auto;
+      background: rgba(255, 255, 255, 0.05);
+      color: var(--text);
+      border: 1px solid var(--border);
+      padding: 8px 16px;
+      border-radius: 12px;
+      text-align: center;
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 600;
+      transition: all 0.3s;
+    }
+
+    .light-mode .card-btn-small {
+      background: rgba(0, 0, 0, 0.03);
+      border-color: rgba(0, 0, 0, 0.08);
+      color: var(--text);
+    }
+
+    .card:hover .card-btn-small {
+      background: var(--primary);
+      border-color: transparent;
+      box-shadow: 0 5px 15px var(--primary-glow);
+      color: white !important;
+    }
+
+    /* پانویس (Footer) متناسب با حالت روز و شب */
+    .footer {
+      background: rgba(10, 15, 30, 0.8);
+      border-top: 1px solid var(--border);
+      padding: 60px 16px 20px 16px;
+      margin-top: 100px;
+    }
+
+    .light-mode .footer {
+      background: #f1f5f9;
+      border-top: 1px solid rgba(0, 0, 0, 0.08);
+    }
+
+    .footer-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 40px;
+      margin-bottom: 40px;
+    }
+
+    .footer-col h4 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 20px;
+      color: var(--text);
+      position: relative;
+    }
+
+    .footer-col p {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      line-height: 1.8;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .footer-col a {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.9rem;
+      margin-bottom: 12px;
+      transition: color 0.3s;
+    }
+
+    .footer-col a:hover {
+      color: var(--text);
+    }
+
+    .footer-bottom {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding-top: 20px;
+      border-top: 1px solid var(--border);
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+    }
+
+    .light-mode .footer-bottom {
+      border-top: 1px solid rgba(0, 0, 0, 0.08);
+    }
+
+    /* انیمیشن باران ذرات */
+    .particles {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    .p {
+      position: absolute;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+      animation: rise 15s infinite linear;
+    }
+
+    @keyframes rise {
+      0% {
+        transform: translateY(110vh) rotate(0deg);
+        opacity: 0;
+      }
+
+      10% {
+        opacity: 1;
+      }
+
+      90% {
+        opacity: 1;
+      }
+
+      100% {
+        transform: translateY(-10vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+
+    /* واکنش‌گرایی برای موبایل */
+    @media (max-width: 768px) {
+      .navbar {
+        width: 90%;
+        border-radius: 24px;
+      }
+
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 75px;
+        left: 5%;
+        width: 90%;
+        background: rgba(15, 23, 42, 0.95);
+        backdrop-filter: blur(20px);
+        border: 1px solid var(--border);
+        border-radius: 20px;
+        padding: 20px;
+        flex-direction: column;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+      }
+
+      .light-mode .nav-links {
+        background: rgba(255, 255, 255, 0.98);
+      }
+
+      /* انیمیشن ورود سه‌بعدی نرم منوی موبایل */
+      .nav-links.open {
+        display: flex;
+        animation: menuFadeIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+      }
+
+      @keyframes menuFadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(-15px) scale(0.95);
+        }
+
+        to {
+          opacity: 1;
+          transform: translateY(0) scale(1);
+        }
+      }
+
+      .menu-btn {
+        display: block;
+      }
+
+      .hero h1 {
+        font-size: 1.8rem;
+      }
+
+      .hero-inner {
+        padding: 40px 20px;
+      }
+    }
+  </style>
 </head>
 
 <body class="dark-mode">
@@ -19,8 +716,8 @@
 
   <nav class="navbar" id="navbar">
     <a href="index.html" class="logo-wrap">
-      <img src="/images/kha.jpg">
-      <div class=" logo-name">VISA<br>GUIDE AF </div>
+      <img src="images/kha.jpg">
+      <div class=" logo-name">VISA<br>GUIDE AF</div>
     </a>
     <button class="menu-btn" id="menuBtn">☰</button>
     <ul class="nav-links" id="navLinks">
@@ -43,61 +740,64 @@
   <div class="hero">
     <div class="hero-inner">
       <div class="badge"><i class="fas fa-star"></i> <span data-k="trusted">خدمات معتبر مهاجرت</span></div>
-      <img src="images/kha.jpg" alt="Sarfraz" class="hero-logo">
+      <img src="images/kha.jpg" alt="Visa Guide" class="hero-logo">
       <h1 data-k="heroTitle">خدمات مهاجرت برای افغان‌ها</h1>
       <div class="hero-desc">
         <p id="heroDesc"><strong>VISA GUIDE AF</strong> بزرگترین مرجع مشاوره مهاجرت و ثبت‌نام ویزای بشردوستانه
           برای <strong>افغان‌ها</strong> — همراه مطمئن شما تا امنیت و آرامش.</p>
       </div>
       <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:1.5rem;">
-        <a href="services.html" class="card-btn"><i class="fas fa-compass"></i> <span data-k="seeServices">مشاهده
+        <a href="services.html" class="card-btn"
+          style="background: var(--accent); box-shadow: 0 8px 20px var(--accent-glow);"><i class="fas fa-compass"></i>
+          <span data-k="seeServices">مشاهده
             خدمات</span></a>
-        <a href="contact.html" class="card-btn" style="background:linear-gradient(95deg,#ff6b6b,#ff9b6b)"><i
-            class="fas fa-headset"></i> <span data-k="getHelp">دریافت مشاوره</span></a>
+        <a href="contact.html" class="card-btn"><i class="fas fa-headset"></i> <span data-k="getHelp">دریافت
+            مشاوره</span></a>
       </div>
     </div>
   </div>
 
   <!-- STATS -->
-  <div
-    style="max-width:1200px;margin:2rem auto;padding:0 16px;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem;">
-    <div class="glass" style="padding:1.5rem;text-align:center">
-      <div style="font-size:2rem;font-weight:900;color:#b8a0ff">۵۰۰۰+</div>
+  <div class="stats-container">
+    <div class="glass stat-card">
+      <div class="stat-num" style="color:#b8a0ff">۵۰۰۰+</div>
       <div style="font-size:0.85rem;color:var(--text-muted)" data-k="stat1">پرونده موفق</div>
     </div>
-    <div class="glass" style="padding:1.5rem;text-align:center">
-      <div style="font-size:2rem;font-weight:900;color:#06d6a0">۱۵+</div>
+    <div class="glass stat-card">
+      <div class="stat-num" style="color:#06d6a0">۱۵+</div>
       <div style="font-size:0.85rem;color:var(--text-muted)" data-k="stat2">کشور مقصد</div>
     </div>
-    <div class="glass" style="padding:1.5rem;text-align:center">
-      <div style="font-size:2rem;font-weight:900;color:#ffd166">۲۴/۷</div>
+    <div class="glass stat-card">
+      <div class="stat-num" style="color:#ffd166">۲۴/۷</div>
       <div style="font-size:0.85rem;color:var(--text-muted)" data-k="stat3">پشتیبانی آنلاین</div>
     </div>
-    <div class="glass" style="padding:1.5rem;text-align:center">
-      <div style="font-size:2rem;font-weight:900;color:#ff6b6b">۱۰+</div>
+    <div class="glass stat-card">
+      <div class="stat-num" style="color:#ff6b6b">۱۰+</div>
       <div style="font-size:0.85rem;color:var(--text-muted)" data-k="stat4">سال تجربه</div>
     </div>
   </div>
 
   <!-- NEWS -->
-  <div style="max-width:1300px;margin:0 auto;padding:0 16px">
+  <div style="max-width:1200px;margin:0 auto;padding:0 16px">
     <h2 class="section-title" data-k="latestNews">آخرین اخبار</h2>
+    <div class="cards-grid" id="newsGrid"></div>
   </div>
-  <div class="cards-grid" id="newsGrid"></div>
 
 
   <footer class="footer">
     <div class="footer-inner">
       <div class="footer-col">
         <h4 data-k="footTitle1">خدمات مهاجرت</h4>
-        <p><i class="fas fa-check-circle"></i> <span data-k="footDesc1">معتبرترین خدمات در افغانستان</span></p>
-        <p><i class="fas fa-globe"></i> <span data-k="footDesc2">خدمات مهاجرتی جهانی</span></p>
+        <p><i class="fas fa-check-circle" style="color:var(--success)"></i> <span data-k="footDesc1">معتبرترین خدمات در
+            افغانستان</span></p>
+        <p><i class="fas fa-globe" style="color:#38bdf8"></i> <span data-k="footDesc2">خدمات مهاجرتی جهانی</span></p>
       </div>
       <div class="footer-col">
         <h4 data-k="footTitle2">تماس با ما</h4>
-        <p><i class="fas fa-map-marker-alt"></i> <span data-k="footAddr">ایبک، سمنگان، افغانستان</span></p>
-        <p><i class="fas fa-phone-alt"></i> 0792665622</p>
-        <p><i class="fas fa-envelope"></i> sarfraz2026@zohomail.com</p>
+        <p><i class="fas fa-map-marker-alt" style="color:#f59e0b"></i> <span data-k="footAddr">ایبک، سمنگان،
+            افغانستان</span></p>
+        <p><i class="fas fa-phone-alt" style="color:#10b981"></i> 0792665622</p>
+        <p><i class="fas fa-envelope" style="color:#ef4444"></i> visa.guide.af.123@gmail.com</p>
       </div>
       <div class="footer-col">
         <h4 data-k="footTitle3">شبکه‌های اجتماعی</h4>
@@ -105,20 +805,20 @@
             style="color:#25d366"></i> WhatsApp</a>
         <a href="https://t.me/visaguidee" target="_blank"><i class="fab fa-telegram" style="color:#29b6f6"></i>
           Telegram</a>
-        <a href="https://www.facebook.com/profile.php?id=61576472791614" target="_blank"><i class="fab fa-facebook-f"
+        <a href="https://www.facebook.com/profile.php?id=61589943461514" target="_blank"><i class="fab fa-facebook-f"
             style="color:#1877f2"></i> Facebook</a>
         <a href="https://www.instagram.com/sarfraz_refugee_service" target="_blank"><i class="fab fa-instagram"
             style="color:#e1306c"></i> Instagram</a>
       </div>
     </div>
-    <div class="footer-bottom"><span data-k="copy">© 2026 Sarfraz Refugee Service — همه حقوق محفوظ است</span></div>
+    <div class="footer-bottom"><span data-k="copy">© 2026 VISA GUIDE AF — همه حقوق محفوظ است</span></div>
   </footer>
 
   <script>
     const T = {
-      fa: { home: "خانه", services: "خدمات", ai: "هوش مصنوعی", contact: "تماس", faq: "سوالات", news: "اخبار", trusted: "خدمات معتبر مهاجرت", heroTitle: "خدمات مهاجرت برای افغان‌ها", heroDesc: '<strong>Sarfraz Refugee Service</strong> بزرگترین مرجع مشاوره مهاجرت و ثبت‌نام ویزای بشردوستانه برای <strong>افغان‌ها</strong> — همراه مطمئن شما تا امنیت و آرامش.', seeServices: "مشاهده خدمات", getHelp: "دریافت مشاوره", stat1: "پرونده موفق", stat2: "کشور مقصد", stat3: "پشتیبانی آنلاین", stat4: "سال تجربه", latestNews: "آخرین اخبار", ourServices: "خدمات ما", footTitle1: "خدمات مهاجرت", footDesc1: "معتبرترین خدمات در افغانستان", footDesc2: "خدمات مهاجرتی جهانی", footTitle2: "تماس با ما", footAddr: "ایبک، سمنگان، افغانستان", footTitle3: "شبکه‌های اجتماعی", copy: "© 2026 Sarfraz Refugee Service — همه حقوق محفوظ است", readMore: "بیشتر بخوانید", breaking: "لحظاتی پیش" },
-      en: { home: "Home", services: "Services", ai: "AI Assistant", contact: "Contact", faq: "FAQ", news: "News", trusted: "Trusted Migration Services", heroTitle: "Migration Services for Afghans", heroDesc: '<strong>Sarfraz Refugee Service</strong> — the largest immigration consulting center for <strong>Afghans</strong>. Your trusted partner to safety and peace.', seeServices: "View Services", getHelp: "Get Consultation", stat1: "Successful Cases", stat2: "Destination Countries", stat3: "Online Support", stat4: "Years Experience", latestNews: "Latest News", ourServices: "Our Services", footTitle1: "Immigration Services", footDesc1: "Most reliable services in Afghanistan", footDesc2: "Global immigration services", footTitle2: "Contact Us", footAddr: "Aibak, Samangan, Afghanistan", footTitle3: "Social Networks", copy: "© 2026 Sarfraz Refugee Service — All rights reserved", readMore: "Read More", breaking: "Moments ago" },
-      ps: { home: "کور", services: "خدمات", ai: "AI", contact: "اړیکه", faq: "پوښتنې", news: "خبرونه", trusted: "د مهاجرت باوري خدمات", heroTitle: "د افغانانو لپاره د مهاجرت خدمات", heroDesc: '<strong>Sarfraz Refugee Service</strong> د افغانانو لپاره ترټولو لوی د کډوالۍ مرکز — ستاسو باوري ملګری.', seeServices: "خدمات وګورئ", getHelp: "مشوره ترلاسه کړئ", stat1: "بریالي قضیې", stat2: "مقصد هیوادونه", stat3: "آنلاین ملاتړ", stat4: "کلونه تجربه", latestNews: "وروستي خبرونه", ourServices: "زموږ خدمات", footTitle1: "د کډوالۍ خدمات", footDesc1: "افغانستان کې ترټولو معتبر خدمات", footDesc2: "نړیوال د کډوالۍ خدمات", footTitle2: "اړیکه", footAddr: "ایبک، سمنګان، افغانستان", footTitle3: "ټولنیزې شبکې", copy: "© 2026 Sarfraz Refugee Service — ټول حقونه خوندي", readMore: "نور ولولئ", breaking: "شیبې مخکې" }
+      fa: { home: "خانه", services: "خدمات", ai: "هوش مصنوعی", contact: "تماس", faq: "سوالات", news: "اخبار", trusted: "خدمات معتبر مهاجرت", heroTitle: "خدمات مهاجرت برای افغان‌ها", heroDesc: '<strong>VISA GUIDE AF</strong> بزرگترین مرجع مشاوره مهاجرت و ثبت‌نام ویزای بشردوستانه برای <strong>افغان‌ها</strong> — همراه مطمئن شما تا امنیت و آرامش.', seeServices: "مشاهده خدمات", getHelp: "دریافت مشاوره", stat1: "پرونده موفق", stat2: "کشور مقصد", stat3: "پشتیبانی آنلاین", stat4: "سال تجربه", latestNews: "آخرین اخبار", ourServices: "خدمات ما", footTitle1: "خدمات مهاجرت", footDesc1: "معتبرترین خدمات در افغانستان", footDesc2: "خدمات مهاجرتی جهانی", footTitle2: "تماس با ما", footAddr: "ایبک، سمنگان، افغانستان", footTitle3: "شبکه‌های اجتماعی", copy: "© 2026 VISA GUIDE AF — همه حقوق محفوظ است", readMore: "بیشتر بخوانید", breaking: "لحظاتی پیش" },
+      en: { home: "Home", services: "Services", ai: "AI Assistant", contact: "Contact", faq: "FAQ", news: "News", trusted: "Trusted Migration Services", heroTitle: "Migration Services for Afghans", heroDesc: '<strong>VISA GUIDE AF</strong> — the largest immigration consulting center for <strong>Afghans</strong>. Your trusted partner to safety and peace.', seeServices: "View Services", getHelp: "Get Consultation", stat1: "Successful Cases", stat2: "Destination Countries", stat3: "Online Support", stat4: "Years Experience", latestNews: "Latest News", ourServices: "Our Services", footTitle1: "Immigration Services", footDesc1: "Most reliable services in Afghanistan", footDesc2: "Global immigration services", footTitle2: "Contact Us", footAddr: "Aibak, Samangan, Afghanistan", footTitle3: "Social Networks", copy: "© 2026 VISA GUIDE AF — All rights reserved", readMore: "Read More", breaking: "Moments ago" },
+      ps: { home: "کور", services: "خدمات", ai: "AI", contact: "اړیکه", faq: "پوښتنې", news: "خبرونه", trusted: "د مهاجرت باوري خدمات", heroTitle: "د افغانانو لپاره د مهاجرت خدمات", heroDesc: '<strong>VISA GUIDE AF</strong> د افغانانو لپاره ترټولو لوی د کډوالۍ مرکز — ستاسو باوري ملګری.', seeServices: "خدمات وګورئ", getHelp: "مشوره ترلاسه کړئ", stat1: "بریالي قضیې", stat2: "مقصد هیوادونه", stat3: "آنلاین ملاتړ", stat4: "کلونه تجربه", latestNews: "وروستي خبرونه", ourServices: "زموږ خدمات", footTitle1: "د کډوالۍ خدمات", footDesc1: "افغانستان کې ترټولو معتبر خدمات", footDesc2: "نړیوال د کډوالۍ خدمات", footTitle2: "اړیکه", footAddr: "ایبک, سمنګان، افغانستان", footTitle3: "ټولنیزې شبکې", copy: "© 2026 VISA GUIDE AF — ټول حقونه خوندي", readMore: "نور ولولئ", breaking: "شیبې مخکې" }
     };
 
     const news = [
@@ -155,13 +855,13 @@
     function renderNews() {
       const g = document.getElementById('newsGrid'); if (!g) return;
       g.innerHTML = news.map(n => `
-    <div class="card${n.breaking ? ' breaking-news' : ''}">
+    <div class="card glass${n.breaking ? ' breaking-news' : ''}">
       ${n.breaking ? `<div class="breaking-badge"><i class="fas fa-broadcast-tower"></i></div>` : ''}
       <img src="${n.img}" class="card-img" alt="">
       <div class="card-body">
         <div class="card-title">${n[lang === 'fa' ? 'fa' : lang === 'en' ? 'en' : 'ps']}</div>
         <div class="card-meta"><i class="fas fa-calendar-alt"></i> ${n.date}${n.breaking ? ` 🔴 ${T[lang].breaking}` : ''}</div>
-        <a href="${n.link}" class="card-btn">${T[lang].readMore} →</a>
+        <a href="${n.link}" class="card-btn-small">${T[lang].readMore} →</a>
       </div>
     </div>`).join('');
     }
