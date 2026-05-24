@@ -3,18 +3,19 @@
 
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>سوالات متداول | VISA GUIDE AF</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
   <style>
-    /* تعریف متغیرهای رنگی و استایل پایه */
+    /* ========== VARIABLES ========== */
     :root {
       --bg: #070b13;
-      --panel: rgba(255, 255, 255, 0.03);
+      --panel: rgba(255, 255, 255, 0.04);
       --border: rgba(255, 255, 255, 0.08);
       --text: #f1f5f9;
-      --text-muted: #94a3b8;
+      --text-muted: #cbd5e1;
+      --input-bg: rgba(255, 255, 255, 0.05);
       --primary: linear-gradient(135deg, #7c3aed, #4f46e5);
       --primary-glow: rgba(124, 58, 237, 0.4);
       --accent: linear-gradient(135deg, #38bdf8, #0369a1);
@@ -25,14 +26,15 @@
       --font: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
     }
 
+    /* حالت روز - تمام متن‌ها تیره و خوانا */
     .light-mode {
-      --bg: #f8fafc;
-      --panel: rgba(0, 0, 0, 0.03);
-      --border: rgba(0, 0, 0, 0.08);
-      --text: #0f172a;
-      /* متن تیره برای حالت روز */
-      --text-muted: #475569;
-      --primary-glow: rgba(124, 58, 237, 0.15);
+      --bg: #f0f4fa;
+      --panel: rgba(255, 255, 255, 0.8);
+      --border: rgba(0, 0, 0, 0.12);
+      --text: #0a0f1c;
+      --text-muted: #334155;
+      --input-bg: #ffffff;
+      --primary-glow: rgba(124, 58, 237, 0.2);
     }
 
     * {
@@ -47,10 +49,12 @@
       background-color: var(--bg);
       color: var(--text);
       overflow-x: hidden;
-      perspective: 1000px;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
     }
 
-    /* جلوه ذرات و اورب‌های سه‌بعدی پس‌زمینه */
+    /* پس‌زمینه سه‌بعدی */
     .bg-scene {
       position: fixed;
       top: 0;
@@ -58,7 +62,7 @@
       width: 100%;
       height: 100%;
       z-index: -3;
-      background: radial-gradient(circle at 50% 50%, rgba(15, 23, 42, 0.5) 0%, var(--bg) 100%);
+      background: radial-gradient(circle at 50% 50%, rgba(15, 23, 42, 0.3) 0%, var(--bg) 100%);
     }
 
     .bg-orb {
@@ -68,7 +72,7 @@
       border-radius: 50%;
       filter: blur(80px);
       z-index: -2;
-      opacity: 0.6;
+      opacity: 0.5;
       pointer-events: none;
       animation: floatOrb 20s infinite alternate ease-in-out;
     }
@@ -105,27 +109,23 @@
       }
     }
 
-    /* ساختار شیشه‌ای (Glassmorphism) */
+    /* شیشه‌ای */
     .glass {
       background: var(--panel);
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
       border: 1px solid var(--border);
       border-radius: 24px;
-      box-shadow:
-        0 10px 30px -10px rgba(0, 0, 0, 0.1),
-        inset 0 1px 0px rgba(255, 255, 255, 0.1);
+      box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.1);
       transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease;
     }
 
     .glass:hover {
       transform: translateY(-8px) rotateX(3deg) rotateY(-1deg);
-      box-shadow:
-        0 20px 40px -15px rgba(0, 0, 0, 0.2),
-        0 0 25px var(--primary-glow);
+      box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.2), 0 0 25px var(--primary-glow);
     }
 
-    /* منوی ناوبری مدرن */
+    /* ========== NAVBAR ========== */
     .navbar {
       position: sticky;
       top: 15px;
@@ -138,14 +138,13 @@
       padding: 12px 24px;
       background: rgba(15, 23, 42, 0.4);
       backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
       border: 1px solid var(--border);
       border-radius: 50px;
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
     }
 
     .light-mode .navbar {
-      background: rgba(255, 255, 255, 0.8);
+      background: rgba(255, 255, 255, 0.85);
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
     }
 
@@ -157,7 +156,6 @@
       color: var(--text);
     }
 
-    /* حلقه دوتایی درخشان دور لوگو */
     .logo-wrap img {
       width: 45px;
       height: 45px;
@@ -193,7 +191,6 @@
       gap: 15px;
     }
 
-    /* استایل و انیمیشن لینک‌های منو */
     .nav-links a {
       display: flex;
       align-items: center;
@@ -205,7 +202,6 @@
       font-weight: 500;
       border-radius: 30px;
       position: relative;
-      overflow: hidden;
       transition: all 0.3s ease;
     }
 
@@ -215,11 +211,6 @@
       transition: transform 0.3s ease, filter 0.3s ease;
     }
 
-    .nav-links a:hover img {
-      transform: translateY(-2px);
-    }
-
-    /* تغییر خودکار رنگ آیکون‌های تصویر منو در حالت روز و شب */
     .dark-mode .nav-links a img {
       filter: brightness(0) invert(1);
     }
@@ -228,7 +219,6 @@
       filter: brightness(0);
     }
 
-    /* انیمیشن خط زیرین دکمه‌های منو دسکتاپ */
     .nav-links a::after {
       content: '';
       position: absolute;
@@ -238,7 +228,7 @@
       height: 2px;
       background: linear-gradient(90deg, #7c3aed, #38bdf8);
       border-radius: 2px;
-      transition: width 0.3s ease, transform 0.3s ease;
+      transition: width 0.3s ease;
       transform: translateX(-50%);
     }
 
@@ -247,21 +237,18 @@
       width: 60%;
     }
 
-    /* تنظیم رنگ متن‌های منو در حالت روز و شب */
     .dark-mode .nav-links a {
       color: #e2e8f0;
-      text-shadow: 0 0 10px rgba(255, 255, 255, 0.05);
     }
 
     .dark-mode .nav-links a:hover,
     .dark-mode .nav-links a.active {
       color: #ffffff;
       background: rgba(255, 255, 255, 0.05);
-      text-shadow: 0 0 12px rgba(124, 58, 237, 0.6);
     }
 
     .light-mode .nav-links a {
-      color: #334155;
+      color: #1e293b;
     }
 
     .light-mode .nav-links a:hover,
@@ -270,26 +257,83 @@
       background: rgba(0, 0, 0, 0.05);
     }
 
+    /* ========== منوی زبان با کره زمین ========== */
+    .lang-dropdown {
+      position: relative;
+      display: inline-block;
+    }
+
+    .lang-trigger {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid var(--border);
+      border-radius: 40px;
+      padding: 6px 14px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--text);
+      font-size: 0.85rem;
+      font-weight: 500;
+      transition: 0.2s;
+    }
+
+    .lang-trigger i {
+      font-size: 1rem;
+      color: #38bdf8;
+    }
+
+    .lang-trigger:hover {
+      background: rgba(124, 58, 237, 0.2);
+      border-color: #7c3aed;
+    }
+
+    .lang-menu {
+      position: absolute;
+      top: 110%;
+      left: 0;
+      background: rgba(15, 23, 42, 0.95);
+      backdrop-filter: blur(20px);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 8px 0;
+      min-width: 130px;
+      z-index: 300;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(-10px);
+      transition: all 0.25s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+    }
+
+    .light-mode .lang-menu {
+      background: rgba(255, 255, 255, 0.98);
+    }
+
+    .lang-dropdown.open .lang-menu {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+
+    .lang-option {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 8px 16px;
+      cursor: pointer;
+      transition: background 0.2s;
+      color: var(--text);
+      font-size: 0.85rem;
+    }
+
+    .lang-option:hover {
+      background: rgba(124, 58, 237, 0.2);
+    }
+
     .nav-actions {
       display: flex;
       align-items: center;
       gap: 10px;
-    }
-
-    .lang-btn {
-      background: transparent;
-      border: 1px solid var(--border);
-      color: var(--text-muted);
-      padding: 6px 12px;
-      border-radius: 30px;
-      cursor: pointer;
-      font-size: 0.8rem;
-    }
-
-    .lang-btn.active {
-      color: var(--text);
-      background: rgba(255, 255, 255, 0.1);
-      border-color: #7c3aed;
     }
 
     .theme-btn {
@@ -315,7 +359,7 @@
       cursor: pointer;
     }
 
-    /* بخش هیرو و افکت کارت سه بعدی */
+    /* ========== HERO ========== */
     .hero {
       max-width: 1200px;
       margin: 80px auto 40px auto;
@@ -329,8 +373,6 @@
       backdrop-filter: blur(20px);
       border: 1px solid var(--border);
       border-radius: 32px;
-      box-shadow: 0 30px 60px -20px rgba(0, 0, 0, 0.3);
-      transform-style: preserve-3d;
     }
 
     .badge {
@@ -351,23 +393,25 @@
       font-size: 2.8rem;
       font-weight: 900;
       margin-bottom: 16px;
-      background: linear-gradient(135deg, #fff 30%, #a78bfa 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      transform: translateZ(20px);
+      color: #ffffff;
+
+
     }
 
     .light-mode .hero h1 {
-      background: linear-gradient(135deg, #0f172a 30%, #4f46e5 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+      filter: invert(1);
     }
 
-    /* استایل اختصاصی بخش FAQ */
+    .hero p {
+      color: var(--text-muted);
+    }
+
+    /* ========== FAQ SECTION ========== */
     .faq-container {
       max-width: 900px;
       margin: 40px auto 80px auto;
       padding: 0 16px;
+      flex: 1;
     }
 
     .faq-tabs {
@@ -405,12 +449,10 @@
       border: 1px solid var(--border);
       background: var(--panel);
       backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      transition: border-color 0.3s, box-shadow 0.3s;
     }
 
     .faq-item:hover {
-      border-color: var(--primary-glow);
+      border-color: rgba(124, 58, 237, 0.4);
       box-shadow: 0 5px 15px rgba(124, 58, 237, 0.15);
     }
 
@@ -461,17 +503,17 @@
       line-height: 1.8;
     }
 
-    /* پانویس (Footer) متناسب با حالت روز و شب */
+    /* ========== FOOTER - چسبیده به پایین ========== */
     .footer {
       background: rgba(10, 15, 30, 0.8);
       border-top: 1px solid var(--border);
       padding: 60px 16px 20px 16px;
-      margin-top: 100px;
+      margin-top: auto;
+      width: 100%;
     }
 
     .light-mode .footer {
-      background: #f1f5f9;
-      border-top: 1px solid rgba(0, 0, 0, 0.08);
+      background: #eef2ff;
     }
 
     .footer-inner {
@@ -488,10 +530,10 @@
       font-weight: 700;
       margin-bottom: 20px;
       color: var(--text);
-      position: relative;
     }
 
-    .footer-col p {
+    .footer-col p,
+    .footer-col a {
       color: var(--text-muted);
       font-size: 0.9rem;
       line-height: 1.8;
@@ -499,26 +541,13 @@
       display: flex;
       align-items: center;
       gap: 10px;
+      text-decoration: none;
       transition: transform 0.3s, color 0.3s;
     }
 
-    .footer-col p:hover {
-      transform: translateX(-5px);
-      color: var(--text);
-    }
-
-    .footer-col a {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      color: var(--text-muted);
-      text-decoration: none;
-      font-size: 0.9rem;
-      margin-bottom: 12px;
-      transition: color 0.3s;
-    }
-
+    .footer-col p:hover,
     .footer-col a:hover {
+      transform: translateX(-5px);
       color: var(--text);
     }
 
@@ -532,11 +561,7 @@
       font-size: 0.85rem;
     }
 
-    .light-mode .footer-bottom {
-      border-top: 1px solid rgba(0, 0, 0, 0.08);
-    }
-
-    /* انیمیشن باران ذرات */
+    /* ذرات */
     .particles {
       position: fixed;
       top: 0;
@@ -549,7 +574,7 @@
 
     .p {
       position: absolute;
-      background: rgba(255, 255, 255, 0.1);
+      background: rgba(255, 255, 255, 0.08);
       border-radius: 50%;
       animation: rise 15s infinite linear;
     }
@@ -561,11 +586,11 @@
       }
 
       10% {
-        opacity: 1;
+        opacity: 0.5;
       }
 
       90% {
-        opacity: 1;
+        opacity: 0.5;
       }
 
       100% {
@@ -574,7 +599,7 @@
       }
     }
 
-    /* واکنش‌گرایی برای موبایل */
+    /* موبایل */
     @media (max-width: 768px) {
       .navbar {
         width: 90%;
@@ -639,66 +664,71 @@
   <div class="bg-orb"></div>
   <div class="particles" id="particles"></div>
 
-  <!-- منوی بالایی -->
-  <nav class="navbar" id="navbar">
+  <nav class="navbar">
     <a href="index.html" class="logo-wrap">
       <img src="images/kha.jpg" alt="logo">
       <div class="logo-name">VISA<br>GUIDE AF</div>
     </a>
     <button class="menu-btn" id="menuBtn">☰</button>
     <ul class="nav-links" id="navLinks">
-      <li><a href="index.html"><img src="images/home.png"> <span data-k="home">خانه</span></a></li>
-      <li><a href="services.html"><img src="images/customer.png"> <span data-k="services">خدمات</span></a></li>
-      <li><a href="ai.html"><img src="images/ai.png"> <span data-k="ai">هوش مصنوعی</span></a></li>
-      <li><a href="contact.html"><img src="images/call.png"> <span data-k="contact">تماس</span></a></li>
-      <li><a href="faq.html" class="active"><img src="images/f&a.png"> <span data-k="faq">سوالات</span></a></li>
-      <li><a href="news/day-news/day.html"><img src="images/event.png"> <span data-k="news">اخبار</span></a></li>
+      <li><a href="index.html"><img src="images/home.png"> <span data-key="home">خانه</span></a></li>
+      <li><a href="services.html"><img src="images/customer.png"> <span data-key="services">خدمات</span></a></li>
+      <li><a href="ai.html"><img src="images/ai.png"> <span data-key="ai">هوش مصنوعی</span></a></li>
+      <li><a href="contact.html"><img src="images/call.png"> <span data-key="contact">تماس</span></a></li>
+      <li><a href="faq.html" class="active"><img src="images/f&a.png"> <span data-key="faq">سوالات</span></a></li>
+      <li><a href="news/day-news/day.html"><img src="images/event.png"> <span data-key="news">اخبار</span></a></li>
     </ul>
     <div class="nav-actions">
-      <button class="lang-btn active" data-l="fa">🇦🇫 فارسی</button>
-      <button class="lang-btn" data-l="en">🇬🇧 EN</button>
-      <button class="lang-btn" data-l="ps">پښتو</button>
+      <div class="lang-dropdown" id="langDropdown">
+        <div class="lang-trigger" id="langTrigger">
+          <i class="fas fa-globe-americas"></i>
+          <span id="currentLangLabel">فارسی</span>
+          <i class="fas fa-chevron-down" style="font-size: 0.7rem;"></i>
+        </div>
+        <div class="lang-menu">
+          <div class="lang-option" data-lang="fa"><span>🇦🇫</span> فارسی</div>
+          <div class="lang-option" data-lang="en"><span>🇬🇧</span> English</div>
+          <div class="lang-option" data-lang="ps"><span>🇦🇫</span> پښتو</div>
+        </div>
+      </div>
       <button class="theme-btn" id="themeBtn"><i class="fas fa-moon"></i></button>
     </div>
   </nav>
 
-  <!-- هیرو -->
   <div class="hero">
     <div class="hero-inner">
-      <div class="badge"><i class="fas fa-question-circle"></i> <span data-k="faqTag">سوالات متداول</span></div>
-      <h1 data-k="faqTitle">پرسش‌های پرتکرار</h1>
-      <p style="color:var(--text-muted)" data-k="faqDesc">پاسخ سوالات مهاجرتی شما — SIV، اسپانسرشیپ، USRAP</p>
+      <div class="badge"><i class="fas fa-question-circle"></i> <span data-key="faqTag">سوالات متداول</span></div>
+      <h1 data-key="faqTitle">پرسش‌های پرتکرار</h1>
+      <p data-key="faqDesc">پاسخ سوالات مهاجرتی شما — SIV، اسپانسرشیپ، USRAP</p>
     </div>
   </div>
 
-  <!-- لیست آکاردئونی سوالات -->
   <div class="faq-container">
     <div class="faq-tabs">
-      <button class="faq-tab active" data-cat="siv">🇺🇸 SIV</button>
-      <button class="faq-tab" data-cat="sponsor">💚 اسپانسرشیپ</button>
-      <button class="faq-tab" data-cat="usrap">🔵 USRAP</button>
+      <button class="faq-tab active" data-cat="siv"><span data-key="tabSiv">🇺🇸 SIV</span></button>
+      <button class="faq-tab" data-cat="sponsor"><span data-key="tabSponsor">💚 اسپانسرشیپ</span></button>
+      <button class="faq-tab" data-cat="usrap"><span data-key="tabUsrap">🔵 USRAP</span></button>
     </div>
     <div id="faqList"></div>
   </div>
 
-  <!-- فوتر هماهنگ و ۳ ستونه -->
   <footer class="footer">
     <div class="footer-inner">
       <div class="footer-col">
-        <h4 data-k="footTitle1">خدمات مهاجرت</h4>
-        <p><i class="fas fa-check-circle" style="color:var(--success)"></i> <span data-k="footDesc1">معتبرترین خدمات در
-            افغانستان</span></p>
-        <p><i class="fas fa-globe" style="color:#38bdf8"></i> <span data-k="footDesc2">خدمات مهاجرتی جهانی</span></p>
+        <h4 data-key="footTitle1">خدمات مهاجرت</h4>
+        <p><i class="fas fa-check-circle" style="color:var(--success)"></i> <span data-key="footDesc1">معتبرترین خدمات
+            در افغانستان</span></p>
+        <p><i class="fas fa-globe" style="color:#38bdf8"></i> <span data-key="footDesc2">خدمات مهاجرتی جهانی</span></p>
       </div>
       <div class="footer-col">
-        <h4 data-k="footTitle2">تماس با ما</h4>
-        <p><i class="fas fa-map-marker-alt" style="color:#f59e0b"></i> <span data-k="footAddr">ایبک، سمنگان،
+        <h4 data-key="footTitle2">تماس با ما</h4>
+        <p><i class="fas fa-map-marker-alt" style="color:#f59e0b"></i> <span data-key="footAddr">ایبک، سمنگان،
             افغانستان</span></p>
         <p><i class="fas fa-phone-alt" style="color:#10b981"></i> 0792665622</p>
         <p><i class="fas fa-envelope" style="color:#ef4444"></i> visa.guide.af.123@gmail.com</p>
       </div>
       <div class="footer-col">
-        <h4 data-k="footTitle3">شبکه‌های اجتماعی</h4>
+        <h4 data-key="footTitle3">شبکه‌های اجتماعی</h4>
         <a href="https://whatsapp.com/channel/0029Vae7U29AzNbpZIv5T81R" target="_blank"><i class="fab fa-whatsapp"
             style="color:#25d366"></i> WhatsApp</a>
         <a href="https://t.me/visaguidee" target="_blank"><i class="fab fa-telegram" style="color:#29b6f6"></i>
@@ -709,128 +739,156 @@
             style="color:#e1306c"></i> Instagram</a>
       </div>
     </div>
-    <div class="footer-bottom"><span data-k="copy">© 2026 VISA GUIDE AF — همه حقوق محفوظ است</span></div>
+    <div class="footer-bottom"><span data-key="copy">© 2026 VISA GUIDE AF — همه حقوق محفوظ است</span></div>
   </footer>
 
   <script>
+    // ========== MULTILINGUAL DATA ==========
     const T = {
       fa: {
-        home: "خانه",
-        services: "خدمات",
-        ai: "هوش مصنوعی",
-        contact: "تماس",
-        faq: "سوالات",
-        news: "اخبار",
-        faqTitle: "پرسش‌های پرتکرار",
-        faqDesc: "پاسخ سوالات مهاجرتی شما — SIV، اسپانسرشیپ، USRAP",
-        faqTag: "سوالات متداول",
-        footTitle1: "خدمات مهاجرت",
-        footDesc1: "معتبرترین خدمات در افغانستان",
-        footDesc2: "خدمات مهاجرتی جهانی",
-        footTitle2: "تماس با ما",
-        footAddr: "ایبک، سمنگان، افغانستان",
-        footTitle3: "شبکه‌های اجتماعی",
+        home: "خانه", services: "خدمات", ai: "هوش مصنوعی", contact: "تماس", faq: "سوالات", news: "اخبار",
+        faqTitle: "پرسش‌های پرتکرار", faqDesc: "پاسخ سوالات مهاجرتی شما — SIV، اسپانسرشیپ، USRAP", faqTag: "سوالات متداول",
+        tabSiv: "SIV", tabSponsor: " Sponsership", tabUsrap: " USRAP",
+        footTitle1: "خدمات مهاجرت", footDesc1: "معتبرترین خدمات در افغانستان", footDesc2: "خدمات مهاجرتی جهانی",
+        footTitle2: "تماس با ما", footAddr: "ایبک، سمنگان، افغانستان", footTitle3: "شبکه‌های اجتماعی",
         copy: "© 2026 VISA GUIDE AF — همه حقوق محفوظ است"
       },
       en: {
-        home: "Home",
-        services: "Services",
-        ai: "AI Assistant",
-        contact: "Contact",
-        faq: "FAQ",
-        news: "News",
-        faqTitle: "Frequently Asked Questions",
-        faqDesc: "Answers to your immigration questions — SIV, Sponsorship, USRAP",
-        faqTag: "FAQ",
-        footTitle1: "Immigration Services",
-        footDesc1: "Most reliable services in Afghanistan",
-        footDesc2: "Global immigration services",
-        footTitle2: "Contact Us",
-        footAddr: "Aibak, Samangan, Afghanistan",
-        footTitle3: "Social Networks",
+        home: "Home", services: "Services", ai: "AI Assistant", contact: "Contact", faq: "FAQ", news: "News",
+        faqTitle: "Frequently Asked Questions", faqDesc: "Answers to your immigration questions — SIV, Sponsorship, USRAP", faqTag: "FAQ",
+        tabSiv: "SIV", tabSponsor: "Sponsorship", tabUsrap: " USRAP",
+        footTitle1: "Immigration Services", footDesc1: "Most reliable services in Afghanistan", footDesc2: "Global immigration services",
+        footTitle2: "Contact Us", footAddr: "Aibak, Samangan, Afghanistan", footTitle3: "Social Networks",
         copy: "© 2026 VISA GUIDE AF — All rights reserved"
       },
       ps: {
-        home: "کور",
-        services: "خدمات",
-        ai: "AI",
-        contact: "اړیکه",
-        faq: "پوښتنې",
-        news: "خبرونه",
-        faqTitle: "ځوابونه او پوښتنې",
-        faqDesc: "ستاسو د مهاجرت پوښتنو ته ځوابونه",
-        faqTag: "پوښتنې",
-        footTitle1: "د کډوالۍ خدمات",
-        footDesc1: "افغانستان کې ترټولو معتبر خدمات",
-        footDesc2: "نظریاتي د کډوالۍ خدمات",
-        footTitle2: "اړیکه",
-        footAddr: "ایبک, سمنګان، افغانستان",
-        footTitle3: "ټولنیزې شبکې",
+        home: "کور", services: "خدمات", ai: "AI", contact: "اړیکه", faq: "پوښتنې", news: "خبرونه",
+        faqTitle: "پوښتنې او ځوابونه", faqDesc: "ستاسو د مهاجرت پوښتنو ته ځوابونه — SIV، سپانسرشيپ، USRAP", faqTag: "پوښتنې",
+        tabSiv: "SIV", tabSponsor: "Sponsership", tabUsrap: " USRAP",
+        footTitle1: "د کډوالۍ خدمات", footDesc1: "افغانستان کې ترټولو معتبر خدمات", footDesc2: "نړیوال د کډوالۍ خدمات",
+        footTitle2: "اړیکه", footAddr: "ایبک, سمنګان، افغانستان", footTitle3: "ټولنیزې شبکې",
         copy: "© 2026 VISA GUIDE AF — ټول حقونه خوندي"
       }
     };
 
     const faqs = {
-      siv: [
-        { q: "آیا برنامه SIV آغاز شده است؟", a: "طبق اعلام وزارت امور خارجه ایالات متحده، این برنامه بر اساس تخصیص سال مالی ۲۰۲۴ همچنان در حال اجرا می‌باشد." },
-        { q: "آیا روند دریافت COM جریان دارد؟", a: "بلی، روند دریافت تأییدیه مأموریت (COM) برای متقاضیان SIV ادامه دارد." },
-        { q: "آیا روند صدور ویزا برای متقاضیان SIV آغاز شده است؟", a: "در حال حاضر، صدور ویزا برای برخی متقاضیان SIV با محدودیت یا توقف مواجه است." },
-        { q: "آیا رفتن به مصاحبه در کشور ثالث مفاد دارد؟", a: "در شرایط فعلی، رفتن به مصاحبه ممکن است نتیجه قطعی در پی نداشته باشد." },
-        { q: "فرمان F-212 چیست؟", a: "فرمان F-212 به محدودیت‌های مرتبط با ورود و سفر اشاره دارد که شامل برخی کشورها از جمله افغانستان می‌شود." },
-        { q: "چه زمانی برنامه SIV دوباره آغاز خواهد شد؟", a: "زمان ازسرگیری برنامه وابسته به پایان محدودیت‌های سفر و تصمیم‌گیری‌های وزارت امور خارجه است. تاریخ دقیق مشخص نشده." },
-        { q: "آیا متقاضیان SIV می‌توانند به سایر برنامه‌های مهاجرتی درخواست بدهند؟", a: "بلی، متقاضیان می‌توانند به سایر برنامه‌ها نیز درخواست ارائه کنند و این مشکلی ایجاد نخواهد کرد." }
-      ],
-      sponsor: [
-        { q: "آیا روند مصاحبه برای متقاضیان اسپانسرشیپ جریان دارد؟", a: "بلی، روند مصاحبه در برخی موارد ادامه دارد، اما صدور ویزا با محدودیت مواجه است." },
-        { q: "آیا رفتن به مصاحبه مفاد دارد؟", a: "در شرایط فعلی، رفتن به مصاحبه تضمینی برای دریافت ویزا ایجاد نمی‌کند." },
-        { q: "آیا امکان به تعویق انداختن مصاحبه وجود دارد؟", a: "بلی، در بسیاری از موارد متقاضیان می‌توانند درخواست تعویق مصاحبه ارائه دهند." },
-        { q: "آیا متقاضیان اسپانسرشیپ تحت ممنوعیت سفر قرار دارند؟", a: "برخی از متقاضیان ممکن است مشمول محدودیت‌های سفر باشند، بسته به شرایط و سیاست‌های جاری." },
-        { q: "آیا دریافت ویزا برای این دسته مسدود است؟", a: "صدور ویزا در برخی پرونده‌ها با تأخیر یا محدودیت مواجه می‌باشد." }
-      ],
-      usrap: [
-        { q: "آیا برنامه USRAP برای متقاضیان P1 و P2 آغاز شده است؟", a: "در حال حاضر، این برنامه در وضعیت تعلیق قرار دارد." },
-        { q: "آیا امکان شامل شدن متقاضیان در سال ۲۰۲۷ وجود دارد؟", a: "این موضوع در حد احتمال مطرح است و به تصمیمات آینده دولت ایالات متحده بستگی دارد." },
-        { q: "در سال ۲۰۲۶ چه کسانی می‌توانند از طریق USRAP سفر کنند؟", a: "اولویت‌بندی پذیرش پناهندگان بر اساس سیاست‌های جاری تعیین می‌شود." }
-      ]
+      siv: {
+        fa: [
+          { q: "آیا برنامه SIV آغاز شده است؟", a: "طبق اعلام وزارت امور خارجه ایالات متحده، این برنامه بر اساس تخصیص سال مالی ۲۰۲۴ همچنان در حال اجرا می‌باشد." },
+          { q: "آیا روند دریافت COM جریان دارد؟", a: "بلی، روند دریافت تأییدیه مأموریت (COM) برای متقاضیان SIV ادامه دارد." },
+          { q: "آیا روند صدور ویزا برای متقاضیان SIV آغاز شده است؟", a: "در حال حاضر، صدور ویزا برای برخی متقاضیان SIV با محدودیت یا توقف مواجه است." },
+          { q: "آیا رفتن به مصاحبه در کشور ثالث مفاد دارد؟", a: "در شرایط فعلی، رفتن به مصاحبه ممکن است نتیجه قطعی در پی نداشته باشد." },
+          { q: "فرمان F-212 چیست؟", a: "فرمان F-212 به محدودیت‌های مرتبط با ورود و سفر اشاره دارد که شامل برخی کشورها از جمله افغانستان می‌شود." },
+          { q: "چه زمانی برنامه SIV دوباره آغاز خواهد شد؟", a: "زمان ازسرگیری برنامه وابسته به پایان محدودیت‌های سفر و تصمیم‌گیری‌های وزارت امور خارجه است." },
+          { q: "آیا متقاضیان SIV می‌توانند به سایر برنامه‌های مهاجرتی درخواست بدهند؟", a: "بلی، متقاضیان می‌توانند به سایر برنامه‌ها نیز درخواست ارائه کنند." }
+        ],
+        en: [
+          { q: "Has the SIV program started?", a: "According to the US State Department, the program continues based on FY2024 allocations." },
+          { q: "Is the COM process ongoing?", a: "Yes, the Chief of Mission approval process for SIV applicants continues." },
+          { q: "Has visa issuance for SIV applicants started?", a: "Currently, visa issuance faces limitations or pauses for some applicants." },
+          { q: "Is it beneficial to attend interviews in third countries?", a: "In current circumstances, attending interviews may not guarantee results." },
+          { q: "What is Executive Order F-212?", a: "F-212 refers to travel and entry restrictions affecting certain countries including Afghanistan." },
+          { q: "When will the SIV program resume fully?", a: "Resumption depends on travel restriction policies and State Department decisions." },
+          { q: "Can SIV applicants apply for other immigration programs?", a: "Yes, applicants may apply to other programs without issues." }
+        ],
+        ps: [
+          { q: "آیا د SIV پروګرام پیل شوی؟", a: "د متحده ایالاتو د بهرنیو چارو وزارت په وینا، دا پروګرام د ۲۰۲۴ مالي کال د تخصیص له مخې دوام لري." },
+          { q: "آیا د COM ترلاسه کولو بهیر روان دی؟", a: "هو، د SIV غوښتونکو لپاره د ماموریت تایید (COM) ترلاسه کولو بهیر دوام لري." },
+          { q: "آیا د SIV غوښتونکو لپاره د ویزې صادرول پیل شوي؟", a: "اوس مهال، د ویزو صادرول د محدودیتونو سره مخ دي." },
+          { q: "آیا په دریم هیواد کې مرکې ته تلل ګټه لري؟", a: "په اوسني حالت کې، مرکې ته تلل ممکن حتمي پایله ونلري." },
+          { q: "د F-212 فرمان څه دی؟", a: "F-212 د سفر او ننوتلو محدودیتونو ته اشاره کوي چې افغانستان پکې شامل دی." },
+          { q: "د SIV پروګرام به کله بیا پیل شي؟", a: "دا د سفر محدودیتونو او د بهرنیو چارو وزارت په پریکړو پورې اړه لري." },
+          { q: "آیا د SIV غوښتونکي کولی شي نورو پروګرامونو ته غوښتنلیک ورکړي؟", a: "هو، غوښتونکي کولی شي نورو پروګرامونو ته هم درخواست ورکړي." }
+        ]
+      },
+      sponsor: {
+        fa: [
+          { q: "آیا روند مصاحبه برای متقاضیان اسپانسرشیپ جریان دارد؟", a: "بلی، روند مصاحبه در برخی موارد ادامه دارد، اما صدور ویزا با محدودیت مواجه است." },
+          { q: "آیا رفتن به مصاحبه مفاد دارد؟", a: "در شرایط فعلی، رفتن به مصاحبه تضمینی برای دریافت ویزا ایجاد نمی‌کند." },
+          { q: "آیا امکان به تعویق انداختن مصاحبه وجود دارد؟", a: "بلی، در بسیاری از موارد متقاضیان می‌توانند درخواست تعویق مصاحبه ارائه دهند." },
+          { q: "آیا متقاضیان اسپانسرشیپ تحت ممنوعیت سفر قرار دارند؟", a: "برخی از متقاضیان ممکن است مشمول محدودیت‌های سفر باشند." },
+          { q: "آیا دریافت ویزا برای این دسته مسدود است؟", a: "صدور ویزا در برخی پرونده‌ها با تأخیر مواجه می‌باشد." }
+        ],
+        en: [
+          { q: "Is the interview process ongoing for sponsorship applicants?", a: "Yes, interviews continue in some cases, but visa issuance faces limitations." },
+          { q: "Is attending interviews beneficial?", a: "Currently, attending interviews does not guarantee visa issuance." },
+          { q: "Can applicants postpone their interviews?", a: "Yes, in many cases applicants can request to postpone interviews." },
+          { q: "Are sponsorship applicants under travel bans?", a: "Some applicants may be subject to travel restrictions." },
+          { q: "Is visa issuance blocked for this category?", a: "Visa issuance faces delays in some cases." }
+        ],
+        ps: [
+          { q: "آیا د سپانسرشيپ غوښتونکو لپاره د مرکې بهیر روان دی؟", a: "هو، په ځینو مواردو کې مرکې دوام لري، خو د ویزو صادرول محدود دي." },
+          { q: "آیا مرکې ته تلل ګټه لري؟", a: "اوس مهال، مرکې ته تلل د ویزې ترلاسه کولو تضمین نه کوي." },
+          { q: "آیا د مرکې ځنډول امکان لري؟", a: "هو، په ډیرو مواردو کې غوښتونکي کولی شي د مرکې ځنډ غوښتنه وکړي." },
+          { q: "آیا د سپانسرشيپ غوښتونکي د سفر له بندیز سره مخ دي؟", a: "ځینې غوښتونکي ممکن د سفر محدودیتونو سره مخ شي." },
+          { q: "آیا د دې کټګورۍ لپاره د ویزې صادرول بند شوي؟", a: "د ویزو صادرول په ځینو قضیو کې ځنډیدلي دي." }
+        ]
+      },
+      usrap: {
+        fa: [
+          { q: "آیا برنامه USRAP برای متقاضیان P1 و P2 آغاز شده است؟", a: "در حال حاضر، این برنامه در وضعیت تعلیق قرار دارد." },
+          { q: "آیا امکان شامل شدن متقاضیان در سال ۲۰۲۷ وجود دارد؟", a: "این موضوع در حد احتمال مطرح است و به تصمیمات آینده دولت ایالات متحده بستگی دارد." },
+          { q: "در سال ۲۰۲۶ چه کسانی می‌توانند از طریق USRAP سفر کنند؟", a: "اولویت‌بندی پذیرش پناهندگان بر اساس سیاست‌های جاری تعیین می‌شود." }
+        ],
+        en: [
+          { q: "Has the USRAP program for P1 and P2 applicants started?", a: "Currently, the program is on hold." },
+          { q: "Is it possible for applicants to be included in 2027?", a: "This is a possibility and depends on future US government decisions." },
+          { q: "Who can travel through USRAP in 2026?", a: "Refugee admission priorities are determined by current policies." }
+        ],
+        ps: [
+          { q: "آیا د P1 او P2 غوښتونکو لپاره د USRAP پروګرام پیل شوی؟", a: "اوس مهال، دا پروګرام ځنډول شوی دی." },
+          { q: "آیا په ۲۰۲۷ کې د غوښتونکو شاملیدل امکان لري؟", a: "دا یو احتمال دی او د متحده ایالاتو د راتلونکو پریکړو پورې اړه لري." },
+          { q: "په ۲۰۲۶ کې څوک کولی شي د USRAP له لارې سفر وکړي؟", a: "د کډوالو د منلو لومړیتوبونه د اوسنیو پالیسیو له مخې ټاکل کیږي." }
+        ]
+      }
     };
 
-    let lang = 'fa';
-    let cat = 'siv';
+    let currentLang = 'fa';
+    let currentCat = 'siv';
 
-    function applyLang(l) {
-      lang = l;
-      document.querySelectorAll('[data-k]').forEach(el => {
-        const k = el.getAttribute('data-k');
-        if (T[l][k]) el.innerHTML = T[l][k];
-      });
-      document.querySelectorAll('.lang-btn').forEach(b => b.classList.toggle('active', b.getAttribute('data-l') === l));
-      render();
-    }
-
-    function render() {
+    function renderFaqs() {
       const list = document.getElementById('faqList');
-      list.innerHTML = faqs[cat].map((f, i) => `
-    <div class="faq-item" id="fi${i}">
-      <div class="faq-q" onclick="toggle(${i})">
-        <span>${f.q}</span>
-        <i class="fas fa-plus"></i>
-      </div>
-      <div class="faq-a"><p>${f.a}</p></div>
-    </div>`).join('');
+      const data = faqs[currentCat][currentLang];
+      if (!data) return;
+      list.innerHTML = data.map((f, i) => `
+        <div class="faq-item" id="fi${i}">
+          <div class="faq-q" onclick="toggleItem(${i})">
+            <span>${f.q}</span>
+            <i class="fas fa-plus"></i>
+          </div>
+          <div class="faq-a"><p>${f.a}</p></div>
+        </div>
+      `).join('');
     }
 
-    function toggle(i) {
-      document.getElementById('fi' + i).classList.toggle('open');
+    function toggleItem(i) {
+      const el = document.getElementById('fi' + i);
+      if (el) el.classList.toggle('open');
     }
 
-    document.querySelectorAll('.faq-tab').forEach(t => t.addEventListener('click', () => {
-      cat = t.getAttribute('data-cat');
-      document.querySelectorAll('.faq-tab').forEach(x => x.classList.remove('active'));
-      t.classList.add('active');
-      render();
-    }));
+    function applyLanguage(lang) {
+      currentLang = lang;
+      document.querySelectorAll('[data-key]').forEach(el => {
+        const key = el.getAttribute('data-key');
+        if (T[lang][key]) el.innerHTML = T[lang][key];
+      });
+      document.querySelectorAll('.faq-tab').forEach(tab => {
+        const cat = tab.getAttribute('data-cat');
+        if (cat === 'siv') tab.innerHTML = T[lang].tabSiv;
+        else if (cat === 'sponsor') tab.innerHTML = T[lang].tabSponsor;
+        else if (cat === 'usrap') tab.innerHTML = T[lang].tabUsrap;
+      });
+      const labelMap = { fa: "فارسی", en: "English", ps: "پښتو" };
+      document.getElementById('currentLangLabel').innerText = labelMap[lang];
+      renderFaqs();
+    }
 
-    // particles
+    function changeCategory(cat) {
+      currentCat = cat;
+      renderFaqs();
+    }
+
+    // ذرات
     const pc = document.getElementById('particles');
     for (let i = 0; i < 40; i++) {
       const p = document.createElement('div');
@@ -840,22 +898,57 @@
       pc.appendChild(p);
     }
 
-    // theme
-    const tb = document.getElementById('themeBtn');
-    const saved = localStorage.getItem('srs-theme') || 'dark';
-    document.body.className = saved + '-mode';
-    tb.innerHTML = saved === 'dark' ? '<i class="fas fa-moon"></i>' : '<i class="fas fa-sun"></i>';
-    tb.addEventListener('click', () => {
-      const d = document.body.classList.contains('dark-mode');
-      document.body.className = (d ? 'light' : 'dark') + '-mode';
-      tb.innerHTML = d ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
-      localStorage.setItem('srs-theme', d ? 'light' : 'dark');
+    // تم شب/روز
+    const themeBtn = document.getElementById('themeBtn');
+    const savedTheme = localStorage.getItem('srs-theme') || 'dark';
+    document.body.className = savedTheme + '-mode';
+    themeBtn.innerHTML = savedTheme === 'dark' ? '<i class="fas fa-moon"></i>' : '<i class="fas fa-sun"></i>';
+    themeBtn.addEventListener('click', () => {
+      const isDark = document.body.classList.contains('dark-mode');
+      document.body.className = isDark ? 'light-mode' : 'dark-mode';
+      themeBtn.innerHTML = isDark ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+      localStorage.setItem('srs-theme', isDark ? 'light' : 'dark');
     });
 
-    document.querySelectorAll('.lang-btn').forEach(b => b.addEventListener('click', () => applyLang(b.getAttribute('data-l'))));
-    document.getElementById('menuBtn').addEventListener('click', () => document.getElementById('navLinks').classList.toggle('open'));
+    // منوی زبان
+    const dropdown = document.getElementById('langDropdown');
+    const trigger = document.getElementById('langTrigger');
+    trigger.addEventListener('click', (e) => { e.stopPropagation(); dropdown.classList.toggle('open'); });
+    document.addEventListener('click', (e) => { if (!dropdown.contains(e.target)) dropdown.classList.remove('open'); });
+    document.querySelectorAll('.lang-option').forEach(opt => {
+      opt.addEventListener('click', (e) => {
+        const newLang = opt.getAttribute('data-lang');
+        if (newLang) applyLanguage(newLang);
+        dropdown.classList.remove('open');
+      });
+    });
 
-    applyLang('fa');
+    // تب‌ها
+    document.querySelectorAll('.faq-tab').forEach(tab => {
+      tab.addEventListener('click', () => {
+        document.querySelectorAll('.faq-tab').forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+        changeCategory(tab.getAttribute('data-cat'));
+      });
+    });
+
+    // منوی همبرگری موبایل
+    const menuBtn = document.getElementById('menuBtn');
+    const navLinks = document.getElementById('navLinks');
+    function closeMenu() { navLinks.classList.remove('open'); if (menuBtn) menuBtn.innerHTML = '☰'; }
+    menuBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const isOpen = navLinks.classList.contains('open');
+      if (isOpen) closeMenu();
+      else { navLinks.classList.add('open'); menuBtn.innerHTML = '✕'; }
+    });
+    document.addEventListener('click', (e) => {
+      if (!navLinks.contains(e.target) && !menuBtn.contains(e.target) && navLinks.classList.contains('open')) closeMenu();
+    });
+    navLinks.querySelectorAll('a').forEach(link => link.addEventListener('click', closeMenu));
+
+    applyLanguage('fa');
+    window.toggleItem = toggleItem;
   </script>
 </body>
 

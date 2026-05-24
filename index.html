@@ -2,907 +2,908 @@
 <html lang="fa" dir="rtl">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>VISA GUIDE AF | خدمات مهاجرتی افغان‌ها</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-
-  <style>
-    /* تعریف متغیرهای رنگی و استایل پایه */
-    :root {
-      --bg: #070b13;
-      --panel: rgba(255, 255, 255, 0.03);
-      --border: rgba(255, 255, 255, 0.08);
-      --text: #f1f5f9;
-      --text-muted: #94a3b8;
-      --primary: linear-gradient(135deg, #7c3aed, #4f46e5);
-      --primary-glow: rgba(124, 58, 237, 0.4);
-      --accent: linear-gradient(135deg, #38bdf8, #0369a1);
-      --accent-glow: rgba(56, 189, 248, 0.4);
-      --success: #10b981;
-      --warning: #f59e0b;
-      --danger: #ef4444;
-      --font: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-    }
-
-    .light-mode {
-      --bg: #f8fafc;
-      --panel: rgba(0, 0, 0, 0.03);
-      --border: rgba(0, 0, 0, 0.08);
-      --text: #0f172a;
-      /* متن تیره برای حالت روز */
-      --text-muted: #475569;
-      --primary-glow: rgba(124, 58, 237, 0.15);
-    }
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: var(--font);
-      transition: background-color 0.3s, border-color 0.3s, color 0.3s, filter 0.3s;
-    }
-
-    body {
-      background-color: var(--bg);
-      color: var(--text);
-      overflow-x: hidden;
-      perspective: 1000px;
-    }
-
-    /* جلوه ذرات و اورب‌های سه‌بعدی پس‌زمینه */
-    .bg-scene {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: -3;
-      background: radial-gradient(circle at 50% 50%, rgba(15, 23, 42, 0.5) 0%, var(--bg) 100%);
-    }
-
-    .bg-orb {
-      position: fixed;
-      width: 300px;
-      height: 300px;
-      border-radius: 50%;
-      filter: blur(80px);
-      z-index: -2;
-      opacity: 0.6;
-      pointer-events: none;
-      animation: floatOrb 20s infinite alternate ease-in-out;
-    }
-
-    .bg-orb:nth-child(2) {
-      background: radial-gradient(circle, #7c3aed 0%, transparent 70%);
-      top: -10%;
-      left: -10%;
-    }
-
-    .bg-orb:nth-child(3) {
-      background: radial-gradient(circle, #38bdf8 0%, transparent 70%);
-      bottom: -10%;
-      right: -10%;
-      animation-delay: -5s;
-    }
-
-    .bg-orb:nth-child(4) {
-      background: radial-gradient(circle, #ec4899 0%, transparent 70%);
-      top: 40%;
-      left: 50%;
-      width: 400px;
-      height: 400px;
-      animation-delay: -10s;
-    }
-
-    @keyframes floatOrb {
-      0% {
-        transform: translate(0, 0) scale(1);
-      }
-
-      100% {
-        transform: translate(80px, 50px) scale(1.2);
-      }
-    }
-
-    /* ساختار شیشه‌ای (Glassmorphism) */
-    .glass {
-      background: var(--panel);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      border: 1px solid var(--border);
-      border-radius: 24px;
-      box-shadow:
-        0 10px 30px -10px rgba(0, 0, 0, 0.1),
-        inset 0 1px 0px rgba(255, 255, 255, 0.1);
-      transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease;
-    }
-
-    .glass:hover {
-      transform: translateY(-8px) rotateX(3deg) rotateY(-1deg);
-      box-shadow:
-        0 20px 40px -15px rgba(0, 0, 0, 0.2),
-        0 0 25px var(--primary-glow);
-    }
-
-    /* منوی ناوبری مدرن با پشتیبانی از روز و شب */
-    .navbar {
-      position: sticky;
-      top: 15px;
-      max-width: 1200px;
-      margin: 0 auto;
-      z-index: 100;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 12px 24px;
-      background: rgba(15, 23, 42, 0.4);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border: 1px solid var(--border);
-      border-radius: 50px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-    }
-
-    .light-mode .navbar {
-      background: rgba(255, 255, 255, 0.8);
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-    }
-
-    .logo-wrap {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      text-decoration: none;
-      color: var(--text);
-    }
-
-    .logo-wrap img {
-      width: 45px;
-      height: 45px;
-      border-radius: 50%;
-      border: 2px solid #7c3aed;
-      box-shadow: 0 0 15px var(--primary-glow);
-    }
-
-    .logo-name {
-      font-size: 0.85rem;
-      font-weight: 800;
-      letter-spacing: 0.5px;
-      line-height: 1.2;
-      background: linear-gradient(120deg, #fff, #94a3b8);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-
-    .light-mode .logo-name {
-      background: linear-gradient(120deg, #0f172a, #475569);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-
-    .nav-links {
-      display: flex;
-      list-style: none;
-      gap: 15px;
-    }
-
-    /* استایل و انیمیشن لینک‌های منو */
-    .nav-links a {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      padding: 8px 16px;
-      text-decoration: none;
-      color: var(--text-muted);
-      font-size: 0.9rem;
-      font-weight: 500;
-      border-radius: 30px;
-      position: relative;
-      overflow: hidden;
-      transition: all 0.3s ease;
-    }
-
-    .nav-links a img {
-      width: 18px;
-      height: 18px;
-      transition: transform 0.3s ease, filter 0.3s ease;
-    }
-
-    .nav-links a:hover img {
-      transform: translateY(-2px);
-    }
-
-    /* تغییر خودکار رنگ آیکون‌های تصویر منو در حالت روز و شب */
-    .dark-mode .nav-links a img {
-      filter: brightness(0) invert(1);
-      /* سفید کردن تصاویر سیاه در شب */
-    }
-
-    .light-mode .nav-links a img {
-      filter: brightness(0);
-      /* سیاه کردن تصاویر در روز */
-    }
-
-    /* انیمیشن خط زیرین دکمه‌های منو دسکتاپ */
-    .nav-links a::after {
-      content: '';
-      position: absolute;
-      bottom: 2px;
-      left: 50%;
-      width: 0;
-      height: 2px;
-      background: linear-gradient(90deg, #7c3aed, #38bdf8);
-      border-radius: 2px;
-      transition: width 0.3s ease, transform 0.3s ease;
-      transform: translateX(-50%);
-    }
-
-    .nav-links a:hover::after,
-    .nav-links a.active::after {
-      width: 60%;
-    }
-
-    /* تنظیم رنگ متن‌های منو در حالت روز و شب */
-    .dark-mode .nav-links a {
-      color: #e2e8f0;
-      text-shadow: 0 0 10px rgba(255, 255, 255, 0.05);
-    }
-
-    .dark-mode .nav-links a:hover,
-    .dark-mode .nav-links a.active {
-      color: #ffffff;
-      background: rgba(255, 255, 255, 0.05);
-      text-shadow: 0 0 12px rgba(124, 58, 237, 0.6);
-    }
-
-    .light-mode .nav-links a {
-      color: #334155;
-    }
-
-    .light-mode .nav-links a:hover,
-    .light-mode .nav-links a.active {
-      color: #0f172a;
-      background: rgba(0, 0, 0, 0.05);
-    }
-
-    .nav-actions {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .lang-btn {
-      background: transparent;
-      border: 1px solid var(--border);
-      color: var(--text-muted);
-      padding: 6px 12px;
-      border-radius: 30px;
-      cursor: pointer;
-      font-size: 0.8rem;
-    }
-
-    .lang-btn.active {
-      color: var(--text);
-      background: rgba(255, 255, 255, 0.1);
-      border-color: #7c3aed;
-    }
-
-    .theme-btn {
-      background: var(--primary);
-      border: none;
-      color: white;
-      width: 36px;
-      height: 36px;
-      border-radius: 50%;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 4px 10px var(--primary-glow);
-    }
-
-    .menu-btn {
-      display: none;
-      background: none;
-      border: none;
-      color: var(--text);
-      font-size: 1.5rem;
-      cursor: pointer;
-    }
-
-    /* بخش هیرو و افکت کارت سه بعدی */
-    .hero {
-      max-width: 1200px;
-      margin: 80px auto 40px auto;
-      padding: 0 16px;
-      text-align: center;
-    }
-
-    .hero-inner {
-      padding: 60px 40px;
-      background: radial-gradient(circle at top left, rgba(124, 58, 237, 0.08), transparent), var(--panel);
-      backdrop-filter: blur(20px);
-      border: 1px solid var(--border);
-      border-radius: 32px;
-      box-shadow: 0 30px 60px -20px rgba(0, 0, 0, 0.3);
-      transform-style: preserve-3d;
-    }
-
-    .badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 6px 16px;
-      background: rgba(124, 58, 237, 0.1);
-      border: 1px solid rgba(124, 58, 237, 0.2);
-      border-radius: 30px;
-      color: #a78bfa;
-      font-size: 0.85rem;
-      font-weight: 600;
-      margin-bottom: 24px;
-    }
-
-    .hero-logo {
-      width: 110px;
-      height: 110px;
-      border-radius: 50%;
-      border: 3px solid #7c3aed;
-      box-shadow: 0 0 30px var(--primary-glow);
-      margin-bottom: 24px;
-      transform: translateZ(30px);
-    }
-
-    .hero h1 {
-      font-size: 2.8rem;
-      font-weight: 900;
-      margin-bottom: 16px;
-      background: linear-gradient(135deg, #fff 30%, #a78bfa 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      transform: translateZ(20px);
-    }
-
-    .light-mode .hero h1 {
-      background: linear-gradient(135deg, #0f172a 30%, #4f46e5 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-
-    .hero-desc {
-      max-width: 700px;
-      margin: 0 auto 30px auto;
-      font-size: 1.1rem;
-      line-height: 1.8;
-      color: var(--text-muted);
-      transform: translateZ(10px);
-    }
-
-    /* دکمه‌های ۳ بعدی ارگونومیک */
-    .card-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      padding: 12px 28px;
-      background: var(--primary);
-      border: none;
-      color: white;
-      text-decoration: none;
-      border-radius: 50px;
-      font-weight: 600;
-      box-shadow:
-        0 8px 20px var(--primary-glow),
-        inset 0 -4px 0 rgba(0, 0, 0, 0.2);
-      transform: translateY(0);
-      transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-      cursor: pointer;
-    }
-
-    .card-btn:hover {
-      transform: translateY(-4px);
-      box-shadow:
-        0 12px 24px var(--primary-glow),
-        inset 0 -4px 0 rgba(0, 0, 0, 0.2);
-    }
-
-    .card-btn:active {
-      transform: translateY(2px);
-      box-shadow:
-        0 4px 10px var(--primary-glow),
-        inset 0 -1px 0 rgba(0, 0, 0, 0.2);
-    }
-
-    /* شبکه‌های آماری (Stats) */
-    .stats-container {
-      max-width: 1200px;
-      margin: 40px auto;
-      padding: 0 16px;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 20px;
-    }
-
-    .stat-card {
-      padding: 30px 20px;
-      text-align: center;
-    }
-
-    .stat-num {
-      font-size: 2.5rem;
-      font-weight: 900;
-      background: linear-gradient(135deg, #fff 0%, var(--text-muted) 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      margin-bottom: 8px;
-    }
-
-    .light-mode .stat-num {
-      background: linear-gradient(135deg, #0f172a 0%, #3b82f6 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-
-    /* شبکه‌ی کارت‌های اخبار */
-    .section-title {
-      font-size: 1.8rem;
-      font-weight: 800;
-      margin: 60px 0 24px 0;
-      position: relative;
-      display: inline-block;
-    }
-
-    .section-title::after {
-      content: '';
-      position: absolute;
-      bottom: -8px;
-      right: 0;
-      width: 50px;
-      height: 4px;
-      background: var(--primary);
-      border-radius: 2px;
-    }
-
-    .cards-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-      gap: 24px;
-      margin-bottom: 80px;
-    }
-
-    .card {
-      position: relative;
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-      height: 100%;
-    }
-
-    .card-img {
-      width: 100%;
-      height: 200px;
-      object-fit: cover;
-      border-radius: 16px;
-      transition: transform 0.5s ease;
-    }
-
-    .card:hover .card-img {
-      transform: scale(1.05) rotate(0.5deg);
-    }
-
-    .card-body {
-      padding: 20px;
-      display: flex;
-      flex-direction: column;
-      flex-grow: 1;
-    }
-
-    .card-title {
-      font-size: 1.1rem;
-      font-weight: 700;
-      line-height: 1.5;
-      margin-bottom: 12px;
-      color: var(--text);
-    }
-
-    .card-meta {
-      font-size: 0.8rem;
-      color: var(--text-muted);
-      margin-bottom: 20px;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    .card-btn-small {
-      margin-top: auto;
-      background: rgba(255, 255, 255, 0.05);
-      color: var(--text);
-      border: 1px solid var(--border);
-      padding: 8px 16px;
-      border-radius: 12px;
-      text-align: center;
-      text-decoration: none;
-      font-size: 0.85rem;
-      font-weight: 600;
-      transition: all 0.3s;
-    }
-
-    .light-mode .card-btn-small {
-      background: rgba(0, 0, 0, 0.03);
-      border-color: rgba(0, 0, 0, 0.08);
-      color: var(--text);
-    }
-
-    .card:hover .card-btn-small {
-      background: var(--primary);
-      border-color: transparent;
-      box-shadow: 0 5px 15px var(--primary-glow);
-      color: white !important;
-    }
-
-    /* پانویس (Footer) متناسب با حالت روز و شب */
-    .footer {
-      background: rgba(10, 15, 30, 0.8);
-      border-top: 1px solid var(--border);
-      padding: 60px 16px 20px 16px;
-      margin-top: 100px;
-    }
-
-    .light-mode .footer {
-      background: #f1f5f9;
-      border-top: 1px solid rgba(0, 0, 0, 0.08);
-    }
-
-    .footer-inner {
-      max-width: 1200px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 40px;
-      margin-bottom: 40px;
-    }
-
-    .footer-col h4 {
-      font-size: 1.1rem;
-      font-weight: 700;
-      margin-bottom: 20px;
-      color: var(--text);
-      position: relative;
-    }
-
-    .footer-col p {
-      color: var(--text-muted);
-      font-size: 0.9rem;
-      line-height: 1.8;
-      margin-bottom: 12px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .footer-col a {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      color: var(--text-muted);
-      text-decoration: none;
-      font-size: 0.9rem;
-      margin-bottom: 12px;
-      transition: color 0.3s;
-    }
-
-    .footer-col a:hover {
-      color: var(--text);
-    }
-
-    .footer-bottom {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding-top: 20px;
-      border-top: 1px solid var(--border);
-      text-align: center;
-      color: var(--text-muted);
-      font-size: 0.85rem;
-    }
-
-    .light-mode .footer-bottom {
-      border-top: 1px solid rgba(0, 0, 0, 0.08);
-    }
-
-    /* انیمیشن باران ذرات */
-    .particles {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: -1;
-      pointer-events: none;
-    }
-
-    .p {
-      position: absolute;
-      background: rgba(255, 255, 255, 0.1);
-      border-radius: 50%;
-      animation: rise 15s infinite linear;
-    }
-
-    @keyframes rise {
-      0% {
-        transform: translateY(110vh) rotate(0deg);
-        opacity: 0;
-      }
-
-      10% {
-        opacity: 1;
-      }
-
-      90% {
-        opacity: 1;
-      }
-
-      100% {
-        transform: translateY(-10vh) rotate(360deg);
-        opacity: 0;
-      }
-    }
-
-    /* واکنش‌گرایی برای موبایل */
-    @media (max-width: 768px) {
-      .navbar {
-        width: 90%;
-        border-radius: 24px;
-      }
-
-      .nav-links {
-        display: none;
-        position: absolute;
-        top: 75px;
-        left: 5%;
-        width: 90%;
-        background: rgba(15, 23, 42, 0.95);
-        backdrop-filter: blur(20px);
-        border: 1px solid var(--border);
-        border-radius: 20px;
-        padding: 20px;
-        flex-direction: column;
-        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
-      }
-
-      .light-mode .nav-links {
-        background: rgba(255, 255, 255, 0.98);
-      }
-
-      /* انیمیشن ورود سه‌بعدی نرم منوی موبایل */
-      .nav-links.open {
-        display: flex;
-        animation: menuFadeIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
-      }
-
-      @keyframes menuFadeIn {
-        from {
-          opacity: 0;
-          transform: translateY(-15px) scale(0.95);
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>VISA GUIDE AF | خدمات مهاجرتی افغان‌ها</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        /* ========== RESET & VARIABLES ========== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
 
-        to {
-          opacity: 1;
-          transform: translateY(0) scale(1);
+        :root {
+            --bg-dark: #03050b;
+            --bg-light: #eef2ff;
+            --glass-dark: rgba(8, 12, 25, 0.45);
+            --glass-light: rgba(255, 255, 255, 0.55);
+            --border-dark: rgba(255, 255, 255, 0.1);
+            --border-light: rgba(0, 0, 0, 0.08);
+            --text-dark: #f1f5f9;
+            --text-light: #0a0f1c;
+            --muted-dark: #94a3b8;
+            --muted-light: #475569;
+            --primary: linear-gradient(135deg, #8b5cf6, #3b82f6);
+            --primary-glow: rgba(139, 92, 246, 0.5);
+            --accent: linear-gradient(135deg, #f97316, #ef4444);
+            --font: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
         }
-      }
 
-      .menu-btn {
-        display: block;
-      }
+        body {
+            background: var(--bg-dark);
+            color: var(--text-dark);
+            font-family: var(--font);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            transition: background 0.4s, color 0.3s;
+        }
 
-      .hero h1 {
-        font-size: 1.8rem;
-      }
+        body.light-mode {
+            --bg-dark: var(--bg-light);
+            --glass-dark: var(--glass-light);
+            --border-dark: var(--border-light);
+            --text-dark: var(--text-light);
+            --muted-dark: var(--muted-light);
+            background: var(--bg-light);
+            color: var(--text-light);
+        }
 
-      .hero-inner {
-        padding: 40px 20px;
-      }
-    }
-  </style>
+        /* ========== 3D BACKGROUND SCENE ========== */
+        .scene-3d {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            overflow: hidden;
+            perspective: 1200px;
+        }
+
+        .grid-3d {
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            top: -50%;
+            left: -50%;
+            background-image:
+                linear-gradient(var(--border-dark) 1px, transparent 1px),
+                linear-gradient(90deg, var(--border-dark) 1px, transparent 1px);
+            background-size: 60px 60px;
+            transform: rotateX(50deg) rotateZ(30deg) translateZ(-80px);
+            animation: gridFlow 20s infinite linear;
+            opacity: 0.3;
+        }
+
+        @keyframes gridFlow {
+            0% {
+                transform: rotateX(50deg) rotateZ(30deg) translateZ(-80px) translateY(0);
+            }
+
+            100% {
+                transform: rotateX(50deg) rotateZ(30deg) translateZ(-80px) translateY(80px);
+            }
+        }
+
+        .floating-orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(90px);
+            opacity: 0.5;
+            animation: floatGlow 22s infinite alternate;
+        }
+
+        .orb1 {
+            width: 450px;
+            height: 450px;
+            background: #8b5cf6;
+            top: -15%;
+            left: -10%;
+        }
+
+        .orb2 {
+            width: 550px;
+            height: 550px;
+            background: #3b82f6;
+            bottom: -20%;
+            right: -15%;
+            animation-delay: -6s;
+        }
+
+        .orb3 {
+            width: 350px;
+            height: 350px;
+            background: #f97316;
+            top: 45%;
+            left: 30%;
+            filter: blur(110px);
+            animation-delay: -12s;
+        }
+
+        @keyframes floatGlow {
+            0% {
+                transform: translate(0, 0) scale(1);
+            }
+
+            100% {
+                transform: translate(70px, 50px) scale(1.2);
+            }
+        }
+
+        /* ========== GLASS CORE ========== */
+        .glass-3d {
+            background: var(--glass-dark);
+            backdrop-filter: blur(14px);
+            border: 1px solid var(--border-dark);
+            border-radius: 32px;
+            transition: transform 0.35s cubic-bezier(0.2, 0.9, 0.4, 1.1), box-shadow 0.3s;
+        }
+
+        .glass-3d:hover {
+            transform: translateY(-6px) rotateX(2deg) rotateY(1deg);
+            box-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(139, 92, 246, 0.3);
+        }
+
+        /* ========== NAVBAR ========== */
+        .navbar {
+            position: sticky;
+            top: 20px;
+            width: calc(100% - 40px);
+            max-width: 1300px;
+            margin: 0 auto;
+            z-index: 200;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 24px;
+            background: var(--glass-dark);
+            backdrop-filter: blur(16px);
+            border: 1px solid var(--border-dark);
+            border-radius: 80px;
+        }
+
+        .logo-wrap {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+
+        .logo-wrap img {
+            width: 46px;
+            height: 46px;
+            border-radius: 50%;
+            border: 2px solid #8b5cf6;
+            box-shadow: 0 0 15px var(--primary-glow);
+            transition: transform 0.4s;
+        }
+
+        .logo-wrap:hover img {
+            transform: rotateY(180deg);
+        }
+
+        .logo-name {
+            font-weight: 800;
+            font-size: 0.85rem;
+            line-height: 1.2;
+            background: linear-gradient(120deg, #fff, #c084fc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        body.light-mode .logo-name {
+            background: linear-gradient(120deg, #1e1b4b, #4f46e5);
+            -webkit-background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 8px;
+        }
+
+        .nav-links a {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 18px;
+            text-decoration: none;
+            color: var(--muted-dark);
+            font-weight: 600;
+            border-radius: 50px;
+            transition: 0.2s;
+            position: relative;
+        }
+
+        .nav-links a::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 50px;
+            background: var(--primary);
+            opacity: 0;
+            transition: opacity 0.3s;
+            z-index: -1;
+        }
+
+        .nav-links a:hover::before,
+        .nav-links a.active::before {
+            opacity: 0.15;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--text-dark);
+            transform: translateY(-2px);
+        }
+
+        .nav-links a img {
+            width: 18px;
+            height: 18px;
+            transition: filter 0.3s;
+        }
+
+        .dark-mode .nav-links a img {
+            filter: brightness(0) invert(1);
+        }
+
+        .light-mode .nav-links a img {
+            filter: brightness(0);
+        }
+
+        /* ========== LANGUAGE GLOBE ========== */
+        .lang-globe {
+            position: relative;
+        }
+
+        .globe-trigger {
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid var(--border-dark);
+            border-radius: 40px;
+            padding: 6px 16px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 500;
+            transition: 0.2s;
+        }
+
+        .globe-trigger i {
+            font-size: 1rem;
+            color: #60a5fa;
+        }
+
+        .globe-trigger:hover {
+            background: rgba(139, 92, 246, 0.2);
+            border-color: #8b5cf6;
+        }
+
+        .lang-dropdown {
+            position: absolute;
+            top: 110%;
+            left: 0;
+            background: var(--glass-dark);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--border-dark);
+            border-radius: 20px;
+            min-width: 140px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.25s;
+            z-index: 300;
+        }
+
+        .lang-globe.open .lang-dropdown {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .lang-option {
+            padding: 10px 16px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            cursor: pointer;
+            transition: 0.2s;
+            border-radius: 16px;
+        }
+
+        .lang-option:hover {
+            background: rgba(139, 92, 246, 0.2);
+        }
+
+        .nav-actions {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .theme-btn {
+            background: var(--primary);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            border: none;
+            color: white;
+            box-shadow: 0 4px 12px var(--primary-glow);
+        }
+
+        .menu-btn {
+            display: none;
+            width: 46px;
+            height: 46px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border-dark);
+            border-radius: 30px;
+            font-size: 1.7rem;
+            cursor: pointer;
+        }
+
+        /* ========== HERO ========== */
+        .hero {
+            max-width: 1300px;
+            margin: 50px auto 30px;
+            padding: 0 24px;
+        }
+
+        .hero-card {
+            padding: 60px 40px;
+            text-align: center;
+            transform-style: preserve-3d;
+        }
+
+        .badge-3d {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(139, 92, 246, 0.15);
+            border: 1px solid rgba(139, 92, 246, 0.3);
+            border-radius: 60px;
+            padding: 6px 22px;
+            font-weight: 600;
+            margin-bottom: 24px;
+        }
+
+        .hero-logo-3d {
+            width: 110px;
+            height: 110px;
+            border-radius: 50%;
+            border: 3px solid #8b5cf6;
+            box-shadow: 0 0 35px var(--primary-glow);
+            margin-bottom: 25px;
+            transition: transform 0.5s;
+        }
+
+        .hero-logo-3d:hover {
+            transform: rotateY(360deg);
+        }
+
+        .hero-title {
+            font-size: 2.8rem;
+            font-weight: 800;
+            color: #ffffff;
+        }
+
+        body.light-mode .hero-title {
+            filter: invert(1);
+        }
+
+        .hero-desc {
+            max-width: 700px;
+            margin: 0 auto 32px;
+            font-size: 1.05rem;
+            line-height: 1.7;
+            color: var(--muted-dark);
+        }
+
+        .btn-3d {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--primary);
+            padding: 12px 32px;
+            border-radius: 60px;
+            font-weight: 700;
+            text-decoration: none;
+            color: white;
+            box-shadow: 0 8px 20px var(--primary-glow);
+            transition: all 0.2s;
+        }
+
+        .btn-3d:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 14px 28px var(--primary-glow);
+        }
+
+        /* ========== STATS ========== */
+        .stats-3d {
+            max-width: 1300px;
+            margin: 30px auto;
+            padding: 0 24px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 24px;
+        }
+
+        .stat-item {
+            padding: 28px 20px;
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, #c084fc, #60a5fa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 8px;
+        }
+
+        .stat-label {
+            color: var(--muted-dark);
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        /* ========== NEWS SECTION ========== */
+        .section-header {
+            max-width: 1300px;
+            margin: 60px auto 20px;
+            padding: 0 24px;
+        }
+
+        .section-title-3d {
+            font-size: 2rem;
+            font-weight: 800;
+            display: inline-block;
+            position: relative;
+        }
+
+        .section-title-3d::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            right: 0;
+            width: 70px;
+            height: 4px;
+            background: var(--primary);
+            border-radius: 4px;
+        }
+
+        .news-grid {
+            max-width: 1300px;
+            margin: 30px auto 60px;
+            padding: 0 24px;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 32px;
+        }
+
+        .news-card {
+            overflow: hidden;
+            transition: all 0.3s;
+        }
+
+        .news-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .news-card:hover .news-img {
+            transform: scale(1.03);
+        }
+
+        .news-body {
+            padding: 22px;
+        }
+
+        .news-title {
+            font-weight: 800;
+            margin-bottom: 12px;
+            font-size: 1.05rem;
+            color: var(--text-dark);
+        }
+
+        .news-meta {
+            font-size: 0.75rem;
+            color: var(--muted-dark);
+            margin-bottom: 18px;
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .btn-sm {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border-dark);
+            border-radius: 40px;
+            padding: 8px 18px;
+            display: inline-block;
+            text-decoration: none;
+            color: var(--text-dark);
+            transition: 0.2s;
+        }
+
+        .news-card:hover .btn-sm {
+            background: var(--primary);
+            border-color: transparent;
+            color: white;
+        }
+
+        /* ========== FOOTER ========== */
+        .footer-3d {
+            background: rgba(255, 255, 255, 0.35);
+            backdrop-filter: blur(12px);
+            border-top: 1px solid var(--border-dark);
+            margin-top: auto;
+            padding: 50px 24px 25px;
+        }
+
+        .footer-inner {
+            max-width: 1300px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 40px;
+        }
+
+        .footer-col h4 {
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+            color: rgb(255, 255, 255);
+        }
+
+        .light-mode .footer-col {
+            filter: invert(1);
+        }
+
+        .dark-mode .footer-col {
+            filter: var(--bg-dark);
+        }
+
+        .footer-col p,
+        .footer-col a {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: var(--muted-dark);
+            text-decoration: none;
+            font-size: 0.9rem;
+            margin-bottom: 12px;
+            transition: 0.2s;
+        }
+
+        .footer-col a:hover {
+            color: var(--text-dark);
+            transform: translateX(-5px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border-dark);
+            color: var(--muted-dark);
+            font-size: 0.8rem;
+        }
+
+        /* ========== RESPONSIVE ========== */
+        @media (max-width: 900px) {
+            .nav-links {
+                position: fixed;
+                top: 85px;
+                left: 5%;
+                width: 90%;
+                background: var(--glass-dark);
+                backdrop-filter: blur(30px);
+                flex-direction: column;
+                border-radius: 32px;
+                padding: 20px;
+                gap: 8px;
+                opacity: 0;
+                visibility: hidden;
+                transform: scale(0.95);
+                transition: all 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.2);
+                z-index: 999;
+            }
+
+            .nav-links.open {
+                opacity: 1;
+                visibility: visible;
+                transform: scale(1);
+            }
+
+            .menu-btn {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .hero-title {
+                font-size: 2rem;
+            }
+
+            .stats-3d {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 550px) {
+            .hero-title {
+                font-size: 1.6rem;
+            }
+
+            .globe-trigger span {
+                display: none;
+            }
+
+            .logo-name {
+                display: none;
+            }
+        }
+    </style>
 </head>
 
 <body class="dark-mode">
-
-  <div class="bg-scene"></div>
-  <div class="bg-orb"></div>
-  <div class="bg-orb"></div>
-  <div class="bg-orb"></div>
-  <div class="particles" id="particles"></div>
-
-  <nav class="navbar" id="navbar">
-    <a href="index.html" class="logo-wrap">
-      <img src="images/kha.jpg">
-      <div class=" logo-name">VISA<br>GUIDE AF</div>
-    </a>
-    <button class="menu-btn" id="menuBtn">☰</button>
-    <ul class="nav-links" id="navLinks">
-      <li><a href="index.html" class="active"><img src="images/home.png"> <span data-k="home">خانه</span></a></li>
-      <li><a href="services.html"><img src="images/customer.png"> <span data-k="services">خدمات</span></a></li>
-      <li><a href="ai.html"><img src="images/ai.png"> <span data-k="ai">هوش مصنوعی</span></a></li>
-      <li><a href="contact.html"><img src="images/call.png"> <span data-k="contact">تماس</span></a></li>
-      <li><a href="faq.html"><img src="images/f&a.png"> <span data-k="faq">سوالات</span></a></li>
-      <li><a href="news/day-news/day.html"><img src="images/event.png"> <span data-k="news">اخبار</span></a></li>
-    </ul>
-    <div class="nav-actions">
-      <button class="lang-btn active" data-l="fa">🇦🇫 فارسی</button>
-      <button class="lang-btn" data-l="en">🇬🇧 EN</button>
-      <button class="lang-btn" data-l="ps">پښتو</button>
-      <button class="theme-btn" id="themeBtn"><i class="fas fa-moon"></i></button>
+    <div class="scene-3d">
+        <div class="grid-3d"></div>
+        <div class="floating-orb orb1"></div>
+        <div class="floating-orb orb2"></div>
+        <div class="floating-orb orb3"></div>
     </div>
-  </nav>
 
-  <!-- HERO -->
-  <div class="hero">
-    <div class="hero-inner">
-      <div class="badge"><i class="fas fa-star"></i> <span data-k="trusted">خدمات معتبر مهاجرت</span></div>
-      <img src="images/kha.jpg" alt="Visa Guide" class="hero-logo">
-      <h1 data-k="heroTitle">خدمات مهاجرت برای افغان‌ها</h1>
-      <div class="hero-desc">
-        <p id="heroDesc"><strong>VISA GUIDE AF</strong> بزرگترین مرجع مشاوره مهاجرت و ثبت‌نام ویزای بشردوستانه
-          برای <strong>افغان‌ها</strong> — همراه مطمئن شما تا امنیت و آرامش.</p>
-      </div>
-      <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:1.5rem;">
-        <a href="services.html" class="card-btn"
-          style="background: var(--accent); box-shadow: 0 8px 20px var(--accent-glow);"><i class="fas fa-compass"></i>
-          <span data-k="seeServices">مشاهده
-            خدمات</span></a>
-        <a href="contact.html" class="card-btn"><i class="fas fa-headset"></i> <span data-k="getHelp">دریافت
-            مشاوره</span></a>
-      </div>
+    <nav class="navbar">
+        <a href="index.html" class="logo-wrap">
+            <img src="images/kha.jpg" alt="logo">
+            <div class="logo-name">VISA<br>GUIDE AF</div>
+        </a>
+        <button class="menu-btn" id="menuBtn">☰</button>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="index.html" class="active"><img src="images/home.png"> <span data-key="home">خانه</span></a>
+            </li>
+            <li><a href="services.html"><img src="images/customer.png"> <span data-key="services">خدمات</span></a></li>
+            <li><a href="ai.html"><img src="images/ai.png"> <span data-key="ai">هوش مصنوعی</span></a></li>
+            <li><a href="contact.html"><img src="images/call.png"> <span data-key="contact">تماس</span></a></li>
+            <li><a href="faq.html"><img src="images/f&a.png"> <span data-key="faq">سوالات</span></a></li>
+            <li><a href="news/day-news/day.html"><img src="images/event.png"> <span data-key="news">اخبار</span></a>
+            </li>
+        </ul>
+        <div class="nav-actions">
+            <div class="lang-globe" id="langGlobe">
+                <div class="globe-trigger" id="globeTrigger">
+                    <i class="fas fa-globe-americas"></i> <span id="currentLangLabel">فارسی</span> <i
+                        class="fas fa-chevron-down"></i>
+                </div>
+                <div class="lang-dropdown">
+                    <div class="lang-option" data-lang="fa"><span>🇦🇫</span> فارسی</div>
+                    <div class="lang-option" data-lang="en"><span>🇬🇧</span> English</div>
+                    <div class="lang-option" data-lang="ps"><span>🇦🇫</span> پښتو</div>
+                </div>
+            </div>
+            <button class="theme-btn" id="themeBtn"><i class="fas fa-moon"></i></button>
+        </div>
+    </nav>
+
+    <div class="hero">
+        <div class="glass-3d hero-card">
+            <div class="badge-3d"><i class="fas fa-star-of-life"></i> <span data-key="trusted">خدمات معتبر مهاجرت</span>
+            </div>
+            <img src="images/kha.jpg" class="hero-logo-3d" alt="Visa Guide">
+            <h1 class="hero-title" data-key="heroTitle">خدمات مهاجرت برای افغان‌ها</h1>
+            <div class="hero-desc" id="heroDesc"><strong>VISA GUIDE AF</strong> بزرگترین مرجع مشاوره مهاجرت و ثبت‌نام
+                ویزای بشردوستانه برای <strong>افغان‌ها</strong> — همراه مطمئن شما تا امنیت و آرامش.</div>
+            <div style="display: flex; gap: 18px; justify-content: center; flex-wrap: wrap;">
+                <a href="services.html" class="btn-3d"><i class="fas fa-passport"></i> <span
+                        data-key="seeServices">مشاهده خدمات</span></a>
+                <a href="contact.html" class="btn-3d" style="background: var(--accent);"><i class="fas fa-headset"></i>
+                    <span data-key="getHelp">دریافت مشاوره</span></a>
+            </div>
+        </div>
     </div>
-  </div>
 
-  <!-- STATS -->
-  <div class="stats-container">
-    <div class="glass stat-card">
-      <div class="stat-num" style="color:#b8a0ff">۵۰۰۰+</div>
-      <div style="font-size:0.85rem;color:var(--text-muted)" data-k="stat1">پرونده موفق</div>
+    <div class="stats-3d">
+        <div class="glass-3d stat-item">
+            <div class="stat-number" id="statNum1">۵۰۰۰+</div>
+            <div class="stat-label" data-key="stat1">پرونده موفق</div>
+        </div>
+        <div class="glass-3d stat-item">
+            <div class="stat-number" id="statNum2">۱۵+</div>
+            <div class="stat-label" data-key="stat2">کشور مقصد</div>
+        </div>
+        <div class="glass-3d stat-item">
+            <div class="stat-number" id="statNum3">۲۴/۷</div>
+            <div class="stat-label" data-key="stat3">پشتیبانی آنلاین</div>
+        </div>
+        <div class="glass-3d stat-item">
+            <div class="stat-number" id="statNum4">۱۰+</div>
+            <div class="stat-label" data-key="stat4">سال تجربه</div>
+        </div>
     </div>
-    <div class="glass stat-card">
-      <div class="stat-num" style="color:#06d6a0">۱۵+</div>
-      <div style="font-size:0.85rem;color:var(--text-muted)" data-k="stat2">کشور مقصد</div>
+
+    <div class="section-header">
+        <h2 class="section-title-3d" data-key="latestNews">آخرین اخبار</h2>
     </div>
-    <div class="glass stat-card">
-      <div class="stat-num" style="color:#ffd166">۲۴/۷</div>
-      <div style="font-size:0.85rem;color:var(--text-muted)" data-k="stat3">پشتیبانی آنلاین</div>
-    </div>
-    <div class="glass stat-card">
-      <div class="stat-num" style="color:#ff6b6b">۱۰+</div>
-      <div style="font-size:0.85rem;color:var(--text-muted)" data-k="stat4">سال تجربه</div>
-    </div>
-  </div>
+    <div class="news-grid" id="newsGrid"></div>
 
-  <!-- NEWS -->
-  <div style="max-width:1200px;margin:0 auto;padding:0 16px">
-    <h2 class="section-title" data-k="latestNews">آخرین اخبار</h2>
-    <div class="cards-grid" id="newsGrid"></div>
-  </div>
+    <footer class="footer-3d">
+        <div class="footer-inner">
+            <div class="footer-col">
+                <h4 data-key="footTitle1">خدمات مهاجرت</h4>
+                <p><i class="fas fa-check-circle"></i> <span data-key="footDesc1">معتبرترین خدمات در افغانستان</span>
+                </p>
+                <p><i class="fas fa-globe"></i> <span data-key="footDesc2">خدمات مهاجرتی جهانی</span></p>
+            </div>
+            <div class="footer-col">
+                <h4 data-key="footTitle2">تماس با ما</h4>
+                <p><i class="fas fa-map-marker-alt"></i> <span data-key="footAddr">ایبک، سمنگان، افغانستان</span></p>
+                <p><i class="fas fa-phone-alt"></i> 0792665622</p>
+                <p><i class="fas fa-envelope"></i> visa.guide.af.123@gmail.com</p>
+            </div>
+            <div class="footer-col">
+                <h4 data-key="footTitle3">شبکه‌های اجتماعی</h4>
+                <a href="https://whatsapp.com/channel/0029Vae7U29AzNbpZIv5T81R" target="_blank"><i
+                        class="fab fa-whatsapp"></i> WhatsApp</a>
+                <a href="https://t.me/visaguidee" target="_blank"><i class="fab fa-telegram"></i> Telegram</a>
+                <a href="https://www.facebook.com/profile.php?id=61589943461514" target="_blank"><i
+                        class="fab fa-facebook-f"></i> Facebook</a>
+                <a href="https://www.instagram.com/sarfraz_refugee_service" target="_blank"><i
+                        class="fab fa-instagram"></i> Instagram</a>
+            </div>
+        </div>
+        <div class="footer-bottom"><span data-key="copy">© 2026 VISA GUIDE AF — همه حقوق محفوظ است</span></div>
+    </footer>
 
+    <script>
+        // ========== MULTILINGUAL DATA ==========
+        const T = {
+            fa: {
+                home: "خانه", services: "خدمات", ai: "هوش مصنوعی", contact: "تماس", faq: "سوالات", news: "اخبار",
+                trusted: "خدمات معتبر مهاجرت", heroTitle: "خدمات مهاجرت برای افغان‌ها",
+                heroDesc: '<strong>VISA GUIDE AF</strong> بزرگترین مرجع مشاوره مهاجرت و ثبت‌نام ویزای بشردوستانه برای <strong>افغان‌ها</strong> — همراه مطمئن شما تا امنیت و آرامش.',
+                seeServices: "مشاهده خدمات", getHelp: "دریافت مشاوره",
+                stat1: "پرونده موفق", stat2: "کشور مقصد", stat3: "پشتیبانی آنلاین", stat4: "سال تجربه",
+                latestNews: "آخرین اخبار",
+                footTitle1: "خدمات مهاجرت", footDesc1: "معتبرترین خدمات در افغانستان", footDesc2: "خدمات مهاجرتی جهانی",
+                footTitle2: "تماس با ما", footAddr: "ایبک، سمنگان، افغانستان", footTitle3: "شبکه‌های اجتماعی",
+                copy: "© 2026 VISA GUIDE AF — همه حقوق محفوظ است", readMore: "بیشتر بخوانید", breaking: "لحظاتی پیش"
+            },
+            en: {
+                home: "Home", services: "Services", ai: "AI Assistant", contact: "Contact", faq: "FAQ", news: "News",
+                trusted: "Trusted Migration Services", heroTitle: "Migration Services for Afghans",
+                heroDesc: '<strong>VISA GUIDE AF</strong> — the largest immigration consulting center for <strong>Afghans</strong>. Your trusted partner to safety and peace.',
+                seeServices: "View Services", getHelp: "Get Consultation",
+                stat1: "Successful Cases", stat2: "Destination Countries", stat3: "24/7 Support", stat4: "Years Experience",
+                latestNews: "Latest News",
+                footTitle1: "Immigration Services", footDesc1: "Most reliable services in Afghanistan", footDesc2: "Global immigration services",
+                footTitle2: "Contact Us", footAddr: "Aibak, Samangan, Afghanistan", footTitle3: "Social Networks",
+                copy: "© 2026 VISA GUIDE AF — All rights reserved", readMore: "Read More", breaking: "Breaking"
+            },
+            ps: {
+                home: "کور", services: "خدمات", ai: "AI", contact: "اړیکه", faq: "پوښتنې", news: "خبرونه",
+                trusted: "د مهاجرت باوري خدمات", heroTitle: "د افغانانو لپاره د مهاجرت خدمات",
+                heroDesc: '<strong>VISA GUIDE AF</strong> د افغانانو لپاره ترټولو لوی د کډوالۍ مرکز — ستاسو باوري ملګری.',
+                seeServices: "خدمات وګورئ", getHelp: "مشوره ترلاسه کړئ",
+                stat1: "بریالي قضیې", stat2: "مقصد هیوادونه", stat3: "آنلاین ملاتړ", stat4: "کلونه تجربه",
+                latestNews: "وروستي خبرونه",
+                footTitle1: "د کډوالۍ خدمات", footDesc1: "افغانستان کې ترټولو معتبر خدمات", footDesc2: "نړیوال د کډوالۍ خدمات",
+                footTitle2: "اړیکه", footAddr: "ایبک, سمنګان، افغانستان", footTitle3: "ټولنیزې شبکې",
+                copy: "© 2026 VISA GUIDE AF — ټول حقونه خوندي", readMore: "نور ولولئ", breaking: "شیبې مخکې"
+            }
+        };
 
-  <footer class="footer">
-    <div class="footer-inner">
-      <div class="footer-col">
-        <h4 data-k="footTitle1">خدمات مهاجرت</h4>
-        <p><i class="fas fa-check-circle" style="color:var(--success)"></i> <span data-k="footDesc1">معتبرترین خدمات در
-            افغانستان</span></p>
-        <p><i class="fas fa-globe" style="color:#38bdf8"></i> <span data-k="footDesc2">خدمات مهاجرتی جهانی</span></p>
-      </div>
-      <div class="footer-col">
-        <h4 data-k="footTitle2">تماس با ما</h4>
-        <p><i class="fas fa-map-marker-alt" style="color:#f59e0b"></i> <span data-k="footAddr">ایبک، سمنگان،
-            افغانستان</span></p>
-        <p><i class="fas fa-phone-alt" style="color:#10b981"></i> 0792665622</p>
-        <p><i class="fas fa-envelope" style="color:#ef4444"></i> visa.guide.af.123@gmail.com</p>
-      </div>
-      <div class="footer-col">
-        <h4 data-k="footTitle3">شبکه‌های اجتماعی</h4>
-        <a href="https://whatsapp.com/channel/0029Vae7U29AzNbpZIv5T81R" target="_blank"><i class="fab fa-whatsapp"
-            style="color:#25d366"></i> WhatsApp</a>
-        <a href="https://t.me/visaguidee" target="_blank"><i class="fab fa-telegram" style="color:#29b6f6"></i>
-          Telegram</a>
-        <a href="https://www.facebook.com/profile.php?id=61589943461514" target="_blank"><i class="fab fa-facebook-f"
-            style="color:#1877f2"></i> Facebook</a>
-        <a href="https://www.instagram.com/sarfraz_refugee_service" target="_blank"><i class="fab fa-instagram"
-            style="color:#e1306c"></i> Instagram</a>
-      </div>
-    </div>
-    <div class="footer-bottom"><span data-k="copy">© 2026 VISA GUIDE AF — همه حقوق محفوظ است</span></div>
-  </footer>
+        const statValues = {
+            fa: { num1: "۵۰۰۰+", num2: "۱۵+", num3: "۲۴/۷", num4: "۱۰+" },
+            en: { num1: "5000+", num2: "15+", num3: "24/7", num4: "10+" },
+            ps: { num1: "۵۰۰۰+", num2: "۱۵+", num3: "۲۴/۷", num4: "۱۰+" }
+        };
 
-  <script>
-    const T = {
-      fa: { home: "خانه", services: "خدمات", ai: "هوش مصنوعی", contact: "تماس", faq: "سوالات", news: "اخبار", trusted: "خدمات معتبر مهاجرت", heroTitle: "خدمات مهاجرت برای افغان‌ها", heroDesc: '<strong>VISA GUIDE AF</strong> بزرگترین مرجع مشاوره مهاجرت و ثبت‌نام ویزای بشردوستانه برای <strong>افغان‌ها</strong> — همراه مطمئن شما تا امنیت و آرامش.', seeServices: "مشاهده خدمات", getHelp: "دریافت مشاوره", stat1: "پرونده موفق", stat2: "کشور مقصد", stat3: "پشتیبانی آنلاین", stat4: "سال تجربه", latestNews: "آخرین اخبار", ourServices: "خدمات ما", footTitle1: "خدمات مهاجرت", footDesc1: "معتبرترین خدمات در افغانستان", footDesc2: "خدمات مهاجرتی جهانی", footTitle2: "تماس با ما", footAddr: "ایبک، سمنگان، افغانستان", footTitle3: "شبکه‌های اجتماعی", copy: "© 2026 VISA GUIDE AF — همه حقوق محفوظ است", readMore: "بیشتر بخوانید", breaking: "لحظاتی پیش" },
-      en: { home: "Home", services: "Services", ai: "AI Assistant", contact: "Contact", faq: "FAQ", news: "News", trusted: "Trusted Migration Services", heroTitle: "Migration Services for Afghans", heroDesc: '<strong>VISA GUIDE AF</strong> — the largest immigration consulting center for <strong>Afghans</strong>. Your trusted partner to safety and peace.', seeServices: "View Services", getHelp: "Get Consultation", stat1: "Successful Cases", stat2: "Destination Countries", stat3: "Online Support", stat4: "Years Experience", latestNews: "Latest News", ourServices: "Our Services", footTitle1: "Immigration Services", footDesc1: "Most reliable services in Afghanistan", footDesc2: "Global immigration services", footTitle2: "Contact Us", footAddr: "Aibak, Samangan, Afghanistan", footTitle3: "Social Networks", copy: "© 2026 VISA GUIDE AF — All rights reserved", readMore: "Read More", breaking: "Moments ago" },
-      ps: { home: "کور", services: "خدمات", ai: "AI", contact: "اړیکه", faq: "پوښتنې", news: "خبرونه", trusted: "د مهاجرت باوري خدمات", heroTitle: "د افغانانو لپاره د مهاجرت خدمات", heroDesc: '<strong>VISA GUIDE AF</strong> د افغانانو لپاره ترټولو لوی د کډوالۍ مرکز — ستاسو باوري ملګری.', seeServices: "خدمات وګورئ", getHelp: "مشوره ترلاسه کړئ", stat1: "بریالي قضیې", stat2: "مقصد هیوادونه", stat3: "آنلاین ملاتړ", stat4: "کلونه تجربه", latestNews: "وروستي خبرونه", ourServices: "زموږ خدمات", footTitle1: "د کډوالۍ خدمات", footDesc1: "افغانستان کې ترټولو معتبر خدمات", footDesc2: "نړیوال د کډوالۍ خدمات", footTitle2: "اړیکه", footAddr: "ایبک, سمنګان، افغانستان", footTitle3: "ټولنیزې شبکې", copy: "© 2026 VISA GUIDE AF — ټول حقونه خوندي", readMore: "نور ولولئ", breaking: "شیبې مخکې" }
-    };
+        const newsData = [
+            { fa: "خبر فوری: ممنوعیت پناهندگان آمریکا وارد مرحله سرنوشت‌ساز شد", en: "Breaking: US refugee ban enters final stage", ps: "بیړنی خبر: د امریکا پناهندګۍ بند وروستي پړاو ته ننوت", img: "news/pic/p.jpg", link: "news/7.html", breaking: true, date: "۵ می ۲۰۲۶" },
+            { fa: "بلاتکلیفی ۱۱۰۰ افغان در کمپ قطر", en: "Uncertainty of 1100 Afghans in Qatar camp", ps: "د ۱۱۰۰ افغانانو ناڅرګنده حالت", img: "news/pic/us.jpg", link: "news/6.html", breaking: false, date: "۲۸ اپریل ۲۰۲۶" },
+            { fa: "افغان‌ها در قطر از اقدام ترامپ ابراز خیانت کردند", en: "Afghans in Qatar express betrayal over Trump plan", ps: "افغانان د ترامپ پلان خیانت بولي", img: "news/pic/qater.jpg", link: "news/1.html", breaking: false, date: "۲۵ اپریل" },
+            { fa: "طالبان به افغان‌های همراه آمریکا وعده عفو داد", en: "Taliban promises amnesty to Afghans who helped US", ps: "طالبان هغو افغانانو ته بښنه ورکوي", img: "news/pic/talib.webp", link: "news/2.html", breaking: false, date: "۲۵ اپریل" },
+            { fa: "سرنوشت نامعلوم پناهجویان در قطر", en: "Unknown fate of Afghan refugees in Qatar", ps: "د کډوالو ناڅرګند برخلیک", img: "news/pic/afghan.jpg", link: "news/3.html", breaking: false, date: "۲۷ اپریل" },
+            { fa: "پناهجوی افغان در آستانه اخراج از آمریکا", en: "Afghan refugee faces deportation from US", ps: "افغان پناه غوښتونکی د شړلو ګواښ", img: "news/pic/homeland.jpg", link: "news/4.html", breaking: false, date: "۲۷ اپریل" }
+        ];
 
-    const news = [
-      { fa: "خبر فوری: ممنوعیت پناهندگان آمریکا وارد مرحله سرنوشت‌ساز شد", en: "Breaking: US refugee ban enters final stage", ps: "بیړنی خبر: د امریکا پناهندګۍ بند وروستي پړاو ته ننوت", img: "news/pic/p.jpg", link: "news/7.html", breaking: true, date: "۵ می ۲۰۲۶" },
-      { fa: "بلاتکلیفی ۱۱۰۰ افغان در کمپ قطر", en: "Uncertainty of 1100 Afghans in Qatar camp", ps: "د ۱۱۰۰ افغانانو ناڅرګنده حالت", img: "news/pic/us.jpg", link: "news/6.html", breaking: false, date: "۲۸ اپریل ۲۰۲۶" },
-      { fa: "افغان‌ها در قطر از اقدام ترامپ ابراز خیانت کردند", en: "Afghans in Qatar express betrayal over Trump plan", ps: "افغانان د ترامپ پلان خیانت بولي", img: "news/pic/qater.jpg", link: "news/1.html", breaking: false, date: "۲۵ اپریل" },
-      { fa: "طالبان به افغان‌های همراه آمریکا وعده عفو داد", en: "Taliban promises amnesty to Afghans who helped US", ps: "طالبان هغو افغانانو ته بښنه ورکوي", img: "news/pic/talib.webp", link: "news/2.html", breaking: false, date: "۲۵ اپریل" },
-      { fa: "سرنوشت نامعلوم پناهجویان در قطر", en: "Unknown fate of Afghan refugees in Qatar", ps: "د کډوالو ناڅرګند برخلیک", img: "news/pic/afghan.jpg", link: "news/3.html", breaking: false, date: "۲۷ اپریل" },
-      { fa: "پناهجوی افغان در آستانه اخراج از آمریکا", en: "Afghan refugee faces deportation from US", ps: "افغان پناه غوښتونکی د شړلو ګواښ", img: "news/pic/homeland.jpg", link: "news/4.html", breaking: false, date: "۲۷ اپریل" }
-    ];
+        let currentLang = 'fa';
 
-    const services = [
-      { icon: "fas fa-passport", color: "#b8a0ff", fa: "خدمات ویزا", en: "Visa Services", ps: "د ویزې خدمات", link: "visa/visa.html" },
-      { icon: "fas fa-handshake", color: "#06d6a0", fa: "مشاوره مهاجرت", en: "Migration Consulting", ps: "د مهاجرت مشوره", link: "contact/consulting.html" },
-      { icon: "fas fa-university", color: "#ffd166", fa: "بورسیه تحصیلی", en: "Scholarships", ps: "سکالرشپونه", link: "services.html" },
-      { icon: "fas fa-globe-europe", color: "#ff6b6b", fa: "پناهندگی", en: "Asylum Applications", ps: "د پناه غوښتنه", link: "services.html" },
-      { icon: "fas fa-file-alt", color: "#29b6f6", fa: "مدارک رسمی", en: "Official Documents", ps: "رسمي اسناد", link: "services.html" },
-      { icon: "fas fa-robot", color: "#e879f9", fa: "مشاور هوش مصنوعی", en: "AI Advisor", ps: "AI مشاور", link: "ai.html" }
-    ];
+        function renderNews() {
+            const grid = document.getElementById('newsGrid');
+            if (!grid) return;
+            grid.innerHTML = newsData.map(n => `
+                <div class="glass-3d news-card" onclick="window.location.href='${n.link}'">
+                    <img src="${n.img}" class="news-img" alt="news">
+                    <div class="news-body">
+                        <div class="news-title">${n[currentLang]}</div>
+                        <div class="news-meta"><i class="fas fa-calendar-alt"></i> ${n.date} ${n.breaking ? `🔴 ${T[currentLang].breaking}` : ''}</div>
+                        <div class="btn-sm">${T[currentLang].readMore} →</div>
+                    </div>
+                </div>
+            `).join('');
+        }
 
-    let lang = 'fa';
+        function updateStatsNumbers(lang) {
+            const vals = statValues[lang];
+            if (vals) {
+                document.getElementById('statNum1').innerText = vals.num1;
+                document.getElementById('statNum2').innerText = vals.num2;
+                document.getElementById('statNum3').innerText = vals.num3;
+                document.getElementById('statNum4').innerText = vals.num4;
+            }
+        }
 
-    function applyLang(l) {
-      lang = l;
-      document.querySelectorAll('[data-k]').forEach(el => {
-        const k = el.getAttribute('data-k');
-        if (T[l][k] !== undefined) el.innerHTML = T[l][k];
-      });
-      document.getElementById('heroDesc').innerHTML = T[l].heroDesc;
-      renderNews(); renderServices();
-      document.querySelectorAll('.lang-btn').forEach(b => b.classList.toggle('active', b.getAttribute('data-l') === l));
-    }
+        function applyLanguage(lang) {
+            currentLang = lang;
+            document.querySelectorAll('[data-key]').forEach(el => {
+                const key = el.getAttribute('data-key');
+                if (T[lang][key]) el.innerHTML = T[lang][key];
+            });
+            document.getElementById('heroDesc').innerHTML = T[lang].heroDesc;
+            updateStatsNumbers(lang);
+            renderNews();
+            const labelMap = { fa: "فارسی", en: "English", ps: "پښتو" };
+            document.getElementById('currentLangLabel').innerText = labelMap[lang];
+        }
 
-    function renderNews() {
-      const g = document.getElementById('newsGrid'); if (!g) return;
-      g.innerHTML = news.map(n => `
-    <div class="card glass${n.breaking ? ' breaking-news' : ''}">
-      ${n.breaking ? `<div class="breaking-badge"><i class="fas fa-broadcast-tower"></i></div>` : ''}
-      <img src="${n.img}" class="card-img" alt="">
-      <div class="card-body">
-        <div class="card-title">${n[lang === 'fa' ? 'fa' : lang === 'en' ? 'en' : 'ps']}</div>
-        <div class="card-meta"><i class="fas fa-calendar-alt"></i> ${n.date}${n.breaking ? ` 🔴 ${T[lang].breaking}` : ''}</div>
-        <a href="${n.link}" class="card-btn-small">${T[lang].readMore} →</a>
-      </div>
-    </div>`).join('');
-    }
+        // ========== THEME TOGGLE ==========
+        const themeBtn = document.getElementById('themeBtn');
+        const savedTheme = localStorage.getItem('srs-theme') || 'dark';
+        document.body.className = savedTheme === 'dark' ? 'dark-mode' : 'light-mode';
+        themeBtn.innerHTML = savedTheme === 'dark' ? '<i class="fas fa-moon"></i>' : '<i class="fas fa-sun"></i>';
+        themeBtn.addEventListener('click', () => {
+            const isDark = document.body.classList.contains('dark-mode');
+            document.body.className = isDark ? 'light-mode' : 'dark-mode';
+            themeBtn.innerHTML = isDark ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+            localStorage.setItem('srs-theme', isDark ? 'light' : 'dark');
+        });
 
-    function renderServices() {
-      const g = document.getElementById('servicesPreview'); if (!g) return;
-      g.innerHTML = services.map(s => `
-    <a href="${s.link}" class="glass" style="padding:1.5rem;text-align:center;text-decoration:none;display:block;border-radius:20px;">
-      <div style="font-size:2rem;margin-bottom:0.8rem;color:${s.color}"><i class="${s.icon}"></i></div>
-      <div style="font-size:0.9rem;font-weight:600;color:var(--text)">${s[lang === 'fa' ? 'fa' : lang === 'en' ? 'en' : 'ps']}</div>
-    </a>`).join('');
-    }
+        // ========== LANGUAGE GLOBE ==========
+        const globe = document.getElementById('langGlobe');
+        const trigger = document.getElementById('globeTrigger');
+        trigger.addEventListener('click', (e) => { e.stopPropagation(); globe.classList.toggle('open'); });
+        document.addEventListener('click', (e) => { if (!globe.contains(e.target)) globe.classList.remove('open'); });
+        document.querySelectorAll('.lang-option').forEach(opt => {
+            opt.addEventListener('click', (e) => {
+                const newLang = opt.getAttribute('data-lang');
+                if (newLang) applyLanguage(newLang);
+                globe.classList.remove('open');
+            });
+        });
 
-    // particles
-    const pc = document.getElementById('particles');
-    for (let i = 0; i < 60; i++) {
-      const p = document.createElement('div'); p.className = 'p';
-      const s = Math.random() * 10 + 3;
-      p.style.cssText = `width:${s}px;height:${s}px;left:${Math.random() * 100}%;top:${Math.random() * 100}%;animation-delay:${Math.random() * 12}s;animation-duration:${12 + Math.random() * 10}s`;
-      pc.appendChild(p);
-    }
+        // ========== MOBILE MENU (Hamburger -> X) ==========
+        const menuBtn = document.getElementById('menuBtn');
+        const navLinks = document.getElementById('navLinks');
+        function closeMenu() {
+            navLinks.classList.remove('open');
+            if (menuBtn) menuBtn.innerHTML = '☰';
+        }
+        menuBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const isOpen = navLinks.classList.contains('open');
+            if (isOpen) closeMenu();
+            else { navLinks.classList.add('open'); menuBtn.innerHTML = '✕'; }
+        });
+        document.addEventListener('click', (e) => {
+            if (!navLinks.contains(e.target) && !menuBtn.contains(e.target) && navLinks.classList.contains('open')) closeMenu();
+        });
+        navLinks.querySelectorAll('a').forEach(link => link.addEventListener('click', closeMenu));
 
-    // theme
-    const tb = document.getElementById('themeBtn');
-    const saved = localStorage.getItem('srs-theme') || 'dark';
-    document.body.className = saved + '-mode';
-    tb.innerHTML = saved === 'dark' ? '<i class="fas fa-moon"></i>' : '<i class="fas fa-sun"></i>';
-    tb.addEventListener('click', () => {
-      const isDark = document.body.classList.contains('dark-mode');
-      document.body.className = (isDark ? 'light' : 'dark') + '-mode';
-      tb.innerHTML = isDark ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
-      localStorage.setItem('srs-theme', isDark ? 'light' : 'dark');
-    });
-
-    // lang
-    document.querySelectorAll('.lang-btn').forEach(b => b.addEventListener('click', () => applyLang(b.getAttribute('data-l'))));
-    // menu
-    document.getElementById('menuBtn').addEventListener('click', () => document.getElementById('navLinks').classList.toggle('open'));
-
-    applyLang('fa');
-  </script>
+        // ========== INITIAL ==========
+        applyLanguage('fa');
+    </script>
 </body>
 
 </html>

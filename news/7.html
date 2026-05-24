@@ -3,11 +3,9 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>خبر فوری: پرونده ممنوعیت پناهندگان آمریکا | VISA GUIDE AF</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-
-    <!-- فونت استاندارد وزیرمتن برای بهبود نمایش متون فارسی، دری و پشتو -->
     <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;700;800&display=swap"
         rel="stylesheet">
 
@@ -50,7 +48,9 @@
             background-color: var(--bg);
             color: var(--text);
             overflow-x: hidden;
-            perspective: 1000px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
         }
 
         /* جلوه ذرات و اورب‌های سه‌بعدی پس‌زمینه */
@@ -108,7 +108,7 @@
             }
         }
 
-        /* منوی ناوبری مدرن */
+        /* ========== NAVBAR ========== */
         .navbar {
             position: sticky;
             top: 15px;
@@ -121,7 +121,6 @@
             padding: 12px 24px;
             background: rgba(15, 23, 42, 0.4);
             backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
             border: 1px solid var(--border);
             border-radius: 50px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
@@ -165,17 +164,15 @@
 
         .light-mode .logo-name {
             background: linear-gradient(120deg, #0f172a, #475569);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
         }
 
-        .nav-menu {
+        .nav-links {
             display: flex;
             list-style: none;
             gap: 15px;
         }
 
-        .nav-menu a {
+        .nav-links a {
             display: flex;
             align-items: center;
             gap: 8px;
@@ -186,29 +183,24 @@
             font-weight: 500;
             border-radius: 30px;
             position: relative;
-            overflow: hidden;
             transition: all 0.3s ease;
         }
 
-        .nav-menu a img {
+        .nav-links a img {
             width: 18px;
             height: 18px;
-            transition: transform 0.3s ease, filter 0.3s ease;
+            transition: filter 0.3s;
         }
 
-        .nav-menu a:hover img {
-            transform: translateY(-2px);
-        }
-
-        .dark-mode .nav-menu a img {
+        .dark-mode .nav-links a img {
             filter: brightness(0) invert(1);
         }
 
-        .light-mode .nav-menu a img {
+        .light-mode .nav-links a img {
             filter: brightness(0);
         }
 
-        .nav-menu a::after {
+        .nav-links a::after {
             content: '';
             position: absolute;
             bottom: 2px;
@@ -217,49 +209,110 @@
             height: 2px;
             background: linear-gradient(90deg, #7c3aed, #38bdf8);
             border-radius: 2px;
-            transition: width 0.3s ease, transform 0.3s ease;
+            transition: width 0.3s ease;
             transform: translateX(-50%);
         }
 
-        .nav-menu a:hover::after {
+        .nav-links a:hover::after {
             width: 60%;
         }
 
-        .dark-mode .nav-menu a {
+        .dark-mode .nav-links a {
             color: #e2e8f0;
-            text-shadow: 0 0 10px rgba(255, 255, 255, 0.05);
         }
 
-        .light-mode .nav-menu a {
+        .dark-mode .nav-links a:hover {
+            color: #ffffff;
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .light-mode .nav-links a {
             color: #334155;
         }
 
-        .light-mode .nav-menu a:hover {
+        .light-mode .nav-links a:hover {
             color: #0f172a;
             background: rgba(0, 0, 0, 0.05);
+        }
+
+        /* ========== LANGUAGE GLOBE DROPDOWN ========== */
+        .lang-dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .lang-trigger {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid var(--border);
+            border-radius: 40px;
+            padding: 6px 14px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text);
+            font-size: 0.85rem;
+            font-weight: 500;
+            transition: 0.2s;
+        }
+
+        .lang-trigger i {
+            font-size: 1rem;
+            color: #38bdf8;
+        }
+
+        .lang-trigger:hover {
+            background: rgba(124, 58, 237, 0.2);
+            border-color: #7c3aed;
+        }
+
+        .lang-menu {
+            position: absolute;
+            top: 110%;
+            left: 0;
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 8px 0;
+            min-width: 130px;
+            z-index: 300;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.25s ease;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .light-mode .lang-menu {
+            background: rgba(255, 255, 255, 0.98);
+        }
+
+        .lang-dropdown.open .lang-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .lang-option {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 8px 16px;
+            cursor: pointer;
+            transition: background 0.2s;
+            color: var(--text);
+            font-size: 0.85rem;
+        }
+
+        .lang-option:hover {
+            background: rgba(124, 58, 237, 0.2);
         }
 
         .nav-actions {
             display: flex;
             align-items: center;
             gap: 10px;
-        }
-
-        .lang-btn {
-            background: transparent;
-            border: 1px solid var(--border);
-            color: var(--text-muted);
-            padding: 6px 12px;
-            border-radius: 30px;
-            cursor: pointer;
-            font-size: 0.8rem;
-            transition: all 0.2s ease;
-        }
-
-        .lang-btn.active {
-            color: var(--text);
-            background: rgba(255, 255, 255, 0.1);
-            border-color: #7c3aed;
         }
 
         .theme-btn {
@@ -276,7 +329,7 @@
             box-shadow: 0 4px 10px var(--primary-glow);
         }
 
-        .menu-toggle {
+        .menu-btn {
             display: none;
             background: none;
             border: none;
@@ -285,23 +338,20 @@
             cursor: pointer;
         }
 
-        /* کادر شیشه‌ای محتوای مقاله */
+        /* ========== ARTICLE CONTENT ========== */
         .article-container {
             max-width: 800px;
             margin: 40px auto 80px auto;
-            padding: 2.5rem;
+            padding: 2rem;
             background: var(--panel);
             backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
             border: 1px solid var(--border);
-            border-radius: 28px;
-            box-shadow: 0 20px 50px -10px rgba(0, 0, 0, 0.3);
+            border-radius: 32px;
             animation: fadeInUp 0.6s ease-out;
         }
 
         .light-mode .article-container {
             background: rgba(255, 255, 255, 0.85);
-            box-shadow: 0 20px 50px -10px rgba(0, 0, 0, 0.05);
         }
 
         @keyframes fadeInUp {
@@ -316,7 +366,6 @@
             }
         }
 
-        /* نشان خبر فوری با استایل درخشان انیمیشنی */
         .breaking-badge-header {
             display: inline-flex;
             align-items: center;
@@ -357,37 +406,20 @@
             margin-bottom: 1rem;
         }
 
-        .light-mode .article-category {
-            color: #4f46e5;
-        }
-
         .article-title {
             font-size: 1.8rem;
             font-weight: 800;
             margin-bottom: 1rem;
-            line-height: 1.45;
+            line-height: 1.4;
             color: var(--text);
         }
 
         .article-deck {
-            font-size: 1.1rem;
+            font-size: 1rem;
             color: var(--text-muted);
             margin-bottom: 1.5rem;
-            line-height: 1.65;
-        }
-
-        html[dir="rtl"] .article-deck {
             border-right: 3px solid #ef4444;
-            border-left: none;
             padding-right: 1rem;
-            padding-left: 0;
-        }
-
-        html[dir="ltr"] .article-deck {
-            border-left: 3px solid #ef4444;
-            border-right: none;
-            padding-left: 1rem;
-            padding-right: 0;
         }
 
         .article-byline {
@@ -419,17 +451,15 @@
         .author-name {
             font-weight: 700;
             color: var(--text);
-            display: block;
         }
 
         .author-title {
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             color: var(--text-muted);
-            display: block;
         }
 
         .article-date {
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             color: var(--text-muted);
         }
 
@@ -437,7 +467,6 @@
             width: 100%;
             border-radius: 16px;
             margin: 1.5rem 0;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
         }
 
         .image-caption {
@@ -449,43 +478,33 @@
         }
 
         .article-content {
-            font-size: 1.05rem;
-            line-height: 1.9;
+            font-size: 1rem;
+            line-height: 1.8;
             color: var(--text);
         }
 
         .article-content p {
-            margin-bottom: 1.2rem;
+            margin-bottom: 1rem;
         }
 
         .article-content blockquote {
+            border-right: 4px solid #7c3aed;
             padding: 1rem 1.5rem;
             margin: 1.5rem 0;
             background: rgba(255, 255, 255, 0.02);
             font-style: italic;
+            border-radius: 8px;
             color: var(--text);
-            border-radius: 4px;
-        }
-
-        html[dir="rtl"] .article-content blockquote {
-            border-right: 4px solid #7c3aed;
-            border-left: none;
-        }
-
-        html[dir="ltr"] .article-content blockquote {
-            border-left: 4px solid #7c3aed;
-            border-right: none;
         }
 
         .light-mode .article-content blockquote {
             background: #f8fafc;
-            border-color: #4f46e5;
         }
 
-        /* باکس هشدار چندزبانه */
         .warning-box {
             background: rgba(245, 158, 11, 0.08);
-            padding: 1.2rem;
+            border-right: 4px solid #f59e0b;
+            padding: 1rem;
             border-radius: 16px;
             margin: 1.5rem 0;
             color: #fbbf24;
@@ -495,35 +514,24 @@
             gap: 10px;
         }
 
-        html[dir="rtl"] .warning-box {
-            border-right: 4px solid #f59e0b;
-            border-left: none;
-        }
-
-        html[dir="ltr"] .warning-box {
-            border-left: 4px solid #f59e0b;
-            border-right: none;
-        }
-
         .light-mode .warning-box {
             background: #fffbeb;
             color: #92400e;
         }
 
-        /* دکمه بازگشت سه بعدی */
         .back-button {
             display: inline-flex;
-            align-items: center;
-            gap: 8px;
             margin-top: 2rem;
-            padding: 12px 24px;
+            padding: 10px 22px;
             color: white;
             background: var(--primary);
             text-decoration: none;
-            border-radius: 30px;
+            border-radius: 40px;
             font-weight: 600;
             box-shadow: 0 4px 10px var(--primary-glow);
-            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transition: all 0.2s;
+            align-items: center;
+            gap: 8px;
         }
 
         .back-button:hover {
@@ -531,17 +539,16 @@
             box-shadow: 0 8px 20px var(--primary-glow);
         }
 
-        /* پانویس (Footer) متناسب با حالت روز و شب */
+        /* ========== FOOTER ========== */
         .footer {
             background: rgba(10, 15, 30, 0.8);
             border-top: 1px solid var(--border);
             padding: 60px 16px 20px 16px;
-            margin-top: 100px;
+            margin-top: auto;
         }
 
         .light-mode .footer {
             background: #f1f5f9;
-            border-top: 1px solid rgba(0, 0, 0, 0.08);
         }
 
         .footer-inner {
@@ -558,10 +565,10 @@
             font-weight: 700;
             margin-bottom: 20px;
             color: var(--text);
-            position: relative;
         }
 
-        .footer-col p {
+        .footer-col p,
+        .footer-col a {
             color: var(--text-muted);
             font-size: 0.9rem;
             line-height: 1.8;
@@ -569,33 +576,13 @@
             display: flex;
             align-items: center;
             gap: 10px;
+            text-decoration: none;
             transition: transform 0.3s, color 0.3s;
         }
 
-        html[dir="rtl"] .footer-col p:hover {
-            transform: translateX(-5px);
-        }
-
-        html[dir="ltr"] .footer-col p:hover {
-            transform: translateX(5px);
-        }
-
-        .footer-col p:hover {
-            color: var(--text);
-        }
-
-        .footer-col a {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            color: var(--text-muted);
-            text-decoration: none;
-            font-size: 0.9rem;
-            margin-bottom: 12px;
-            transition: color 0.3s;
-        }
-
+        .footer-col p:hover,
         .footer-col a:hover {
+            transform: translateX(-5px);
             color: var(--text);
         }
 
@@ -609,11 +596,7 @@
             font-size: 0.85rem;
         }
 
-        .light-mode .footer-bottom {
-            border-top: 1px solid rgba(0, 0, 0, 0.08);
-        }
-
-        /* انیمیشن ذرات معلق */
+        /* ========== PARTICLES ========== */
         .particles {
             position: fixed;
             top: 0;
@@ -626,7 +609,7 @@
 
         .p {
             position: absolute;
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.08);
             border-radius: 50%;
             animation: rise 15s infinite linear;
         }
@@ -638,11 +621,11 @@
             }
 
             10% {
-                opacity: 1;
+                opacity: 0.5;
             }
 
             90% {
-                opacity: 1;
+                opacity: 0.5;
             }
 
             100% {
@@ -651,18 +634,18 @@
             }
         }
 
-        /* موبایل */
+        /* ========== RESPONSIVE ========== */
         @media (max-width: 768px) {
             .navbar {
                 width: 90%;
                 border-radius: 24px;
             }
 
-            .menu-toggle {
+            .menu-btn {
                 display: block;
             }
 
-            .nav-menu {
+            .nav-links {
                 display: none;
                 position: absolute;
                 top: 75px;
@@ -677,13 +660,13 @@
                 box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
             }
 
-            .light-mode .nav-menu {
+            .light-mode .nav-links {
                 background: rgba(255, 255, 255, 0.98);
             }
 
-            .nav-menu.active {
+            .nav-links.open {
                 display: flex;
-                animation: menuFadeIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+                animation: menuFadeIn 0.4s ease forwards;
             }
 
             @keyframes menuFadeIn {
@@ -702,8 +685,8 @@
                 font-size: 1.5rem;
             }
 
-            .article-deck {
-                font-size: 0.95rem;
+            .article-container {
+                padding: 1.5rem;
             }
 
             .article-byline {
@@ -714,12 +697,6 @@
             .footer-inner {
                 grid-template-columns: 1fr;
                 text-align: center;
-                gap: 30px;
-            }
-
-            .footer-col p,
-            .footer-col a {
-                justify-content: center;
             }
         }
     </style>
@@ -733,41 +710,44 @@
     <div class="bg-orb"></div>
     <div class="particles" id="particles"></div>
 
-    <!-- منوی بالایی همسان‌سازی شده -->
-    <nav class="navbar" id="navbar">
-        <div class="nav-container">
-            <a href="../index.html" class="logo-wrap">
-                <img src="../images/kha.jpg" alt="لوگو" class="logo-img">
-                <div class="logo-name">VISA<br>GUIDE AF</div>
-            </a>
-            <button class="menu-toggle">☰</button>
-            <ul class="nav-menu" id="navMenu">
-                <li><a href="../index.html"><img src="../images/home.png" alt=""> <span data-k="home">خانه</span></a>
-                </li>
-                <li><a href="../services.html"><img src="../images/customer.png" alt=""> <span
-                            data-k="services">خدمات</span></a></li>
-                <li><a href="../ai.html"><img src="../images/bot.png" alt=""> <span data-k="ai">هوش مصنوعی</span></a>
-                </li>
-                <li><a href="../contact.html"><img src="../images/call.png" alt=""> <span
-                            data-k="contact">تماس</span></a></li>
-                <li><a href="../faq.html"><img src="../images/f&a.png" alt=""> <span data-k="faq">سوالات</span></a></li>
-            </ul>
-            <div class="nav-actions">
-                <button class="lang-btn active" data-l="fa">🇦🇫 دری</button>
-                <button class="lang-btn" data-l="ps">پښتو</button>
-                <button class="lang-btn" data-l="en">🇬🇧 EN</button>
-                <button class="theme-btn" id="themeBtn"><i class="fas fa-sun"></i></button>
+    <!-- ========== NAVBAR ========== -->
+    <nav class="navbar">
+        <a href="../index.html" class="logo-wrap">
+            <img src="../images/kha.jpg" alt="logo">
+            <div class="logo-name">VISA<br>GUIDE AF</div>
+        </a>
+        <button class="menu-btn" id="menuBtn">☰</button>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="../index.html"><img src="../images/home.png"> <span data-key="home">خانه</span></a></li>
+            <li><a href="../services.html"><img src="../images/customer.png"> <span data-key="services">خدمات</span></a>
+            </li>
+            <li><a href="../ai.html"><img src="../images/ai.png"> <span data-key="ai">هوش مصنوعی</span></a></li>
+            <li><a href="../contact.html"><img src="../images/call.png"> <span data-key="contact">تماس</span></a></li>
+            <li><a href="../faq.html"><img src="../images/f&a.png"> <span data-key="faq">سوالات</span></a></li>
+            <li><a href="../news/day-news/day.html"><img src="../images/event.png"> <span
+                        data-key="news">اخبار</span></a></li>
+        </ul>
+        <div class="nav-actions">
+            <div class="lang-dropdown" id="langDropdown">
+                <div class="lang-trigger" id="langTrigger">
+                    <i class="fas fa-globe-americas"></i>
+                    <span id="currentLangLabel">فارسی</span>
+                    <i class="fas fa-chevron-down" style="font-size: 0.7rem;"></i>
+                </div>
+                <div class="lang-menu">
+                    <div class="lang-option" data-lang="fa"><span>🇦🇫</span> فارسی</div>
+                    <div class="lang-option" data-lang="en"><span>🇬🇧</span> English</div>
+                    <div class="lang-option" data-lang="ps"><span>🇦🇫</span> پښتو</div>
+                </div>
             </div>
+            <button class="theme-btn" id="themeBtn"><i class="fas fa-moon"></i></button>
         </div>
     </nav>
 
-    <!-- محتوای خبر شیشه‌ای -->
+    <!-- ========== ARTICLE CONTENT ========== -->
     <div class="article-container">
-        <div>
-            <span class="breaking-badge-header" id="breakingBadge"><i class="fas fa-broadcast-tower"></i> خبر
-                فوری</span>
-        </div>
-        <div class="article-category" data-k="category">حقوقی / مهاجرتی</div>
+        <div class="breaking-badge-header" id="breakingBadge"><i class="fas fa-broadcast-tower"></i> خبر فوری</div>
+        <div class="article-category" data-key="category">حقوقی / مهاجرتی</div>
         <h1 class="article-title" id="articleTitle">پرونده ممنوعیت پناهندگان آمریکا وارد مرحله سرنوشت‌ساز شد</h1>
         <div class="article-deck" id="articleDeck">در تازه‌ترین تحولات حقوقی، پرونده Pacito v. Trump که به چالش کشیدن
             سیاست‌های محدودکننده پذیرش پناهندگان در ایالات متحده را هدف قرار داده، وارد مرحله‌ای حساس و تعیین‌کننده شده
@@ -775,45 +755,43 @@
 
         <div class="article-byline">
             <div class="author-info">
-                <!-- تصویر آواتار ادمین به لوگوی اصلی تغییر یافت -->
-                <img src="../images/kha.jpg" alt="نویسنده" class="author-avatar-large">
+                <img src="../images/kha.jpg" alt="author" class="author-avatar-large">
                 <div class="author-details">
-                    <span class="author-name" data-k="author">VISA GUIDE AF Admin</span>
-                    <span class="author-title" data-k="authorTitle">مدیریت و گزارشگر</span>
+                    <span class="author-name" data-key="author">گزارشگر VISA GUIDE AF</span>
+                    <span class="author-title" data-key="authorTitle">گزارشگر و ادمین</span>
                 </div>
             </div>
             <div class="article-date" id="articleDate">🕒 ۵ می ۲۰۲۶ - ۱۰:۳۰ صبح</div>
         </div>
 
-        <img src="pic/p.jpg" alt="دادگاه مهاجرت آمریکا" class="featured-image"
-            onerror="this.src='https://via.placeholder.com/800x400?text=Court+Decision'">
+        <img src="pic/p.jpg" alt="دادگاه مهاجرت آمریکا" class="featured-image">
         <div class="image-caption" id="imageCaption">دادگاه فدرال آمریکا - تصمیم‌گیری درباره سرنوشت پناهندگان</div>
 
         <div class="article-content" id="articleContent">
-            <!-- محتوا به صورت داینامیک بر اساس زبان تغییر می‌کند -->
+            <!-- محتوا به صورت داینامیک از T بارگذاری می‌شود -->
         </div>
 
-        <a href="../index.html" class="back-button" data-k="backBtn">← بازگشت به صفحه اصلی</a>
+        <a href="../index.html" class="back-button" data-key="backBtn">← بازگشت به صفحه اصلی</a>
     </div>
 
-    <!-- فوتر ۳ ستونه هماهنگ -->
+    <!-- ========== FOOTER ========== -->
     <footer class="footer">
         <div class="footer-inner">
             <div class="footer-col">
-                <h4 data-k="footTitle1">خدمات مهاجرت</h4>
-                <p><i class="fas fa-check-circle" style="color:var(--success)"></i> <span data-k="footDesc1">معتبرترین
+                <h4 data-key="footTitle1">خدمات مهاجرت</h4>
+                <p><i class="fas fa-check-circle" style="color:var(--success)"></i> <span data-key="footDesc1">معتبرترین
                         خدمات در افغانستان</span></p>
-                <p><i class="fas fa-globe" style="color:#38bdf8"></i> <span data-k="footDesc2">خدمات مهاجرتی
+                <p><i class="fas fa-globe" style="color:#38bdf8"></i> <span data-key="footDesc2">خدمات مهاجرتی
                         جهانی</span></p>
             </div>
             <div class="footer-col">
-                <h4 data-k="footTitle2">تماس با ما</h4>
-                <p><i class="fas fa-map-marker-alt" style="color:#f59e0b"></i> <span data-k="footAddr">ایبک، سمنگان،
+                <h4 data-key="footTitle2">تماس با ما</h4>
+                <p><i class="fas fa-map-marker-alt" style="color:#f59e0b"></i> <span data-key="footAddr">ایبک، سمنگان،
                         افغانستان</span></p>
                 <p><i class="fas fa-envelope" style="color:#ef4444"></i> visa.guide.af.123@gmail.com</p>
             </div>
             <div class="footer-col">
-                <h4 data-k="footTitle3">شبکه‌های اجتماعی</h4>
+                <h4 data-key="footTitle3">شبکه‌های اجتماعی</h4>
                 <a href="https://www.facebook.com/profile.php?id=61589943461514" target="_blank"><i
                         class="fab fa-facebook-f" style="color:#1877f2"></i> Facebook</a>
                 <a href="https://t.me/visaguidee" target="_blank"><i class="fab fa-telegram" style="color:#29b6f6"></i>
@@ -822,23 +800,15 @@
                         class="fab fa-whatsapp" style="color:#25d366"></i> WhatsApp</a>
             </div>
         </div>
-        <div class="footer-bottom"><span data-k="copy">© 2026 VISA GUIDE AF — همه حقوق محفوظ است</span></div>
+        <div class="footer-bottom"><span data-key="copy">© 2026 VISA GUIDE AF — همه حقوق محفوظ است</span></div>
     </footer>
 
-    <!-- جاوااسکریپت منو، تم و دوزبانه بودن صفحه -->
     <script>
+        // ========== MULTILINGUAL DATA ==========
         const T = {
             fa: {
-                home: "خانه",
-                services: "خدمات",
-                ai: "هوش مصنوعی",
-                contact: "تماس",
-                faq: "سوالات",
-                category: "حقوقی / مهاجرتی",
-                breaking: "<i class='fas fa-broadcast-tower'></i> خبر فوری",
-                author: "VISA GUIDE AF Admin",
-                authorTitle: "مدیریت و گزارشگر",
-                backBtn: "← بازگشت به صفحه اصلی",
+                home: "خانه", services: "خدمات", ai: "هوش مصنوعی", contact: "تماس", faq: "سوالات", news: "اخبار",
+                category: "حقوقی / مهاجرتی", author: "گزارشگر VISA GUIDE AF", authorTitle: "گزارشگر و ادمین", backBtn: "← بازگشت به صفحه اصلی",
                 caption: "دادگاه فدرال آمریکا - تصمیم‌گیری درباره سرنوشت پناهندگان",
                 title: "پرونده ممنوعیت پناهندگان آمریکا وارد مرحله سرنوشت‌ساز شد",
                 deck: "در تازه‌ترین تحولات حقوقی، پرونده Pacito v. Trump که به چالش کشیدن سیاست‌های محدودکننده پذیرش پناهندگان در ایالات متحده را هدف قرار داده، وارد مرحله‌ای حساس و تعیین‌کننده شده است.",
@@ -857,25 +827,13 @@
                         "این تصمیم می‌تواند سرنوشت بیش از ۱۰۰ هزار پناهنده را که ماه‌ها و سال‌ها در بلاتکلیفی به سر می‌برند، تعیین کند." - وکلای مدافع
                     </blockquote>
                 `,
-                footTitle1: "خدمات مهاجرت",
-                footDesc1: "معتبرترین خدمات در افغانستان",
-                footDesc2: "خدمات مهاجرتی جهانی",
-                footTitle2: "تماس با ما",
-                footAddr: "ایبک، سمنگان، افغانستان",
-                footTitle3: "شبکه‌های اجتماعی",
+                footTitle1: "خدمات مهاجرت", footDesc1: "معتبرترین خدمات در افغانستان", footDesc2: "خدمات مهاجرتی جهانی",
+                footTitle2: "تماس با ما", footAddr: "ایبک، سمنگان، افغانستان", footTitle3: "شبکه‌های اجتماعی",
                 copy: "© 2026 VISA GUIDE AF — همه حقوق محفوظ است"
             },
             en: {
-                home: "Home",
-                services: "Services",
-                ai: "AI Assistant",
-                contact: "Contact",
-                faq: "FAQ",
-                category: "Legal / Immigration",
-                breaking: "<i class='fas fa-broadcast-tower'></i> Breaking News",
-                author: "VISA GUIDE AF Admin",
-                authorTitle: "Admin & Reporter",
-                backBtn: "← Back to Home",
+                home: "Home", services: "Services", ai: "AI Assistant", contact: "Contact", faq: "FAQ", news: "News",
+                category: "Legal / Immigration", author: "VISA GUIDE AF Reporter", authorTitle: "Reporter & Admin", backBtn: "← Back to Home",
                 caption: "US Federal Court - Deciding the fate of refugees",
                 title: "US Refugee Ban Case Enters Crucial Stage",
                 deck: "In the latest legal developments, the case Pacito v. Trump, which challenges restrictive refugee admission policies in the United States, has entered a critical and decisive phase.",
@@ -894,25 +852,13 @@
                         "This decision could determine the fate of more than 100,000 refugees who have been living in limbo for months and years." - Defense Attorneys
                     </blockquote>
                 `,
-                footTitle1: "Immigration Services",
-                footDesc1: "Most reliable services in Afghanistan",
-                footDesc2: "Global immigration services",
-                footTitle2: "Contact Us",
-                footAddr: "Aibak, Samangan, Afghanistan",
-                footTitle3: "Social Networks",
+                footTitle1: "Immigration Services", footDesc1: "Most reliable services in Afghanistan", footDesc2: "Global immigration services",
+                footTitle2: "Contact Us", footAddr: "Aibak, Samangan, Afghanistan", footTitle3: "Social Networks",
                 copy: "© 2026 VISA GUIDE AF — All rights reserved"
             },
             ps: {
-                home: "کور",
-                services: "خدمات",
-                ai: "AI",
-                contact: "اړیکه",
-                faq: "پوښتنې",
-                category: "حقوقي / د کډوالۍ خبرونه",
-                breaking: "<i class='fas fa-broadcast-tower'></i> بیړنی خبر",
-                author: "VISA GUIDE AF Admin",
-                authorTitle: "ادمین او خبریال",
-                backBtn: "← بیرته کور پاڼې ته",
+                home: "کور", services: "خدمات", ai: "AI", contact: "اړیکه", faq: "پوښتنې", news: "خبرونه",
+                category: "حقوقي / د کډوالۍ خبرونه", author: "د VISA GUIDE AF خبریال", authorTitle: "خبریال او مدیر", backBtn: "← بیرته کور پاڼې ته",
                 caption: "د امریکا فدرالي محکمه - د کډوالو د برخلیک په اړه پریکړه کول",
                 title: "په امریکا کې د کډوالو د بندیز دوسیه برخلیک ټاکونکي پړاو ته داخله شوه",
                 deck: "په وروستیو حقوقي پرمختګونو کې، د Pacito v. Trump دوسیه، چې په متحده ایالاتو کې د کډوالو د منلو د محدودونکو پالیسیو ننګول په نښه کوي، حساس او پریکړه کونکي پړاو ته داخله شوې ده.",
@@ -931,86 +877,96 @@
                         "دا پریکړه کولی شي د ۱۰۰ زرو څخه د زیاتو کډوالو برخلیک وټاکي چې د میاشتو او کلونو راهیسې په بې برخلیکۍ کې ژوند کوي." - مدافع وکیلان
                     </blockquote>
                 `,
-                footTitle1: "د کډوالۍ خدمات",
-                footDesc1: "افغانستان کې ترټولو معتبر خدمات",
-                footDesc2: "نظریاتي د کډوالۍ خدمات",
-                footTitle2: "اړیکه",
-                footAddr: "ایبک, سمنګان، افغانستان",
-                footTitle3: "ټولنیزې شبکې",
+                footTitle1: "د کډوالۍ خدمات", footDesc1: "افغانستان کې ترټولو معتبر خدمات", footDesc2: "نړیوال د کډوالۍ خدمات",
+                footTitle2: "اړیکه", footAddr: "ایبک, سمنګان، افغانستان", footTitle3: "ټولنیزې شبکې",
                 copy: "© 2026 VISA GUIDE AF — ټول حقونه خوندي دي"
             }
         };
 
-        let lang = 'fa';
+        let currentLang = 'fa';
 
-        function applyLang(l) {
-            lang = l;
+        function applyLanguage(lang) {
+            currentLang = lang;
+            // به‌روزرسانی تمام عناصر با data-key
+            document.querySelectorAll('[data-key]').forEach(el => {
+                const key = el.getAttribute('data-key');
+                if (T[lang][key]) el.innerHTML = T[lang][key];
+            });
+            // به‌روزرسانی داینامیک مقاله
+            document.getElementById('breakingBadge').innerHTML = lang === 'fa' ? '<i class="fas fa-broadcast-tower"></i> خبر فوری' : (lang === 'en' ? '<i class="fas fa-broadcast-tower"></i> Breaking News' : '<i class="fas fa-broadcast-tower"></i> بیړنی خبر');
+            document.getElementById('articleTitle').innerHTML = T[lang].title;
+            document.getElementById('articleDeck').innerHTML = T[lang].deck;
+            document.getElementById('articleDate').innerHTML = T[lang].date;
+            document.getElementById('imageCaption').innerHTML = T[lang].caption;
+            document.getElementById('articleContent').innerHTML = T[lang].content;
+            // به‌روزرسانی برچسب منوی زبان
+            const labelMap = { fa: "فارسی", en: "English", ps: "پښتو" };
+            document.getElementById('currentLangLabel').innerText = labelMap[lang];
+        }
 
-            const htmlTag = document.documentElement;
-            htmlTag.setAttribute('lang', l);
-            if (l === 'en') {
-                htmlTag.setAttribute('dir', 'ltr');
-            } else {
-                htmlTag.setAttribute('dir', 'rtl');
+        // ========== THEME (DAY/NIGHT) ==========
+        const themeBtn = document.getElementById('themeBtn');
+        const savedTheme = localStorage.getItem('srs-theme') || 'dark';
+        document.body.className = savedTheme + '-mode';
+        themeBtn.innerHTML = savedTheme === 'dark' ? '<i class="fas fa-moon"></i>' : '<i class="fas fa-sun"></i>';
+        themeBtn.addEventListener('click', () => {
+            const isDark = document.body.classList.contains('dark-mode');
+            document.body.className = isDark ? 'light-mode' : 'dark-mode';
+            themeBtn.innerHTML = isDark ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+            localStorage.setItem('srs-theme', isDark ? 'light' : 'dark');
+        });
+
+        // ========== LANGUAGE DROPDOWN ==========
+        const dropdown = document.getElementById('langDropdown');
+        const trigger = document.getElementById('langTrigger');
+        trigger.addEventListener('click', (e) => {
+            e.stopPropagation();
+            dropdown.classList.toggle('open');
+        });
+        document.addEventListener('click', (e) => {
+            if (!dropdown.contains(e.target)) dropdown.classList.remove('open');
+        });
+        document.querySelectorAll('.lang-option').forEach(opt => {
+            opt.addEventListener('click', (e) => {
+                const newLang = opt.getAttribute('data-lang');
+                if (newLang) applyLanguage(newLang);
+                dropdown.classList.remove('open');
+            });
+        });
+
+        // ========== MOBILE MENU (HAMBURGER -> X) ==========
+        const menuBtn = document.getElementById('menuBtn');
+        const navLinks = document.getElementById('navLinks');
+        function closeMenu() {
+            navLinks.classList.remove('open');
+            if (menuBtn) menuBtn.innerHTML = '☰';
+        }
+        menuBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const isOpen = navLinks.classList.contains('open');
+            if (isOpen) closeMenu();
+            else {
+                navLinks.classList.add('open');
+                menuBtn.innerHTML = '✕';
             }
-
-            document.querySelectorAll('[data-k]').forEach(el => {
-                const k = el.getAttribute('data-k');
-                if (T[l][k] !== undefined) el.innerHTML = T[l][k];
-            });
-
-            // بروزرسانی داینامیک تمام فیلدهای خبر بر اساس زبان منتخب
-            document.getElementById('breakingBadge').innerHTML = T[l].breaking;
-            document.getElementById('articleTitle').innerHTML = T[l].title;
-            document.getElementById('articleDeck').innerHTML = T[l].deck;
-            document.getElementById('articleDate').innerHTML = T[l].date;
-            document.getElementById('imageCaption').innerHTML = T[l].caption;
-            document.getElementById('articleContent').innerHTML = T[l].content;
-
-            document.querySelectorAll('.lang-btn').forEach(b => b.classList.toggle('active', b.getAttribute('data-l') === l));
-        }
-
-        // رویدادهای تغییر زبان دکمه‌ها
-        document.querySelectorAll('.lang-btn').forEach(btn => {
-            btn.addEventListener('click', () => {
-                applyLang(btn.getAttribute('data-l'));
-            });
         });
-
-        // مدیریت باز و بسته شدن منوی موبایل
-        const menuToggle = document.querySelector('.menu-toggle');
-        const navMenu = document.getElementById('navMenu');
-        if (menuToggle) {
-            menuToggle.addEventListener('click', () => {
-                navMenu.classList.toggle('active');
-            });
-        }
-
-        // مدیریت حالت تم تاریک و روشن هوشمند
-        const tb = document.getElementById('themeBtn');
-        const saved = localStorage.getItem('srs-theme') || 'dark';
-        document.body.className = saved + '-mode';
-        tb.innerHTML = saved === 'dark' ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
-
-        tb.addEventListener('click', () => {
-            const d = document.body.classList.contains('dark-mode');
-            document.body.className = (d ? 'light' : 'dark') + '-mode';
-            tb.innerHTML = d ? '<i class="fas fa-moon"></i>' : '<i class="fas fa-sun"></i>';
-            localStorage.setItem('srs-theme', d ? 'light' : 'dark');
+        document.addEventListener('click', (e) => {
+            if (!navLinks.contains(e.target) && !menuBtn.contains(e.target) && navLinks.classList.contains('open')) closeMenu();
         });
+        navLinks.querySelectorAll('a').forEach(link => link.addEventListener('click', closeMenu));
 
-        // ساخت ذرات معلق رندوم در پس‌زمینه
-        const pc = document.getElementById('particles');
+        // ========== PARTICLES ==========
+        const particles = document.getElementById('particles');
         for (let i = 0; i < 40; i++) {
             const p = document.createElement('div');
             p.className = 'p';
             const s = Math.random() * 8 + 3;
             p.style.cssText = `width:${s}px;height:${s}px;left:${Math.random() * 100}%;top:${Math.random() * 100}%;animation-delay:${Math.random() * 12}s;animation-duration:${12 + Math.random() * 10}s`;
-            pc.appendChild(p);
+            particles.appendChild(p);
         }
 
-        // شروع اولیه با زبان دری
-        applyLang('fa');
+        // ========== INITIAL ==========
+        applyLanguage('fa');
     </script>
 </body>
 

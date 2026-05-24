@@ -7,298 +7,298 @@
     <title>جدیدترین اخبار روز | VISA GUIDE AF</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-
     <style>
-        /* تعریف متغیرهای رنگی و استایل پایه */
-        :root {
-            --bg: #070b13;
-            --panel: rgba(255, 255, 255, 0.03);
-            --border: rgba(255, 255, 255, 0.08);
-            --text: #f1f5f9;
-            --text-muted: #94a3b8;
-            --primary: linear-gradient(135deg, #7c3aed, #4f46e5);
-            --primary-glow: rgba(124, 58, 237, 0.4);
-            --accent: linear-gradient(135deg, #38bdf8, #0369a1);
-            --accent-glow: rgba(56, 189, 248, 0.4);
-            --success: #10b981;
-            --warning: #f59e0b;
-            --danger: #ef4444;
-            --font: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-        }
-
-        .light-mode {
-            --bg: #f8fafc;
-            --panel: rgba(0, 0, 0, 0.03);
-            --border: rgba(0, 0, 0, 0.08);
-            --text: #0f172a;
-            /* متن تیره برای حالت روز */
-            --text-muted: #475569;
-            --primary-glow: rgba(124, 58, 237, 0.15);
-        }
-
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: var(--font);
-            transition: background-color 0.3s, border-color 0.3s, color 0.3s, filter 0.3s;
         }
 
         body {
-            background-color: var(--bg);
-            color: var(--text);
+            font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e8ef 100%);
             overflow-x: hidden;
-            perspective: 1000px;
+            transition: background 0.3s ease, color 0.3s ease;
         }
 
-        /* جلوه ذرات و اورب‌های سه‌بعدی پس‌زمینه */
-        .bg-scene {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -3;
-            background: radial-gradient(circle at 50% 50%, rgba(15, 23, 42, 0.5) 0%, var(--bg) 100%);
+        body.dark-mode {
+            background: linear-gradient(135deg, #0f0c29 0%, #1a1a3e 100%);
+            color: #e0e0e0;
         }
 
-        .bg-orb {
-            position: fixed;
-            width: 300px;
-            height: 300px;
-            border-radius: 50%;
-            filter: blur(80px);
-            z-index: -2;
-            opacity: 0.6;
-            pointer-events: none;
-            animation: floatOrb 20s infinite alternate ease-in-out;
+        body.dark-mode .navbar {
+            background: rgba(15, 25, 55, 0.95);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        .bg-orb:nth-child(2) {
-            background: radial-gradient(circle, #7c3aed 0%, transparent 70%);
-            top: -10%;
-            left: -10%;
+        body.dark-mode .nav-menu a {
+            color: #ddd;
         }
 
-        .bg-orb:nth-child(3) {
-            background: radial-gradient(circle, #38bdf8 0%, transparent 70%);
-            bottom: -10%;
-            right: -10%;
-            animation-delay: -5s;
+        body.dark-mode .news-card {
+            background: rgba(30, 40, 70, 0.9);
+            color: #fff;
         }
 
-        .bg-orb:nth-child(4) {
-            background: radial-gradient(circle, #ec4899 0%, transparent 70%);
-            top: 40%;
-            left: 50%;
-            width: 400px;
-            height: 400px;
-            animation-delay: -10s;
+        body.dark-mode .news-title {
+            color: #ffd966;
         }
 
-        @keyframes floatOrb {
-            0% {
-                transform: translate(0, 0) scale(1);
+        body.dark-mode .news-category {
+            background: #3a3a6e;
+            color: #aabbff;
+        }
+
+        body.dark-mode .modal-content {
+            background: #1e2a3a;
+            color: #eee;
+        }
+
+        body.dark-mode .modal-content-text {
+            color: #ddd;
+        }
+
+        body.dark-mode .footer {
+            background: linear-gradient(135deg, #0a0a2a 0%, #0f0f2e 100%);
+        }
+
+        body.dark-mode .footer-social a {
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        body.dark-mode .nav-menu a img {
+            filter: brightness(0) invert(1);
+        }
+
+        /* تنظیمات دکمه‌های زبان در حالت شب/روز */
+        body.dark-mode .lang-btn,
+        body.dark-mode .theme-btn {
+            background: rgba(102, 126, 234, 0.25);
+            color: #e0e0e0;
+        }
+
+        body.dark-mode .lang-btn.active {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
             }
 
-            100% {
-                transform: translate(80px, 50px) scale(1.2);
+            to {
+                opacity: 1;
+                transform: translateY(0);
             }
         }
 
-        /* منوی ناوبری مدرن */
         .navbar {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 0.8rem 2rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
             position: sticky;
-            top: 15px;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-container {
             max-width: 1200px;
             margin: 0 auto;
-            z-index: 100;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 12px 24px;
-            background: rgba(15, 23, 42, 0.4);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid var(--border);
-            border-radius: 50px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            flex-wrap: wrap;
         }
 
-        .light-mode .navbar {
-            background: rgba(255, 255, 255, 0.8);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
 
-        .logo-wrap {
+        .logo-img {
+            width: 50px;
+            height: 50px;
+            object-fit: cover;
+            border-radius: 50%;
+            transition: transform 0.3s ease;
+        }
+
+        .logo-img:hover {
+            transform: scale(1.05) rotate(5deg);
+        }
+
+        .logo-text {
+            font-size: 1rem;
+            font-weight: bold;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        /* ========== منوی زبان با کره زمین ========== */
+        .lang-dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .lang-trigger {
+            background: rgba(102, 126, 234, 0.15);
+            border: none;
+            border-radius: 40px;
+            padding: 8px 14px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #667eea;
+            font-size: 0.85rem;
+            font-weight: 600;
+            transition: 0.2s;
+        }
+
+        .lang-trigger i {
+            font-size: 1rem;
+        }
+
+        .lang-trigger:hover {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .lang-menu {
+            position: absolute;
+            top: 110%;
+            left: 0;
+            background: white;
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            border-radius: 20px;
+            padding: 8px 0;
+            min-width: 130px;
+            z-index: 300;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.25s ease;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        body.dark-mode .lang-menu {
+            background: #1e2a3a;
+            border-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .lang-dropdown.open .lang-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .lang-option {
             display: flex;
             align-items: center;
             gap: 12px;
-            text-decoration: none;
-            color: var(--text);
-        }
-
-        /* حلقه دوتایی درخشان دور لوگو */
-        .logo-wrap img {
-            width: 45px;
-            height: 45px;
-            border-radius: 50%;
-            border: 2px solid #7c3aed;
-            box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.2), 0 0 15px var(--primary-glow);
-            object-fit: cover;
-        }
-
-        .light-mode .logo-wrap img {
-            box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.1), 0 0 10px rgba(124, 58, 237, 0.2);
-        }
-
-        .logo-name {
+            padding: 8px 16px;
+            cursor: pointer;
+            transition: background 0.2s;
+            color: #333;
             font-size: 0.85rem;
-            font-weight: 800;
-            letter-spacing: 0.5px;
-            line-height: 1.2;
-            background: linear-gradient(120deg, #fff, #94a3b8);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
         }
 
-        .light-mode .logo-name {
-            background: linear-gradient(120deg, #0f172a, #475569);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+        body.dark-mode .lang-option {
+            color: #e0e0e0;
+        }
+
+        .lang-option:hover {
+            background: rgba(102, 126, 234, 0.1);
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .theme-btn {
+            background: rgba(102, 126, 234, 0.15);
+            border: none;
+            padding: 8px 14px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+            color: #667eea;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .theme-btn:hover {
+            transform: translateY(-2px);
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+        }
+
+        .menu-toggle {
+            display: none;
+            font-size: 1.8rem;
+            cursor: pointer;
+            background: none;
+            border: none;
+            color: #667eea;
         }
 
         .nav-menu {
             display: flex;
             list-style: none;
-            gap: 15px;
+            gap: 1.5rem;
         }
 
         .nav-menu a {
             display: flex;
             align-items: center;
             gap: 8px;
-            padding: 8px 16px;
             text-decoration: none;
-            color: var(--text-muted);
-            font-size: 0.9rem;
+            color: #333;
             font-weight: 500;
+            transition: all 0.3s;
+            padding: 6px 12px;
             border-radius: 30px;
-            position: relative;
-            overflow: hidden;
-            transition: all 0.3s ease;
         }
 
-        .nav-menu a img {
-            width: 18px;
-            height: 18px;
-            transition: transform 0.3s ease, filter 0.3s ease;
-        }
-
-        .nav-menu a:hover img {
+        .nav-menu a:hover {
+            color: #667eea;
+            background: rgba(102, 126, 234, 0.1);
             transform: translateY(-2px);
         }
 
-        /* تغییر خودکار رنگ آیکون‌های منو در حالت روز و شب */
-        .dark-mode .nav-menu a img {
-            filter: brightness(0) invert(1);
+        .nav-menu a img {
+            width: 22px;
+            height: 22px;
+            transition: filter 0.3s;
         }
 
-        .light-mode .nav-menu a img {
-            filter: brightness(0);
-        }
-
-        .nav-menu a::after {
-            content: '';
-            position: absolute;
-            bottom: 2px;
-            left: 50%;
-            width: 0;
-            height: 2px;
-            background: linear-gradient(90deg, #7c3aed, #38bdf8);
-            border-radius: 2px;
-            transition: width 0.3s ease, transform 0.3s ease;
-            transform: translateX(-50%);
-        }
-
-        .nav-menu a:hover::after {
-            width: 60%;
-        }
-
-        .header-actions {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .lang-btn {
-            background: transparent;
-            border: 1px solid var(--border);
-            color: var(--text-muted);
-            padding: 6px 12px;
-            border-radius: 30px;
-            cursor: pointer;
-            font-size: 0.8rem;
-        }
-
-        .lang-btn.active {
-            color: var(--text);
-            background: rgba(255, 255, 255, 0.1);
-            border-color: #7c3aed;
-        }
-
-        .theme-btn {
-            background: var(--primary);
-            border: none;
-            color: white;
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 4px 10px var(--primary-glow);
-        }
-
-        .menu-toggle {
-            display: none;
-            background: none;
-            border: none;
-            color: var(--text);
-            font-size: 1.5rem;
-            cursor: pointer;
-        }
-
-        /* بخش هدر صفحه */
         .news-header {
-            background: radial-gradient(circle at top left, rgba(124, 58, 237, 0.08), transparent), var(--panel);
-            backdrop-filter: blur(20px);
-            border-bottom: 1px solid var(--border);
-            color: var(--text);
-            padding: 4rem 1rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 3rem 1rem;
             text-align: center;
-            margin-bottom: 3rem;
+            margin-bottom: 2rem;
         }
 
         .news-header h1 {
             font-size: 2.5rem;
-            font-weight: 800;
             margin-bottom: 0.5rem;
-            background: linear-gradient(135deg, #fff 30%, #a78bfa 100%);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
         }
 
-        .light-mode .news-header h1 {
-            background: linear-gradient(135deg, #0f172a 30%, #4f46e5 100%);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
-
-        /* کارت‌های شیشه‌ای اخبار */
         .news-grid {
             max-width: 1200px;
             margin: 0 auto;
@@ -309,26 +309,17 @@
         }
 
         .news-card {
-            background: var(--panel);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 1px solid var(--border);
+            background: white;
             border-radius: 1.5rem;
             overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             cursor: pointer;
         }
 
-        .light-mode .news-card {
-            background: rgba(255, 255, 255, 0.85);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-        }
-
         .news-card:hover {
             transform: translateY(-10px) scale(1.02);
-            box-shadow: 0 40px 50px rgba(0, 0, 0, 0.4);
-            border-color: rgba(124, 58, 237, 0.3);
+            box-shadow: 0 40px 50px rgba(0, 0, 0, 0.2);
         }
 
         .news-image {
@@ -350,19 +341,12 @@
             display: inline-block;
             font-size: 0.7rem;
             text-transform: uppercase;
-            color: #a78bfa;
+            color: #667eea;
             font-weight: 600;
-            background: rgba(124, 58, 237, 0.1);
-            border: 1px solid rgba(124, 58, 237, 0.2);
+            background: #f0f0ff;
             padding: 0.25rem 0.75rem;
             border-radius: 20px;
             margin-bottom: 0.75rem;
-        }
-
-        .light-mode .news-category {
-            color: #4f46e5;
-            background: rgba(79, 70, 229, 0.1);
-            border-color: rgba(79, 70, 229, 0.2);
         }
 
         .news-title {
@@ -370,12 +354,12 @@
             font-weight: 700;
             margin-bottom: 0.75rem;
             line-height: 1.4;
-            color: var(--text);
+            color: #1a1a2e;
         }
 
         .news-excerpt {
             font-size: 0.9rem;
-            color: var(--text-muted);
+            color: #666;
             line-height: 1.6;
             margin-bottom: 1rem;
         }
@@ -386,21 +370,17 @@
             align-items: center;
             margin-top: 1rem;
             padding-top: 1rem;
-            border-top: 1px solid var(--border);
+            border-top: 1px solid #eee;
             font-size: 0.8rem;
-            color: var(--text-muted);
+            color: #888;
         }
 
         .read-more {
-            color: #a78bfa;
-            font-weight: 600;
+            color: #667eea;
+            font-weight: 500;
         }
 
-        .light-mode .read-more {
-            color: #4f46e5;
-        }
-
-        /* پنجره آکاردئونی مودال (Modal) */
+        /* ===== مودال ===== */
         .modal {
             display: none;
             position: fixed;
@@ -415,20 +395,11 @@
         }
 
         .modal-content {
-            background: var(--bg);
-            border: 1px solid var(--border);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
+            background: #f5f5f5;
             max-width: 850px;
             margin: 2rem auto;
             border-radius: 1.5rem;
             position: relative;
-            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
-        }
-
-        .light-mode .modal-content {
-            background: #f1f5f9;
-            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.1);
         }
 
         .close-modal {
@@ -436,7 +407,7 @@
             top: 1rem;
             left: 1rem;
             float: left;
-            background: var(--primary);
+            background: #667eea;
             color: white;
             width: 40px;
             height: 40px;
@@ -448,49 +419,47 @@
             font-size: 1.5rem;
             margin: 1rem;
             transition: 0.3s;
-            box-shadow: 0 4px 10px var(--primary-glow);
         }
 
         .close-modal:hover {
+            background: #764ba2;
             transform: rotate(90deg);
         }
 
         .modal-body {
-            padding: 2.5rem;
+            padding: 2rem;
             clear: both;
         }
 
         .modal-category {
             font-size: 0.75rem;
             text-transform: uppercase;
-            color: #a78bfa;
+            color: #667eea;
             font-weight: 600;
             margin-bottom: 1rem;
         }
 
         .modal-title {
             font-size: 1.8rem;
-            font-weight: 800;
+            font-weight: 700;
             margin-bottom: 1rem;
-            color: var(--text);
         }
 
         .modal-deck {
             font-size: 1rem;
-            color: var(--text-muted);
+            color: #555;
             margin-bottom: 1.5rem;
-            border-right: 3px solid #7c3aed;
+            border-right: 3px solid #667eea;
             padding-right: 1rem;
         }
 
-        /* بخش هدر نویسنده در مودال */
         .article-byline {
             display: flex;
             justify-content: space-between;
             align-items: center;
             margin: 1rem 0 1.5rem 0;
             padding-bottom: 1rem;
-            border-bottom: 1px solid var(--border);
+            border-bottom: 1px solid #e0e0e0;
             flex-wrap: wrap;
             gap: 15px;
         }
@@ -506,8 +475,7 @@
             height: 48px;
             border-radius: 50%;
             object-fit: cover;
-            border: 2px solid #7c3aed;
-            box-shadow: 0 0 10px var(--primary-glow);
+            border: 2px solid #667eea;
         }
 
         .author-details {
@@ -518,17 +486,17 @@
         .author-name {
             font-weight: 700;
             font-size: 1rem;
-            color: var(--text);
+            color: #1a1a2e;
         }
 
         .author-title {
             font-size: 0.75rem;
-            color: var(--text-muted);
+            color: #888;
         }
 
         .article-date {
             font-size: 0.85rem;
-            color: var(--text-muted);
+            color: #888;
             white-space: nowrap;
         }
 
@@ -540,13 +508,9 @@
 
         .image-caption {
             font-size: 0.8rem;
-            color: var(--text-muted);
+            color: #777;
             text-align: center;
             margin: 0.5rem 0 1rem 0;
-        }
-
-        .modal-content-text {
-            color: var(--text);
         }
 
         .modal-content-text p {
@@ -554,7 +518,6 @@
             margin-bottom: 1rem;
         }
 
-        /* استایل کادرهای هشدار و آکاردئونی مقالات */
         .warning-box,
         .info-box {
             padding: 1rem;
@@ -563,86 +526,79 @@
         }
 
         .warning-box {
-            background: rgba(245, 158, 11, 0.08);
-            border-right: 4px solid #f59e0b;
-            color: #fbbf24;
-        }
-
-        .light-mode .warning-box {
-            background: #fffbeb;
-            color: #92400e;
+            background: #fff3cd;
+            border-right: 4px solid #ffc107;
         }
 
         .info-box {
-            background: rgba(56, 189, 248, 0.08);
-            border-right: 4px solid #38bdf8;
-            color: #38bdf8;
+            background: #e8f4fd;
+            border-right: 4px solid #17a2b8;
         }
 
-        .light-mode .info-box {
-            background: #e8f4fd;
-            color: #0369a1;
+        body.dark-mode .author-name {
+            color: #ffd966;
+        }
+
+        body.dark-mode .author-title,
+        body.dark-mode .article-date {
+            color: #aaa;
+        }
+
+        body.dark-mode .article-byline {
+            border-bottom-color: #444;
+        }
+
+        body.dark-mode .modal-content {
+            background: #1e2a3a;
+        }
+
+        body.dark-mode .modal-deck {
+            color: #ccc;
+        }
+
+        body.dark-mode .warning-box {
+            background: #2a3a4a;
+            border-right-color: #ffc107;
+        }
+
+        body.dark-mode .info-box {
+            background: #1a3a4a;
+            border-right-color: #17a2b8;
         }
 
         blockquote {
-            border-right: 4px solid #7c3aed;
+            border-right: 4px solid #667eea;
             padding: 1rem 1.5rem;
             margin: 1.5rem 0;
-            background: rgba(255, 255, 255, 0.02);
+            background: #f9f9f9;
             font-style: italic;
-            color: var(--text);
         }
 
-        .light-mode blockquote {
-            background: #f8fafc;
-            border-right-color: #4f46e5;
-            color: #0f172a;
+        body.dark-mode blockquote {
+            background: #2a3a4a;
+            border-right-color: #ffd966;
         }
 
-        /* پانویس (Footer) متناسب با حالت روز و شب */
+        /* ===== فوتر ===== */
         .footer {
-            background: rgba(10, 15, 30, 0.8);
-            border-top: 1px solid var(--border);
-            padding: 60px 16px 20px 16px;
-            margin-top: 100px;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: #aaa;
+            margin-top: 2rem;
+            padding: 2rem 2rem 1rem;
         }
 
-        .light-mode .footer {
-            background: #f1f5f9;
-            border-top: 1px solid rgba(0, 0, 0, 0.08);
-        }
-
-        .footer-inner {
+        .footer-container {
             max-width: 1200px;
             margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 40px;
-            margin-bottom: 40px;
-        }
-
-        .footer-col h4 {
-            font-size: 1.1rem;
-            font-weight: 700;
-            margin-bottom: 20px;
-            color: var(--text);
-            position: relative;
-        }
-
-        .footer-col p {
-            color: var(--text-muted);
-            font-size: 0.9rem;
-            line-height: 1.8;
-            margin-bottom: 12px;
             display: flex;
-            align-items: center;
-            gap: 10px;
-            transition: transform 0.3s, color 0.3s;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 2rem;
         }
 
-        .footer-col p:hover {
-            transform: translateX(-5px);
-            color: var(--text);
+        .footer-section h4 {
+            color: #667eea;
+            margin-bottom: 1rem;
         }
 
         .footer-social {
@@ -652,8 +608,7 @@
         }
 
         .footer-social a {
-            background: var(--panel);
-            border: 1px solid var(--border);
+            background: rgba(255, 255, 255, 0.1);
             width: 38px;
             height: 38px;
             border-radius: 50%;
@@ -661,69 +616,24 @@
             align-items: center;
             justify-content: center;
             transition: 0.3s;
-            color: var(--text-muted);
+            color: #aaa;
             text-decoration: none;
         }
 
         .footer-social a:hover {
-            background: var(--primary);
+            background: #667eea;
             color: white;
             transform: translateY(-3px);
         }
 
         .footer-bottom {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding-top: 20px;
-            border-top: 1px solid var(--border);
             text-align: center;
-            color: var(--text-muted);
-            font-size: 0.85rem;
+            padding: 1.5rem;
+            border-top: 1px solid #333;
+            margin-top: 2rem;
         }
 
-        .light-mode .footer-bottom {
-            border-top: 1px solid rgba(0, 0, 0, 0.08);
-        }
-
-        /* انیمیشن ذرات معلق */
-        .particles {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            pointer-events: none;
-        }
-
-        .p {
-            position: absolute;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-            animation: rise 15s infinite linear;
-        }
-
-        @keyframes rise {
-            0% {
-                transform: translateY(110vh) rotate(0deg);
-                opacity: 0;
-            }
-
-            10% {
-                opacity: 1;
-            }
-
-            90% {
-                opacity: 1;
-            }
-
-            100% {
-                transform: translateY(-10vh) rotate(360deg);
-                opacity: 0;
-            }
-        }
-
-        /* واکنش‌گرایی برای موبایل */
+        /* ===== موبایل ===== */
         @media (max-width: 768px) {
             .menu-toggle {
                 display: block;
@@ -734,38 +644,10 @@
                 width: 100%;
                 flex-direction: column;
                 margin-top: 1rem;
-                background: rgba(15, 23, 42, 0.95);
-                backdrop-filter: blur(20px);
-                border: 1px solid var(--border);
-                border-radius: 20px;
-                padding: 20px;
-                box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
-            }
-
-            .light-mode .nav-menu {
-                background: rgba(255, 255, 255, 0.98);
             }
 
             .nav-menu.active {
                 display: flex;
-                animation: menuFadeIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
-            }
-
-            @keyframes menuFadeIn {
-                from {
-                    opacity: 0;
-                    transform: translateY(-15px) scale(0.95);
-                }
-
-                to {
-                    opacity: 1;
-                    transform: translateY(0) scale(1);
-                }
-            }
-
-            .navbar {
-                width: 90%;
-                border-radius: 24px;
             }
 
             .header-actions {
@@ -784,7 +666,7 @@
             }
 
             .footer-container {
-                grid-template-columns: 1fr;
+                flex-direction: column;
                 text-align: center;
             }
 
@@ -802,34 +684,38 @@
             }
 
             .modal-body {
-                padding: 1.5rem;
+                padding: 1rem;
             }
 
             .modal-title {
-                font-size: 1.4rem;
+                font-size: 1.3rem;
             }
         }
     </style>
 </head>
 
-<body class="dark-mode">
-
-    <div class="bg-scene"></div>
-    <div class="bg-orb"></div>
-    <div class="bg-orb"></div>
-    <div class="bg-orb"></div>
-    <div class="particles" id="particles"></div>
+<body>
 
     <nav class="navbar">
         <div class="nav-container">
-            <a href="../../index.html" class="logo-wrap">
+            <div class="logo-area">
                 <img src="../../images/kha.jpg" alt="لوگو" class="logo-img">
-                <div class="logo-name">VISA<br>GUIDE AF</div>
-            </a>
+                <div class="logo-text">VISA<br> GUIDE AF</div>
+            </div>
             <div class="header-actions">
-                <button class="lang-btn active" data-lang="fa">fa فارسی</button>
-                <button class="lang-btn" data-lang="en">🇬🇧 EN</button>
-                <button class="lang-btn" data-lang="ps">پښتو</button>
+                <!-- منوی زبان با کره زمین -->
+                <div class="lang-dropdown" id="langDropdown">
+                    <div class="lang-trigger" id="langTrigger">
+                        <i class="fas fa-globe-americas"></i>
+                        <span id="currentLangLabel">فارسی</span>
+                        <i class="fas fa-chevron-down" style="font-size: 0.7rem;"></i>
+                    </div>
+                    <div class="lang-menu">
+                        <div class="lang-option" data-lang="fa"><span>🇦🇫</span> فارسی</div>
+                        <div class="lang-option" data-lang="en"><span>🇬🇧</span> English</div>
+                        <div class="lang-option" data-lang="ps"><span>🇦🇫</span> پښتو</div>
+                    </div>
+                </div>
                 <button class="theme-btn" id="themeToggle"><i class="fas fa-moon"></i></button>
             </div>
             <button class="menu-toggle" id="menuToggle">☰</button>
@@ -838,8 +724,8 @@
                             data-key="home">خانه</span></a></li>
                 <li><a href="../../services.html"><img src="../../images/customer.png" alt="خدمات"><span
                             data-key="services">خدمات</span></a></li>
-                <li><a href="../../ai.html"><img src="../../images/bot.png" alt="AI"><span data-key="ai">AI</span></a>
-                </li>
+                <li><a href="../../ai.html"><img src="../../images/ai.png" alt="AI"><span data-key="ai">هوش
+                            مصنوعی</span></a></li>
                 <li><a href="../../contact.html"><img src="../../images/call.png" alt="تماس با ما"><span
                             data-key="contact">تماس با ما</span></a></li>
                 <li><a href="../../faq.html"><img src="../../images/f&a.png" alt="سوالات متداول"><span
@@ -855,41 +741,32 @@
 
     <div class="news-grid" id="newsGrid"></div>
 
-    <!-- فوتر ۳ ستونه مدرن و همسان -->
-    <footer class="footer" data-aos="fade-up">
+    <div class="footer" data-aos="fade-up">
         <div class="footer-container">
-            <div class="footer-col">
-                <h4 data-key="footTitle1">خدمات مهاجرت</h4>
-                <p><i class="fas fa-check-circle" style="color:var(--success)"></i> <span data-key="footDesc1">معتبرترین
-                        خدمات در افغانستان</span></p>
-                <p><i class="fas fa-globe" style="color:#38bdf8"></i> <span data-key="footDesc2">خدمات مهاجرتی
-                        جهانی</span></p>
+            <div class="footer-section">
+                <h4>خدمات مهاجرت</h4>
+                <p>معتبرترین خدمات مهاجرت در افغانستان</p>
             </div>
-            <div class="footer-col">
-                <h4 data-key="footTitle2">تماس با ما</h4>
-                <p><i class="fas fa-map-marker-alt" style="color:#f59e0b"></i> <span data-key="footAddr">ایبک، سمنگان،
-                        افغانستان</span></p>
-                <p><i class="fas fa-phone-alt" style="color:#10b981"></i> 0792665622</p>
-                <p><i class="fas fa-envelope" style="color:#ef4444"></i> visa.guide.af.123@gmail.com</p>
+            <div class="footer-section">
+                <h4>تماس با ما</h4>
+                <p><i class="fas fa-phone"></i> 0792665622</p>
+                <p><i class="fas fa-envelope"></i> visa.guide.af.123@gmail.com</p>
             </div>
-            <div class="footer-col">
-                <h4 data-key="footTitle3">شبکه‌های اجتماعی</h4>
+            <div class="footer-section">
+                <h4>شبکه‌های اجتماعی</h4>
                 <div class="footer-social">
-                    <a href="https://whatsapp.com/channel/0029Vae7U29AzNbpZIv5T81R" target="_blank"><i
-                            class="fab fa-whatsapp" style="color:#25d366"></i></a>
-                    <a href="https://t.me/visaguidee" target="_blank"><i class="fab fa-telegram"
-                            style="color:#29b6f6"></i></a>
-                    <a href="https://www.facebook.com/profile.php?id=61589943461514" target="_blank"><i
-                            class="fab fa-facebook-f" style="color:#1877f2"></i></a>
-                    <a href="https://www.instagram.com/sarfraz_refugee_service" target="_blank"><i
-                            class="fab fa-instagram" style="color:#e1306c"></i></a>
+                    <a href="https://www.facebook.com/profile.php?id=61589943461514"><i
+                            class="fab fa-facebook-f"></i></a>
+                    <a href="https://www.instagram.com/sarfraz_refugee_service"><i class="fab fa-instagram"></i></a>
+                    <a href="https://t.me/visaguidee"><i class="fab fa-telegram"></i></a>
+                    <a href="https://whatsapp.com/channel/0029Vae7U29AzNbpZIv5T81R"><i class="fab fa-whatsapp"></i></a>
                 </div>
             </div>
         </div>
         <div class="footer-bottom">
             <p id="copyright">© 2026 VISA GUIDE AF — همه حقوق محفوظ است</p>
         </div>
-    </footer>
+    </div>
 
     <div id="newsModal" class="modal">
         <div class="modal-content">
@@ -907,82 +784,37 @@
                 id: 8, category: { fa: "حقوقی / مهاجرتی", en: "Legal / Immigration", ps: "حقوقي / کډوالۍ" },
                 title: { fa: "پرونده ممنوعیت پناهندگان آمریکا وارد مرحله سرنوشت‌ساز شد", en: "US Refugee Ban Case Enters Critical Stage", ps: "د امریکا د پناهندګۍ د بند کیس مهم پړاو ته ننوت" },
                 deck: { fa: "در تازه‌ترین تحولات حقوقی، پرونده Pacito v. Trump وارد مرحله‌ای حساس شده است.", en: "In the latest legal developments, the Pacito v. Trump case has entered a critical stage.", ps: "په وروستیو حقوقي پرمختګونو کې، د Pacito v. Trump قضیه یو مهم پړاو ته ننوتی دی." },
-                image: "../pic/p.jpg", caption: { fa: "دادگاه فدرال آمریکا", en: "US Federal Court", ps: "د امریکا فدرال محکمه" }, date: "۵ می ۲۰۲۶ - ۱۰:۳۰ صبح", author: "VISA GUIDE AF Reporter", authorTitle: { fa: "گزارشگر و ادمین", en: "Reporter & Admin", ps: "خبریال او مدیر" }, authorAvatar: "../../images/kha.jpg",
+                image: "../pic/p.jpg", caption: { fa: "دادگاه فدرال آمریکا", en: "US Federal Court", ps: "د امریکا فدرال محکمه" }, date: "۵ می ۲۰۲۶ - ۱۰:۳۰ صبح", author: "VISA GUIDE AF", authorTitle: { fa: "گزارشگر و ادمین", en: "Reporter & Admin", ps: "خبریال او مدیر" }, authorAvatar: "../../images/kha.jpg",
                 content: { fa: `<p>ائتلافی از نهادهای مدافع حقوق پناهندگان، از جمله Church World Service، HIAS و Lutheran Community Services Northwest، به همراه شماری از پناهجویان، همچنان در تلاش‌اند تا ممنوعیت جاری را لغو کرده و روند اسکان مجدد بیش از ۱۰۰ هزار پناهنده را که در خارج از آمریکا بلاتکلیف مانده‌اند، از سر بگیرند.</p><p>بر اساس اسناد تازه ثبت‌شده در دادگاه، شاکیان در تاریخ ۲۸ اپریل با ارائه یک لایحه جدید، از دادگاه درخواست کرده‌اند تا اجازه دهد شکایت اصلاح‌شده آنان مورد بررسی قرار گیرد. این اقدام می‌تواند دامنه پرونده را گسترش داده و شانس موفقیت آن را افزایش دهد.</p><div class="warning-box"><strong>مراحل حساس:</strong> پرونده اکنون نزد قاضی فدرال Jamal Whitehead قرار دارد و انتظار می‌رود که وی در روزهای نزدیک درباره پذیرش یا رد این درخواست تصمیم‌گیری کند.</div><p>تحلیلگران می‌گویند در صورت موافقت دادگاه، مسیر برای بازگشایی برنامه پذیرش پناهندگان ایالات متحده هموارتر خواهد شد؛ برنامه‌ای که برای هزاران پناهجوی در انتظار، از جمله افغان‌ها، حیاتی تلقی می‌شود.</p><blockquote>"این تصمیم می‌تواند سرنوشت بیش از ۱۰۰ هزار پناهنده را که ماه‌ها و سال‌ها در بلاتکلیفی به سر می‌برند، تعیین کند." - وکلای مدافع</blockquote>`, en: `<p>The coalition of refugee rights organizations, including Church World Service, HIAS, and Lutheran Community Services Northwest, along with a number of refugees, continue to seek to overturn the current ban and resume the resettlement process for more than 100,000 refugees stranded outside the US.</p><p>According to newly filed court documents, the plaintiffs submitted a new motion on April 28, asking the court to allow their amended complaint to be heard. This could expand the scope of the case and increase its chances of success.</p><div class="warning-box"><strong>Critical Stage:</strong> The case is now before Federal Judge Jamal Whitehead, who is expected to rule on the motion in the coming days.</div><p>Analysts say if the court agrees, the path to reopening the US refugee admissions program could become smoother — a program critical to thousands of pending refugees, including Afghans.</p><blockquote>"This decision could determine the fate of more than 100,000 refugees who have been in limbo for months and years." - Defense attorneys</blockquote>`, ps: `<p>د پناه غوښتونکو د حقونو ایتلاف، په شمول د Church World Service، HIAS او Lutheran Community Services Northwest، د شمیر پناه غوښتونکو سره، هڅه کوي اوسنی بند لرې کړي او د ۱۰۰،۰۰۰ څخه زیاتو پناه غوښتونکو د بیا میشتیدنې بهیر پیل کړي چې د امریکا څخه بهر ناڅرګند پاتې دي.</p><p>د محکمې د نویو اسنادو له مخې، مدعیانو د اپریل په ۲۸ مه یو نوی غوښتنلیک وړاندې کړ، له محکمې یې وغوښتل چې د دوی شکایت واوري. دا کولی شي د قضیې ساحه پراخه کړي او د بریالیتوب چانس یې زیات کړي.</p><div class="warning-box"><strong>حساس پړاو:</strong> قضیه اوس د فدرال قاضي Jamal Whitehead په وړاندې ده، چې تمه کیږي په راتلونکو ورځو کې به پریکړه وکړي.</div><p>شنونکي وايي که محکمه موافقه وکړي، د امریکا د پناهندګۍ د منلو پروګرام بیا خلاصیدو لاره به اسانه شي — یو پروګرام چې د زرګونو پناه غوښتونکو لپاره حیاتي دی، په شمول د افغانانو.</p><blockquote>"دا پریکړه کولی شي د ۱۰۰،۰۰۰ څخه زیاتو پناه غوښتونکو برخلیک وټاکي چې میاشتې او کاله په ناڅرګندۍ کې تیروي." - مدافع وکیلان</blockquote>` }
             },
             {
                 id: 1, category: { fa: "بین‌الملل", en: "International", ps: "نړیوال" },
                 title: { fa: "افغان‌های گیرمانده در قطر از اقدام ترامپ برای فرستادن به کنگو ابراز خیانت کردند", en: "Afghans Stuck in Qatar Express Betrayal Over Trump's Plan to Send Them to Congo", ps: "په قطر کې پاتې شوي افغانان د کانګو ته د لیږلو لپاره د ترامپ د اقدام په اړه د خیانت څرګندونه کوي" },
                 deck: { fa: "صدها خانواده افغان که سال‌ها در قطر منتظر انتقال به آمریکا هستند، با شنیدن خبر انتقال احتمالی به کنگو، احساس خیانت و ناامیدی عمیقی کرده‌اند.", en: "Hundreds of Afghan families who have been waiting for years in Qatar to be transferred to the US felt a deep sense of betrayal and hopelessness upon hearing the news of a possible transfer to Congo.", ps: "سلګونو افغان کورنیو چې کلونه کیږي په قطر کې امریکا ته د لیږد انتظار کوي، د کانګو ته د احتمالي لیږد خبر اوریدو سره د خیانت او ناهیلی ژور احساس وکړ." },
-                image: "../pic/qater.jpg", caption: { fa: "کمپ موقت پناهندگان افغان در قطر", en: "Temporary camp for Afghan refugees in Qatar", ps: "په قطر کې د افغان کډوالو لنډمهالی کمپ" }, date: "۲۵ اپریل ۲۰۲۶ - ۱۴:۳۰", author: "VISA GUIDE AF Reporter", authorTitle: { fa: "گزارشگر و ادمین", en: "Reporter & Admin", ps: "خبریال او مدیر" }, authorAvatar: "../../images/kha.jpg",
-                content: { fa: `<p>در تازه‌ترین تحولات مربوط به پناهندگان افغان، گروه‌های مدافع حقوق بشر گزارش داده‌اند که دولت دونالد ترامپ، رئیس‌جمهور آمریکا، به طور جدی در حال بررسی طرح انتقال هزاران پناهجوی افغان مقیم قطر به جمهوری دموکراتیک کنگو (DRC) است. این خبر با واکنش شدید و احساس خیانت گسترده از سوی این خانواده‌ها مواجه شده است.</p><p>بیش از دو سال از خروج نیروهای آمریکایی از افغانستان می‌گذرد و بسیاری از افغان‌هایی که با دولت آمریکا همکاری داشتند، همچنان در مراکز موقت در قطر سرگردان هستند.</p><blockquote>"ما جان خود را برای آمریکا به خطر انداختیم، حالا پاداش ما فرستادن به کشوری جنگ‌زده در آفریقاست؟ این بزرگ‌ترین خیانتی است که در حق ما شد." - یکی از پناهجویان.</blockquote><p>سازمان ملل نسبت به سرنوشت این پناهجویان ابراز نگرانی کرده و خواستار شفافیت در این طرح شده است.</p><p>احساس خیانت در حالی ابراز می‌شود که شماری از کارشناسان معتقدند فشارهای انتخاباتی، دولت ترامپ را به سمت چنین تصمیمات غیرانسانی سوق داده است.</p>`, en: `<p>In the latest developments regarding Afghan refugees, human rights groups have reported that the administration of US President Donald Trump is seriously considering a plan to transfer thousands of Afghan refugees from Qatar to the Democratic Republic of Congo (DRC). This news has met with strong reactions and widespread feelings of betrayal from these families.</p><p>More than two years after the withdrawal of US forces from Afghanistan, many Afghans who worked with the US government remain stuck in temporary facilities in Qatar.</p><blockquote>"We risked our lives for America, now our reward is being sent to a war-torn country in Africa? This is the greatest betrayal we have suffered." - one of the refugees.</blockquote><p>The United Nations has expressed concern over the fate of these refugees and has called for transparency in this plan.</p>`, ps: `<p>د افغان کډوالو په اړه په وروستیو پرمختګونو کې، د بشري حقونو ډلو راپور ورکړی چې د امریکا ولسمشر ډونالډ ټرمپ اداره په جدي توګه د قطر څخه زرګونو افغان کډوالو د کانګو دیموکراتیک جمهوریت ته د لیږد پلان په پام کې نیسي. دا خبر د دې کورنیو له خوا د سخت عکس العمل او پراخه خیانت احساس سره مخ شوی دی.</p><p>له افغانستانه د امریکا ځواکونو تر وتلو دوه کاله تیریږي او ډیری افغانان چې له امریکا سره یې کار کاوه لا هم په قطر کې په موقتو مرکزونو کې سرگردان دي.</p><blockquote>"موږ د امریکا لپاره خپل ژوند له خطر سره مخ کړ, اوس زموږ انعام د افریقا یو جګړې ځپلي هیواد ته لیږل دي؟ دا هغه لوی خیانت دی چې په موږ شوی دی." - یو کډوال</blockquote><p>ملګرو ملتونو د دې کډوالو د برخلیک په اړه اندیښنه څرګنده کړې او د دې پلان په اړه یې روڼتیا غوښتې ده.</p>` }
+                image: "../pic/qater.jpg", caption: { fa: "کمپ موقت پناهندگان افغان در قطر", en: "Temporary camp for Afghan refugees in Qatar", ps: "په قطر کې د افغان کډوالو لنډمهالی کمپ" }, date: "۲۵ اپریل ۲۰۲۶ - ۱۴:۳۰", author: "VISA GUIDE AF", authorTitle: { fa: "گزارشگر و ادمین", en: "Reporter & Admin", ps: "خبریال او مدیر" }, authorAvatar: "../../images/kha.jpg",
+                content: { fa: `<p>در تازه‌ترین تحولات مربوط به پناهندگان افغان، گروه‌های مدافع حقوق بشر گزارش داده‌اند که دولت دونالد ترامپ، رئیس‌جمهور آمریکا، به طور جدی در حال بررسی طرح انتقال هزاران پناهجوی افغان مقیم قطر به جمهوری دموکراتیک کنگو (DRC) است. این خبر با واکنش شدید و احساس خیانت گسترده از سوی این خانواده‌ها مواجه شده است.</p><p>بیش از دو سال از خروج نیروهای آمریکایی از افغانستان می‌گذرد و بسیاری از افغان‌هایی که با دولت آمریکا همکاری داشتند، همچنان در مراکز موقت در قطر سرگردان هستند.</p><blockquote>"ما جان خود را برای آمریکا به خطر انداختیم، حالا پاداش ما فرستادن به کشوری جنگ‌زده در آفریقاست؟ این بزرگ‌ترین خیانتی است که در حق ما شد." - یکی از پناهجویان.</blockquote><p>سازمان ملل نسبت به سرنوشت این پناهجویان ابراز نگرانی کرده و خواستار شفافیت در این طرح شده است.</p><p>احساس خیانت در حالی ابراز می‌شود که شماری از کارشناسان معتقدند فشارهای انتخاباتی، دولت ترامپ را به سمت چنین تصمیمات غیرانسانی سوق داده است.</p>`, en: `<p>In the latest developments regarding Afghan refugees, human rights groups have reported that the administration of US President Donald Trump is seriously considering a plan to transfer thousands of Afghan refugees from Qatar to the Democratic Republic of Congo (DRC). This news has met with strong reactions and widespread feelings of betrayal from these families.</p><p>More than two years after the withdrawal of US forces from Afghanistan, many Afghans who worked with the US government remain stuck in temporary facilities in Qatar.</p><blockquote>"We risked our lives for America, now our reward is being sent to a war-torn country in Africa? This is the greatest betrayal we have suffered." - one of the refugees.</blockquote><p>The United Nations has expressed concern over the fate of these refugees and has called for transparency in this plan.</p>`, ps: `<p>د افغان کډوالو په اړه په وروستیو پرمختګونو کې، د بشري حقونو ډلو راپور ورکړی چې د امریکا ولسمشر ډونالډ ټرمپ اداره په جدي توګه د قطر څخه زرګونو افغان کډوالو د کانګو دیموکراتیک جمهوریت ته د لیږد پلان په پام کې نیسي. دا خبر د دې کورنیو له خوا د سخت عکس العمل او پراخه خیانت احساس سره مخ شوی دی.</p><p>له افغانستانه د امریکا ځواکونو تر وتلو دوه کاله تیریږي او ډیری افغانان چې له امریکا سره یې کار کاوه لا هم په قطر کې په موقتو مرکزونو کې سرگردان دي.</p><blockquote>"موږ د امریکا لپاره خپل ژوند له خطر سره مخ کړ، اوس زموږ انعام د افریقا یو جګړې ځپلي هیواد ته لیږل دي؟ دا هغه لوی خیانت دی چې په موږ شوی دی." - یو کډوال</blockquote><p>ملګرو ملتونو د دې کډوالو د برخلیک په اړه اندیښنه څرګنده کړې او د دې پلان په اړه یې روڼتیا غوښتې ده.</p>` }
             },
             {
                 id: 2, category: { fa: "افغانستان", en: "Afghanistan", ps: "افغانستان" },
                 title: { fa: "طالبان از افغان‌هایی که به آمریکا کمک کردند خواست به کشور بازگردند", en: "Taliban Calls on Afghans Who Helped US to Return Home", ps: "طالبان هغو افغانانو ته غوښتنه کوي چې امریکا ته یې مرسته کړې وه هېواد ته راستانه شي" },
-                deck: { fa: "گروه طالبان اعلام کرد که افغان‌های مقیم قطر که سابقه همکاری با نیروهای خارجی را دارند، می‌توانند با خیال آسوده به کشور بازگردند.", en: "The Taliban announced that Afghans residing in Qatar who have a history of cooperating with foreign forces can return to the country with peace of mind.", ps: "د طالبانو له خوا وژل یوازې ویره نه ده، بلکې یو حقیقت دی" },
-                image: "../pic/talib.webp", caption: { fa: "منظره‌ای از شهر کابل پس از تسلط طالبان", en: "A view of Kabul after the Taliban takeover", ps: "د طالبانو له واکمنۍ وروسته د کابل ښار یوه منظره" }, date: "۲۵ اپریل ۲۰۲۶ - ۱۴:۳۰", author: "VISA GUIDE AF Reporter", authorTitle: { fa: "گزارشگر و ادمین", en: "Reporter & Admin", ps: "خبریال او مدیر" }, authorAvatar: "../../images/kha.jpg",
+                deck: { fa: "گروه طالبان اعلام کرد که افغان‌های مقیم قطر که سابقه همکاری با نیروهای خارجی را دارند، می‌توانند با خیال آسوده به کشور بازگردند.", en: "The Taliban announced that Afghans residing in Qatar who have a history of cooperating with foreign forces can return to the country with peace of mind.", ps: "طالبانو اعلان وکړ چې په قطر کې اوسېدونکي افغانان چې له بهرنیو ځواکونو سره د همکارۍ تاریخ لري په ډاډ سره هیواد ته راستانه شي." },
+                image: "../pic/talib.webp", caption: { fa: "منظره‌ای از شهر کابل پس از تسلط طالبان", en: "A view of Kabul after the Taliban takeover", ps: "د طالبانو له واکمنۍ وروسته د کابل ښار یوه منظره" }, date: "۲۵ اپریل ۲۰۲۶ - ۱۴:۳۰", author: "VISA GUIDE AF", authorTitle: { fa: "گزارشگر و ادمین", en: "Reporter & Admin", ps: "خبریال او مدیر" }, authorAvatar: "../../images/kha.jpg",
                 content: { fa: `<p>ذبیح‌الله مجاهد، سخنگوی دولت طالبان، امروز در یک کنفرانس خبری اعلام کرد که درب‌های افغانستان به روی همه شهروندانی که به دلایل مختلف کشور را ترک کرده‌اند، باز است.</p><p>مجاهد گفت: «ما از همه افغان‌هایی که در دو دهه اخیر با نیروهای بیگانه کار کرده‌اند، دعوت می‌کنیم که بدون هیچ ترسی به میهن خود بازگردند. عفو عمومی شامل حال همه آنها می‌شود.»</p><blockquote>"دولت سرپرست افغانستان متعهد به حفظ امنیت همه شهروندان خود است. کشورتان منتظر بازگشت شماست." - ذبیح‌الله مجاهد.</blockquote><p>این اظهارات در حالی مطرح می‌شود که تنها یک روز پیش، خبرهایی درباره طرح جنجالی دولت ترامپ برای انتقال این پناهجویان به کنگو منتشر شده بود.</p><p>با این حال، بسیاری از پناهجویان افغان به این اظهارات با دیده تردید نگاه می‌کنند و سازمان‌های حقوق بشری نیز نسبت به این وعده ابراز تردید کرده‌اند.</p>`, en: `<p>Zabihullah Mujahid, spokesman for the Taliban government, said at a press conference today that the doors of Afghanistan are open to all citizens who have left the country for various reasons.</p><p>Mujahid said: "We invite all Afghans who have worked with foreign forces over the past two decades to return to their homeland without any fear. The general amnesty includes all of them."</p><blockquote>"The caretaker government of Afghanistan is committed to ensuring the safety of all its citizens. Your country is waiting for your return." - Zabihullah Mujahid.</blockquote><p>These remarks come just one day after news was published about the Trump administration's controversial plan to transfer these refugees to Congo.</p><p>However, many Afghan refugees view these statements with skepticism, and human rights organizations have also expressed doubts about this promise.</p>`, ps: `<p>ذبیح الله مجاهد، د طالبانو د حکومت ویاند، نن په یوه خبري کنفرانس کې اعلان وکړ چې د افغانستان دروازې د ټولو هغو اتباعو لپاره خلاصې دي چې بیلابیلو دلایلو یې هیواد پرېښی دی.</p><p>مجاهد وویل: "موږ هغو ټولو افغانانو ته بلنه ورکوو چې په تیرو دوو لسیزو کې یې له بهرنیو ځواکونو سره کار کړی، هیڅ ویره پرته خپل هیواد ته راستانه شي. عمومي بخښنه ټول شامل دي."</p><blockquote>"د افغانستان سرپرست حکومت د خپلو ټولو اتباعو د خوندیتوب ژمن دی. ستاسو هیواد ستاسو د راستنیدو انتظار کوي." - ذبیح الله مجاهد</blockquote><p>دا څرګندونې یوازې یوه ورځ وروسته له هغه کیږي چې د ترامپ د ادارې د دې کډوالو کانګو ته د لیږد د جنجالي پلان په اړه خبرونه خپاره شوي وو.</p><p>په هرصورت، ډیری افغان کډوالو دغو څرګندونو ته د شک په سترګه ګوري، او د بشري حقونو سازمانونو هم دې ژمنې ته شک څرګند کړی دی.</p>` }
             },
             {
                 id: 3, category: { fa: "بین‌الملل", en: "International", ps: "نړیوال" },
                 title: { fa: "سرنوشت نامعلوم پناهجویان افغان؛ میان وعده‌های ناتمام و بازگشت پرخطر", en: "Uncertain Fate of Afghan Refugees; Unfinished Promises and Dangerous Return", ps: "د افغان پناه غوښتونکو ناڅرګنده برخلیک؛ نیمګړې ژمنې او خطرناک راستنیدنه" },
                 deck: { fa: "هزاران غیرنظامی افغان که در جریان جنگ بیست‌ساله در افغانستان از نیروهای ایالات متحده حمایت کرده بودند، اکنون با خطر رها شدن روبه‌رو هستند و در میان یک بحران عمیق بشردوستانه و سیاسی گرفتار مانده‌اند.", en: "Thousands of Afghan civilians who supported US forces during the twenty-year war in Afghanistan now face the risk of abandonment and are caught in a deep humanitarian and political crisis.", ps: "زرګونو افغان ملکي وګړو چې د افغانستان په شل کلنه جګړه کې یې د امریکا له ځواکونو ملاتړ کاوه اوس د پریښودلو له خطر سره مخ دي او په ژور بشردوستانه او سیاسي بحران کې نیول شوي دي." },
-                image: "../pic/afghan.jpg", caption: { fa: "کمپ موقت پناهندگان افغان", en: "Temporary camp for Afghan refugees", ps: "د افغان کډوالو لنظمهالی کمپ" }, date: "۲۷ اپریل ۲۰۲۶ - ۱۴:۰۰", author: "VISA GUIDE AF Reporter", authorTitle: { fa: "گزارشگر و ادمین", en: "Reporter & Admin", ps: "خبریال او مدیر" }, authorAvatar: "../../images/kha.jpg",
-                content: { fa: `<p>هزاران غیرنظامی افغان که در جریان جنگ بیست‌ساله در افغانستان از نیروهای ایالات متحده حمایت کرده بودند، اکنون با خطر رها شدن روبه‌رو هستند و در میان یک بحران عمیق بشردوستانه و سیاسی گرفتار مانده‌اند. پس از تسلط طالبان، بیش از ۱۱۰۰ پناهجوی افغان که از کشور فرار کرده و در کمپ‌های موقت در قطر پناه گرفته‌اند، در وضعیت نامعلومی به سر می‌برند. امیدها برای اسکان مجدد در ایالات متحده به دلیل تغییرات اخیر در سیاست‌های دولت جدید امریکا کاهش یافته است، در حالی که پیشنهاد انتقال آنان به کشورهای بی‌ثباتی مانند جمهوری دموکراتیک کانگو، وضعیت‌شان را وخیم‌تر ساخته است.</p><p>پس از خروج امریکا در سال ۲۰۲۱، بسیاری از افغان‌هایی که به عنوان مترجم، راننده و همکار با نیروهای امریکایی کار می‌کردند، از ترس انتقام‌جویی طالبان کشور را ترک کردند. شمار قابل توجهی از آنان از آن زمان تاکنون در کمپ «السلیه» در قطر، که یک تأسیسات نظامی امریکا است، زندگی می‌کنند و در انتظار انتقال به ایالات متحده هستند. با این حال، تحولات سیاسی اخیر، به‌ویژه سیاست‌های سخت‌گیرانه‌تر مهاجرتی پس از بازگشت دونالد ترامپ به قدرت، تردیدهای جدی در مورد آینده آنان ایجاد کرده و آن‌ها را در حالت بلاتکلیفی طولانی‌مدت قرار داده است.</p><p>گزارش‌ها مبنی بر این‌که ایالات متحده در حال بررسی انتقال این پناهجویان به کانگو به‌جای پذیرش آن‌ها در امریکا است، نگرانی‌های گسترده‌ای را برانگیخته است. این موضوع با مخالفت شدید خود پناهجویان روبه‌رو شده است. آنان که پیش از این از کشوری جنگ‌زده گریخته‌اند، به‌طور قاطع با انتقال به منطقه‌ای دیگر که با بی‌ثباتی مواجه است، مخالفت کرده و نگرانی‌های جدی در مورد امنیت و آینده فرزندان‌شان ابراز داشته‌اند. بسیاری، امریکا را به عدم پایبندی به تعهداتش متهم کرده و این اقدام را نوعی خیانت توصیف کرده‌اند.</p><p>در میان این بحران, حکومت طالبان تلاش کرده است از این وضعیت به نفع خود استفاده کند و با ارائه دعوتی شبیه به «عفو عمومی»، از پناهجویان افغان در قطر خواسته است به کشور بازگردند. سخنگوی وزارت امور خارجه طالبان، عبدالقاهر بلخی، اعلام کرده است که افغان‌ها می‌توانند بدون ترس به وطن بازگردند و تأکید کرده که «افغانستان متعلق به همه است» و هیچ‌کس به‌دلیل همکاری‌های گذشته با نیروهای امریکایی مورد آسیب قرار نخواهد گرفت.</p><blockquote>"کشته شدن توسط طالبان فقط یک ترس نیست، بلکه یک واقعیت است" - یکی از پناهجویان در کمپ السلیه.</blockquote><p>بلاتکلیفی طولانی‌مدت تأثیرات روانی شدیدی بر پناهجویان گذاشته است. گزارش‌ها از افزایش موارد افسردگی و اضطراب حکایت دارند، زیرا خانواده‌ها همچنان بدون هیچ وضوحی درباره آینده‌شان در حالت انتظار زندگی می‌کنند. بسیاری شکایت دارند که مقامات امریکایی هیچ‌گونه اطلاع‌رسانی مستقیم انجام نداده‌اند و آن‌ها مجبورند تنها از طریق رسانه‌ها از وضعیت خود آگاه شوند. زنان و کودکان به‌ویژه در معرض آسیب قرار دارند، زیرا با کمبود دسترسی به آموزش و فرصت‌های کاری مواجه‌اند که مشکلات‌شان را دوچندان کرده است.</p><p>این وضعیت توجه بین‌المللی را نیز جلب کرده است. تحلیلگران هشدار می‌دهند که رویکرد امریکا ممکن است به اعتبار جهانی آن آسیب برساند. عدم حمایت از متحدان افغان می‌تواند همکاری‌های آینده در مناطق درگیر جنگ را تحت تأثیر قرار دهد و پرسش‌هایی را درباره اعتماد استراتژیک در درازمدت ایجاد کند. در عین حال، طالبان تلاش دارد از این فرصت برای نشان دادن خود به‌عنوان یک حکومت مسئول در برابر جامعه جهانی استفاده کند.</p><p>در میان تغییرات مداوم سیاسی و ژئوپلیتیکی، پناهجویان افغان در وضعیت بسیار حساس و خطرناکی قرار دارند؛ نه می‌توانند به کشور بازگردند، نه از ورود به ایالات متحده اطمینان دارند و نه حاضر به انتقال به کشور ثالث هستند. وضعیت آنان فراتر از یک مسئله سیاسی است و نشان‌دهنده یک فاجعه انسانی عمیق است که با امیدهای شکسته، ترس و احساس رهاشدگی همراه شده است. در حالی که مرزها، سیاست‌ها و توازن قدرت همچنان در حال تغییر است، سرگذشت آنان یادآور هزینه انسانی جنگ و این پرسش بی‌پاسخ است که چه زمانی—و آیا اصلاً—عدالت و امنیت به آنان خواهد رسید.</p>`, en: `<p>Thousands of Afghan civilians who supported US forces during the twenty-year war in Afghanistan now face the risk of abandonment and are caught in a deep humanitarian and political crisis. After the Taliban takeover, more than 1,100 Afghan refugees who fled the country and took refuge in temporary camps in Qatar are in an uncertain situation. Hopes for resettlement in the United States have diminished due to recent changes in the policies of the new US administration, while the proposal to transfer them to unstable countries like the Democratic Republic of Congo has worsened their situation.</p><p>Since the US withdrawal in 2021, many Afghans who worked as interpreters, drivers, and collaborators with US forces left the country fearing Taliban retaliation. A significant number of them have since been living in the "Al Saliyeh" camp in Qatar, a US military facility, waiting for transfer to the United States. However, recent political developments, especially stricter immigration policies following Donald Trump's return to power, have created serious doubts about their future and left them in a state of prolonged uncertainty.</p><p>Reports that the United States is considering transferring these refugees to Congo instead of accepting them in America have raised widespread concerns. This issue has faced strong opposition from the refugees themselves. Having already fled a war-torn country, they categorically oppose being transferred to another volatile region and have expressed serious concerns about their safety and their children's future. Many have accused America of failing to meet its commitments and described this action as a form of betrayal.</p><p>Amid this crisis, the Taliban government has tried to use the situation to its advantage, issuing what appears to be a "general amnesty" invitation to Afghan refugees in Qatar to return home. Taliban Foreign Ministry spokesman Abdul Qahar Balkhi said Afghans can return home without fear, stressing that "Afghanistan belongs to everyone" and that no one will be harmed because of past work with US forces.</p><blockquote>"Death by the Taliban is not just a fear; it's a reality." - one of the refugees at Al Saliyeh camp.</blockquote><p>The prolonged uncertainty has had severe psychological effects on the refugees. Reports indicate rising cases of depression and anxiety, as families remain in limbo with no clarity about their future. Many complain that American officials have not provided any direct communication, forcing them to learn about their situation through the media. Women and children are particularly vulnerable, facing limited access to education and employment opportunities, compounding their problems.</p><p>This situation has also drawn international attention. Analysts warn that the US approach could damage its global standing. Failing to support its Afghan allies could affect future cooperation in war-torn regions, raising questions about long-term strategic trust. Meanwhile, the Taliban is trying to use this opportunity to present itself as a responsible government to the international community.</p><p>Amid ongoing political and geopolitical changes, Afghan refugees find themselves in a highly precarious and dangerous position; they cannot return to their country, have no assurance of entry into the United States, and are unwilling to be transferred to a third country. Their situation goes beyond a political issue, representing a deep humanitarian catastrophe marked by broken hopes, fear, and a sense of abandonment.</p>`, ps: `<p>زرګونو افغان ملکي وګړو چې د افغانستان په شل کلنه جګړه کې یې د امریکا له ځواکونو ملاتړ کاوه اوس د پریښودلو له خطر سره مخ دي او په ژور بشردوستانه او سیاسي بحران کې نیول شوي دي. د طالبانو له واکمنۍ وروسته، له ۱۱۰۰ څخه زیات افغان کډوال چې له هیواد څخه تښتیدلي او په قطر کې په موقتو کمپونو کې پناه اخلي، په ناڅرګنده حالت کې دي. د امریکا د نوي حکومت په پالیسیو کې د وروستیو بدلونونو له امله په متحده ایالاتو کې د بیا میشتیدنې هیله کمه شوې، پداسې حال کې چې د دوی نا آرامو هیوادونو لکه د کانګو دیموکراتیک جمهوریت ته د لیږد وړاندیز د دوی وضعیت لا خراب کړی دی.</p><p>د ۲۰۲۱ کال د امریکا له وتلو راهیسې، ډیری افغانان چې د ژباړونکو، چلونکو او د امریکا له ځواکونو سره د همکارانو په توګه یې کار کاوه، د طالبانو د غچ اخیستنې له ویرې له هیواده وتلي. له هغه وخت راهیسې د دوی یو لوی شمیر د امریکا په یوه نظامي تاسیس کې په قطر کې د "السیلیه" په کمپ کې اوسیږي، چې متحده ایالاتو ته د لیږد انتظار کوي. په هرصورت، وروستي سیاسي پرمختګونه، په ځانګړې توګه د ډونالډ ټرمپ له واکمنۍ وروسته د کډوالۍ سختې پالیسۍ، د دوی راتلونکي په اړه جدي شکونه پیدا کړي او د دوی وضعیت لا خراب کړی دی.</p><p>راپورونه چې متحده ایالات په امریکا کې د منلو پرځای د دې کډوالو کانګو ته د لیږدولو په اړه فکر کوي، پراخې اندیښنې راپیدا کړې دي۔ دا مسله د پخپله د کډوالو له خوا له کلک مخالفت سره مخ شوې ده. هغوی چې مخکې له مخکې له جګړې ځپلي هیواد څخه تښتیدلي دي، په ښکاره ډول په بل ناارامه سیمه کې لیږدولو سره مخالفت کوي او د خپل امنیت او د خپلو ماشومانو د راتلونکي په اړه جدي اندیښنې څرګندوي. ډیری یې امریکا د خپلو ژمنو په نه پوره کولو تورنوي او دې کړنې ته د خیانت کړنه وايي.</p><p>د سیاسي او جیوپولیټیکي بدلونونو په منځ کې، افغان کډوال ځانونه په خورا نازک او خطرناک حالت کې موندلي دي؛ نه کولای شي خپل هیواد ته راستانه شي، نه په متحده ایالاتو کې د داخلیدو ډاډ لري، او نه د دریم هیواد ته د لیږدولو لپاره چمتو دي. د دوی وضعیت د یوې سیاسي مسلې هاخوا دی، او یو ژور انساني فاجعه څرګندوي چې د ماتیو هیوادونو، ویره او د پریښودو احساس سره مل دی.</p>` }
+                image: "../pic/afghan.jpg", caption: { fa: "کمپ موقت پناهندگان افغان", en: "Temporary camp for Afghan refugees", ps: "د افغان کډوالو لنډمهالی کمپ" }, date: "۲۷ اپریل ۲۰۲۶ - ۱۴:۰۰", author: "VISA GUIDE AF", authorTitle: { fa: "گزارشگر و ادمین", en: "Reporter & Admin", ps: "خبریال او مدیر" }, authorAvatar: "../../images/kha.jpg",
+                content: { fa: `<p>هزاران غیرنظامی افغان که در جریان جنگ بیست‌ساله در افغانستان از نیروهای ایالات متحده حمایت کرده بودند، اکنون با خطر رها شدن روبه‌رو هستند و در میان یک بحران عمیق بشردوستانه و سیاسی گرفتار مانده‌اند. پس از تسلط طالبان، بیش از ۱۱۰۰ پناهجوی افغان که از کشور فرار کرده و در کمپ‌های موقت در قطر پناه گرفته‌اند، در وضعیت نامعلومی به سر می‌برند. امیدها برای اسکان مجدد در ایالات متحده به دلیل تغییرات اخیر در سیاست‌های دولت جدید امریکا کاهش یافته است، در حالی که پیشنهاد انتقال آنان به کشورهای بی‌ثباتی مانند جمهوری دموکراتیک کانگو، وضعیت‌شان را وخیم‌تر ساخته است.</p><p>پس از خروج امریکا در سال ۲۰۲۱، بسیاری از افغان‌هایی که به عنوان مترجم، راننده و همکار با نیروهای امریکایی کار می‌کردند، از ترس انتقام‌جویی طالبان کشور را ترک کردند. شمار قابل توجهی از آنان از آن زمان تاکنون در کمپ «السلیه» در قطر، که یک تأسیسات نظامی امریکا است، زندگی می‌کنند و در انتظار انتقال به ایالات متحده هستند. با این حال، تحولات سیاسی اخیر، به‌ویژه سیاست‌های سخت‌گیرانه‌تر مهاجرتی پس از بازگشت دونالد ترامپ به قدرت، تردیدهای جدی در مورد آینده آنان ایجاد کرده و آن‌ها را در حالت بلاتکلیفی طولانی‌مدت قرار داده است.</p><p>گزارش‌ها مبنی بر این‌که ایالات متحده در حال بررسی انتقال این پناهجویان به کانگو به‌جای پذیرش آن‌ها در امریکا است، نگرانی‌های گسترده‌ای را برانگیخته است. این موضوع با مخالفت شدید خود پناهجویان روبه‌رو شده است. آنان که پیش از این از کشوری جنگ‌زده گریخته‌اند، به‌طور قاطع با انتقال به منطقه‌ای دیگر که با بی‌ثباتی مواجه است، مخالفت کرده و نگرانی‌های جدی در مورد امنیت و آینده فرزندان‌شان ابراز داشته‌اند. بسیاری، امریکا را به عدم پایبندی به تعهداتش متهم کرده و این اقدام را نوعی خیانت توصیف کرده‌اند.</p><p>در میان این بحران، حکومت طالبان تلاش کرده است از این وضعیت به نفع خود استفاده کند و با ارائه دعوتی شبیه به «عفو عمومی»، از پناهجویان افغان در قطر خواسته است به کشور بازگردند. سخنگوی وزارت امور خارجه طالبان، عبدالقاهر بلخی، اعلام کرده است که افغان‌ها می‌توانند بدون ترس به وطن بازگردند و تأکید کرده که «افغانستان متعلق به همه است» و هیچ‌کس به‌دلیل همکاری‌های گذشته با نیروهای امریکایی مورد آسیب قرار نخواهد گرفت.</p><blockquote>"کشته شدن توسط طالبان فقط یک ترس نیست، بلکه یک واقعیت است" - یکی از پناهجویان در کمپ السلیه.</blockquote><p>بلاتکلیفی طولانی‌مدت تأثیرات روانی شدیدی بر پناهجویان گذاشته است. گزارش‌ها از افزایش موارد افسردگی و اضطراب حکایت دارند، زیرا خانواده‌ها همچنان بدون هیچ وضوحی درباره آینده‌شان در حالت انتظار زندگی می‌کنند. بسیاری شکایت دارند که مقامات امریکایی هیچ‌گونه اطلاع‌رسانی مستقیم انجام نداده‌اند و آن‌ها مجبورند تنها از طریق رسانه‌ها از وضعیت خود آگاه شوند. زنان و کودکان به‌ویژه در معرض آسیب قرار دارند، زیرا با کمبود دسترسی به آموزش و فرصت‌های کاری مواجه‌اند که مشکلات‌شان را دوچندان کرده است.</p><p>این وضعیت توجه بین‌المللی را نیز جلب کرده است. تحلیلگران هشدار می‌دهند که رویکرد امریکا ممکن است به اعتبار جهانی آن آسیب برساند. عدم حمایت از متحدان افغان می‌تواند همکاری‌های آینده در مناطق درگیر جنگ را تحت تأثیر قرار دهد و پرسش‌هایی را درباره اعتماد استراتژیک در درازمدت ایجاد کند. در عین حال، طالبان تلاش دارد از این فرصت برای نشان دادن خود به‌عنوان یک حکومت مسئول در برابر جامعه جهانی استفاده کند.</p><p>در میان تغییرات مداوم سیاسی و ژئوپلیتیکی، پناهجویان افغان در وضعیت بسیار حساس و خطرناکی قرار دارند؛ نه می‌توانند به کشور بازگردند، نه از ورود به ایالات متحده اطمینان دارند و نه حاضر به انتقال به کشور ثالث هستند. وضعیت آنان فراتر از یک مسئله سیاسی است و نشان‌دهنده یک فاجعه انسانی عمیق است که با امیدهای شکسته، ترس و احساس رهاشدگی همراه شده است. در حالی که مرزها، سیاست‌ها و توازن قدرت همچنان در حال تغییر است، سرگذشت آنان یادآور هزینه انسانی جنگ و این پرسش بی‌پاسخ است که چه زمانی—و آیا اصلاً—عدالت و امنیت به آنان خواهد رسید.</p>`, en: `<p>Thousands of Afghan civilians who supported US forces during the twenty-year war in Afghanistan now face the risk of abandonment and are caught in a deep humanitarian and political crisis. After the Taliban takeover, more than 1,100 Afghan refugees who fled the country and took refuge in temporary camps in Qatar are in an uncertain situation. Hopes for resettlement in the United States have diminished due to recent changes in the policies of the new US administration, while the proposal to transfer them to unstable countries like the Democratic Republic of Congo has worsened their situation.</p><p>Since the US withdrawal in 2021, many Afghans who worked as interpreters, drivers, and collaborators with US forces left the country fearing Taliban retaliation. A significant number of them have since been living in the "Al Saliyeh" camp in Qatar, a US military facility, waiting for transfer to the United States. However, recent political developments, especially stricter immigration policies following Donald Trump's return to power, have created serious doubts about their future and left them in a state of prolonged uncertainty.</p><p>Reports that the United States is considering transferring these refugees to Congo instead of accepting them in America have raised widespread concerns. This issue has faced strong opposition from the refugees themselves. Having already fled a war-torn country, they categorically oppose being transferred to another volatile region and have expressed serious concerns about their safety and their children's future. Many have accused America of failing to meet its commitments and described this action as a form of betrayal.</p><p>Amid this crisis, the Taliban government has tried to use the situation to its advantage, issuing what appears to be a "general amnesty" invitation to Afghan refugees in Qatar to return home. Taliban Foreign Ministry spokesman Abdul Qahar Balkhi said Afghans can return home without fear, stressing that "Afghanistan belongs to everyone" and that no one will be harmed because of past work with US forces.</p><blockquote>"Death by the Taliban is not just a fear; it's a reality." - one of the refugees at Al Saliyeh camp.</blockquote><p>The prolonged uncertainty has had severe psychological effects on the refugees. Reports indicate rising cases of depression and anxiety, as families remain in limbo with no clarity about their future. Many complain that American officials have not provided any direct communication, forcing them to learn about their situation through the media. Women and children are particularly vulnerable, facing limited access to education and employment opportunities, compounding their problems.</p><p>This situation has also drawn international attention. Analysts warn that the US approach could damage its global standing. Failing to support its Afghan allies could affect future cooperation in war-torn regions, raising questions about long-term strategic trust. Meanwhile, the Taliban is trying to use this opportunity to present itself as a responsible government to the international community.</p><p>Amid ongoing political and geopolitical changes, Afghan refugees find themselves in a highly precarious and dangerous position; they cannot return to their country, have no assurance of entry into the United States, and are unwilling to be transferred to a third country. Their situation goes beyond a political issue, representing a deep humanitarian catastrophe marked by broken hopes, fear, and a sense of abandonment.</p>`, ps: `<p>زرګونو افغان ملکي وګړو چې د افغانستان په شل کلنه جګړه کې یې د امریکا له ځواکونو ملاتړ کاوه اوس د پریښودلو له خطر سره مخ دي او په ژور بشردوستانه او سیاسي بحران کې نیول شوي دي. د طالبانو له واکمنۍ وروسته، له ۱۱۰۰ څخه زیات افغان کډوال چې له هیواد څخه تښتیدلي او په قطر کې په موقتو کمپونو کې پناه اخلي، په ناڅرګنده حالت کې دي. د امریکا د نوي حکومت په پالیسیو کې د وروستیو بدلونونو له امله په متحده ایالاتو کې د بیا میشتیدنې هیله کمه شوې، پداسې حال کې چې د دوی نا آرامو هیوادونو لکه د کانګو دیموکراتیک جمهوریت ته د لیږد وړاندیز د دوی وضعیت لا خراب کړی دی.</p><p>د ۲۰۲۱ کال د امریکا له وتلو راهیسې، ډیری افغانان چې د ژباړونکو، چلونکو او د امریکا له ځواکونو سره د همکارانو په توګه یې کار کاوه، د طالبانو د غچ اخیستنې له ویرې له هیواده وتلي. له هغه وخت راهیسې د دوی یو لوی شمیر د امریکا په یوه نظامي تاسیس کې په قطر کې د "السیلیه" په کمپ کې اوسیږي، چې متحده ایالاتو ته د لیږد انتظار کوي. په هرصورت، وروستي سیاسي پرمختګونه، په ځانګړې توګه د ډونالډ ټرمپ له واکمنۍ وروسته د کډوالۍ سختې پالیسۍ، د دوی راتلونکي په اړه جدي شکونه پیدا کړي او دوی یې د اوږدې مودې لپاره په ناڅرګندۍ کې پریښي دي.</p><p>راپورونه چې متحده ایالات په امریکا کې د منلو پرځای د دې کډوالو کانګو ته د لیږدولو په اړه فکر کوي، پراخې اندیښنې راپیدا کړې دي۔ دا مسله د پخپله د کډوالو له خوا له کلک مخالفت سره مخ شوې ده. هغوی چې مخکې له مخکې له جګړې ځپلي هیواد څخه تښتیدلي دي، په ښکاره ډول په بل ناارامه سیمه کې لیږدولو سره مخالفت کوي او د خپل امنیت او د خپلو ماشومانو د راتلونکي په اړه جدي اندیښنې څرګندوي. ډیری یې امریکا د خپلو ژمنو په نه پوره کولو تورنوي او دې کړنې ته د خیانت کړنه وايي.</p><p>په دې بحران کې، د طالبانو حکومت هڅه کړې چې د دې وضعیت څخه په خپله ګټه وکاروي، او د "عمومي بخښنې" په څیر بلنه وړاندې کوي، په قطر کې افغان کډوالو ته یې ویل چې خپل هیواد ته راستانه شي. د طالبانو د بهرنیو چارو وزارت ویاند عبدالقاهر بلخي ویلي چې افغانان بې ویره خپل هیواد ته راستانه شي او ټینګار یې کړی چې "افغانستان د ټولو دی" او چا به د تیرو کارونو له امله تاوان ونه رسي.</p><blockquote>"د طالبانو له خوا وژل یوازې ویره نه ده، بلکې یو حقیقت دی" - د السلیه په کمپ کې یو کډوال</blockquote><p>اوږدمهاله ناڅرګندتیا په کډوالو سخت رواني اغیزې کړي دي. راپورونه د افسردګۍ او اندیښنې د زیاتیدو په ګوته کوي، ځکه چې کورنۍ د خپل راتلونکي په اړه له کوم روڼتیا پرته په ناڅرګند حالت کې ژوند کوي. ډیری یې شکایت کوي چې امریکایی چارواکو مستقیم خبرې نه دي کړي، او دوی اړ دي چې د رسنیو له لارې د خپل حالت په اړه خبر شي. ښځې او ماشومان په ځانګړې توګه زیان منونکي دي، د زده کړې او کاري فرصتونو ته د لاسرسۍ نشتوالي سره مخ دي، کوم چې د دوی ستونزې لا پسې زیاتوي.</p><p>دا وضعیت نړیواله پاملرنه هم راجلب کړې ده. شنونکي خبرداری ورکوي چې د امریکا طریقه کیدای شي د هغې نړیوال حیثیت ته زیان ورسوي. له خپلو افغان متحدانو سره د ملاتړ نشتوالی کولی شي د جګړې په ښکیلو سیمو کې راتلونکي همکاري اغیزمنه کړي، د اوږدې مودې ستراتیژیک اعتماد په اړه پوښتنې راپورته کوي. په ورته وخت کې، طالبان هڅه کوي چې دې فرصت څخه د نړیوالې ټولنې په وړاندې د یو مسؤل حکومت په توګه د ځان ښودلو لپاره وکاروي.</p><p>د سیاسي او جیوپولیټیکي بدلونونو په منځ کې، افغان کډوال ځانونه په خورا نازک او خطرناک حالت کې موندلي دي؛ نه کولای شي خپل هیواد ته راستانه شي، نه په متحده ایالاتو کې د داخلیدو ډاډ لري، او نه د دریم هیواد ته د لیږدولو لپاره چمتو دي. د دوی وضعیت د یوې سیاسي مسلې هاخوا دی، او یو ژور انساني فاجعه څرګندوي چې د ماتیو هیوادونو، ویره او د پریښودو احساس سره مل دی.</p>` }
             }
         ];
 
         let currentLang = 'fa';
         const translations = {
-            fa: {
-                home: "خانه",
-                services: "خدمات",
-                ai: "AI",
-                contact: "تماس با ما",
-                faq: "سوالات متداول",
-                headerTitle: "جدیدترین اخبار روز",
-                headerSub: "آخرین تحولات مهاجرتی، سیاسی و اجتماعی برای افغان‌ها",
-                footTitle1: "خدمات مهاجرت",
-                footDesc1: "معتبرترین خدمات در افغانستان",
-                footDesc2: "خدمات مهاجرتی جهانی",
-                footTitle2: "تماس با ما",
-                footAddr: "ایبک، سمنگان، افغانستان",
-                footTitle3: "شبکه‌های اجتماعی",
-                copyright: "© 2026 VISA GUIDE AF — همه حقوق محفوظ است"
-            },
-            en: {
-                home: "Home",
-                services: "Services",
-                ai: "AI",
-                contact: "Contact",
-                faq: "FAQ",
-                headerTitle: "Latest News",
-                headerSub: "Latest immigration, political and social developments for Afghans",
-                footTitle1: "Immigration Services",
-                footDesc1: "Most reliable services in Afghanistan",
-                footDesc2: "Global immigration services",
-                footTitle2: "Contact Us",
-                footAddr: "Aibak, Samangan, Afghanistan",
-                footTitle3: "Social Networks",
-                copyright: "© 2026 VISA GUIDE AF — All rights reserved"
-            },
-            ps: {
-                home: "کور",
-                services: "خدمات",
-                ai: "AI",
-                contact: "اړیکه",
-                faq: "پوښتنې",
-                headerTitle: "وروستي خبرونه",
-                headerSub: "د افغانانو لپاره وروستي کډوالۍ، سیاسي او ټولنیز پرمختګونه",
-                footTitle1: "د کډوالۍ خدمات",
-                footDesc1: "افغانستان کې ترټولو معتبر خدمات",
-                footDesc2: "نظریاتي د کډوالۍ خدمات",
-                footTitle2: "اړیکه",
-                footAddr: "ایبک, سمنګان، افغانستان",
-                footTitle3: "ټولنیزې شبکې",
-                copyright: "© 2026 VISA GUIDE AF — ټول حقونه خوندي دي"
-            }
+            fa: { home: "خانه", services: "خدمات", ai: "هوش مصنوعی", contact: "تماس با ما", faq: "سوالات متداول", headerTitle: "جدیدترین اخبار روز", headerSub: "آخرین تحولات مهاجرتی، سیاسی و اجتماعی برای افغان‌ها", copyright: "© 2026 VISA GUIDE AF — همه حقوق محفوظ است" },
+            en: { home: "Home", services: "Services", ai: "AI Assistant", contact: "Contact", faq: "FAQ", headerTitle: "Latest News", headerSub: "Latest immigration, political and social developments for Afghans", copyright: "© 2026 VISA GUIDE AF — All rights reserved" },
+            ps: { home: "کور", services: "خدمات", ai: "AI", contact: "اړیکه", faq: "پوښتنې", headerTitle: "وروستي خبرونه", headerSub: "د افغانانو لپاره وروستي کډوالۍ، سیاسي او ټولنیز پرمختګونه", copyright: "© 2026 VISA GUIDE AF — ټول حقونه خوندي دي" }
         };
 
         function renderNews() {
@@ -1027,27 +859,31 @@
             document.getElementById('headerTitle').innerText = translations[lang].headerTitle;
             document.getElementById('headerSub').innerText = translations[lang].headerSub;
             document.getElementById('copyright').innerHTML = translations[lang].copyright;
+            // بروزرسانی برچسب منوی زبان
+            const labelMap = { fa: "فارسی", en: "English", ps: "پښتو" };
+            document.getElementById('currentLangLabel').innerText = labelMap[lang];
             renderNews();
         }
 
-        document.querySelectorAll('.lang-btn').forEach(btn => { btn.addEventListener('click', () => { document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active')); btn.classList.add('active'); updateLanguage(btn.getAttribute('data-lang')); }); });
+        // منوی زبان
+        const dropdown = document.getElementById('langDropdown');
+        const trigger = document.getElementById('langTrigger');
+        trigger.addEventListener('click', (e) => { e.stopPropagation(); dropdown.classList.toggle('open'); });
+        document.addEventListener('click', (e) => { if (!dropdown.contains(e.target)) dropdown.classList.remove('open'); });
+        document.querySelectorAll('.lang-option').forEach(opt => {
+            opt.addEventListener('click', (e) => {
+                const newLang = opt.getAttribute('data-lang');
+                if (newLang) updateLanguage(newLang);
+                dropdown.classList.remove('open');
+            });
+        });
 
         const themeToggle = document.getElementById('themeToggle'); const body = document.body; const themeIcon = themeToggle.querySelector('i');
-        function setTheme(theme) { if (theme === 'light') { body.classList.remove('dark-mode'); themeIcon.className = 'fas fa-moon'; localStorage.setItem('srs-theme', 'light'); } else { body.classList.add('dark-mode'); themeIcon.className = 'fas fa-sun'; localStorage.setItem('srs-theme', 'dark'); } }
-        const savedTheme = localStorage.getItem('srs-theme') || 'dark'; setTheme(savedTheme);
+        function setTheme(theme) { if (theme === 'light') { body.classList.remove('dark-mode'); themeIcon.className = 'fas fa-moon'; localStorage.setItem('theme', 'light'); } else { body.classList.add('dark-mode'); themeIcon.className = 'fas fa-sun'; localStorage.setItem('theme', 'dark'); } }
+        const savedTheme = localStorage.getItem('theme'); setTheme(savedTheme === 'light' ? 'light' : 'dark');
         themeToggle.addEventListener('click', () => { if (body.classList.contains('dark-mode')) setTheme('light'); else setTheme('dark'); });
 
         document.getElementById('menuToggle').addEventListener('click', () => document.getElementById('navMenu').classList.toggle('active'));
-
-        // ذرات معلق پس‌زمینه
-        const pc = document.getElementById('particles');
-        for (let i = 0; i < 40; i++) {
-            const p = document.createElement('div');
-            p.className = 'p';
-            const s = Math.random() * 8 + 3;
-            p.style.cssText = `width:${s}px;height:${s}px;left:${Math.random() * 100}%;top:${Math.random() * 100}%;animation-delay:${Math.random() * 12}s;animation-duration:${12 + Math.random() * 10}s`;
-            pc.appendChild(p);
-        }
 
         renderNews(); updateLanguage('fa');
     </script>

@@ -36,7 +36,6 @@
             --panel: rgba(0, 0, 0, 0.03);
             --border: rgba(0, 0, 0, 0.08);
             --text: #0f172a;
-            /* متن تیره برای حالت روز */
             --text-muted: #475569;
             --primary-glow: rgba(124, 58, 237, 0.15);
         }
@@ -55,6 +54,9 @@
             overflow-x: hidden;
             perspective: 1000px;
             padding: 2rem 1rem;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
         }
 
         /* جلوه ذرات و اورب‌های سه‌بعدی پس‌زمینه */
@@ -115,6 +117,7 @@
         .container {
             max-width: 1200px;
             margin: 0 auto;
+            flex: 1;
         }
 
         /* هدر شیشه‌ای اختصاصی */
@@ -150,7 +153,6 @@
             gap: 1rem;
         }
 
-        /* حلقه دوتایی نورانی دور لوگو با قابلیت تطبیق رنگ روز و شب */
         .logo-img {
             width: 50px;
             height: 50px;
@@ -182,7 +184,80 @@
             gap: 8px;
         }
 
-        /* دکمه تم سوئیچر هماهنگ */
+        /* ========== منوی زبان با کره زمین ========== */
+        .lang-dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .lang-trigger {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid var(--border);
+            border-radius: 40px;
+            padding: 6px 14px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text);
+            font-size: 0.85rem;
+            font-weight: 500;
+            transition: 0.2s;
+        }
+
+        .lang-trigger i {
+            font-size: 1rem;
+            color: #38bdf8;
+        }
+
+        .lang-trigger:hover {
+            background: rgba(124, 58, 237, 0.2);
+            border-color: #7c3aed;
+        }
+
+        .lang-menu {
+            position: absolute;
+            top: 110%;
+            left: 0;
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 8px 0;
+            min-width: 130px;
+            z-index: 300;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.25s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+        }
+
+        .light-mode .lang-menu {
+            background: rgba(255, 255, 255, 0.98);
+        }
+
+        .lang-dropdown.open .lang-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .lang-option {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 8px 16px;
+            cursor: pointer;
+            transition: background 0.2s;
+            color: var(--text);
+            font-size: 0.85rem;
+        }
+
+        .lang-option:hover {
+            background: rgba(124, 58, 237, 0.2);
+        }
+
+        /* دکمه تم سوئیچر */
         .theme-btn {
             background: var(--primary);
             border: none;
@@ -338,7 +413,7 @@
             box-shadow: 0 12px 25px rgba(214, 41, 118, 0.4);
         }
 
-        /* نوت هشدار متناسب با تم روز و شب */
+        /* نوت هشدار */
         .note {
             text-align: center;
             background: rgba(245, 158, 11, 0.08);
@@ -363,7 +438,7 @@
             box-shadow: 0 5px 15px rgba(245, 158, 11, 0.1);
         }
 
-        /* پانویس (Footer) متحرک و شیشه‌ای یکپارچه */
+        /* پانویس (Footer) */
         .footer {
             background: rgba(10, 15, 30, 0.8);
             border-top: 1px solid var(--border);
@@ -462,7 +537,7 @@
             border-top: 1px solid rgba(0, 0, 0, 0.08);
         }
 
-        /* انیمیشن ذرات معلق */
+        /* ذرات */
         .particles {
             position: fixed;
             top: 0;
@@ -549,26 +624,40 @@
     <div class="particles" id="particles"></div>
 
     <div class="container">
-        <!-- هدر اختصاصی با دکمه تم سوئیچر و دکمه برگشت -->
+        <!-- هدر با منوی زبان کره‌زمین و دکمه تم -->
         <div class="page-header" data-aos="fade-down">
             <div class="logo-area">
                 <img class="logo-img" src="images/kha.jpg" alt="لوگو">
-                <span class="logo-text"><i class="fas fa-compass"></i> رهنمودهای مهاجرتی</span>
+                <span class="logo-text"><i class="fas fa-compass"></i> <span data-key="headerTitle">رهنمودهای
+                        مهاجرتی</span></span>
             </div>
             <div style="display: flex; gap: 10px; align-items: center;">
+                <!-- منوی زبان با کره زمین -->
+                <div class="lang-dropdown" id="langDropdown">
+                    <div class="lang-trigger" id="langTrigger">
+                        <i class="fas fa-globe-americas"></i>
+                        <span id="currentLangLabel">فارسی</span>
+                        <i class="fas fa-chevron-down" style="font-size: 0.7rem;"></i>
+                    </div>
+                    <div class="lang-menu">
+                        <div class="lang-option" data-lang="fa"><span>🇦🇫</span> فارسی</div>
+                        <div class="lang-option" data-lang="en"><span>🇬🇧</span> English</div>
+                        <div class="lang-option" data-lang="ps"><span>🇦🇫</span> پښتو</div>
+                    </div>
+                </div>
                 <button class="theme-btn" id="themeBtn"><i class="fas fa-moon"></i></button>
                 <a href="index.html" class="btn-home">
-                    <i class="fas fa-home"></i> برگشت به خانه
+                    <i class="fas fa-home"></i> <span data-key="backHome">برگشت به خانه</span>
                 </a>
             </div>
         </div>
 
         <div class="hero-section" data-aos="fade-up">
-            <h1><i class="fas fa-map-signs"></i> رهنمودهای مهاجرتی</h1>
+            <h1><i class="fas fa-map-signs"></i> <span data-key="pageTitle">رهنمودهای مهاجرتی</span></h1>
         </div>
 
         <div class="guidance-box" data-aos="zoom-in">
-            <div class="guidance-text">
+            <div class="guidance-text" id="guidanceText">
                 <i class="fas fa-quote-right"></i>
                 برای دریافت جدیدترین رهنمودهای مهاجرتی، اطلاع از تغییرات ویزاهای بشردوستانه، برنامه‌های اسپانسر و مشاوره
                 تخصصی،
@@ -581,82 +670,175 @@
             <div class="contact-buttons">
                 <a href="https://wa.me/message/ZY2KWEKZLQCXF1?src=qr" class="btn-contact whatsapp" target="_blank">
                     <i class="fab fa-whatsapp"></i>
-                    تماس از طریق واتساپ
+                    <span data-key="whatsappBtn">تماس از طریق واتساپ</span>
                 </a>
                 <a href="https://www.instagram.com/sarfraz_refugee_service" class="btn-contact instagram"
                     target="_blank">
                     <i class="fab fa-instagram"></i>
-                    دنبال کردن در اینستاگرام
+                    <span data-key="instagramBtn">دنبال کردن در اینستاگرام</span>
                 </a>
             </div>
 
             <div class="note">
                 <i class="fas fa-info-circle"></i>
-                توجه: تمامی خدمات مشاوره از طریق واتساپ و اینستاگرام ارائه می‌شود. لطفاً جهت دریافت اطلاعات دقیق و
-                به‌روز، با ما در ارتباط باشید.
+                <span data-key="noteText">توجه: تمامی خدمات مشاوره از طریق واتساپ و اینستاگرام ارائه می‌شود. لطفاً جهت
+                    دریافت اطلاعات دقیق و به‌روز، با ما در ارتباط باشید.</span>
             </div>
         </div>
     </div>
 
-    <!-- فوتر ۳ ستونه هماهنگ و شیشه‌ای -->
+    <!-- فوتر ۳ ستونه -->
     <div class="footer" data-aos="fade-up">
         <div class="footer-container">
             <div class="footer-section">
-                <h4><i class="fas fa-globe"></i> خدمات مهاجرت</h4>
-                <p><i class="fas fa-check-circle" style="color:var(--success)"></i> معتبرترین خدمات مهاجرت در افغانستان
-                </p>
-                <p><i class="fas fa-globe" style="color:#38bdf8"></i> ارایه خدمات مهاجرتی در سراسر جهان</p>
+                <h4><i class="fas fa-globe"></i> <span data-key="footTitle1">خدمات مهاجرت</span></h4>
+                <p><i class="fas fa-check-circle" style="color:var(--success)"></i> <span data-key="footDesc1">معتبرترین
+                        خدمات مهاجرت در افغانستان</span></p>
+                <p><i class="fas fa-globe" style="color:#38bdf8"></i> <span data-key="footDesc2">ارایه خدمات مهاجرتی در
+                        سراسر جهان</span></p>
             </div>
 
             <div class="footer-section">
-                <h4><i class="fas fa-map-marker-alt"></i> تماس با ما</h4>
-                <p><i class="fas fa-location-dot" style="color:#f59e0b"></i> شهر ایبک، سمنگان، افغانستان</p>
+                <h4><i class="fas fa-map-marker-alt"></i> <span data-key="footTitle2">تماس با ما</span></h4>
+                <p><i class="fas fa-location-dot" style="color:#f59e0b"></i> <span data-key="footAddr">شهر ایبک، سمنگان،
+                        افغانستان</span></p>
                 <p><i class="fas fa-phone" style="color:#10b981"></i> 0792665622</p>
                 <p><i class="fas fa-envelope" style="color:#ef4444"></i> visa.guide.af.123@gmail.com</p>
             </div>
 
             <div class="footer-section">
-                <h4><i class="fas fa-share-alt"></i> شبکه‌های اجتماعی</h4>
+                <h4><i class="fas fa-share-alt"></i> <span data-key="footTitle3">شبکه‌های اجتماعی</span></h4>
                 <div class="social-links">
                     <a class="social-link"
                         onclick="window.open('https://whatsapp.com/channel/0029Vae7U29AzNbpZIv5T81R')">
-                        <i class="fab fa-whatsapp" style="color:#25d366"></i> واتساپ
+                        <i class="fab fa-whatsapp" style="color:#25d366"></i> WhatsApp
                     </a>
                     <a class="social-link" onclick="window.open('https://t.me/visaguidee')">
-                        <i class="fab fa-telegram" style="color:#29b6f6"></i> تلگرام
+                        <i class="fab fa-telegram" style="color:#29b6f6"></i> Telegram
                     </a>
                     <a class="social-link"
                         onclick="window.open('https://www.facebook.com/profile.php?id=61589943461514')">
-                        <i class="fab fa-facebook" style="color:#1877f2"></i> فیسبوک
+                        <i class="fab fa-facebook" style="color:#1877f2"></i> Facebook
                     </a>
                     <a class="social-link" onclick="window.open('https://www.instagram.com/sarfraz_refugee_service')">
-                        <i class="fab fa-instagram" style="color:#e1306c"></i> انستاگرام
+                        <i class="fab fa-instagram" style="color:#e1306c"></i> Instagram
                     </a>
                 </div>
             </div>
         </div>
         <div class="footer-bottom">
-            <p>© 2026 VISA GUIDE AF — همه حقوق محفوظ است</p>
+            <p><span data-key="copy">© 2026 VISA GUIDE AF — همه حقوق محفوظ است</span></p>
         </div>
     </div>
 
-    <!-- AOS Script & Theme Logic -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        // بارگذاری و فعال‌سازی تم انتخاب شده از صفحات قبل
-        const tb = document.getElementById('themeBtn');
-        const saved = localStorage.getItem('srs-theme') || 'dark';
-        document.body.className = saved + '-mode';
-        tb.innerHTML = saved === 'dark' ? '<i class="fas fa-moon"></i>' : '<i class="fas fa-sun"></i>';
+        // ========== MULTILINGUAL DATA ==========
+        const T = {
+            fa: {
+                headerTitle: "رهنمودهای مهاجرتی",
+                backHome: "برگشت به خانه",
+                pageTitle: "رهنمودهای مهاجرتی",
+                guidanceText: 'برای دریافت جدیدترین رهنمودهای مهاجرتی، اطلاع از تغییرات ویزاهای بشردوستانه، برنامه‌های اسپانسر و مشاوره تخصصی، <strong>فقط از طریق شبکه‌های اجتماعی ما را دنبال کنید و تماس بگیرید.</strong><br><br>تیم حرفه‌ای <strong>VISA GUIDE AF</strong> آماده پاسخگویی به سوالات شما در تمام مراحل مهاجرت است.',
+                whatsappBtn: "تماس از طریق واتساپ",
+                instagramBtn: "دنبال کردن در اینستاگرام",
+                noteText: "توجه: تمامی خدمات مشاوره از طریق واتساپ و اینستاگرام ارائه می‌شود. لطفاً جهت دریافت اطلاعات دقیق و به‌روز، با ما در ارتباط باشید.",
+                footTitle1: "خدمات مهاجرت",
+                footDesc1: "معتبرترین خدمات مهاجرت در افغانستان",
+                footDesc2: "ارایه خدمات مهاجرتی در سراسر جهان",
+                footTitle2: "تماس با ما",
+                footAddr: "شهر ایبک، سمنگان، افغانستان",
+                footTitle3: "شبکه‌های اجتماعی",
+                copy: "© 2026 VISA GUIDE AF — همه حقوق محفوظ است"
+            },
+            en: {
+                headerTitle: "Immigration Guidelines",
+                backHome: "Back to Home",
+                pageTitle: "Immigration Guidelines",
+                guidanceText: 'To receive the latest immigration guidelines, updates on humanitarian visas, sponsorship programs, and expert consultation, <strong>follow us on social media and contact us.</strong><br><br>The professional team of <strong>VISA GUIDE AF</strong> is ready to answer your questions at every stage of immigration.',
+                whatsappBtn: "Contact via WhatsApp",
+                instagramBtn: "Follow on Instagram",
+                noteText: "Note: All consulting services are provided via WhatsApp and Instagram. Please contact us for accurate and up-to-date information.",
+                footTitle1: "Immigration Services",
+                footDesc1: "Most reliable immigration services in Afghanistan",
+                footDesc2: "Global immigration services worldwide",
+                footTitle2: "Contact Us",
+                footAddr: "Aibak City, Samangan, Afghanistan",
+                footTitle3: "Social Networks",
+                copy: "© 2026 VISA GUIDE AF — All rights reserved"
+            },
+            ps: {
+                headerTitle: "د کډوالۍ لارښوونې",
+                backHome: "کور ته ستنېدل",
+                pageTitle: "د کډوالۍ لارښوونې",
+                guidanceText: 'د کډوالۍ وروستي لارښوونو، بشري ویزو بدلونونو، سپانسر پروګرامونو او تخصصي مشورې ترلاسه کولو لپاره، <strong>یوازې زموږ ټولنیزو شبکو تعقیب کړئ او موږ سره اړیکه ونیسئ.</strong><br><br>د <strong>VISA GUIDE AF</strong> مسلکي ټیم ستاسو د کډوالۍ په ټولو مرحلو کې ستاسو پوښتنو ته د ځواب ویلو لپاره چمتو دی.',
+                whatsappBtn: "د واټس اپ له لارې اړیکه",
+                instagramBtn: "په انسټاګرام کې تعقیب کړئ",
+                noteText: "یادونه: ټول مشورتي خدمتونه د واټس اپ او انسټاګرام له لارې وړاندې کیږي. مهرباني وکړئ د دقیقو او تازه معلوماتو لپاره موږ سره اړیکه ونیسئ.",
+                footTitle1: "د کډوالۍ خدمات",
+                footDesc1: "په افغانستان کې د کډوالۍ ترټولو باوري خدمات",
+                footDesc2: "په ټوله نړۍ کې نړیوال کډوالۍ خدمات",
+                footTitle2: "اړیکه",
+                footAddr: "ایبک ښار، سمنګان، افغانستان",
+                footTitle3: "ټولنیزې شبکې",
+                copy: "© 2026 VISA GUIDE AF — ټول حقونه خوندي دي"
+            }
+        };
 
-        tb.addEventListener('click', () => {
-            const d = document.body.classList.contains('dark-mode');
-            document.body.className = (d ? 'light' : 'dark') + '-mode';
-            tb.innerHTML = d ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
-            localStorage.setItem('srs-theme', d ? 'light' : 'dark');
+        let currentLang = 'fa';
+
+        function applyLanguage(lang) {
+            currentLang = lang;
+            // به‌روزرسانی تمام عناصر دارای data-key
+            document.querySelectorAll('[data-key]').forEach(el => {
+                const key = el.getAttribute('data-key');
+                if (T[lang][key]) el.innerHTML = T[lang][key];
+            });
+            // به‌روزرسانی متن باکس راهنمایی (که داخل آن HTML دارد)
+            const guidanceDiv = document.getElementById('guidanceText');
+            if (guidanceDiv) guidanceDiv.innerHTML = T[lang].guidanceText;
+            // به‌روزرسانی برچسب منوی زبان
+            const labelMap = { fa: "فارسی", en: "English", ps: "پښتو" };
+            document.getElementById('currentLangLabel').innerText = labelMap[lang];
+            // تغییر پس‌زمینه گزینه فعال در منو
+            document.querySelectorAll('.lang-option').forEach(opt => {
+                if (opt.getAttribute('data-lang') === lang) opt.style.background = "rgba(139,92,246,0.2)";
+                else opt.style.background = "transparent";
+            });
+        }
+
+        // ========== تم (شب/روز) ==========
+        const themeBtn = document.getElementById('themeBtn');
+        const savedTheme = localStorage.getItem('srs-theme') || 'dark';
+        document.body.className = savedTheme + '-mode';
+        themeBtn.innerHTML = savedTheme === 'dark' ? '<i class="fas fa-moon"></i>' : '<i class="fas fa-sun"></i>';
+
+        themeBtn.addEventListener('click', () => {
+            const isDark = document.body.classList.contains('dark-mode');
+            document.body.className = isDark ? 'light-mode' : 'dark-mode';
+            themeBtn.innerHTML = isDark ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+            localStorage.setItem('srs-theme', isDark ? 'light' : 'dark');
         });
 
-        // ایجاد ذرات متحرک پس‌زمینه
+        // ========== منوی زبان (کره زمین) ==========
+        const dropdown = document.getElementById('langDropdown');
+        const trigger = document.getElementById('langTrigger');
+        trigger.addEventListener('click', (e) => {
+            e.stopPropagation();
+            dropdown.classList.toggle('open');
+        });
+        document.addEventListener('click', (e) => {
+            if (!dropdown.contains(e.target)) dropdown.classList.remove('open');
+        });
+        document.querySelectorAll('.lang-option').forEach(opt => {
+            opt.addEventListener('click', (e) => {
+                const newLang = opt.getAttribute('data-lang');
+                if (newLang) applyLanguage(newLang);
+                dropdown.classList.remove('open');
+            });
+        });
+
+        // ========== ذرات ==========
         const pc = document.getElementById('particles');
         for (let i = 0; i < 40; i++) {
             const p = document.createElement('div');
@@ -666,11 +848,15 @@
             pc.appendChild(p);
         }
 
+        // ========== AOS ==========
         AOS.init({
             duration: 800,
             once: true,
             offset: 100
         });
+
+        // ========== اعمال زبان پیش‌فرض ==========
+        applyLanguage('fa');
     </script>
 </body>
 

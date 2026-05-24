@@ -3,8 +3,8 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>خطر اخراج پناهجو | VISA GUIDE AF</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>سرنوشت پناهجویان | VISA GUIDE AF</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
     <style>
@@ -30,7 +30,6 @@
             --panel: rgba(0, 0, 0, 0.03);
             --border: rgba(0, 0, 0, 0.08);
             --text: #0f172a;
-            /* متن تیره برای حالت روز */
             --text-muted: #475569;
             --primary-glow: rgba(124, 58, 237, 0.15);
         }
@@ -47,7 +46,9 @@
             background-color: var(--bg);
             color: var(--text);
             overflow-x: hidden;
-            perspective: 1000px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
         }
 
         /* جلوه ذرات و اورب‌های سه‌بعدی پس‌زمینه */
@@ -105,7 +106,7 @@
             }
         }
 
-        /* منوی ناوبری مدرن */
+        /* ========== NAVBAR (مشابه سایر صفحات) ========== */
         .navbar {
             position: sticky;
             top: 15px;
@@ -118,7 +119,6 @@
             padding: 12px 24px;
             background: rgba(15, 23, 42, 0.4);
             backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
             border: 1px solid var(--border);
             border-radius: 50px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
@@ -137,7 +137,6 @@
             color: var(--text);
         }
 
-        /* حلقه دوتایی درخشان دور لوگو */
         .logo-wrap img {
             width: 45px;
             height: 45px;
@@ -167,14 +166,13 @@
             -webkit-text-fill-color: transparent;
         }
 
-        .nav-menu {
+        .nav-links {
             display: flex;
             list-style: none;
             gap: 15px;
         }
 
-        /* استایل و انیمیشن لینک‌های منو */
-        .nav-menu a {
+        .nav-links a {
             display: flex;
             align-items: center;
             gap: 8px;
@@ -185,31 +183,24 @@
             font-weight: 500;
             border-radius: 30px;
             position: relative;
-            overflow: hidden;
             transition: all 0.3s ease;
         }
 
-        .nav-menu a img {
+        .nav-links a img {
             width: 18px;
             height: 18px;
-            transition: transform 0.3s ease, filter 0.3s ease;
+            transition: filter 0.3s;
         }
 
-        .nav-menu a:hover img {
-            transform: translateY(-2px);
-        }
-
-        /* تغییر خودکار رنگ آیکون‌های تصویر منو در حالت روز و شب */
-        .dark-mode .nav-menu a img {
+        .dark-mode .nav-links a img {
             filter: brightness(0) invert(1);
         }
 
-        .light-mode .nav-menu a img {
+        .light-mode .nav-links a img {
             filter: brightness(0);
         }
 
-        /* انیمیشن خط زیرین دکمه‌های منو دسکتاپ */
-        .nav-menu a::after {
+        .nav-links a::after {
             content: '';
             position: absolute;
             bottom: 2px;
@@ -218,49 +209,110 @@
             height: 2px;
             background: linear-gradient(90deg, #7c3aed, #38bdf8);
             border-radius: 2px;
-            transition: width 0.3s ease, transform 0.3s ease;
+            transition: width 0.3s ease;
             transform: translateX(-50%);
         }
 
-        .nav-menu a:hover::after {
+        .nav-links a:hover::after {
             width: 60%;
         }
 
-        /* تنظیم رنگ متن‌های منو در حالت روز و شب */
-        .dark-mode .nav-menu a {
+        .dark-mode .nav-links a {
             color: #e2e8f0;
-            text-shadow: 0 0 10px rgba(255, 255, 255, 0.05);
         }
 
-        .light-mode .nav-menu a {
+        .dark-mode .nav-links a:hover {
+            color: #ffffff;
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .light-mode .nav-links a {
             color: #334155;
         }
 
-        .light-mode .nav-menu a:hover {
+        .light-mode .nav-links a:hover {
             color: #0f172a;
             background: rgba(0, 0, 0, 0.05);
+        }
+
+        /* ========== منوی زبان با کره زمین ========== */
+        .lang-dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .lang-trigger {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid var(--border);
+            border-radius: 40px;
+            padding: 6px 14px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text);
+            font-size: 0.85rem;
+            font-weight: 500;
+            transition: 0.2s;
+        }
+
+        .lang-trigger i {
+            font-size: 1rem;
+            color: #38bdf8;
+        }
+
+        .lang-trigger:hover {
+            background: rgba(124, 58, 237, 0.2);
+            border-color: #7c3aed;
+        }
+
+        .lang-menu {
+            position: absolute;
+            top: 110%;
+            left: 0;
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 8px 0;
+            min-width: 130px;
+            z-index: 300;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.25s ease;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .light-mode .lang-menu {
+            background: rgba(255, 255, 255, 0.98);
+        }
+
+        .lang-dropdown.open .lang-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .lang-option {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 8px 16px;
+            cursor: pointer;
+            transition: background 0.2s;
+            color: var(--text);
+            font-size: 0.85rem;
+        }
+
+        .lang-option:hover {
+            background: rgba(124, 58, 237, 0.2);
         }
 
         .nav-actions {
             display: flex;
             align-items: center;
             gap: 10px;
-        }
-
-        .lang-btn {
-            background: transparent;
-            border: 1px solid var(--border);
-            color: var(--text-muted);
-            padding: 6px 12px;
-            border-radius: 30px;
-            cursor: pointer;
-            font-size: 0.8rem;
-        }
-
-        .lang-btn.active {
-            color: var(--text);
-            background: rgba(255, 255, 255, 0.1);
-            border-color: #7c3aed;
         }
 
         .theme-btn {
@@ -277,7 +329,7 @@
             box-shadow: 0 4px 10px var(--primary-glow);
         }
 
-        .menu-toggle {
+        .menu-btn {
             display: none;
             background: none;
             border: none;
@@ -286,23 +338,20 @@
             cursor: pointer;
         }
 
-        /* کادر شیشه‌ای محتوای مقاله */
+        /* ========== ARTICLE CONTENT ========== */
         .article-container {
             max-width: 800px;
             margin: 40px auto 80px auto;
-            padding: 2.5rem;
+            padding: 2rem;
             background: var(--panel);
             backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
             border: 1px solid var(--border);
-            border-radius: 28px;
-            box-shadow: 0 20px 50px -10px rgba(0, 0, 0, 0.3);
+            border-radius: 32px;
             animation: fadeInUp 0.6s ease-out;
         }
 
         .light-mode .article-container {
             background: rgba(255, 255, 255, 0.85);
-            box-shadow: 0 20px 50px -10px rgba(0, 0, 0, 0.05);
         }
 
         @keyframes fadeInUp {
@@ -325,12 +374,8 @@
             margin-bottom: 1rem;
         }
 
-        .light-mode .article-category {
-            color: #4f46e5;
-        }
-
         .article-title {
-            font-size: 2rem;
+            font-size: 1.8rem;
             font-weight: 800;
             margin-bottom: 1rem;
             line-height: 1.4;
@@ -338,12 +383,11 @@
         }
 
         .article-deck {
-            font-size: 1.1rem;
+            font-size: 1rem;
             color: var(--text-muted);
             margin-bottom: 1.5rem;
             border-right: 3px solid #7c3aed;
             padding-right: 1rem;
-            line-height: 1.6;
         }
 
         .article-byline {
@@ -378,12 +422,12 @@
         }
 
         .author-title {
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             color: var(--text-muted);
         }
 
         .article-date {
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             color: var(--text-muted);
         }
 
@@ -391,7 +435,6 @@
             width: 100%;
             border-radius: 16px;
             margin: 1.5rem 0;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
         }
 
         .image-caption {
@@ -403,13 +446,13 @@
         }
 
         .article-content {
-            font-size: 1.05rem;
-            line-height: 1.9;
+            font-size: 1rem;
+            line-height: 1.8;
             color: var(--text);
         }
 
         .article-content p {
-            margin-bottom: 1.2rem;
+            margin-bottom: 1rem;
         }
 
         .article-content blockquote {
@@ -418,42 +461,27 @@
             margin: 1.5rem 0;
             background: rgba(255, 255, 255, 0.02);
             font-style: italic;
+            border-radius: 8px;
             color: var(--text);
-            border-radius: 4px;
         }
 
         .light-mode .article-content blockquote {
             background: #f8fafc;
-            border-right-color: #4f46e5;
         }
 
-        .warning-box {
-            background: rgba(245, 158, 11, 0.08);
-            border-right: 4px solid #f59e0b;
-            padding: 1.2rem;
-            border-radius: 16px;
-            margin: 1.5rem 0;
-            color: #fbbf24;
-            line-height: 1.7;
-        }
-
-        .light-mode .warning-box {
-            background: #fffbeb;
-            color: #92400e;
-        }
-
-        /* دکمه بازگشت سه بعدی */
         .back-button {
             display: inline-flex;
             margin-top: 2rem;
-            padding: 12px 24px;
+            padding: 10px 22px;
             color: white;
             background: var(--primary);
             text-decoration: none;
-            border-radius: 30px;
+            border-radius: 40px;
             font-weight: 600;
             box-shadow: 0 4px 10px var(--primary-glow);
-            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transition: all 0.2s;
+            align-items: center;
+            gap: 8px;
         }
 
         .back-button:hover {
@@ -461,17 +489,16 @@
             box-shadow: 0 8px 20px var(--primary-glow);
         }
 
-        /* پانویس (Footer) متناسب با حالت روز و شب */
+        /* ========== FOOTER ========== */
         .footer {
             background: rgba(10, 15, 30, 0.8);
             border-top: 1px solid var(--border);
             padding: 60px 16px 20px 16px;
-            margin-top: 100px;
+            margin-top: auto;
         }
 
         .light-mode .footer {
             background: #f1f5f9;
-            border-top: 1px solid rgba(0, 0, 0, 0.08);
         }
 
         .footer-inner {
@@ -488,10 +515,10 @@
             font-weight: 700;
             margin-bottom: 20px;
             color: var(--text);
-            position: relative;
         }
 
-        .footer-col p {
+        .footer-col p,
+        .footer-col a {
             color: var(--text-muted);
             font-size: 0.9rem;
             line-height: 1.8;
@@ -499,26 +526,13 @@
             display: flex;
             align-items: center;
             gap: 10px;
+            text-decoration: none;
             transition: transform 0.3s, color 0.3s;
         }
 
-        .footer-col p:hover {
-            transform: translateX(-5px);
-            color: var(--text);
-        }
-
-        .footer-col a {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            color: var(--text-muted);
-            text-decoration: none;
-            font-size: 0.9rem;
-            margin-bottom: 12px;
-            transition: color 0.3s;
-        }
-
+        .footer-col p:hover,
         .footer-col a:hover {
+            transform: translateX(-5px);
             color: var(--text);
         }
 
@@ -532,11 +546,7 @@
             font-size: 0.85rem;
         }
 
-        .light-mode .footer-bottom {
-            border-top: 1px solid rgba(0, 0, 0, 0.08);
-        }
-
-        /* انیمیشن ذرات معلق */
+        /* ========== PARTICLES ========== */
         .particles {
             position: fixed;
             top: 0;
@@ -549,7 +559,7 @@
 
         .p {
             position: absolute;
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.08);
             border-radius: 50%;
             animation: rise 15s infinite linear;
         }
@@ -561,11 +571,11 @@
             }
 
             10% {
-                opacity: 1;
+                opacity: 0.5;
             }
 
             90% {
-                opacity: 1;
+                opacity: 0.5;
             }
 
             100% {
@@ -574,18 +584,18 @@
             }
         }
 
-        /* موبایل */
+        /* ========== RESPONSIVE ========== */
         @media (max-width: 768px) {
             .navbar {
                 width: 90%;
                 border-radius: 24px;
             }
 
-            .menu-toggle {
+            .menu-btn {
                 display: block;
             }
 
-            .nav-menu {
+            .nav-links {
                 display: none;
                 position: absolute;
                 top: 75px;
@@ -600,13 +610,13 @@
                 box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
             }
 
-            .light-mode .nav-menu {
+            .light-mode .nav-links {
                 background: rgba(255, 255, 255, 0.98);
             }
 
-            .nav-menu.active {
+            .nav-links.open {
                 display: flex;
-                animation: menuFadeIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+                animation: menuFadeIn 0.4s ease forwards;
             }
 
             @keyframes menuFadeIn {
@@ -625,18 +635,13 @@
                 font-size: 1.5rem;
             }
 
-            .article-deck {
-                font-size: 0.95rem;
+            .article-container {
+                padding: 1.5rem;
             }
 
             .article-byline {
                 flex-direction: column;
                 align-items: flex-start;
-            }
-
-            .footer-container {
-                grid-template-columns: 1fr;
-                text-align: center;
             }
         }
     </style>
@@ -650,79 +655,89 @@
     <div class="bg-orb"></div>
     <div class="particles" id="particles"></div>
 
-    <!-- منوی بالایی -->
-    <nav class="navbar" id="navbar">
-        <div class="nav-container">
-            <a href="../index.html" class="logo-wrap">
-                <img src="../images/kha.jpg" alt="لوگو" class="logo-img">
-                <div class="logo-name">VISA<br>GUIDE AF</div>
-            </a>
-            <button class="menu-toggle">☰</button>
-            <ul class="nav-menu" id="navMenu">
-                <li><a href="../index.html"><img src="../images/home.png"> <span data-k="home">خانه</span></a></li>
-                <li><a href="../services.html"><img src="../images/customer.png"> <span
-                            data-k="services">خدمات</span></a></li>
-                <li><a href="../ai.html"><img src="../images/bot.png"> <span data-k="ai">هوش مصنوعی</span></a></li>
-                <li><a href="../contact.html"><img src="../images/call.png"> <span data-k="contact">تماس</span></a></li>
-                <li><a href="../faq.html"><img src="../images/f&a.png"> <span data-k="faq">سوالات</span></a></li>
-            </ul>
-            <div class="nav-actions">
-                <button class="lang-btn active" data-l="fa">🇦🇫 فارسی</button>
-                <button class="lang-btn" data-l="en">🇬🇧 EN</button>
-                <button class="lang-btn" data-l="ps">پښتو</button>
-                <button class="theme-btn" id="themeBtn"><i class="fas fa-moon"></i></button>
+    <!-- ========== NAVBAR ========== -->
+    <nav class="navbar">
+        <a href="../index.html" class="logo-wrap">
+            <img src="../images/kha.jpg" alt="logo">
+            <div class="logo-name">VISA<br>GUIDE AF</div>
+        </a>
+        <button class="menu-btn" id="menuBtn">☰</button>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="../index.html"><img src="../images/home.png"> <span data-key="home">خانه</span></a></li>
+            <li><a href="../services.html"><img src="../images/customer.png"> <span data-key="services">خدمات</span></a>
+            </li>
+            <li><a href="../ai.html"><img src="../images/ai.png"> <span data-key="ai">هوش مصنوعی</span></a></li>
+            <li><a href="../contact.html"><img src="../images/call.png"> <span data-key="contact">تماس</span></a></li>
+            <li><a href="../faq.html"><img src="../images/f&a.png"> <span data-key="faq">سوالات</span></a></li>
+            <li><a href="../news/day-news/day.html"><img src="../images/event.png"> <span
+                        data-key="news">اخبار</span></a></li>
+        </ul>
+        <div class="nav-actions">
+            <div class="lang-dropdown" id="langDropdown">
+                <div class="lang-trigger" id="langTrigger">
+                    <i class="fas fa-globe-americas"></i>
+                    <span id="currentLangLabel">فارسی</span>
+                    <i class="fas fa-chevron-down" style="font-size: 0.7rem;"></i>
+                </div>
+                <div class="lang-menu">
+                    <div class="lang-option" data-lang="fa"><span>🇦🇫</span> فارسی</div>
+                    <div class="lang-option" data-lang="en"><span>🇬🇧</span> English</div>
+                    <div class="lang-option" data-lang="ps"><span>🇦🇫</span> پښتو</div>
+                </div>
             </div>
+            <button class="theme-btn" id="themeBtn"><i class="fas fa-moon"></i></button>
         </div>
     </nav>
 
-    <!-- محتوای خبر -->
+    <!-- ========== ARTICLE CONTENT ========== -->
     <div class="article-container">
-        <div class="article-category" data-k="category">اخبار روز</div>
-        <h1 class="article-title" id="articleTitle">پناهجوی افغان در آمریکا با خطر اخراج روبه‌رو شد؛ بازداشت در جریان
-            بررسی مهاجرتی</h1>
-        <div class="article-deck" id="articleDeck">یک پناهجوی افغان که سال گذشته به‌دلیل تهدیدهای طالبان از افغانستان
-            فرار کرده بود، اکنون در ایالات متحده با خطر اخراج و بازگردانده شدن به کشورش مواجه شده است.</div>
+        <div class="article-category" data-key="category">اخبار روز</div>
+        <h1 class="article-title" id="articleTitle">سرنوشت نامعلوم پناهجویان افغان؛ میان وعده‌های ناتمام و بازگشت پرخطر
+        </h1>
+        <div class="article-deck" id="articleDeck">هزاران غیرنظامی افغان که در جریان جنگ بیست‌ساله از نیروهای ایالات
+            متحده حمایت کرده بودند، اکنون با خطر رها شدن روبه‌رو هستند و در میان یک بحران عمیق بشردوستانه و سیاسی گرفتار
+            مانده‌اند.</div>
 
         <div class="article-byline">
             <div class="author-info">
-                <img src="../images/kha.jpg" alt="نویسنده" class="author-avatar-large">
+                <img src="../images/kha.jpg" alt="author" class="author-avatar-large">
                 <div class="author-details">
-                    <span class="author-name" data-k="author">گزارشگر VISA GUIDE AF</span>
-                    <span class="author-title" data-k="authorTitle">گزارشگر و ادمین</span>
+                    <span class="author-name" data-key="author">گزارشگر VISA GUIDE AF</span>
+                    <span class="author-title" data-key="authorTitle">گزارشگر و ادمین</span>
                 </div>
             </div>
-            <div class="article-date" id="articleDate">🕒 ۲۷ اپریل ۲۰۲۶ - ۱۰:۳۰</div>
+            <div class="article-date" id="articleDate">🕒 ۲۷ اپریل ۲۰۲۶ - ۱۰:۱۵</div>
         </div>
 
-        <img src="../news/pic/homeland.jpg" alt="پناهجوی افغان" class="featured-image">
-        <div class="image-caption" id="imageCaption">مرکز بازداشت مهاجرتی در نیوجرسی</div>
+        <img src="../news/pic/homeland.jpg" alt="پناهجویان افغان" class="featured-image">
+        <div class="image-caption" id="imageCaption">کمپ‌های موقت پناهندگان افغان در کشورهای همسایه</div>
 
         <div class="article-content" id="articleContent">
-            <!-- محتوای خبر به صورت داینامیک بر اساس زبان تغییر می‌کند -->
+            <!-- محتوا به صورت داینامیک از T بارگذاری می‌شود -->
         </div>
 
-        <a href="../index.html" class="back-button" data-k="backBtn">← بازگشت به صفحه اصلی</a>
+        <a href="../index.html" class="back-button" data-key="backBtn">← بازگشت به صفحه اصلی</a>
     </div>
 
-    <!-- فوتر ۳ ستونه هماهنگ و شیشه‌ای -->
+    <!-- ========== FOOTER ========== -->
     <footer class="footer">
         <div class="footer-inner">
             <div class="footer-col">
-                <h4 data-k="footTitle1">خدمات مهاجرت</h4>
-                <p><i class="fas fa-check-circle" style="color:var(--success)"></i> <span data-k="footDesc1">معتبرترین
+                <h4 data-key="footTitle1">خدمات مهاجرت</h4>
+                <p><i class="fas fa-check-circle" style="color:var(--success)"></i> <span data-key="footDesc1">معتبرترین
                         خدمات در افغانستان</span></p>
-                <p><i class="fas fa-globe" style="color:#38bdf8"></i> <span data-k="footDesc2">خدمات مهاجرتی
+                <p><i class="fas fa-globe" style="color:#38bdf8"></i> <span data-key="footDesc2">خدمات مهاجرتی
                         جهانی</span></p>
             </div>
             <div class="footer-col">
-                <h4 data-k="footTitle2">تماس با ما</h4>
-                <p><i class="fas fa-map-marker-alt" style="color:#f59e0b"></i> <span data-k="footAddr">ایبک، سمنگان،
+                <h4 data-key="footTitle2">تماس با ما</h4>
+                <p><i class="fas fa-map-marker-alt" style="color:#f59e0b"></i> <span data-key="footAddr">ایبک، سمنگان،
                         افغانستان</span></p>
                 <p><i class="fas fa-phone-alt" style="color:#10b981"></i> 0792665622</p>
                 <p><i class="fas fa-envelope" style="color:#ef4444"></i> visa.guide.af.123@gmail.com</p>
             </div>
             <div class="footer-col">
-                <h4 data-k="footTitle3">شبکه‌های اجتماعی</h4>
+                <h4 data-key="footTitle3">شبکه‌های اجتماعی</h4>
                 <a href="https://whatsapp.com/channel/0029Vae7U29AzNbpZIv5T81R" target="_blank"><i
                         class="fab fa-whatsapp" style="color:#25d366"></i> WhatsApp</a>
                 <a href="https://t.me/visaguidee" target="_blank"><i class="fab fa-telegram" style="color:#29b6f6"></i>
@@ -733,22 +748,15 @@
                         style="color:#e1306c"></i> Instagram</a>
             </div>
         </div>
-        <div class="footer-bottom"><span data-k="copy">© 2026 VISA GUIDE AF — همه حقوق محفوظ است</span></div>
+        <div class="footer-bottom"><span data-key="copy">© 2026 VISA GUIDE AF — همه حقوق محفوظ است</span></div>
     </footer>
 
-    <!-- جاوااسکریپت منو، تم و دوزبانه بودن صفحه -->
     <script>
+        // ========== MULTILINGUAL DATA (3 languages) ==========
         const T = {
             fa: {
-                home: "خانه",
-                services: "خدمات",
-                ai: "هوش مصنوعی",
-                contact: "تماس",
-                faq: "سوالات",
-                category: "اخبار روز",
-                author: "گزارشگر VISA GUIDE AF",
-                authorTitle: "گزارشگر و ادمین",
-                backBtn: "← بازگشت به صفحه اصلی",
+                home: "خانه", services: "خدمات", ai: "هوش مصنوعی", contact: "تماس", faq: "سوالات", news: "اخبار",
+                category: "اخبار روز", author: "گزارشگر VISA GUIDE AF", authorTitle: "گزارشگر و ادمین", backBtn: "← بازگشت به صفحه اصلی",
                 caption: "مرکز بازداشت مهاجرتی در نیوجرسی",
                 title: "پناهجوی افغان در آمریکا با خطر اخراج روبه‌رو شد؛ بازداشت در جریان بررسی مهاجرتی",
                 deck: "یک پناهجوی افغان که سال گذشته به‌دلیل تهدیدهای طالبان از افغانستان فرار کرده بود، اکنون در ایالات متحده با خطر اخراج و بازگردانده شدن به کشورش مواجه شده است.",
@@ -767,24 +775,13 @@
                     <p>در همین حال، یک قاضی فدرال از دولت آمریکا خواسته است تا به درخواست قانونی وکیل این پناهجو پاسخ دهد. خانواده این فرد نیز ابراز نگرانی کرده‌اند و گفته‌اند که بازگشت او به افغانستان می‌تواند جانش را به خطر بیندازد.</p>
                     <p>این رویداد نگرانی‌ها را درباره وضعیت پناهجویان افغان در آمریکا افزایش داده و بار دیگر بحث تعهدات آمریکا در قبال کسانی که از این کشور حمایت کرده‌اند را برجسته ساخته است.</p>
                 `,
-                footTitle1: "خدمات مهاجرت",
-                footDesc1: "معتبرترین خدمات در افغانستان",
-                footDesc2: "خدمات مهاجرتی جهانی",
-                footTitle2: "تماس با ما",
-                footAddr: "ایبک، سمنگان, افغانستان",
-                footTitle3: "شبکه‌های اجتماعی",
+                footTitle1: "خدمات مهاجرت", footDesc1: "معتبرترین خدمات در افغانستان", footDesc2: "خدمات مهاجرتی جهانی",
+                footTitle2: "تماس با ما", footAddr: "ایبک، سمنگان، افغانستان", footTitle3: "شبکه‌های اجتماعی",
                 copy: "© 2026 VISA GUIDE AF — همه حقوق محفوظ است"
             },
             en: {
-                home: "Home",
-                services: "Services",
-                ai: "AI Assistant",
-                contact: "Contact",
-                faq: "FAQ",
-                category: "Immigration News",
-                author: "VISA GUIDE AF Reporter",
-                authorTitle: "Reporter & Admin",
-                backBtn: "← Back to Home",
+                home: "Home", services: "Services", ai: "AI Assistant", contact: "Contact", faq: "FAQ", news: "News",
+                category: "Immigration News", author: "VISA GUIDE AF Reporter", authorTitle: "Reporter & Admin", backBtn: "← Back to Home",
                 caption: "Immigration Detention Center in New Jersey",
                 title: "Afghan Refugee Faces Deportation from US; Arrested During Immigration Review",
                 deck: "An Afghan asylum seeker who fled Afghanistan last year due to Taliban threats now faces deportation and being returned to his country from the United States.",
@@ -803,24 +800,13 @@
                     <p>Meanwhile, a federal judge has requested the US government to respond to the lawyer's legal request. The individual's family has expressed deep concern, stating that returning him to Afghanistan would endanger his life.</p>
                     <p>This incident has increased concerns about the status of Afghan asylum seekers in the US, highlighting once again the debate over America's commitments to those who supported its missions.</p>
                 `,
-                footTitle1: "Immigration Services",
-                footDesc1: "Most reliable services in Afghanistan",
-                footDesc2: "Global immigration services",
-                footTitle2: "Contact Us",
-                footAddr: "Aibak, Samangan, Afghanistan",
-                footTitle3: "Social Networks",
+                footTitle1: "Immigration Services", footDesc1: "Most reliable services in Afghanistan", footDesc2: "Global immigration services",
+                footTitle2: "Contact Us", footAddr: "Aibak, Samangan, Afghanistan", footTitle3: "Social Networks",
                 copy: "© 2026 VISA GUIDE AF — All rights reserved"
             },
             ps: {
-                home: "کور",
-                services: "خدمات",
-                ai: "AI",
-                contact: "اړیکه",
-                faq: "پوښتنې",
-                category: "وروستي خبرونه",
-                author: "د VISA GUIDE AF خبریال",
-                authorTitle: "خبریال او مدیر",
-                backBtn: "← بیرته کور پاڼې ته",
+                home: "کور", services: "خدمات", ai: "AI", contact: "اړیکه", faq: "پوښتنې", news: "خبرونه",
+                category: "وروستي خبرونه", author: "د VISA GUIDE AF خبریال", authorTitle: "خبریال او مدیر", backBtn: "← بیرته کور پاڼې ته",
                 caption: "په نیوجرسي کې د کډوالۍ توقیف ځای",
                 title: "افغان پناه غوښتونکی په امریکا کې د شړلو خطر سره مخ شو؛ د کډوالۍ بیاکتنې پرمهال ونیول شو",
                 deck: "یو افغان پناه غوښتونکی چې تیر کال د طالبانو د تهدیدونو له امله له افغانستان څخه تښتیدلی و، اوس په متحده ایالاتو کې د شړلو او خپل هیواد ته د بیرته ستنیدو له خطر سره مخ دی.",
@@ -838,68 +824,95 @@
                     <p>د امریکا د کورني امنیت چارواکو ویلي چې دا کس امریکا ته د غیرقانوني ننوتلو له امله د شړلو لاندې دی، خو ټینګار یې کړی چې د هغه ادعاګانې به د کډوالۍ قاضي لخوا وڅیړل شي.</p>
                     <p>په ورته وخت کې، یو فدرال قاضي د امریکا له حکومت څخه غوښتي چې د وکیل غوښتنې ته ځواب ووایي. د دې کس کورنۍ هم ژوره اندیښنه څرګنده کړې ده.</p>
                 `,
-                footTitle1: "د کډوالۍ خدمات",
-                footDesc1: "افغانستان کې ترټولو معتبر خدمات",
-                footDesc2: "نظریاتي د کډوالۍ خدمات",
-                footTitle2: "اړیکه",
-                footAddr: "ایبک, سمنګان، افغانستان",
-                footTitle3: "ټولنیزې شبکې",
+                footTitle1: "د کډوالۍ خدمات", footDesc1: "افغانستان کې ترټولو معتبر خدمات", footDesc2: "نړیوال د کډوالۍ خدمات",
+                footTitle2: "اړیکه", footAddr: "ایبک, سمنګان، افغانستان", footTitle3: "ټولنیزې شبکې",
                 copy: "© 2026 VISA GUIDE AF — ټول حقونه خوندي دي"
             }
         };
 
-        let lang = 'fa';
+        let currentLang = 'fa';
 
-        function applyLang(l) {
-            lang = l;
-            document.querySelectorAll('[data-k]').forEach(el => {
-                const k = el.getAttribute('data-k');
-                if (T[l][k] !== undefined) el.innerHTML = T[l][k];
+        function applyLanguage(lang) {
+            currentLang = lang;
+            // به‌روزرسانی تمام عناصر با data-key
+            document.querySelectorAll('[data-key]').forEach(el => {
+                const key = el.getAttribute('data-key');
+                if (T[lang][key]) el.innerHTML = T[lang][key];
             });
-
-            // بروزرسانی داینامیک مشخصات مقاله
-            document.getElementById('articleTitle').innerHTML = T[l].title;
-            document.getElementById('articleDeck').innerHTML = T[l].deck;
-            document.getElementById('articleDate').innerHTML = T[l].date;
-            document.getElementById('imageCaption').innerHTML = T[l].caption;
-            document.getElementById('articleContent').innerHTML = T[l].content;
-
-            document.querySelectorAll('.lang-btn').forEach(b => b.classList.toggle('active', b.getAttribute('data-l') === l));
+            // به‌روزرسانی داینامیک مقاله
+            document.getElementById('articleTitle').innerHTML = T[lang].title;
+            document.getElementById('articleDeck').innerHTML = T[lang].deck;
+            document.getElementById('articleDate').innerHTML = T[lang].date;
+            document.getElementById('imageCaption').innerHTML = T[lang].caption;
+            document.getElementById('articleContent').innerHTML = T[lang].content;
+            // به‌روزرسانی برچسب منوی زبان
+            const labelMap = { fa: "فارسی", en: "English", ps: "پښتو" };
+            document.getElementById('currentLangLabel').innerText = labelMap[lang];
         }
 
-        // منو موبایل
-        const menuToggle = document.querySelector('.menu-toggle');
-        const navMenu = document.getElementById('navMenu');
-        if (menuToggle) {
-            menuToggle.addEventListener('click', () => {
-                navMenu.classList.toggle('active');
-            });
-        }
-
-        // تم شب و روز
-        const tb = document.getElementById('themeBtn');
-        const saved = localStorage.getItem('srs-theme') || 'dark';
-        document.body.className = saved + '-mode';
-        tb.innerHTML = saved === 'dark' ? '<i class="fas fa-moon"></i>' : '<i class="fas fa-sun"></i>';
-
-        tb.addEventListener('click', () => {
-            const d = document.body.classList.contains('dark-mode');
-            document.body.className = (d ? 'light' : 'dark') + '-mode';
-            tb.innerHTML = d ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
-            localStorage.setItem('srs-theme', d ? 'light' : 'dark');
+        // ========== THEME (DAY/NIGHT) ==========
+        const themeBtn = document.getElementById('themeBtn');
+        const savedTheme = localStorage.getItem('srs-theme') || 'dark';
+        document.body.className = savedTheme + '-mode';
+        themeBtn.innerHTML = savedTheme === 'dark' ? '<i class="fas fa-moon"></i>' : '<i class="fas fa-sun"></i>';
+        themeBtn.addEventListener('click', () => {
+            const isDark = document.body.classList.contains('dark-mode');
+            document.body.className = isDark ? 'light-mode' : 'dark-mode';
+            themeBtn.innerHTML = isDark ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+            localStorage.setItem('srs-theme', isDark ? 'light' : 'dark');
         });
 
-        // ایجاد ذرات متحرک پس‌زمینه
-        const pc = document.getElementById('particles');
+        // ========== LANGUAGE DROPDOWN ==========
+        const dropdown = document.getElementById('langDropdown');
+        const trigger = document.getElementById('langTrigger');
+        trigger.addEventListener('click', (e) => {
+            e.stopPropagation();
+            dropdown.classList.toggle('open');
+        });
+        document.addEventListener('click', (e) => {
+            if (!dropdown.contains(e.target)) dropdown.classList.remove('open');
+        });
+        document.querySelectorAll('.lang-option').forEach(opt => {
+            opt.addEventListener('click', (e) => {
+                const newLang = opt.getAttribute('data-lang');
+                if (newLang) applyLanguage(newLang);
+                dropdown.classList.remove('open');
+            });
+        });
+
+        // ========== MOBILE MENU (HAMBURGER -> X) ==========
+        const menuBtn = document.getElementById('menuBtn');
+        const navLinks = document.getElementById('navLinks');
+        function closeMenu() {
+            navLinks.classList.remove('open');
+            if (menuBtn) menuBtn.innerHTML = '☰';
+        }
+        menuBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const isOpen = navLinks.classList.contains('open');
+            if (isOpen) closeMenu();
+            else {
+                navLinks.classList.add('open');
+                menuBtn.innerHTML = '✕';
+            }
+        });
+        document.addEventListener('click', (e) => {
+            if (!navLinks.contains(e.target) && !menuBtn.contains(e.target) && navLinks.classList.contains('open')) closeMenu();
+        });
+        navLinks.querySelectorAll('a').forEach(link => link.addEventListener('click', closeMenu));
+
+        // ========== PARTICLES ==========
+        const particles = document.getElementById('particles');
         for (let i = 0; i < 40; i++) {
             const p = document.createElement('div');
             p.className = 'p';
             const s = Math.random() * 8 + 3;
             p.style.cssText = `width:${s}px;height:${s}px;left:${Math.random() * 100}%;top:${Math.random() * 100}%;animation-delay:${Math.random() * 12}s;animation-duration:${12 + Math.random() * 10}s`;
-            pc.appendChild(p);
+            particles.appendChild(p);
         }
 
-        applyLang('fa');
+        // ========== INITIAL ==========
+        applyLanguage('fa');
     </script>
 </body>
 
