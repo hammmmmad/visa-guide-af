@@ -3,15 +3,14 @@
 
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>خدمات | VISA GUIDE AF</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-
   <style>
-    /* تعریف متغیرهای رنگی و استایل پایه */
+    /* ========== VARIABLES ========== */
     :root {
       --bg: #070b13;
-      --panel: rgba(255, 255, 255, 0.03);
+      --panel: rgba(255, 255, 255, 0.04);
       --border: rgba(255, 255, 255, 0.08);
       --text: #f1f5f9;
       --text-muted: #94a3b8;
@@ -23,6 +22,7 @@
       --warning: #f59e0b;
       --danger: #ef4444;
       --font: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      --icon-filter: brightness(0) invert(1);
     }
 
     .light-mode {
@@ -32,12 +32,13 @@
       --text: #0f172a;
       --text-muted: #475569;
       --primary-glow: rgba(124, 58, 237, 0.15);
+      --icon-filter: brightness(0);
     }
 
     * {
-      box-sizing: border-box;
       margin: 0;
       padding: 0;
+      box-sizing: border-box;
       font-family: var(--font);
       transition: background-color 0.3s, border-color 0.3s, color 0.3s, filter 0.3s;
     }
@@ -46,13 +47,12 @@
       background-color: var(--bg);
       color: var(--text);
       overflow-x: hidden;
-      perspective: 1000px;
       min-height: 100vh;
       display: flex;
       flex-direction: column;
     }
 
-    /* جلوه ذرات و اورب‌های سه‌بعدی پس‌زمینه */
+    /* ========== 3D BACKGROUND ========== */
     .bg-scene {
       position: fixed;
       top: 0;
@@ -107,23 +107,21 @@
       }
     }
 
-    /* ساختار شیشه‌ای (Glassmorphism) */
+    /* ========== GLASS ========== */
     .glass {
       background: var(--panel);
       backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
       border: 1px solid var(--border);
-      border-radius: 24px;
-      box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.1), inset 0 1px 0px rgba(255, 255, 255, 0.1);
-      transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease;
+      border-radius: 28px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
 
     .glass:hover {
-      transform: translateY(-8px) rotateX(3deg) rotateY(-1deg);
-      box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.2), 0 0 25px var(--primary-glow);
+      transform: translateY(-6px);
+      box-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.2), 0 0 0 1px rgba(124, 58, 237, 0.3);
     }
 
-    /* منوی ناوبری مدرن */
+    /* ========== NAVBAR ========== */
     .navbar {
       position: sticky;
       top: 15px;
@@ -142,7 +140,7 @@
     }
 
     .light-mode .navbar {
-      background: rgba(255, 255, 255, 0.8);
+      background: rgba(255, 255, 255, 0.85);
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
     }
 
@@ -151,7 +149,6 @@
       align-items: center;
       gap: 12px;
       text-decoration: none;
-      color: var(--text);
     }
 
     .logo-wrap img {
@@ -159,7 +156,8 @@
       height: 45px;
       border-radius: 50%;
       border: 2px solid #7c3aed;
-      box-shadow: 0 0 15px var(--primary-glow);
+      box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.2), 0 0 15px var(--primary-glow);
+      object-fit: cover;
     }
 
     .logo-name {
@@ -167,15 +165,11 @@
       font-weight: 800;
       letter-spacing: 0.5px;
       line-height: 1.2;
-      background: linear-gradient(120deg, #fff, #94a3b8);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+      color: white;
     }
 
     .light-mode .logo-name {
-      background: linear-gradient(120deg, #0f172a, #475569);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+      filter: invert(1);
     }
 
     .nav-links {
@@ -195,22 +189,14 @@
       font-weight: 500;
       border-radius: 30px;
       position: relative;
-      overflow: hidden;
       transition: all 0.3s ease;
     }
 
     .nav-links a img {
       width: 18px;
       height: 18px;
-      transition: transform 0.3s ease, filter 0.3s ease;
-    }
-
-    .dark-mode .nav-links a img {
-      filter: brightness(0) invert(1);
-    }
-
-    .light-mode .nav-links a img {
-      filter: brightness(0);
+      transition: filter 0.3s;
+      filter: var(--icon-filter);
     }
 
     .nav-links a::after {
@@ -242,7 +228,7 @@
     }
 
     .light-mode .nav-links a {
-      color: #334155;
+      color: #1e293b;
     }
 
     .light-mode .nav-links a:hover,
@@ -251,7 +237,7 @@
       background: rgba(0, 0, 0, 0.05);
     }
 
-    /* ========== LANGUAGE DROPDOWN با کره زمین ========== */
+    /* ========== LANGUAGE GLOBE ========== */
     .lang-dropdown {
       position: relative;
       display: inline-block;
@@ -296,7 +282,7 @@
       opacity: 0;
       visibility: hidden;
       transform: translateY(-10px);
-      transition: all 0.25s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+      transition: all 0.25s ease;
     }
 
     .light-mode .lang-menu {
@@ -333,7 +319,7 @@
     .theme-btn {
       background: var(--primary);
       border: none;
-      color: rgb(0, 0, 0);
+      color: white;
       width: 36px;
       height: 36px;
       border-radius: 50%;
@@ -345,8 +331,9 @@
     }
 
     .light-mode .theme-btn {
-      filter: invert(1);
-
+      background: var(--primary);
+      color: white;
+      box-shadow: 0 4px 10px var(--primary-glow);
     }
 
     .menu-btn {
@@ -358,7 +345,7 @@
       cursor: pointer;
     }
 
-    /* بخش هیرو */
+    /* ========== HERO ========== */
     .hero {
       max-width: 1200px;
       margin: 80px auto 40px auto;
@@ -368,12 +355,10 @@
 
     .hero-inner {
       padding: 60px 40px;
-      background: radial-gradient(circle at top left, rgba(255, 255, 255, 0.08), transparent), var(--panel);
+      background: radial-gradient(circle at top left, rgba(124, 58, 237, 0.08), transparent), var(--panel);
       backdrop-filter: blur(20px);
       border: 1px solid var(--border);
       border-radius: 32px;
-      box-shadow: 0 30px 60px -20px color:#e2e8f0;
-      transform-style: preserve-3d;
     }
 
     .badge {
@@ -394,7 +379,7 @@
       font-size: 2.8rem;
       font-weight: 900;
       margin-bottom: 16px;
-      color: #ffffff;
+      color: white;
     }
 
     .light-mode .hero h1 {
@@ -404,17 +389,12 @@
     .hero-desc {
       max-width: 700px;
       margin: 0 auto 30px auto;
-      font-size: 1.1rem;
-      line-height: 1.8;
-      color: #ffffff;
-
+      font-size: 1rem;
+      line-height: 1.7;
+      color: var(--text-muted);
     }
 
-    .hero-desc .light-mode {
-      filter: invert(1);
-    }
-
-    /* شبکه‌ی کارت‌های خدمات */
+    /* ========== SERVICES GRID ========== */
     .cards-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
@@ -422,15 +402,9 @@
       max-width: 1200px;
       margin: 40px auto 80px auto;
       padding: 0 16px;
-      color: #ffffff;
     }
 
-    .light-mode .cards-grid {
-      filter: invert(1);
-      filter: brightness(1);
-    }
-
-    /* فوتر */
+    /* ========== FOOTER ========== */
     .footer {
       background: rgba(10, 15, 30, 0.8);
       border-top: 1px solid var(--border);
@@ -468,9 +442,12 @@
       align-items: center;
       gap: 10px;
       text-decoration: none;
+      transition: transform 0.3s, color 0.3s;
     }
 
+    .footer-col p:hover,
     .footer-col a:hover {
+      transform: translateX(-5px);
       color: var(--text);
     }
 
@@ -484,7 +461,7 @@
       font-size: 0.85rem;
     }
 
-    /* ذرات */
+    /* ========== PARTICLES ========== */
     .particles {
       position: fixed;
       top: 0;
@@ -497,7 +474,7 @@
 
     .p {
       position: absolute;
-      background: rgba(255, 255, 255, 0.1);
+      background: rgba(255, 255, 255, 0.08);
       border-radius: 50%;
       animation: rise 15s infinite linear;
     }
@@ -509,11 +486,11 @@
       }
 
       10% {
-        opacity: 1;
+        opacity: 0.5;
       }
 
       90% {
-        opacity: 1;
+        opacity: 0.5;
       }
 
       100% {
@@ -522,11 +499,15 @@
       }
     }
 
-    /* واکنش‌گرایی موبایل */
+    /* ========== RESPONSIVE ========== */
     @media (max-width: 768px) {
       .navbar {
         width: 90%;
         border-radius: 24px;
+      }
+
+      .menu-btn {
+        display: block;
       }
 
       .nav-links {
@@ -550,7 +531,7 @@
 
       .nav-links.open {
         display: flex;
-        animation: menuFadeIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+        animation: menuFadeIn 0.4s ease forwards;
       }
 
       @keyframes menuFadeIn {
@@ -565,16 +546,16 @@
         }
       }
 
-      .menu-btn {
-        display: block;
-      }
-
       .hero h1 {
         font-size: 1.8rem;
       }
 
       .hero-inner {
         padding: 40px 20px;
+      }
+
+      .cards-grid {
+        grid-template-columns: 1fr;
       }
     }
   </style>
@@ -598,13 +579,12 @@
       <li><a href="index.html"><img src="images/home.png"> <span data-key="home">خانه</span></a></li>
       <li><a href="services.html" class="active"><img src="images/customer.png"> <span
             data-key="services">خدمات</span></a></li>
-      <li><a href="ai.html"><img src="images/ai.png"> AI</a></li>
+      <li><a href="ai.html"><img src="images/ai.png"> <span data-key="ai">هوش مصنوعی</span></a></li>
       <li><a href="contact.html"><img src="images/call.png"> <span data-key="contact">تماس</span></a></li>
       <li><a href="faq.html"><img src="images/f&a.png"> <span data-key="faq">سوالات</span></a></li>
       <li><a href="news/day-news/day.html"><img src="images/event.png"> <span data-key="news">اخبار</span></a></li>
     </ul>
     <div class="nav-actions">
-      <!-- منوی زبان با آیکون کره زمین -->
       <div class="lang-dropdown" id="langDropdown">
         <div class="lang-trigger" id="langTrigger">
           <i class="fas fa-globe-americas"></i>
@@ -623,18 +603,15 @@
 
   <!-- HERO -->
   <div class="hero">
-    <div class="hero-inner">
+    <div class="hero-inner glass">
       <div class="badge"><i class="fas fa-concierge-bell"></i> <span data-key="pageTag">خدمات تخصصی</span></div>
       <h1 data-key="pageTitle">خدمات ما</h1>
-      <p style="color:white(--text-muted);max-width:600px;margin:0 auto;line-height:1.8" data-key="pageDesc">راهنمایی
-        کامل
-        در تمام مراحل مهاجرت، از مشاوره تا دریافت ویزا</p>
+      <p class="hero-desc" data-key="pageDesc">راهنمایی کامل در تمام مراحل مهاجرت، از مشاوره تا دریافت ویزا</p>
     </div>
   </div>
 
   <div class="cards-grid" id="servicesGrid"></div>
 
-  <!-- FOOTER -->
   <footer class="footer">
     <div class="footer-inner">
       <div class="footer-col">
@@ -666,17 +643,18 @@
   </footer>
 
   <script>
+    // ========== MULTILINGUAL DATA ==========
     const T = {
       fa: {
-        home: "خانه", services: "خدمات", contact: "تماس", faq: "سوالات", news: "اخبار",
+        home: "خانه", services: "خدمات", ai: "هوش مصنوعی", contact: "تماس", faq: "سوالات", news: "اخبار",
         pageTag: "خدمات تخصصی", pageTitle: "خدمات ما",
         pageDesc: "راهنمایی کامل در تمام مراحل مهاجرت، از مشاوره تا دریافت ویزا",
-        visitBtns: "مشاهده", footTitle1: "خدمات مهاجرت", footDesc1: "معتبرترین خدمات در افغانستان",
+        visitBtn: "مشاهده", footTitle1: "خدمات مهاجرت", footDesc1: "معتبرترین خدمات در افغانستان",
         footDesc2: "خدمات مهاجرتی جهانی", footTitle2: "تماس با ما", footAddr: "ایبک، سمنگان، افغانستان",
         footTitle3: "شبکه‌های اجتماعی", copy: "© 2026 VISA GUIDE AF — همه حقوق محفوظ است"
       },
       en: {
-        home: "Home", services: "Services", contact: "Contact", faq: "FAQ", news: "News",
+        home: "Home", services: "Services", ai: "AI Assistant", contact: "Contact", faq: "FAQ", news: "News",
         pageTag: "Specialized Services", pageTitle: "Our Services",
         pageDesc: "Complete guidance through all stages of immigration, from consultation to visa",
         visitBtn: "Visit", footTitle1: "Immigration Services", footDesc1: "Most reliable services in Afghanistan",
@@ -684,11 +662,11 @@
         footTitle3: "Social Networks", copy: "© 2026 VISA GUIDE AF — All rights reserved"
       },
       ps: {
-        home: "کور", services: "خدمات", contact: "اړیکه", faq: "پوښتنې", news: "خبرونه",
+        home: "کور", services: "خدمات", ai: "AI", contact: "اړیکه", faq: "پوښتنې", news: "خبرونه",
         pageTag: "تخصصي خدمات", pageTitle: "زموږ خدمات",
         pageDesc: "د مهاجرت ټولو مرحلو کې بشپړ لارښود",
         visitBtn: "وګورئ", footTitle1: "د کډوالۍ خدمات", footDesc1: "افغانستان کې ترټولو معتبر خدمات",
-        footDesc2: "نظریاتي د کډوالۍ خدمات", footTitle2: "اړیکه", footAddr: "ایبک, سمنګان، افغانستان",
+        footDesc2: "نړیوال د کډوالۍ خدمات", footTitle2: "اړیکه", footAddr: "ایبک, سمنګان، افغانستان",
         footTitle3: "ټولنیزې شبکې", copy: "© 2026 VISA GUIDE AF — ټول حقونه خوندي"
       }
     };
@@ -720,59 +698,57 @@
       ]
     };
 
-    let lang = 'fa';
-
-    function applyLang(l) {
-      lang = l;
-      document.querySelectorAll('[data-key]').forEach(el => {
-        const k = el.getAttribute('data-key');
-        if (T[l][k]) el.innerHTML = T[l][k];
-      });
-      document.querySelectorAll('.lang-option').forEach(opt => {
-        if (opt.getAttribute('data-lang') === l) opt.style.background = "rgba(139,92,246,0.2)";
-        else opt.style.background = "transparent";
-      });
-      const labelMap = { fa: "فارسی", en: "English", ps: "پښتو" };
-      document.getElementById('currentLangLabel').innerText = labelMap[l];
-      renderServices();
-    }
+    let currentLang = 'fa';
 
     function renderServices() {
       const g = document.getElementById('servicesGrid');
-      g.innerHTML = services[lang].map(s => `
+      if (!g) return;
+      g.innerHTML = services[currentLang].map(s => `
         <a href="${s.link}" class="glass" style="text-decoration:none;display:block;">
           <div style="padding:2rem;text-align:center;">
             <div style="font-size:2.5rem;color:${s.color};margin-bottom:1rem;transition:transform 0.3s"><i class="${s.icon}"></i></div>
             <div style="font-size:1.1rem;font-weight:700;color:var(--text);margin-bottom:0.7rem">${s.title}</div>
             <div style="font-size:0.85rem;color:var(--text-muted);line-height:1.7">${s.desc}</div>
-            <div style="margin-top:1.2rem;display:inline-block;background:rgba(124,58,237,0.15);border:1px solid rgba(124,58,237,0.3);color:#a78bfa;padding:6px 18px;border-radius:30px;font-size:0.8rem">${T[lang].visitBtn} →</div>
+            <div style="margin-top:1.2rem;display:inline-block;background:rgba(124,58,237,0.15);border:1px solid rgba(124,58,237,0.3);color:#a78bfa;padding:6px 18px;border-radius:30px;font-size:0.8rem">${T[currentLang].visitBtn} →</div>
           </div>
-        </a>`).join('');
+        </a>
+      `).join('');
     }
 
-    // ذرات
-    const pc = document.getElementById('particles');
-    for (let i = 0; i < 50; i++) {
+    function applyLanguage(lang) {
+      currentLang = lang;
+      document.querySelectorAll('[data-key]').forEach(el => {
+        const key = el.getAttribute('data-key');
+        if (T[lang][key]) el.innerHTML = T[lang][key];
+      });
+      const labelMap = { fa: "فارسی", en: "English", ps: "پښتو" };
+      document.getElementById('currentLangLabel').innerText = labelMap[lang];
+      renderServices();
+    }
+
+    // ========== PARTICLES ==========
+    const particles = document.getElementById('particles');
+    for (let i = 0; i < 40; i++) {
       const p = document.createElement('div');
       p.className = 'p';
       const s = Math.random() * 8 + 3;
       p.style.cssText = `width:${s}px;height:${s}px;left:${Math.random() * 100}%;top:${Math.random() * 100}%;animation-delay:${Math.random() * 12}s;animation-duration:${12 + Math.random() * 10}s`;
-      pc.appendChild(p);
+      particles.appendChild(p);
     }
 
-    // تم شب/روز
-    const tb = document.getElementById('themeBtn');
-    const saved = localStorage.getItem('srs-theme') || 'dark';
-    document.body.className = saved + '-mode';
-    tb.innerHTML = saved === 'dark' ? '<i class="fas fa-moon"></i>' : '<i class="fas fa-sun"></i>';
-    tb.addEventListener('click', () => {
-      const d = document.body.classList.contains('dark-mode');
-      document.body.className = (d ? 'light' : 'dark') + '-mode';
-      tb.innerHTML = d ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
-      localStorage.setItem('srs-theme', d ? 'light' : 'dark');
+    // ========== THEME TOGGLE ==========
+    const themeBtn = document.getElementById('themeBtn');
+    const savedTheme = localStorage.getItem('srs-theme') || 'dark';
+    document.body.className = savedTheme + '-mode';
+    themeBtn.innerHTML = savedTheme === 'dark' ? '<i class="fas fa-moon"></i>' : '<i class="fas fa-sun"></i>';
+    themeBtn.addEventListener('click', () => {
+      const isDark = document.body.classList.contains('dark-mode');
+      document.body.className = isDark ? 'light-mode' : 'dark-mode';
+      themeBtn.innerHTML = isDark ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+      localStorage.setItem('srs-theme', isDark ? 'light' : 'dark');
     });
 
-    // منوی زبان (کره زمین)
+    // ========== LANGUAGE DROPDOWN ==========
     const dropdown = document.getElementById('langDropdown');
     const trigger = document.getElementById('langTrigger');
     trigger.addEventListener('click', (e) => { e.stopPropagation(); dropdown.classList.toggle('open'); });
@@ -780,18 +756,15 @@
     document.querySelectorAll('.lang-option').forEach(opt => {
       opt.addEventListener('click', (e) => {
         const newLang = opt.getAttribute('data-lang');
-        if (newLang) applyLang(newLang);
+        if (newLang) applyLanguage(newLang);
         dropdown.classList.remove('open');
       });
     });
 
-    // منوی همبرگری موبایل
+    // ========== MOBILE MENU ==========
     const menuBtn = document.getElementById('menuBtn');
     const navLinks = document.getElementById('navLinks');
-    function closeMenu() {
-      navLinks.classList.remove('open');
-      if (menuBtn) menuBtn.innerHTML = '☰';
-    }
+    function closeMenu() { navLinks.classList.remove('open'); if (menuBtn) menuBtn.innerHTML = '☰'; }
     menuBtn.addEventListener('click', (e) => {
       e.stopPropagation();
       const isOpen = navLinks.classList.contains('open');
@@ -803,7 +776,8 @@
     });
     navLinks.querySelectorAll('a').forEach(link => link.addEventListener('click', closeMenu));
 
-    applyLang('fa');
+    // ========== INITIAL ==========
+    applyLanguage('fa');
   </script>
 </body>
 

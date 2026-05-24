@@ -5,13 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>ویزای بشردوستانه | فرصت ویژه برای افغان‌ها</title>
-    <!-- Font Awesome 6 -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <!-- گوگل فونت Inter -->
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap"
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@300;400;500;600;700;800&display=swap"
         rel="stylesheet">
-    <!-- AOS Animation Library -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <style>
         * {
@@ -20,235 +16,490 @@
             box-sizing: border-box;
         }
 
+        /* ========== VARIABLES ========== */
+        :root {
+            --bg-dark: #03050b;
+            --bg-light: #eef2ff;
+            --glass-dark: rgba(8, 12, 25, 0.45);
+            --glass-light: rgba(255, 255, 255, 0.55);
+            --border-dark: rgba(255, 255, 255, 0.1);
+            --border-light: rgba(0, 0, 0, 0.08);
+            --text-dark: #f1f5f9;
+            --text-light: #0a0f1c;
+            --muted-dark: #94a3b8;
+            --muted-light: #475569;
+            --primary: linear-gradient(135deg, #8b5cf6, #3b82f6);
+            --primary-glow: rgba(139, 92, 246, 0.5);
+            --accent: linear-gradient(135deg, #f97316, #ef4444);
+            --font: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+            --icon-filter: brightness(0) invert(1);
+        }
+
         body {
-            font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #ffffff 0%, #d4d4d4 10%);
-            color: #0f172a;
-            line-height: 1.55;
-            padding: 2rem 1rem;
-            overflow-x: hidden;
+            background: var(--bg-dark);
+            color: var(--text-dark);
+            font-family: var(--font);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            transition: background 0.4s, color 0.3s;
         }
 
-        /* انیمیشن بارگذاری صفحه */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
+        body.light-mode {
+            --bg-dark: var(--bg-light);
+            --glass-dark: var(--glass-light);
+            --border-dark: var(--border-light);
+            --text-dark: var(--text-light);
+            --muted-dark: var(--muted-light);
+            background: var(--bg-light);
+            color: var(--text-light);
+            --icon-filter: brightness(0);
+        }
+
+        /* ========== 3D BACKGROUND SCENE ========== */
+        .scene-3d {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            overflow: hidden;
+            perspective: 1200px;
+        }
+
+        .grid-3d {
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            top: -50%;
+            left: -50%;
+            background-image:
+                linear-gradient(var(--border-dark) 1px, transparent 1px),
+                linear-gradient(90deg, var(--border-dark) 1px, transparent 1px);
+            background-size: 60px 60px;
+            transform: rotateX(50deg) rotateZ(30deg) translateZ(-80px);
+            animation: gridFlow 20s infinite linear;
+            opacity: 0.3;
+        }
+
+        @keyframes gridFlow {
+            0% {
+                transform: rotateX(50deg) rotateZ(30deg) translateZ(-80px) translateY(0);
             }
 
-            to {
-                opacity: 1;
-                transform: translateY(0);
+            100% {
+                transform: rotateX(50deg) rotateZ(30deg) translateZ(-80px) translateY(80px);
             }
         }
 
-        .container {
-            max-width: 1200px;
+        .floating-orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(90px);
+            opacity: 0.5;
+            animation: floatGlow 22s infinite alternate;
+        }
+
+        .orb1 {
+            width: 450px;
+            height: 450px;
+            background: #8b5cf6;
+            top: -15%;
+            left: -10%;
+        }
+
+        .orb2 {
+            width: 550px;
+            height: 550px;
+            background: #3b82f6;
+            bottom: -20%;
+            right: -15%;
+            animation-delay: -6s;
+        }
+
+        .orb3 {
+            width: 350px;
+            height: 350px;
+            background: #f97316;
+            top: 45%;
+            left: 30%;
+            filter: blur(110px);
+            animation-delay: -12s;
+        }
+
+        @keyframes floatGlow {
+            0% {
+                transform: translate(0, 0) scale(1);
+            }
+
+            100% {
+                transform: translate(70px, 50px) scale(1.2);
+            }
+        }
+
+        /* ========== GLASS CORE ========== */
+        .glass-3d {
+            background: var(--glass-dark);
+            backdrop-filter: blur(14px);
+            border: 1px solid var(--border-dark);
+            border-radius: 32px;
+            transition: transform 0.35s cubic-bezier(0.2, 0.9, 0.4, 1.1), box-shadow 0.3s;
+        }
+
+        .glass-3d:hover {
+            transform: translateY(-6px) rotateX(2deg) rotateY(1deg);
+            box-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(139, 92, 246, 0.3);
+        }
+
+        /* ========== NAVBAR (منوی کامل) ========== */
+        .navbar {
+            position: sticky;
+            top: 20px;
+            width: calc(100% - 40px);
+            max-width: 1300px;
             margin: 0 auto;
-            animation: fadeInUp 0.6s ease-out;
-        }
-
-        .services-header {
-            background: rgba(255, 255, 255, 0.85);
-            backdrop-filter: blur(12px);
-            border-radius: 2rem;
-            padding: 1rem 2rem;
-            margin-bottom: 2.5rem;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.03), 0 2px 4px rgba(0, 0, 0, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.8);
+            z-index: 200;
             display: flex;
-            flex-wrap: wrap;
-            align-items: center;
             justify-content: space-between;
-            gap: 1rem;
-            transition: all 0.3s ease;
+            align-items: center;
+            padding: 10px 24px;
+            background: var(--glass-dark);
+            backdrop-filter: blur(16px);
+            border: 1px solid var(--border-dark);
+            border-radius: 80px;
         }
 
-        .services-header:hover {
-            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
-        }
-
-        .logo-area {
+        .logo-wrap {
             display: flex;
             align-items: center;
-            gap: 1rem;
-        }
-
-        .logo-img {
-            width: 60px;
-            height: 60px;
-            object-fit: contain;
-            padding: 8px;
-            transition: transform 0.3s ease;
-        }
-
-        .logo-img:hover {
-            transform: scale(1.05) rotate(5deg);
-        }
-
-        .logo-text {
-            font-weight: 500;
-            color: #1e293b;
-            font-size: 0.9rem;
-            background: #f1f5f9;
-            padding: 6px 16px;
-            border-radius: 40px;
-            color: #1e40af;
-        }
-
-        .btn-home {
-            background: #1e293b;
-            color: white;
+            gap: 12px;
             text-decoration: none;
-            padding: 0.7rem 1.5rem;
+        }
+
+        .logo-wrap img {
+            width: 46px;
+            height: 46px;
+            border-radius: 50%;
+            border: 2px solid #8b5cf6;
+            box-shadow: 0 0 15px var(--primary-glow);
+            transition: transform 0.4s;
+        }
+
+        .logo-wrap:hover img {
+            transform: rotateY(180deg);
+        }
+
+        .logo-name {
+            font-weight: 800;
+            font-size: 0.85rem;
+            line-height: 1.2;
+            color: white;
+        }
+
+        body.light-mode .logo-name {
+            filter: invert(1);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 8px;
+        }
+
+        .nav-links a {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 18px;
+            text-decoration: none;
+            color: var(--muted-dark);
+            font-weight: 600;
+            border-radius: 50px;
+            transition: 0.2s;
+            position: relative;
+        }
+
+        /* انیمیشن خط زیرین منو */
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 4px;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #8b5cf6, #3b82f6);
+            border-radius: 2px;
+            transition: width 0.25s ease;
+            transform: translateX(-50%);
+        }
+
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 40%;
+        }
+
+        .nav-links a::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 50px;
+            background: var(--primary);
+            opacity: 0;
+            transition: opacity 0.3s;
+            z-index: -1;
+        }
+
+        .nav-links a:hover::before,
+        .nav-links a.active::before {
+            opacity: 0.15;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--text-dark);
+            transform: translateY(-2px);
+        }
+
+        .nav-links a img {
+            width: 18px;
+            height: 18px;
+            transition: filter 0.3s;
+            filter: var(--icon-filter);
+        }
+
+        /* ========== LANGUAGE GLOBE ========== */
+        .lang-globe {
+            position: relative;
+        }
+
+        .globe-trigger {
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid var(--border-dark);
             border-radius: 40px;
-            font-weight: 500;
-            font-size: 0.95rem;
-            display: inline-flex;
+            padding: 6px 16px;
+            cursor: pointer;
+            display: flex;
             align-items: center;
             gap: 10px;
+            font-weight: 500;
+            transition: 0.2s;
+        }
+
+        .globe-trigger i {
+            font-size: 1rem;
+            color: #60a5fa;
+        }
+
+        .globe-trigger:hover {
+            background: rgba(139, 92, 246, 0.2);
+            border-color: #8b5cf6;
+        }
+
+        .lang-dropdown {
+            position: absolute;
+            top: 110%;
+            left: 0;
+            background: var(--glass-dark);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--border-dark);
+            border-radius: 20px;
+            min-width: 140px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
             transition: all 0.25s;
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+            z-index: 300;
+        }
+
+        .lang-globe.open .lang-dropdown {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .lang-option {
+            padding: 10px 16px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            cursor: pointer;
+            transition: 0.2s;
+            border-radius: 16px;
+        }
+
+        .lang-option:hover {
+            background: rgba(139, 92, 246, 0.2);
+        }
+
+        .nav-actions {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .theme-btn {
+            background: var(--primary);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
             border: none;
+            color: white;
+            box-shadow: 0 4px 12px var(--primary-glow);
+        }
+
+        .menu-btn {
+            display: none;
+            width: 46px;
+            height: 46px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border-dark);
+            border-radius: 30px;
+            font-size: 1.7rem;
             cursor: pointer;
         }
 
-        .btn-home i {
-            font-size: 1rem;
+        /* ========== HERO ========== */
+        .hero {
+            max-width: 1300px;
+            margin: 50px auto 30px;
+            padding: 0 24px;
         }
 
-        .btn-home:hover {
-            background: #0f172a;
-            transform: translateY(-2px);
-            box-shadow: 0 8px 18px rgba(0, 0, 0, 0.12);
-        }
-
-        .hero-section {
+        .hero-card {
+            padding: 60px 40px;
             text-align: center;
-            margin-bottom: 3rem;
+            transform-style: preserve-3d;
         }
 
-        .hero-section h1 {
+        .badge-3d {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(139, 92, 246, 0.15);
+            border: 1px solid rgba(139, 92, 246, 0.3);
+            border-radius: 60px;
+            padding: 6px 22px;
+            font-weight: 600;
+            margin-bottom: 24px;
+        }
+
+        .hero-title {
             font-size: 2.2rem;
-            font-weight: 700;
-            background: linear-gradient(135deg, #0f2b3d, #1e4a76);
-            background-clip: text;
+            font-weight: 800;
+            background: linear-gradient(135deg, #fff 20%, #c084fc 80%);
             -webkit-background-clip: text;
-            color: transparent;
-            margin-bottom: 0.75rem;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 20px;
         }
 
-        .commitment-text {
-            max-width: 800px;
-            margin: 0 auto;
-            background: rgba(255, 255, 255, 0.7);
-            padding: 1.2rem 2rem;
-            border-radius: 2rem;
-            font-size: 1rem;
-            color: #1e3a5f;
-            border: 1px solid rgba(59, 130, 246, 0.2);
-            backdrop-filter: blur(4px);
+        body.light-mode .hero-title {
+            background: linear-gradient(135deg, #1e1b4b, #6366f1);
+        }
+
+        .hero-desc {
+            max-width: 700px;
+            margin: 0 auto 32px;
+            font-size: 1.05rem;
             line-height: 1.7;
-            transition: all 0.3s ease;
+            color: var(--muted-dark);
         }
 
-        .commitment-text:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+        /* ========== SERVICES GRID ========== */
+        .services-section {
+            max-width: 1300px;
+            margin: 30px auto 60px;
+            padding: 0 24px;
         }
 
-        .commitment-text i {
-            color: #000000;
-            margin-left: 6px;
+        .section-title {
+            font-size: 1.8rem;
+            font-weight: 800;
+            margin-bottom: 30px;
+            text-align: center;
+            color: var(--text-dark);
         }
 
         .services-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            grid-template-columns: repeat(3, 1fr);
             gap: 1.8rem;
-            margin-bottom: 3rem;
         }
 
         .service-card {
-            background: rgb(107, 0, 80);
-            border-radius: 1.8rem;
+            background: var(--glass-dark);
+            backdrop-filter: blur(14px);
+            border: 1px solid var(--border-dark);
+            border-radius: 28px;
             padding: 1.8rem 1.5rem;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.02);
-            border: 1px solid #eef2ff;
             text-align: center;
+            transition: all 0.3s;
         }
 
         .service-card:hover {
-            transform: translateY(-8px) scale(1.02);
-            box-shadow: 0 25px 40px -12px rgba(0, 0, 0, 0.2);
-            border-color: #ff6b6b;
+            transform: translateY(-8px);
+            border-color: rgba(139, 92, 246, 0.4);
+            box-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.2);
         }
 
         .service-icon {
             width: 80px;
             height: 80px;
             margin: 0 auto 1.2rem;
-            background: #eef2ff;
-            border-radius: 30px;
+            background: rgba(139, 92, 246, 0.15);
+            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: all 0.3s ease;
+            overflow: hidden;
+            transition: all 0.3s;
         }
 
         .service-card:hover .service-icon {
-            transform: scale(1.1) rotate(5deg);
-            background: white;
+            transform: scale(1.1);
+            box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.3);
         }
 
         .service-icon img {
             width: 55px;
             height: 55px;
-            object-fit: contain;
+            border-radius: 50%;
+            object-fit: cover;
         }
 
         .service-card h3 {
-            font-size: 1.35rem;
+            font-size: 1.2rem;
             font-weight: 700;
             margin-bottom: 0.75rem;
-            color: #ffffff;
-            transition: color 0.3s ease;
-        }
-
-        .service-card:hover h3 {
-            color: #ffcc00;
+            color: var(--text-dark);
         }
 
         .service-card p {
-            color: #ffffff;
-            font-size: 0.95rem;
+            color: var(--muted-dark);
+            font-size: 0.85rem;
             line-height: 1.6;
+            margin-bottom: 1rem;
         }
 
         .btn-info {
             display: inline-block;
-            background: #ffffff;
-            color: rgb(107, 0, 80);
+            background: var(--primary);
+            color: white;
             text-decoration: none;
             padding: 0.6rem 1.2rem;
             border-radius: 40px;
             font-weight: 600;
             font-size: 0.85rem;
-            margin-top: 1rem;
             transition: all 0.25s;
-            border: none;
-            cursor: pointer;
-        }
-
-        .btn-info i {
-            margin-left: 8px;
         }
 
         .btn-info:hover {
-            background: #f0f0f0;
-            transform: translateY(-3px) scale(1.02);
-            box-shadow: 0 5px 15px rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px var(--primary-glow);
         }
 
         .service-link {
@@ -257,80 +508,55 @@
             color: inherit;
         }
 
-        /* فوتر جدید */
-        .footer {
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
-            color: #aaa;
-            margin-top: 3rem;
-            padding: 2rem 2rem 1rem;
-            border-radius: 2rem 2rem 0 0;
-            position: relative;
-            overflow: hidden;
+        /* ========== FOOTER ========== */
+        .footer-3d {
+            background: rgba(0, 0, 0, 0.35);
+            backdrop-filter: blur(12px);
+            border-top: 1px solid var(--border-dark);
+            margin-top: auto;
+            padding: 50px 24px 25px;
         }
 
-        .footer::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 3px;
-            background: linear-gradient(90deg, #3b82f6, #f97316, #3b82f6);
-        }
-
-        .footer-container {
-            max-width: 1200px;
+        .footer-inner {
+            max-width: 1300px;
             margin: 0 auto;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            gap: 2rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 40px;
         }
 
-        .footer-section {
-            flex: 1;
-            min-width: 200px;
-        }
-
-        .footer-section h4 {
-            color: #3b82f6;
-            margin-bottom: 1rem;
+        .footer-col h4 {
             font-size: 1.1rem;
-            position: relative;
-            display: inline-block;
+            margin-bottom: 20px;
+            color: var(--text-dark);
         }
 
-        .footer-section h4::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            right: 0;
-            width: 40px;
-            height: 2px;
-            background: #3b82f6;
+        .footer-col p,
+        .footer-col a {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: var(--muted-dark);
+            text-decoration: none;
+            font-size: 0.9rem;
+            margin-bottom: 12px;
+            transition: 0.2s;
         }
 
-        .footer-section p {
-            color: #aaa;
-            line-height: 1.8;
-            margin-bottom: 0.5rem;
-            transition: transform 0.3s;
-        }
-
-        .footer-section p:hover {
+        .footer-col a:hover {
+            color: var(--text-dark);
             transform: translateX(-5px);
-            color: #fff;
         }
 
         .footer-social {
             display: flex;
             gap: 15px;
             margin-top: 1rem;
-            flex-wrap: wrap;
         }
 
         .footer-social a {
-            background: rgba(255, 255, 255, 0.1);
+            background: var(--glass-dark);
+            border: 1px solid var(--border-dark);
             width: 38px;
             height: 38px;
             border-radius: 50%;
@@ -338,197 +564,372 @@
             align-items: center;
             justify-content: center;
             transition: 0.3s;
-            color: #aaa;
-            text-decoration: none;
+            color: var(--muted-dark);
         }
 
         .footer-social a:hover {
-            background: #3b82f6;
+            background: var(--primary);
             color: white;
             transform: translateY(-3px);
         }
 
         .footer-bottom {
             text-align: center;
-            padding: 1.5rem;
-            border-top: 1px solid #333;
-            margin-top: 2rem;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border-dark);
+            color: var(--muted-dark);
+            font-size: 0.8rem;
         }
 
-        .footer-note {
-            text-align: center;
-            margin-top: 2rem;
-            font-size: 0.8rem;
-            color: #5b6e8c;
-            border-top: 1px solid #e2e8f0;
-            padding-top: 1.8rem;
+        /* ========== PARTICLES ========== */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .p {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 50%;
+            animation: rise 15s infinite linear;
+        }
+
+        @keyframes rise {
+            0% {
+                transform: translateY(110vh) rotate(0deg);
+                opacity: 0;
+            }
+
+            10% {
+                opacity: 0.5;
+            }
+
+            90% {
+                opacity: 0.5;
+            }
+
+            100% {
+                transform: translateY(-10vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* ========== RESPONSIVE ========== */
+        @media (max-width: 1024px) {
+            .services-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 900px) {
+            .navbar {
+                width: 90%;
+                border-radius: 24px;
+            }
+
+            .menu-btn {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 85px;
+                left: 5%;
+                width: 90%;
+                background: var(--glass-dark);
+                backdrop-filter: blur(30px);
+                flex-direction: column;
+                border-radius: 32px;
+                padding: 20px;
+                gap: 8px;
+                opacity: 0;
+                visibility: hidden;
+                transform: scale(0.95);
+                transition: all 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.2);
+                z-index: 999;
+            }
+
+            .nav-links.open {
+                opacity: 1;
+                visibility: visible;
+                transform: scale(1);
+            }
+
+            .hero-title {
+                font-size: 1.8rem;
+            }
         }
 
         @media (max-width: 640px) {
-            .services-header {
-                flex-direction: column;
-                align-items: stretch;
-                text-align: center;
+            .hero-title {
+                font-size: 1.5rem;
             }
 
-            .logo-area {
-                justify-content: center;
+            .globe-trigger span {
+                display: none;
             }
 
-            .btn-home {
-                justify-content: center;
-            }
-
-            .hero-section h1 {
-                font-size: 1.7rem;
-            }
-
-            .commitment-text {
-                font-size: 0.9rem;
-                padding: 1rem;
+            .logo-name {
+                display: none;
             }
 
             .services-grid {
                 grid-template-columns: 1fr;
-                gap: 1.2rem;
             }
 
-            .footer-container {
-                flex-direction: column;
-                text-align: center;
-            }
-
-            .footer-section h4::after {
-                right: 50%;
-                transform: translateX(50%);
-            }
-
-            .footer-social {
-                justify-content: center;
+            .hero-card {
+                padding: 40px 20px;
             }
         }
     </style>
 </head>
 
-<body>
-    <div class="container">
-        <div class="services-header" data-aos="fade-down">
-            <div class="logo-area">
-                <img id="serviceLogo" class="logo-img" src="../images/kha.jpg" alt="لوگو موسسه">
-                <span class="logo-text"><i class="fas fa-hand-holding-heart"></i> ویزای بشردوستانه</span>
-            </div>
-            <a href="../index.html" id="homeButton" class="btn-home">
-                <i class="fas fa-home"></i> برگشت به خانه
-            </a>
-        </div>
+<body class="dark-mode">
+    <div class="scene-3d">
+        <div class="grid-3d"></div>
+        <div class="floating-orb orb1"></div>
+        <div class="floating-orb orb2"></div>
+        <div class="floating-orb orb3"></div>
+    </div>
 
-        <div class="hero-section" data-aos="fade-up">
-            <h1><i class="fas fa-globe-americas"></i> ویزای بشردوستانه برای افغان‌ها</h1>
-            <div class="commitment-text">
-                <i class="fas fa-quote-right"></i>
-                <h4>
-                    فرصتی برای زندگی بهتر - حمایت از افغان‌های آسیب‌ پـذیر در سراسر جهان </h4>
+    <!-- ========== NAVBAR (منوی کامل) ========== -->
+    <nav class="navbar">
+        <a href="index.html" class="logo-wrap">
+            <img src="../images/kha.jpg" alt="logo">
+            <div class="logo-name">VISA<br>GUIDE AF</div>
+        </a>
+        <button class="menu-btn" id="menuBtn">☰</button>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="../index.html"><img src="../images/home.png"> <span data-key="home">خانه</span></a></li>
+            <li><a href="../services.html"><img src="../images/customer.png"> <span data-key="services">خدمات</span></a>
+            </li>
+            <li><a href="../ai.html"><img src="../images/ai.png"> <span data-key="ai">هوش مصنوعی</span></a></li>
+            <li><a href="../contact.html"><img src="../images/call.png"> <span data-key="contact">تماس</span></a></li>
+            <li><a href="../faq.html"><img src="../images/f&a.png"> <span data-key="faq">سوالات</span></a></li>
+            <li><a href="../news/day-news/day.html"><img src="../images/event.png"> <span
+                        data-key="news">اخبار</span></a></li>
+        </ul>
+        <div class="nav-actions">
+            <div class="lang-globe" id="langGlobe">
+                <div class="globe-trigger" id="globeTrigger">
+                    <i class="fas fa-globe-americas"></i> <span id="currentLangLabel">فارسی</span> <i
+                        class="fas fa-chevron-down"></i>
+                </div>
+                <div class="lang-dropdown">
+                    <div class="lang-option" data-lang="fa"><span>🇦🇫</span> فارسی</div>
+                    <div class="lang-option" data-lang="en"><span>🇬🇧</span> English</div>
+                    <div class="lang-option" data-lang="ps"><span>🇦🇫</span> پښتو</div>
+                </div>
             </div>
+            <button class="theme-btn" id="themeBtn"><i class="fas fa-moon"></i></button>
         </div>
+    </nav>
 
+    <!-- ========== HERO ========== -->
+    <div class="hero">
+        <div class="glass-3d hero-card">
+            <div class="badge-3d"><i class="fas fa-hand-holding-heart"></i> <span data-key="pageTag">ویزای
+                    بشردوستانه</span></div>
+            <h1 class="hero-title" data-key="heroTitle">ویزای بشردوستانه برای افغان‌ها</h1>
+            <div class="hero-desc" data-key="heroDesc">فرصتی برای زندگی بهتر - حمایت از افغان‌های آسیب‌پذیر در سراسر
+                جهان</div>
+        </div>
+    </div>
+
+    <!-- ========== SERVICES SECTION ========== -->
+    <div class="services-section">
+        <h2 class="section-title" data-key="countriesTitle">کشورهای دارای برنامه ویزای بشردوستانه</h2>
         <div class="services-grid" id="servicesGrid"></div>
     </div>
 
-    <!-- فوتر جدید -->
-    <div class="footer" data-aos="fade-up">
-        <div class="footer-container">
-            <div class="footer-section">
-                <h4><i class="fas fa-globe"></i> خدمات مهاجرت</h4>
-                <p>معتبرترین خدمات مهاجرت در افغانستان</p>
-                <p>ارایه خدمات مهاجرتی در سراسر جهان</p>
+    <!-- ========== FOOTER ========== -->
+    <footer class="footer-3d">
+        <div class="footer-inner">
+            <div class="footer-col">
+                <h4 data-key="footTitle1">خدمات مهاجرت</h4>
+                <p><i class="fas fa-check-circle" style="color:var(--success)"></i> <span data-key="footDesc1">معتبرترین
+                        خدمات در افغانستان</span></p>
+                <p><i class="fas fa-globe" style="color:#38bdf8"></i> <span data-key="footDesc2">خدمات مهاجرتی
+                        جهانی</span></p>
             </div>
-
-            <div class="footer-section">
-                <h4><i class="fas fa-map-marker-alt"></i> تماس با ما</h4>
-                <p><i class="fas fa-location-dot"></i> شهر ایبک، سمنگان، افغانستان</p>
-                <p><i class="fas fa-phone"></i> 0792665622</p>
-                <p><i class="fas fa-envelope"></i> sarfraz2026@zohomail.com</p>
+            <div class="footer-col">
+                <h4 data-key="footTitle2">تماس با ما</h4>
+                <p><i class="fas fa-map-marker-alt" style="color:#f59e0b"></i> <span data-key="footAddr">ایبک، سمنگان،
+                        افغانستان</span></p>
+                <p><i class="fas fa-phone-alt" style="color:#10b981"></i> 0792665622</p>
+                <p><i class="fas fa-envelope" style="color:#ef4444"></i> visa.guide.af.123@gmail.com</p>
             </div>
-
-            <div class="footer-section">
-                <h4><i class="fas fa-share-alt"></i> شبکه‌های اجتماعی</h4>
+            <div class="footer-col">
+                <h4 data-key="footTitle3">شبکه‌های اجتماعی</h4>
                 <div class="footer-social">
-                    <a href="https://www.facebook.com/profile.php?id=61576472791614" target="_blank"><i
+                    <a href="https://whatsapp.com/channel/0029Vae7U29AzNbpZIv5T81R" target="_blank"><i
+                            class="fab fa-whatsapp"></i></a>
+                    <a href="https://t.me/visaguidee" target="_blank"><i class="fab fa-telegram"></i></a>
+                    <a href="https://www.facebook.com/profile.php?id=61589943461514" target="_blank"><i
                             class="fab fa-facebook-f"></i></a>
                     <a href="https://www.instagram.com/sarfraz_refugee_service" target="_blank"><i
                             class="fab fa-instagram"></i></a>
-                    <a href="https://t.me/visaguidee" target="_blank"><i class="fab fa-telegram"></i></a>
-                    <a href="https://wa.me/message/ZY2KWEKZLQCXF1" target="_blank"><i class="fab fa-whatsapp"></i></a>
                 </div>
             </div>
         </div>
-        <div class="footer-bottom">
-            <p>© 2026 Sarfraz Refugee Service - همه حقوق محفوظ است</p>
-        </div>
-    </div>
+        <div class="footer-bottom"><span data-key="copy">© 2026 VISA GUIDE AF — همه حقوق محفوظ است</span></div>
+    </footer>
 
-    <!-- AOS Script -->
+    <div class="particles" id="particles"></div>
+
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        AOS.init({
-            duration: 800,
-            once: true,
-            offset: 100
-        });
+        AOS.init({ duration: 800, once: true, offset: 100 });
+
+        // ========== MULTILINGUAL DATA ==========
+        const T = {
+            fa: {
+                home: "خانه", services: "خدمات", ai: "هوش مصنوعی", contact: "تماس", faq: "سوالات", news: "اخبار",
+                pageTag: "ویزای بشردوستانه", heroTitle: "ویزای بشردوستانه برای افغان‌ها",
+                heroDesc: "فرصتی برای زندگی بهتر - حمایت از افغان‌های آسیب‌پذیر در سراسر جهان",
+                countriesTitle: "کشورهای دارای برنامه ویزای بشردوستانه",
+                footTitle1: "خدمات مهاجرت", footDesc1: "معتبرترین خدمات در افغانستان", footDesc2: "خدمات مهاجرتی جهانی",
+                footTitle2: "تماس با ما", footAddr: "ایبک، سمنگان، افغانستان", footTitle3: "شبکه‌های اجتماعی",
+                copy: "© 2026 VISA GUIDE AF — همه حقوق محفوظ است", btnInfo: "اطلاعات و ثبت نام"
+            },
+            en: {
+                home: "Home", services: "Services", ai: "AI Assistant", contact: "Contact", faq: "FAQ", news: "News",
+                pageTag: "Humanitarian Visa", heroTitle: "Humanitarian Visa for Afghans",
+                heroDesc: "An opportunity for a better life - supporting vulnerable Afghans around the world",
+                countriesTitle: "Countries with Humanitarian Visa Programs",
+                footTitle1: "Immigration Services", footDesc1: "Most reliable services in Afghanistan", footDesc2: "Global immigration services",
+                footTitle2: "Contact Us", footAddr: "Aibak, Samangan, Afghanistan", footTitle3: "Social Networks",
+                copy: "© 2026 VISA GUIDE AF — All rights reserved", btnInfo: "Info & Registration"
+            },
+            ps: {
+                home: "کور", services: "خدمات", ai: "AI", contact: "اړیکه", faq: "پوښتنې", news: "خبرونه",
+                pageTag: "بشري ویزه", heroTitle: "د افغانانو لپاره بشري ویزه",
+                heroDesc: "د غوره ژوند فرصت - د نړۍ په ګوټ کې د افغانانو ملاتړ",
+                countriesTitle: "هغه هیوادونه چې د بشري ویزې پروګرام لري",
+                footTitle1: "د کډوالۍ خدمات", footDesc1: "افغانستان کې ترټولو معتبر خدمات", footDesc2: "نړیوال د کډوالۍ خدمات",
+                footTitle2: "اړیکه", footAddr: "ایبک, سمنګان، افغانستان", footTitle3: "ټولنیزې شبکې",
+                copy: "© 2026 VISA GUIDE AF — ټول حقونه خوندي", btnInfo: "معلومات او ثبت نام"
+            }
+        };
 
         const servicesData = [
-            { title: "ویزای بشردوستانه استرالیا", desc: "فرصت ویژه برای افغان‌های آسیب‌پذیر | برنامه حمایت از پناهندگان استرالیا", iconSrc: "visa-pic/australia.png", link: "a.html" },
-            { title: "ویزای بشردوستانه کانادا", desc: "فرصت ویژه برای افغان‌های آسیب‌پذیر | برنامه ویژه پناهندگی کانادا", iconSrc: "visa-pic/canada.png", link: "c.html" },
-            { title: "ویزای بشردوستانه آلمان", desc: "فرصت ویژه برای افغان‌های آسیب‌پذیر | برنامه پذیرش بشردوستانه آلمان", iconSrc: "visa-pic/germany.png", link: "g.html" },
-            { title: "ویزای بشردوستانه اسپانیا", desc: "فرصت ویژه برای افغان‌های آسیب‌پذیر | حمایت بشردوستانه اسپانیا", iconSrc: "visa-pic/spania.png", link: "s.html" },
-            { title: "ویزای بشردوستانه ایتالیا", desc: "فرصت ویژه برای افغان‌های آسیب‌پذیر | برنامه حفاظت ایتالیا", iconSrc: "visa-pic/italia.png", link: "i.html" },
-            { title: "ویزای بشردوستانه فنلاند", desc: "فرصت ویژه برای افغان‌های آسیب‌پذیر | برنامه پناهندگی فنلاند", iconSrc: "visa-pic/finland.png", link: "f.html" },
-            { title: "ویزای بشردوستانه سوئیس", desc: "فرصت ویژه برای افغان‌های آسیب‌پذیر | برنامه حمایت سوئیس", iconSrc: "visa-pic/swiss.png", link: "w.html" },
-            { title: "ویزای بشردوستانه برزیل", desc: "فرصت ویژه برای افغان‌های آسیب‌پذیر | ویزای بشردوستانه برزیل", iconSrc: "visa-pic/brazil.png", link: "b.html" },
-            { title: "ویزای بشردوستانه نیوزلند", desc: "فرصت ویژه برای افغان‌های آسیب‌پذیر | برنامه حمایت نیوزلند", iconSrc: "visa-pic/newzealand.png", link: "n.html" }
+            { key: "استرالیا", icon: "visa-pic/australia.png", link: "a.html", descFa: "برنامه حمایت از پناهندگان استرالیا | بدون نیاز به اسپانسر", descEn: "Australia refugee support program | No sponsor needed", descPs: "د استرالیا د کډوالو ملاتړ پروګرام | سپانسر ته اړتیا نشته" },
+            { key: "کانادا", icon: "visa-pic/canada.png", link: "c.html", descFa: "برنامه ویژه پناهندگی کانادا | شرایط جدید ۲۰۲۶", descEn: "Canada special refugee program | New 2026 conditions", descPs: "د کاناډا ځانګړی کډوال پروګرام | د ۲۰۲۶ نوي شرایط" },
+            { key: "آلمان", icon: "visa-pic/germany.png", link: "g.html", descFa: "برنامه پذیرش بشردوستانه آلمان | فرصت ویژه", descEn: "German humanitarian admission program | Special opportunity", descPs: "د آلمان بشري منلو پروګرام | ځانګړی فرصت" },
+            { key: "اسپانیا", icon: "visa-pic/spania.png", link: "s.html", descFa: "حمایت بشردوستانه اسپانیا | ویزای بشردوستانه", descEn: "Spanish humanitarian support | Humanitarian visa", descPs: "د اسپانیا بشري ملاتړ | بشري ویزه" },
+            { key: "ایتالیا", icon: "visa-pic/italia.png", link: "i.html", descFa: "برنامه حفاظت ایتالیا | حمایت از پناهندگان", descEn: "Italian protection program | Refugee support", descPs: "د ایټالیا د ساتنې پروګرام | د کډوالو ملاتړ" },
+            { key: "فنلاند", icon: "visa-pic/finland.png", link: "f.html", descFa: "برنامه پناهندگی فنلاند | شرایط جدید", descEn: "Finnish refugee program | New conditions", descPs: "د فنلینډ د کډوالو پروګرام | نوي شرایط" },
+            { key: "سوئیس", icon: "visa-pic/swiss.png", link: "w.html", descFa: "برنامه حمایت سوئیس | ویزای بشردوستانه", descEn: "Swiss support program | Humanitarian visa", descPs: "د سویس د ملاتړ پروګرام | بشري ویزه" },
+            { key: "برزیل", icon: "visa-pic/brazil.png", link: "b.html", descFa: "ویزای بشردوستانه برزیل | فرصت جدید", descEn: "Brazilian humanitarian visa | New opportunity", descPs: "د برازیل بشري ویزه | نوی فرصت" },
+            { key: "نیوزلند", icon: "visa-pic/newzealand.png", link: "n.html", descFa: "برنامه حمایت نیوزلند | ویزای بشردوستانه", descEn: "New Zealand support program | Humanitarian visa", descPs: "د نیوزیلینډ د ملاتړ پروګرام | بشري ویزه" }
         ];
+
+        let currentLang = 'fa';
 
         function renderServices() {
             const grid = document.getElementById('servicesGrid');
             if (!grid) return;
+            let desc = '';
             grid.innerHTML = '';
             servicesData.forEach((service, index) => {
-                const link = document.createElement('a');
-                link.href = service.link;
-                link.className = 'service-link';
-
-                const iconDiv = document.createElement('div');
-                iconDiv.className = 'service-icon';
-                const img = document.createElement('img');
-                img.src = service.iconSrc;
-                img.alt = service.title;
-                iconDiv.appendChild(img);
-
-                const titleElem = document.createElement('h3');
-                titleElem.innerText = service.title;
-                const descElem = document.createElement('p');
-                descElem.innerText = service.desc;
-
-                link.appendChild(iconDiv);
-                link.appendChild(titleElem);
-                link.appendChild(descElem);
-
-                const btn = document.createElement('a');
-                btn.href = service.link;
-                btn.className = 'btn-info';
-                btn.innerHTML = '<i class="fas fa-info-circle"></i> معلومات و ثبت نام';
+                if (currentLang === 'fa') desc = service.descFa;
+                else if (currentLang === 'en') desc = service.descEn;
+                else desc = service.descPs;
 
                 const card = document.createElement('div');
                 card.className = 'service-card';
                 card.setAttribute('data-aos', 'zoom-in');
                 card.setAttribute('data-aos-delay', (index * 50) + '');
-                card.appendChild(link);
-                card.appendChild(btn);
+                card.innerHTML = `
+                    <a href="${service.link}" class="service-link">
+                        <div class="service-icon">
+                            <img src="${service.icon}" alt="${service.key}" onerror="this.src='https://placehold.co/80x80?text=🏳️'">
+                        </div>
+                        <h3>${service.key}</h3>
+                        <p>${desc}</p>
+                    </a>
+                    <a href="${service.link}" class="btn-info">
+                        <i class="fas fa-info-circle"></i> ${T[currentLang].btnInfo}
+                    </a>
+                `;
                 grid.appendChild(card);
             });
         }
 
+        function applyLanguage(lang) {
+            currentLang = lang;
+            document.querySelectorAll('[data-key]').forEach(el => {
+                const key = el.getAttribute('data-key');
+                if (T[lang][key]) el.innerHTML = T[lang][key];
+            });
+            const labelMap = { fa: "فارسی", en: "English", ps: "پښتو" };
+            document.getElementById('currentLangLabel').innerText = labelMap[lang];
+            renderServices();
+        }
+
+        // ========== THEME TOGGLE ==========
+        const themeBtn = document.getElementById('themeBtn');
+        const savedTheme = localStorage.getItem('srs-theme') || 'dark';
+        document.body.className = savedTheme === 'dark' ? 'dark-mode' : 'light-mode';
+        themeBtn.innerHTML = savedTheme === 'dark' ? '<i class="fas fa-moon"></i>' : '<i class="fas fa-sun"></i>';
+        themeBtn.addEventListener('click', () => {
+            const isDark = document.body.classList.contains('dark-mode');
+            document.body.className = isDark ? 'light-mode' : 'dark-mode';
+            themeBtn.innerHTML = isDark ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+            localStorage.setItem('srs-theme', isDark ? 'light' : 'dark');
+        });
+
+        // ========== LANGUAGE GLOBE ==========
+        const globe = document.getElementById('langGlobe');
+        const trigger = document.getElementById('globeTrigger');
+        trigger.addEventListener('click', (e) => { e.stopPropagation(); globe.classList.toggle('open'); });
+        document.addEventListener('click', (e) => { if (!globe.contains(e.target)) globe.classList.remove('open'); });
+        document.querySelectorAll('.lang-option').forEach(opt => {
+            opt.addEventListener('click', (e) => {
+                const newLang = opt.getAttribute('data-lang');
+                if (newLang) applyLanguage(newLang);
+                globe.classList.remove('open');
+            });
+        });
+
+        // ========== MOBILE MENU (Hamburger -> X) ==========
+        const menuBtn = document.getElementById('menuBtn');
+        const navLinks = document.getElementById('navLinks');
+        function closeMenu() {
+            navLinks.classList.remove('open');
+            if (menuBtn) menuBtn.innerHTML = '☰';
+        }
+        menuBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const isOpen = navLinks.classList.contains('open');
+            if (isOpen) closeMenu();
+            else { navLinks.classList.add('open'); menuBtn.innerHTML = '✕'; }
+        });
+        document.addEventListener('click', (e) => {
+            if (!navLinks.contains(e.target) && !menuBtn.contains(e.target) && navLinks.classList.contains('open')) closeMenu();
+        });
+        navLinks.querySelectorAll('a').forEach(link => link.addEventListener('click', closeMenu));
+
+        // ========== PARTICLES ==========
+        const particles = document.getElementById('particles');
+        for (let i = 0; i < 40; i++) {
+            const p = document.createElement('div');
+            p.className = 'p';
+            const s = Math.random() * 8 + 3;
+            p.style.cssText = `width:${s}px;height:${s}px;left:${Math.random() * 100}%;top:${Math.random() * 100}%;animation-delay:${Math.random() * 12}s;animation-duration:${12 + Math.random() * 10}s`;
+            particles.appendChild(p);
+        }
+
         renderServices();
+        applyLanguage('fa');
     </script>
 </body>
 

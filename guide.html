@@ -5,350 +5,422 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>رهنمودهای مهاجرتی | VISA GUIDE AF</title>
-    <!-- Font Awesome 6 -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap"
-        rel="stylesheet">
-    <!-- AOS Animation Library -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-
     <style>
-        /* تعریف متغیرهای رنگی و استایل پایه */
+        /* ========== VARIABLES ========== */
         :root {
-            --bg: #070b13;
-            --panel: rgba(255, 255, 255, 0.03);
-            --border: rgba(255, 255, 255, 0.08);
-            --text: #f1f5f9;
-            --text-muted: #94a3b8;
-            --primary: linear-gradient(135deg, #7c3aed, #4f46e5);
-            --primary-glow: rgba(124, 58, 237, 0.4);
-            --accent: linear-gradient(135deg, #38bdf8, #0369a1);
-            --accent-glow: rgba(56, 189, 248, 0.4);
-            --success: #10b981;
-            --warning: #f59e0b;
-            --danger: #ef4444;
-            --font: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-        }
-
-        .light-mode {
-            --bg: #f8fafc;
-            --panel: rgba(0, 0, 0, 0.03);
-            --border: rgba(0, 0, 0, 0.08);
-            --text: #0f172a;
-            --text-muted: #475569;
-            --primary-glow: rgba(124, 58, 237, 0.15);
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: var(--font);
-            transition: background-color 0.3s, border-color 0.3s, color 0.3s, filter 0.3s;
+            --bg-dark: #03050b;
+            --bg-light: #eef2ff;
+            --glass-dark: rgba(8, 12, 25, 0.45);
+            --glass-light: rgba(255, 255, 255, 0.55);
+            --border-dark: rgba(255, 255, 255, 0.1);
+            --border-light: rgba(0, 0, 0, 0.08);
+            --text-dark: #f1f5f9;
+            --text-light: #0a0f1c;
+            --muted-dark: #94a3b8;
+            --muted-light: #475569;
+            --primary: linear-gradient(135deg, #8b5cf6, #3b82f6);
+            --primary-glow: rgba(139, 92, 246, 0.5);
+            --accent: linear-gradient(135deg, #f97316, #ef4444);
+            --font: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+            --icon-filter: brightness(0) invert(1);
         }
 
         body {
-            background-color: var(--bg);
-            color: var(--text);
-            overflow-x: hidden;
-            perspective: 1000px;
-            padding: 2rem 1rem;
+            background: var(--bg-dark);
+            color: var(--text-dark);
+            font-family: var(--font);
             min-height: 100vh;
             display: flex;
             flex-direction: column;
+            transition: background 0.4s, color 0.3s;
         }
 
-        /* جلوه ذرات و اورب‌های سه‌بعدی پس‌زمینه */
-        .bg-scene {
+        body.light-mode {
+            --bg-dark: var(--bg-light);
+            --glass-dark: var(--glass-light);
+            --border-dark: var(--border-light);
+            --text-dark: var(--text-light);
+            --muted-dark: var(--muted-light);
+            background: var(--bg-light);
+            color: var(--text-light);
+            --icon-filter: brightness(0);
+        }
+
+        /* ========== 3D BACKGROUND ========== */
+        .scene-3d {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            z-index: -3;
-            background: radial-gradient(circle at 50% 50%, rgba(15, 23, 42, 0.5) 0%, var(--bg) 100%);
-        }
-
-        .bg-orb {
-            position: fixed;
-            width: 300px;
-            height: 300px;
-            border-radius: 50%;
-            filter: blur(80px);
             z-index: -2;
-            opacity: 0.6;
-            pointer-events: none;
-            animation: floatOrb 20s infinite alternate ease-in-out;
+            overflow: hidden;
+            perspective: 1200px;
         }
 
-        .bg-orb:nth-child(2) {
-            background: radial-gradient(circle, #7c3aed 0%, transparent 70%);
-            top: -10%;
+        .grid-3d {
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            top: -50%;
+            left: -50%;
+            background-image:
+                linear-gradient(var(--border-dark) 1px, transparent 1px),
+                linear-gradient(90deg, var(--border-dark) 1px, transparent 1px);
+            background-size: 60px 60px;
+            transform: rotateX(50deg) rotateZ(30deg) translateZ(-80px);
+            animation: gridFlow 20s infinite linear;
+            opacity: 0.3;
+        }
+
+        @keyframes gridFlow {
+            0% {
+                transform: rotateX(50deg) rotateZ(30deg) translateZ(-80px) translateY(0);
+            }
+
+            100% {
+                transform: rotateX(50deg) rotateZ(30deg) translateZ(-80px) translateY(80px);
+            }
+        }
+
+        .floating-orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(90px);
+            opacity: 0.5;
+            animation: floatGlow 22s infinite alternate;
+        }
+
+        .orb1 {
+            width: 450px;
+            height: 450px;
+            background: #8b5cf6;
+            top: -15%;
             left: -10%;
         }
 
-        .bg-orb:nth-child(3) {
-            background: radial-gradient(circle, #38bdf8 0%, transparent 70%);
-            bottom: -10%;
-            right: -10%;
-            animation-delay: -5s;
+        .orb2 {
+            width: 550px;
+            height: 550px;
+            background: #3b82f6;
+            bottom: -20%;
+            right: -15%;
+            animation-delay: -6s;
         }
 
-        .bg-orb:nth-child(4) {
-            background: radial-gradient(circle, #ec4899 0%, transparent 70%);
-            top: 40%;
-            left: 50%;
-            width: 400px;
-            height: 400px;
-            animation-delay: -10s;
+        .orb3 {
+            width: 350px;
+            height: 350px;
+            background: #f97316;
+            top: 45%;
+            left: 30%;
+            filter: blur(110px);
+            animation-delay: -12s;
         }
 
-        @keyframes floatOrb {
+        @keyframes floatGlow {
             0% {
                 transform: translate(0, 0) scale(1);
             }
 
             100% {
-                transform: translate(80px, 50px) scale(1.2);
+                transform: translate(70px, 50px) scale(1.2);
             }
         }
 
-        .container {
-            max-width: 1200px;
+        /* ========== GLASS CORE ========== */
+        .glass-3d {
+            background: var(--glass-dark);
+            backdrop-filter: blur(14px);
+            border: 1px solid var(--border-dark);
+            border-radius: 32px;
+            transition: transform 0.35s cubic-bezier(0.2, 0.9, 0.4, 1.1), box-shadow 0.3s;
+        }
+
+        .glass-3d:hover {
+            transform: translateY(-6px) rotateX(2deg) rotateY(1deg);
+            box-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(139, 92, 246, 0.3);
+        }
+
+        /* ========== NAVBAR ========== */
+        .navbar {
+            position: sticky;
+            top: 20px;
+            width: calc(100% - 40px);
+            max-width: 1300px;
             margin: 0 auto;
-            flex: 1;
-        }
-
-        /* هدر شیشه‌ای اختصاصی */
-        .page-header {
-            background: var(--panel);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border-radius: 2rem;
-            padding: 1rem 2rem;
-            margin-bottom: 2.5rem;
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
-            border: 1px solid var(--border);
+            z-index: 200;
             display: flex;
-            flex-wrap: wrap;
-            align-items: center;
             justify-content: space-between;
-            gap: 1rem;
-            transition: all 0.3s ease;
+            align-items: center;
+            padding: 10px 24px;
+            background: var(--glass-dark);
+            backdrop-filter: blur(16px);
+            border: 1px solid var(--border-dark);
+            border-radius: 80px;
         }
 
-        .light-mode .page-header {
-            background: rgba(255, 255, 255, 0.8);
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.05);
-        }
-
-        .page-header:hover {
-            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
-        }
-
-        .logo-area {
+        .logo-wrap {
             display: flex;
             align-items: center;
-            gap: 1rem;
+            gap: 12px;
+            text-decoration: none;
         }
 
-        .logo-img {
-            width: 50px;
-            height: 50px;
+        .logo-wrap img {
+            width: 46px;
+            height: 46px;
             border-radius: 50%;
-            border: 2px solid #7c3aed;
-            box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.2), 0 0 15px var(--primary-glow);
-            object-fit: cover;
-            transition: transform 0.3s ease;
+            border: 2px solid #8b5cf6;
+            box-shadow: 0 0 15px var(--primary-glow);
+            transition: transform 0.4s;
         }
 
-        .light-mode .logo-img {
-            box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.1), 0 0 10px rgba(124, 58, 237, 0.2);
+        .logo-wrap:hover img {
+            transform: rotateY(180deg);
         }
 
-        .logo-img:hover {
-            transform: scale(1.05) rotate(5deg);
+        .logo-name {
+            font-weight: 800;
+            font-size: 0.85rem;
+            line-height: 1.2;
+            color: aliceblue;
+
+
         }
 
-        .logo-text {
-            font-weight: 600;
-            color: var(--text);
-            font-size: 0.95rem;
-            background: var(--panel);
-            border: 1px solid var(--border);
-            padding: 6px 16px;
-            border-radius: 40px;
-            display: inline-flex;
-            align-items: center;
+        body.light-mode .logo-name {
+            filter: invert(1);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
             gap: 8px;
         }
 
-        /* ========== منوی زبان با کره زمین ========== */
-        .lang-dropdown {
+        .nav-links a {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 18px;
+            text-decoration: none;
+            color: var(--muted-dark);
+            font-weight: 600;
+            border-radius: 50px;
+            transition: 0.2s;
             position: relative;
-            display: inline-block;
         }
 
-        .lang-trigger {
-            background: rgba(255, 255, 255, 0.08);
-            border: 1px solid var(--border);
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 4px;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #8b5cf6, #3b82f6);
+            border-radius: 2px;
+            transition: width 0.25s ease;
+            transform: translateX(-50%);
+        }
+
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 40%;
+        }
+
+        .nav-links a::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 50px;
+            background: var(--primary);
+            opacity: 0;
+            transition: opacity 0.3s;
+            z-index: -1;
+        }
+
+        .nav-links a:hover::before,
+        .nav-links a.active::before {
+            opacity: 0.15;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--text-dark);
+            transform: translateY(-2px);
+        }
+
+        .nav-links a img {
+            width: 18px;
+            height: 18px;
+            transition: filter 0.3s;
+            filter: var(--icon-filter);
+        }
+
+        /* ========== LANGUAGE GLOBE ========== */
+        .lang-globe {
+            position: relative;
+        }
+
+        .globe-trigger {
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid var(--border-dark);
             border-radius: 40px;
-            padding: 6px 14px;
+            padding: 6px 16px;
             cursor: pointer;
             display: flex;
             align-items: center;
-            gap: 8px;
-            color: var(--text);
-            font-size: 0.85rem;
+            gap: 10px;
             font-weight: 500;
             transition: 0.2s;
         }
 
-        .lang-trigger i {
+        .globe-trigger i {
             font-size: 1rem;
-            color: #38bdf8;
+            color: #60a5fa;
         }
 
-        .lang-trigger:hover {
-            background: rgba(124, 58, 237, 0.2);
-            border-color: #7c3aed;
+        .globe-trigger:hover {
+            background: rgba(139, 92, 246, 0.2);
+            border-color: #8b5cf6;
         }
 
-        .lang-menu {
+        .lang-dropdown {
             position: absolute;
             top: 110%;
             left: 0;
-            background: rgba(15, 23, 42, 0.95);
+            background: var(--glass-dark);
             backdrop-filter: blur(20px);
-            border: 1px solid var(--border);
+            border: 1px solid var(--border-dark);
             border-radius: 20px;
-            padding: 8px 0;
-            min-width: 130px;
-            z-index: 300;
+            min-width: 140px;
             opacity: 0;
             visibility: hidden;
             transform: translateY(-10px);
-            transition: all 0.25s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+            transition: all 0.25s;
+            z-index: 300;
         }
 
-        .light-mode .lang-menu {
-            background: rgba(255, 255, 255, 0.98);
-        }
-
-        .lang-dropdown.open .lang-menu {
+        .lang-globe.open .lang-dropdown {
             opacity: 1;
             visibility: visible;
             transform: translateY(0);
         }
 
         .lang-option {
+            padding: 10px 16px;
             display: flex;
             align-items: center;
             gap: 12px;
-            padding: 8px 16px;
             cursor: pointer;
-            transition: background 0.2s;
-            color: var(--text);
-            font-size: 0.85rem;
+            transition: 0.2s;
+            border-radius: 16px;
         }
 
         .lang-option:hover {
-            background: rgba(124, 58, 237, 0.2);
+            background: rgba(139, 92, 246, 0.2);
         }
 
-        /* دکمه تم سوئیچر */
+        .nav-actions {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+
         .theme-btn {
             background: var(--primary);
-            border: none;
-            color: white;
-            width: 36px;
-            height: 36px;
+            width: 40px;
+            height: 40px;
             border-radius: 50%;
-            cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 4px 10px var(--primary-glow);
-            transition: all 0.3s ease;
-        }
-
-        .theme-btn:hover {
-            transform: scale(1.05);
-        }
-
-        /* دکمه بازگشت */
-        .btn-home {
-            background: var(--primary);
+            cursor: pointer;
+            border: none;
             color: white;
-            text-decoration: none;
-            padding: 0.7rem 1.5rem;
-            border-radius: 40px;
-            font-weight: 500;
-            font-size: 0.95rem;
+            box-shadow: 0 4px 12px var(--primary-glow);
+        }
+
+        .menu-btn {
+            display: none;
+            width: 46px;
+            height: 46px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border-dark);
+            border-radius: 30px;
+            font-size: 1.7rem;
+            cursor: pointer;
+        }
+
+        /* ========== HERO ========== */
+        .hero {
+            max-width: 1300px;
+            margin: 50px auto 30px;
+            padding: 0 24px;
+        }
+
+        .hero-card {
+            padding: 60px 40px;
+            text-align: center;
+            transform-style: preserve-3d;
+        }
+
+        .badge-3d {
             display: inline-flex;
             align-items: center;
             gap: 10px;
-            box-shadow: 0 4px 10px var(--primary-glow);
-            transition: all 0.25s;
+            background: rgba(139, 92, 246, 0.15);
+            border: 1px solid rgba(139, 92, 246, 0.3);
+            border-radius: 60px;
+            padding: 6px 22px;
+            font-weight: 600;
+            margin-bottom: 24px;
         }
 
-        .btn-home:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px var(--primary-glow);
-        }
-
-        .hero-section {
-            text-align: center;
-            margin-bottom: 2rem;
-        }
-
-        .hero-section h1 {
-            font-size: 2.5rem;
+        .hero-title {
+            font-size: 2.2rem;
             font-weight: 800;
-            background: linear-gradient(135deg, #fff 30%, #a78bfa 100%);
-            background-clip: text;
-            -webkit-background-clip: text;
-            color: transparent;
-            margin-bottom: 0.75rem;
+            color: azure;
         }
 
-        .light-mode .hero-section h1 {
-            background: linear-gradient(135deg, #0f172a 30%, #4f46e5 100%);
-            background-clip: text;
-            -webkit-background-clip: text;
-            color: transparent;
+        body.light-mode .hero-title {
+            filter: invert(1);
         }
 
-        /* باکس راهنمایی شیشه‌ای سه‌بعدی */
+        .hero-desc {
+            max-width: 700px;
+            margin: 0 auto 32px;
+            font-size: 1.05rem;
+            line-height: 1.7;
+            color: var(--muted-dark);
+        }
+
+        /* ========== GUIDANCE CONTENT ========== */
         .guidance-box {
-            background: var(--panel);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border-radius: 2rem;
+            max-width: 1300px;
+            margin: 30px auto 60px;
             padding: 2.5rem;
-            margin: 2rem 0;
             text-align: center;
-            box-shadow: 0 20px 50px -12px rgba(0, 0, 0, 0.3);
-            border: 1px solid var(--border);
+            background: var(--glass-dark);
+            backdrop-filter: blur(16px);
+            border: 1px solid var(--border-dark);
+            border-radius: 32px;
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
-        .light-mode .guidance-box {
-            background: rgba(255, 255, 255, 0.85);
-            box-shadow: 0 20px 50px -12px rgba(0, 0, 0, 0.05);
-        }
-
         .guidance-box:hover {
-            transform: translateY(-8px) rotateX(2deg);
-            box-shadow: 0 30px 60px -12px rgba(0, 0, 0, 0.4);
-            border-color: rgba(124, 58, 237, 0.3);
+            transform: translateY(-6px);
+            box-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.2);
         }
 
         .guidance-text {
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             line-height: 1.8;
-            color: var(--text);
+            color: var(--text-dark);
             margin-bottom: 2rem;
         }
 
@@ -359,10 +431,6 @@
 
         .guidance-text strong {
             color: #a78bfa;
-        }
-
-        .light-mode .guidance-text strong {
-            color: #4f46e5;
         }
 
         .contact-buttons {
@@ -379,165 +447,126 @@
             gap: 12px;
             padding: 1rem 2rem;
             border-radius: 50px;
-            font-size: 1.1rem;
+            font-size: 1rem;
             font-weight: 600;
             text-decoration: none;
-            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transition: all 0.3s;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
         }
 
         .btn-contact i {
-            font-size: 1.5rem;
+            font-size: 1.3rem;
         }
 
         .btn-contact.whatsapp {
             background: #25D366;
             color: white;
-            box-shadow: 0 8px 20px rgba(37, 211, 102, 0.2);
         }
 
         .btn-contact.whatsapp:hover {
             background: #128C7E;
-            transform: translateY(-4px);
-            box-shadow: 0 12px 25px rgba(37, 211, 102, 0.4);
+            transform: translateY(-3px);
         }
 
         .btn-contact.instagram {
             background: linear-gradient(45deg, #f09433, #d62976, #962fbf, #405de6);
             color: white;
-            box-shadow: 0 8px 20px rgba(214, 41, 118, 0.2);
         }
 
         .btn-contact.instagram:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 12px 25px rgba(214, 41, 118, 0.4);
+            transform: translateY(-3px);
         }
 
-        /* نوت هشدار */
         .note {
             text-align: center;
             background: rgba(245, 158, 11, 0.08);
-            border: 1px solid rgba(245, 158, 11, 0.2);
             border-right: 4px solid #f59e0b;
             padding: 1rem;
-            border-radius: 1.2rem;
+            border-radius: 1rem;
             margin-top: 2rem;
             color: #fbbf24;
-            transition: all 0.3s ease;
         }
 
-        .light-mode .note {
+        body.light-mode .note {
             background: #fffbeb;
             color: #92400e;
-            border: 1px solid rgba(245, 158, 11, 0.1);
-            border-right: 4px solid #f59e0b;
         }
 
-        .note:hover {
-            transform: translateX(-5px);
-            box-shadow: 0 5px 15px rgba(245, 158, 11, 0.1);
+        /* ========== FOOTER ========== */
+        .footer-3d {
+            background: rgba(0, 0, 0, 0.35);
+            backdrop-filter: blur(12px);
+            border-top: 1px solid var(--border-dark);
+            margin-top: auto;
+            padding: 50px 24px 25px;
         }
 
-        /* پانویس (Footer) */
-        .footer {
-            background: rgba(10, 15, 30, 0.8);
-            border-top: 1px solid var(--border);
-            padding: 60px 16px 20px 16px;
-            margin-top: 100px;
-            border-radius: 2rem 2rem 0 0;
-            position: relative;
-        }
-
-        .light-mode .footer {
-            background: #f1f5f9;
-            border-top: 1px solid rgba(0, 0, 0, 0.08);
-        }
-
-        .footer::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 3px;
-            background: linear-gradient(90deg, #7c3aed, #38bdf8, #7c3aed);
-        }
-
-        .footer-container {
-            max-width: 1200px;
+        .footer-inner {
+            max-width: 1300px;
             margin: 0 auto;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
             gap: 40px;
-            margin-bottom: 40px;
         }
 
-        .footer-section h4 {
+        .footer-col h4 {
             font-size: 1.1rem;
-            font-weight: 700;
             margin-bottom: 20px;
-            color: var(--text);
-            position: relative;
-            display: inline-block;
+            color: var(--text-dark);
         }
 
-        .footer-section p {
-            color: var(--text-muted);
-            font-size: 0.9rem;
-            line-height: 1.8;
-            margin-bottom: 12px;
+        .footer-col p,
+        .footer-col a {
             display: flex;
             align-items: center;
-            gap: 10px;
-            transition: transform 0.3s, color 0.3s;
-        }
-
-        .footer-section p:hover {
-            transform: translateX(-5px);
-            color: var(--text);
-        }
-
-        .social-links {
-            display: flex;
-            flex-direction: column;
-            gap: 0.8rem;
-        }
-
-        .social-link {
-            display: flex;
-            align-items: center;
-            gap: 10px;
+            gap: 12px;
+            color: var(--muted-dark);
             text-decoration: none;
-            color: var(--text-muted);
-            transition: all 0.3s;
-            cursor: pointer;
+            font-size: 0.9rem;
+            margin-bottom: 12px;
+            transition: 0.2s;
         }
 
-        .social-link:hover {
-            color: var(--text);
+        .footer-col a:hover {
+            color: var(--text-dark);
             transform: translateX(-5px);
         }
 
-        .social-link i {
-            font-size: 1.2rem;
-            width: 25px;
+        .footer-social {
+            display: flex;
+            gap: 15px;
+            margin-top: 1rem;
+        }
+
+        .footer-social a {
+            background: var(--glass-dark);
+            border: 1px solid var(--border-dark);
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: 0.3s;
+            color: var(--muted-dark);
+        }
+
+        .footer-social a:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-3px);
         }
 
         .footer-bottom {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding-top: 20px;
-            border-top: 1px solid var(--border);
             text-align: center;
-            color: var(--text-muted);
-            font-size: 0.85rem;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border-dark);
+            color: var(--muted-dark);
+            font-size: 0.8rem;
         }
 
-        .light-mode .footer-bottom {
-            border-top: 1px solid rgba(0, 0, 0, 0.08);
-        }
-
-        /* ذرات */
+        /* ========== PARTICLES ========== */
         .particles {
             position: fixed;
             top: 0;
@@ -550,7 +579,7 @@
 
         .p {
             position: absolute;
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.08);
             border-radius: 50%;
             animation: rise 15s infinite linear;
         }
@@ -562,11 +591,11 @@
             }
 
             10% {
-                opacity: 1;
+                opacity: 0.5;
             }
 
             90% {
-                opacity: 1;
+                opacity: 0.5;
             }
 
             100% {
@@ -575,212 +604,226 @@
             }
         }
 
-        @media (max-width: 640px) {
-            .page-header {
-                flex-direction: column;
-                text-align: center;
+        /* ========== RESPONSIVE ========== */
+        @media (max-width: 900px) {
+            .navbar {
+                width: 90%;
                 border-radius: 24px;
-                padding: 1.5rem;
             }
 
-            .logo-area {
+            .menu-btn {
+                display: flex;
+                align-items: center;
                 justify-content: center;
             }
 
-            .hero-section h1 {
+            .nav-links {
+                position: fixed;
+                top: 85px;
+                left: 5%;
+                width: 90%;
+                background: var(--glass-dark);
+                backdrop-filter: blur(30px);
+                flex-direction: column;
+                border-radius: 32px;
+                padding: 20px;
+                gap: 8px;
+                opacity: 0;
+                visibility: hidden;
+                transform: scale(0.95);
+                transition: all 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.2);
+                z-index: 999;
+            }
+
+            .nav-links.open {
+                opacity: 1;
+                visibility: visible;
+                transform: scale(1);
+            }
+
+            .hero-title {
                 font-size: 1.8rem;
+            }
+
+            .guidance-box {
+                padding: 1.5rem;
             }
 
             .guidance-text {
                 font-size: 1rem;
+            }
+        }
+
+        @media (max-width: 550px) {
+            .hero-title {
+                font-size: 1.5rem;
+            }
+
+            .globe-trigger span {
+                display: none;
+            }
+
+            .logo-name {
+                display: none;
             }
 
             .btn-contact {
                 width: 100%;
                 justify-content: center;
             }
-
-            .footer-container {
-                grid-template-columns: 1fr;
-                text-align: center;
-            }
-
-            .footer-section p:hover {
-                transform: translateX(0);
-            }
-
-            .social-links {
-                align-items: center;
-            }
         }
     </style>
 </head>
 
 <body class="dark-mode">
-    <div class="bg-scene"></div>
-    <div class="bg-orb"></div>
-    <div class="bg-orb"></div>
-    <div class="bg-orb"></div>
-    <div class="particles" id="particles"></div>
+    <div class="scene-3d">
+        <div class="grid-3d"></div>
+        <div class="floating-orb orb1"></div>
+        <div class="floating-orb orb2"></div>
+        <div class="floating-orb orb3"></div>
+    </div>
 
-    <div class="container">
-        <!-- هدر با منوی زبان کره‌زمین و دکمه تم -->
-        <div class="page-header" data-aos="fade-down">
-            <div class="logo-area">
-                <img class="logo-img" src="images/kha.jpg" alt="لوگو">
-                <span class="logo-text"><i class="fas fa-compass"></i> <span data-key="headerTitle">رهنمودهای
-                        مهاجرتی</span></span>
-            </div>
-            <div style="display: flex; gap: 10px; align-items: center;">
-                <!-- منوی زبان با کره زمین -->
-                <div class="lang-dropdown" id="langDropdown">
-                    <div class="lang-trigger" id="langTrigger">
-                        <i class="fas fa-globe-americas"></i>
-                        <span id="currentLangLabel">فارسی</span>
-                        <i class="fas fa-chevron-down" style="font-size: 0.7rem;"></i>
-                    </div>
-                    <div class="lang-menu">
-                        <div class="lang-option" data-lang="fa"><span>🇦🇫</span> فارسی</div>
-                        <div class="lang-option" data-lang="en"><span>🇬🇧</span> English</div>
-                        <div class="lang-option" data-lang="ps"><span>🇦🇫</span> پښتو</div>
-                    </div>
+    <!-- ========== NAVBAR ========== -->
+    <nav class="navbar">
+        <a href="index.html" class="logo-wrap">
+            <img src="images/kha.jpg" alt="logo">
+            <div class="logo-name">VISA<br>GUIDE AF</div>
+        </a>
+        <button class="menu-btn" id="menuBtn">☰</button>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="index.html"><img src="images/home.png"> <span data-key="home">خانه</span></a></li>
+            <li><a href="services.html"><img src="images/customer.png"> <span data-key="services">خدمات</span></a>
+            </li>
+            <li><a href="ai.html"><img src="images/ai.png"> <span data-key="ai">هوش مصنوعی</span></a></li>
+            <li><a href="contact.html"><img src="images/call.png"> <span data-key="contact">تماس</span></a></li>
+            <li><a href="faq.html"><img src="images/f&a.png"> <span data-key="faq">سوالات</span></a></li>
+            <li><a href="news/day-news/day.html"><img src="images/event.png"> <span data-key="news">اخبار</span></a>
+            </li>
+        </ul>
+        <div class="nav-actions">
+            <div class="lang-globe" id="langGlobe">
+                <div class="globe-trigger" id="globeTrigger">
+                    <i class="fas fa-globe-americas"></i> <span id="currentLangLabel">فارسی</span> <i
+                        class="fas fa-chevron-down"></i>
                 </div>
-                <button class="theme-btn" id="themeBtn"><i class="fas fa-moon"></i></button>
-                <a href="index.html" class="btn-home">
-                    <i class="fas fa-home"></i> <span data-key="backHome">برگشت به خانه</span>
-                </a>
+                <div class="lang-dropdown">
+                    <div class="lang-option" data-lang="fa"><span>🇦🇫</span> فارسی</div>
+                    <div class="lang-option" data-lang="en"><span>🇬🇧</span> English</div>
+                    <div class="lang-option" data-lang="ps"><span>🇦🇫</span> پښتو</div>
+                </div>
             </div>
+            <button class="theme-btn" id="themeBtn"><i class="fas fa-moon"></i></button>
         </div>
+    </nav>
 
-        <div class="hero-section" data-aos="fade-up">
-            <h1><i class="fas fa-map-signs"></i> <span data-key="pageTitle">رهنمودهای مهاجرتی</span></h1>
-        </div>
-
-        <div class="guidance-box" data-aos="zoom-in">
-            <div class="guidance-text" id="guidanceText">
-                <i class="fas fa-quote-right"></i>
-                برای دریافت جدیدترین رهنمودهای مهاجرتی، اطلاع از تغییرات ویزاهای بشردوستانه، برنامه‌های اسپانسر و مشاوره
-                تخصصی،
-                <strong>فقط از طریق شبکه‌های اجتماعی ما را دنبال کنید و تماس بگیرید.</strong>
-                <br><br>
-                تیم حرفه‌ای <strong>VISA GUIDE AF</strong> آماده پاسخگویی به سوالات شما در تمام مراحل مهاجرت است.
-                <i class="fas fa-quote-left"></i>
-            </div>
-
-            <div class="contact-buttons">
-                <a href="https://wa.me/message/ZY2KWEKZLQCXF1?src=qr" class="btn-contact whatsapp" target="_blank">
-                    <i class="fab fa-whatsapp"></i>
-                    <span data-key="whatsappBtn">تماس از طریق واتساپ</span>
-                </a>
-                <a href="https://www.instagram.com/sarfraz_refugee_service" class="btn-contact instagram"
-                    target="_blank">
-                    <i class="fab fa-instagram"></i>
-                    <span data-key="instagramBtn">دنبال کردن در اینستاگرام</span>
-                </a>
-            </div>
-
-            <div class="note">
-                <i class="fas fa-info-circle"></i>
-                <span data-key="noteText">توجه: تمامی خدمات مشاوره از طریق واتساپ و اینستاگرام ارائه می‌شود. لطفاً جهت
-                    دریافت اطلاعات دقیق و به‌روز، با ما در ارتباط باشید.</span>
-            </div>
+    <!-- ========== HERO ========== -->
+    <div class="hero">
+        <div class="glass-3d hero-card">
+            <div class="badge-3d"><i class="fas fa-compass"></i> <span data-key="pageTag">رهنمودهای مهاجرتی</span></div>
+            <h1 class="hero-title" data-key="pageTitle">رهنمودهای مهاجرتی</h1>
+            <div class="hero-desc" data-key="pageDesc">راهنمای گام به گام برای مهاجرت آسان و امن</div>
         </div>
     </div>
 
-    <!-- فوتر ۳ ستونه -->
-    <div class="footer" data-aos="fade-up">
-        <div class="footer-container">
-            <div class="footer-section">
-                <h4><i class="fas fa-globe"></i> <span data-key="footTitle1">خدمات مهاجرت</span></h4>
-                <p><i class="fas fa-check-circle" style="color:var(--success)"></i> <span data-key="footDesc1">معتبرترین
-                        خدمات مهاجرت در افغانستان</span></p>
-                <p><i class="fas fa-globe" style="color:#38bdf8"></i> <span data-key="footDesc2">ارایه خدمات مهاجرتی در
-                        سراسر جهان</span></p>
-            </div>
+    <!-- ========== GUIDANCE CONTENT ========== -->
+    <div class="guidance-box">
+        <div class="guidance-text" id="guidanceText">
+            <i class="fas fa-quote-right"></i>
+            برای دریافت جدیدترین رهنمودهای مهاجرتی، اطلاع از تغییرات ویزاهای بشردوستانه، برنامه‌های اسپانسر و مشاوره
+            تخصصی،
+            <strong>فقط از طریق شبکه‌های اجتماعی ما را دنبال کنید و تماس بگیرید.</strong>
+            <br><br>
+            تیم حرفه‌ای <strong>VISA GUIDE AF</strong> آماده پاسخگویی به سوالات شما در تمام مراحل مهاجرت است.
+            <i class="fas fa-quote-left"></i>
+        </div>
 
-            <div class="footer-section">
-                <h4><i class="fas fa-map-marker-alt"></i> <span data-key="footTitle2">تماس با ما</span></h4>
-                <p><i class="fas fa-location-dot" style="color:#f59e0b"></i> <span data-key="footAddr">شهر ایبک، سمنگان،
+        <div class="contact-buttons">
+            <a href="https://wa.me/message/ZY2KWEKZLQCXF1?src=qr" class="btn-contact whatsapp" target="_blank">
+                <i class="fab fa-whatsapp"></i>
+                <span data-key="whatsappBtn">تماس از طریق واتساپ</span>
+            </a>
+            <a href="https://www.instagram.com/sarfraz_refugee_service" class="btn-contact instagram" target="_blank">
+                <i class="fab fa-instagram"></i>
+                <span data-key="instagramBtn">دنبال کردن در اینستاگرام</span>
+            </a>
+        </div>
+
+        <div class="note">
+            <i class="fas fa-info-circle"></i>
+            <span data-key="noteText">توجه: تمامی خدمات مشاوره از طریق واتساپ و اینستاگرام ارائه می‌شود. لطفاً جهت
+                دریافت اطلاعات دقیق و به‌روز، با ما در ارتباط باشید.</span>
+        </div>
+    </div>
+
+    <!-- ========== FOOTER ========== -->
+    <footer class="footer-3d">
+        <div class="footer-inner">
+            <div class="footer-col">
+                <h4 data-key="footTitle1">خدمات مهاجرت</h4>
+                <p><i class="fas fa-check-circle" style="color:var(--success)"></i> <span data-key="footDesc1">معتبرترین
+                        خدمات در افغانستان</span></p>
+                <p><i class="fas fa-globe" style="color:#38bdf8"></i> <span data-key="footDesc2">خدمات مهاجرتی
+                        جهانی</span></p>
+            </div>
+            <div class="footer-col">
+                <h4 data-key="footTitle2">تماس با ما</h4>
+                <p><i class="fas fa-map-marker-alt" style="color:#f59e0b"></i> <span data-key="footAddr">ایبک، سمنگان،
                         افغانستان</span></p>
-                <p><i class="fas fa-phone" style="color:#10b981"></i> 0792665622</p>
+                <p><i class="fas fa-phone-alt" style="color:#10b981"></i> 0792665622</p>
                 <p><i class="fas fa-envelope" style="color:#ef4444"></i> visa.guide.af.123@gmail.com</p>
             </div>
-
-            <div class="footer-section">
-                <h4><i class="fas fa-share-alt"></i> <span data-key="footTitle3">شبکه‌های اجتماعی</span></h4>
-                <div class="social-links">
-                    <a class="social-link"
-                        onclick="window.open('https://whatsapp.com/channel/0029Vae7U29AzNbpZIv5T81R')">
-                        <i class="fab fa-whatsapp" style="color:#25d366"></i> WhatsApp
-                    </a>
-                    <a class="social-link" onclick="window.open('https://t.me/visaguidee')">
-                        <i class="fab fa-telegram" style="color:#29b6f6"></i> Telegram
-                    </a>
-                    <a class="social-link"
-                        onclick="window.open('https://www.facebook.com/profile.php?id=61589943461514')">
-                        <i class="fab fa-facebook" style="color:#1877f2"></i> Facebook
-                    </a>
-                    <a class="social-link" onclick="window.open('https://www.instagram.com/sarfraz_refugee_service')">
-                        <i class="fab fa-instagram" style="color:#e1306c"></i> Instagram
-                    </a>
+            <div class="footer-col">
+                <h4 data-key="footTitle3">شبکه‌های اجتماعی</h4>
+                <div class="footer-social">
+                    <a href="https://whatsapp.com/channel/0029Vae7U29AzNbpZIv5T81R" target="_blank"><i
+                            class="fab fa-whatsapp"></i></a>
+                    <a href="https://t.me/visaguidee" target="_blank"><i class="fab fa-telegram"></i></a>
+                    <a href="https://www.facebook.com/profile.php?id=61589943461514" target="_blank"><i
+                            class="fab fa-facebook-f"></i></a>
+                    <a href="https://www.instagram.com/sarfraz_refugee_service" target="_blank"><i
+                            class="fab fa-instagram"></i></a>
                 </div>
             </div>
         </div>
-        <div class="footer-bottom">
-            <p><span data-key="copy">© 2026 VISA GUIDE AF — همه حقوق محفوظ است</span></p>
-        </div>
-    </div>
+        <div class="footer-bottom"><span data-key="copy">© 2026 VISA GUIDE AF — همه حقوق محفوظ است</span></div>
+    </footer>
+
+    <div class="particles" id="particles"></div>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
+        AOS.init({ duration: 800, once: true, offset: 100 });
+
         // ========== MULTILINGUAL DATA ==========
         const T = {
             fa: {
-                headerTitle: "رهنمودهای مهاجرتی",
-                backHome: "برگشت به خانه",
-                pageTitle: "رهنمودهای مهاجرتی",
+                home: "خانه", services: "خدمات", ai: "هوش مصنوعی", contact: "تماس", faq: "سوالات", news: "اخبار",
+                pageTag: "رهنمودهای مهاجرتی", pageTitle: "رهنمودهای مهاجرتی", pageDesc: "راهنمای گام به گام برای مهاجرت آسان و امن",
                 guidanceText: 'برای دریافت جدیدترین رهنمودهای مهاجرتی، اطلاع از تغییرات ویزاهای بشردوستانه، برنامه‌های اسپانسر و مشاوره تخصصی، <strong>فقط از طریق شبکه‌های اجتماعی ما را دنبال کنید و تماس بگیرید.</strong><br><br>تیم حرفه‌ای <strong>VISA GUIDE AF</strong> آماده پاسخگویی به سوالات شما در تمام مراحل مهاجرت است.',
-                whatsappBtn: "تماس از طریق واتساپ",
-                instagramBtn: "دنبال کردن در اینستاگرام",
+                whatsappBtn: "تماس از طریق واتساپ", instagramBtn: "دنبال کردن در اینستاگرام",
                 noteText: "توجه: تمامی خدمات مشاوره از طریق واتساپ و اینستاگرام ارائه می‌شود. لطفاً جهت دریافت اطلاعات دقیق و به‌روز، با ما در ارتباط باشید.",
-                footTitle1: "خدمات مهاجرت",
-                footDesc1: "معتبرترین خدمات مهاجرت در افغانستان",
-                footDesc2: "ارایه خدمات مهاجرتی در سراسر جهان",
-                footTitle2: "تماس با ما",
-                footAddr: "شهر ایبک، سمنگان، افغانستان",
-                footTitle3: "شبکه‌های اجتماعی",
+                footTitle1: "خدمات مهاجرت", footDesc1: "معتبرترین خدمات در افغانستان", footDesc2: "خدمات مهاجرتی جهانی",
+                footTitle2: "تماس با ما", footAddr: "ایبک، سمنگان، افغانستان", footTitle3: "شبکه‌های اجتماعی",
                 copy: "© 2026 VISA GUIDE AF — همه حقوق محفوظ است"
             },
             en: {
-                headerTitle: "Immigration Guidelines",
-                backHome: "Back to Home",
-                pageTitle: "Immigration Guidelines",
+                home: "Home", services: "Services", ai: "AI Assistant", contact: "Contact", faq: "FAQ", news: "News",
+                pageTag: "Immigration Guidelines", pageTitle: "Immigration Guidelines", pageDesc: "Step by step guide for easy and safe immigration",
                 guidanceText: 'To receive the latest immigration guidelines, updates on humanitarian visas, sponsorship programs, and expert consultation, <strong>follow us on social media and contact us.</strong><br><br>The professional team of <strong>VISA GUIDE AF</strong> is ready to answer your questions at every stage of immigration.',
-                whatsappBtn: "Contact via WhatsApp",
-                instagramBtn: "Follow on Instagram",
+                whatsappBtn: "Contact via WhatsApp", instagramBtn: "Follow on Instagram",
                 noteText: "Note: All consulting services are provided via WhatsApp and Instagram. Please contact us for accurate and up-to-date information.",
-                footTitle1: "Immigration Services",
-                footDesc1: "Most reliable immigration services in Afghanistan",
-                footDesc2: "Global immigration services worldwide",
-                footTitle2: "Contact Us",
-                footAddr: "Aibak City, Samangan, Afghanistan",
-                footTitle3: "Social Networks",
+                footTitle1: "Immigration Services", footDesc1: "Most reliable services in Afghanistan", footDesc2: "Global immigration services",
+                footTitle2: "Contact Us", footAddr: "Aibak, Samangan, Afghanistan", footTitle3: "Social Networks",
                 copy: "© 2026 VISA GUIDE AF — All rights reserved"
             },
             ps: {
-                headerTitle: "د کډوالۍ لارښوونې",
-                backHome: "کور ته ستنېدل",
-                pageTitle: "د کډوالۍ لارښوونې",
+                home: "کور", services: "خدمات", ai: "AI", contact: "اړیکه", faq: "پوښتنې", news: "خبرونه",
+                pageTag: "د کډوالۍ لارښوونې", pageTitle: "د کډوالۍ لارښوونې", pageDesc: "د اسانې او خوندي کډوالۍ لپاره ګام په ګام لارښود",
                 guidanceText: 'د کډوالۍ وروستي لارښوونو، بشري ویزو بدلونونو، سپانسر پروګرامونو او تخصصي مشورې ترلاسه کولو لپاره، <strong>یوازې زموږ ټولنیزو شبکو تعقیب کړئ او موږ سره اړیکه ونیسئ.</strong><br><br>د <strong>VISA GUIDE AF</strong> مسلکي ټیم ستاسو د کډوالۍ په ټولو مرحلو کې ستاسو پوښتنو ته د ځواب ویلو لپاره چمتو دی.',
-                whatsappBtn: "د واټس اپ له لارې اړیکه",
-                instagramBtn: "په انسټاګرام کې تعقیب کړئ",
+                whatsappBtn: "د واټس اپ له لارې اړیکه", instagramBtn: "په انسټاګرام کې تعقیب کړئ",
                 noteText: "یادونه: ټول مشورتي خدمتونه د واټس اپ او انسټاګرام له لارې وړاندې کیږي. مهرباني وکړئ د دقیقو او تازه معلوماتو لپاره موږ سره اړیکه ونیسئ.",
-                footTitle1: "د کډوالۍ خدمات",
-                footDesc1: "په افغانستان کې د کډوالۍ ترټولو باوري خدمات",
-                footDesc2: "په ټوله نړۍ کې نړیوال کډوالۍ خدمات",
-                footTitle2: "اړیکه",
-                footAddr: "ایبک ښار، سمنګان، افغانستان",
-                footTitle3: "ټولنیزې شبکې",
+                footTitle1: "د کډوالۍ خدمات", footDesc1: "په افغانستان کې د کډوالۍ ترټولو باوري خدمات", footDesc2: "په ټوله نړۍ کې نړیوال کډوالۍ خدمات",
+                footTitle2: "اړیکه", footAddr: "ایبک, سمنګان، افغانستان", footTitle3: "ټولنیزې شبکې",
                 copy: "© 2026 VISA GUIDE AF — ټول حقونه خوندي دي"
             }
         };
@@ -789,30 +832,35 @@
 
         function applyLanguage(lang) {
             currentLang = lang;
-            // به‌روزرسانی تمام عناصر دارای data-key
             document.querySelectorAll('[data-key]').forEach(el => {
                 const key = el.getAttribute('data-key');
                 if (T[lang][key]) el.innerHTML = T[lang][key];
             });
-            // به‌روزرسانی متن باکس راهنمایی (که داخل آن HTML دارد)
             const guidanceDiv = document.getElementById('guidanceText');
             if (guidanceDiv) guidanceDiv.innerHTML = T[lang].guidanceText;
-            // به‌روزرسانی برچسب منوی زبان
             const labelMap = { fa: "فارسی", en: "English", ps: "پښتو" };
             document.getElementById('currentLangLabel').innerText = labelMap[lang];
-            // تغییر پس‌زمینه گزینه فعال در منو
             document.querySelectorAll('.lang-option').forEach(opt => {
                 if (opt.getAttribute('data-lang') === lang) opt.style.background = "rgba(139,92,246,0.2)";
                 else opt.style.background = "transparent";
             });
         }
 
-        // ========== تم (شب/روز) ==========
+        // ========== PARTICLES ==========
+        const particles = document.getElementById('particles');
+        for (let i = 0; i < 40; i++) {
+            const p = document.createElement('div');
+            p.className = 'p';
+            const s = Math.random() * 8 + 3;
+            p.style.cssText = `width:${s}px;height:${s}px;left:${Math.random() * 100}%;top:${Math.random() * 100}%;animation-delay:${Math.random() * 12}s;animation-duration:${12 + Math.random() * 10}s`;
+            particles.appendChild(p);
+        }
+
+        // ========== THEME TOGGLE ==========
         const themeBtn = document.getElementById('themeBtn');
         const savedTheme = localStorage.getItem('srs-theme') || 'dark';
-        document.body.className = savedTheme + '-mode';
+        document.body.className = savedTheme === 'dark' ? 'dark-mode' : 'light-mode';
         themeBtn.innerHTML = savedTheme === 'dark' ? '<i class="fas fa-moon"></i>' : '<i class="fas fa-sun"></i>';
-
         themeBtn.addEventListener('click', () => {
             const isDark = document.body.classList.contains('dark-mode');
             document.body.className = isDark ? 'light-mode' : 'dark-mode';
@@ -820,42 +868,37 @@
             localStorage.setItem('srs-theme', isDark ? 'light' : 'dark');
         });
 
-        // ========== منوی زبان (کره زمین) ==========
-        const dropdown = document.getElementById('langDropdown');
-        const trigger = document.getElementById('langTrigger');
-        trigger.addEventListener('click', (e) => {
-            e.stopPropagation();
-            dropdown.classList.toggle('open');
-        });
-        document.addEventListener('click', (e) => {
-            if (!dropdown.contains(e.target)) dropdown.classList.remove('open');
-        });
+        // ========== LANGUAGE GLOBE ==========
+        const globe = document.getElementById('langGlobe');
+        const trigger = document.getElementById('globeTrigger');
+        trigger.addEventListener('click', (e) => { e.stopPropagation(); globe.classList.toggle('open'); });
+        document.addEventListener('click', (e) => { if (!globe.contains(e.target)) globe.classList.remove('open'); });
         document.querySelectorAll('.lang-option').forEach(opt => {
             opt.addEventListener('click', (e) => {
                 const newLang = opt.getAttribute('data-lang');
                 if (newLang) applyLanguage(newLang);
-                dropdown.classList.remove('open');
+                globe.classList.remove('open');
             });
         });
 
-        // ========== ذرات ==========
-        const pc = document.getElementById('particles');
-        for (let i = 0; i < 40; i++) {
-            const p = document.createElement('div');
-            p.className = 'p';
-            const s = Math.random() * 8 + 3;
-            p.style.cssText = `width:${s}px;height:${s}px;left:${Math.random() * 100}%;top:${Math.random() * 100}%;animation-delay:${Math.random() * 12}s;animation-duration:${12 + Math.random() * 10}s`;
-            pc.appendChild(p);
+        // ========== MOBILE MENU (Hamburger -> X) ==========
+        const menuBtn = document.getElementById('menuBtn');
+        const navLinks = document.getElementById('navLinks');
+        function closeMenu() {
+            navLinks.classList.remove('open');
+            if (menuBtn) menuBtn.innerHTML = '☰';
         }
-
-        // ========== AOS ==========
-        AOS.init({
-            duration: 800,
-            once: true,
-            offset: 100
+        menuBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const isOpen = navLinks.classList.contains('open');
+            if (isOpen) closeMenu();
+            else { navLinks.classList.add('open'); menuBtn.innerHTML = '✕'; }
         });
+        document.addEventListener('click', (e) => {
+            if (!navLinks.contains(e.target) && !menuBtn.contains(e.target) && navLinks.classList.contains('open')) closeMenu();
+        });
+        navLinks.querySelectorAll('a').forEach(link => link.addEventListener('click', closeMenu));
 
-        // ========== اعمال زبان پیش‌فرض ==========
         applyLanguage('fa');
     </script>
 </body>

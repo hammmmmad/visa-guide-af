@@ -4,11 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>ویزای بشردوستانه برزیل ۲۰۲۶ | فرصت ویژه برای افغان‌ها</title>
-    <!-- Font Awesome 6 -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap"
+    <title>ویزای بشردوستانه برزیل ۲۰۲۶ | VISA GUIDE AF</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@300;400;500;600;700;800&display=swap"
         rel="stylesheet">
     <style>
         * {
@@ -17,32 +15,155 @@
             box-sizing: border-box;
         }
 
+        /* ========== VARIABLES ========== */
+        :root {
+            --bg-dark: #03050b;
+            --bg-light: #eef2ff;
+            --glass-dark: rgba(8, 12, 25, 0.45);
+            --glass-light: rgba(255, 255, 255, 0.55);
+            --border-dark: rgba(255, 255, 255, 0.1);
+            --border-light: rgba(0, 0, 0, 0.08);
+            --text-dark: #f1f5f9;
+            --text-light: #0a0f1c;
+            --muted-dark: #94a3b8;
+            --muted-light: #475569;
+            --primary: linear-gradient(135deg, #8b5cf6, #3b82f6);
+            --primary-glow: rgba(139, 92, 246, 0.5);
+            --accent: linear-gradient(135deg, #f97316, #ef4444);
+            --font: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+            --icon-filter: brightness(0) invert(1);
+        }
+
         body {
-            font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #f0f9ff 0%, #e6f0fa 100%);
-            color: #0f172a;
-            line-height: 1.55;
-            padding: 2rem 1rem;
+            background: var(--bg-dark);
+            color: var(--text-dark);
+            font-family: var(--font);
+            min-height: 100vh;
+            transition: background 0.4s, color 0.3s;
+        }
+
+        body.light-mode {
+            --bg-dark: var(--bg-light);
+            --glass-dark: var(--glass-light);
+            --border-dark: var(--border-light);
+            --text-dark: var(--text-light);
+            --muted-dark: var(--muted-light);
+            background: var(--bg-light);
+            color: var(--text-light);
+            --icon-filter: brightness(0);
+        }
+
+        /* ========== 3D BACKGROUND ========== */
+        .scene-3d {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            overflow: hidden;
+            perspective: 1200px;
+        }
+
+        .grid-3d {
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            top: -50%;
+            left: -50%;
+            background-image:
+                linear-gradient(var(--border-dark) 1px, transparent 1px),
+                linear-gradient(90deg, var(--border-dark) 1px, transparent 1px);
+            background-size: 60px 60px;
+            transform: rotateX(50deg) rotateZ(30deg) translateZ(-80px);
+            animation: gridFlow 20s infinite linear;
+            opacity: 0.3;
+        }
+
+        @keyframes gridFlow {
+            0% {
+                transform: rotateX(50deg) rotateZ(30deg) translateZ(-80px) translateY(0);
+            }
+
+            100% {
+                transform: rotateX(50deg) rotateZ(30deg) translateZ(-80px) translateY(80px);
+            }
+        }
+
+        .floating-orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(90px);
+            opacity: 0.5;
+            animation: floatGlow 22s infinite alternate;
+        }
+
+        .orb1 {
+            width: 450px;
+            height: 450px;
+            background: #8b5cf6;
+            top: -15%;
+            left: -10%;
+        }
+
+        .orb2 {
+            width: 550px;
+            height: 550px;
+            background: #3b82f6;
+            bottom: -20%;
+            right: -15%;
+            animation-delay: -6s;
+        }
+
+        .orb3 {
+            width: 350px;
+            height: 350px;
+            background: #f97316;
+            top: 45%;
+            left: 30%;
+            filter: blur(110px);
+            animation-delay: -12s;
+        }
+
+        @keyframes floatGlow {
+            0% {
+                transform: translate(0, 0) scale(1);
+            }
+
+            100% {
+                transform: translate(70px, 50px) scale(1.2);
+            }
+        }
+
+        /* ========== GLASS CORE ========== */
+        .glass-3d {
+            background: var(--glass-dark);
+            backdrop-filter: blur(14px);
+            border: 1px solid var(--border-dark);
+            border-radius: 32px;
+            transition: transform 0.35s cubic-bezier(0.2, 0.9, 0.4, 1.1), box-shadow 0.3s;
+        }
+
+        .glass-3d:hover {
+            transform: translateY(-6px) rotateX(2deg) rotateY(1deg);
+            box-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(139, 92, 246, 0.3);
         }
 
         .container {
             max-width: 1200px;
             margin: 0 auto;
+            padding: 2rem 1rem;
         }
 
+        /* ========== HEADER ========== */
         .page-header {
-            background: rgba(255, 255, 255, 0.85);
-            backdrop-filter: blur(12px);
-            border-radius: 2rem;
-            padding: 1rem 2rem;
-            margin-bottom: 2.5rem;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.8);
             display: flex;
             flex-wrap: wrap;
             align-items: center;
             justify-content: space-between;
             gap: 1rem;
+            margin-bottom: 2.5rem;
+            padding: 1rem 2rem;
         }
 
         .logo-area {
@@ -52,65 +173,171 @@
         }
 
         .logo-img {
-            width: 60px;
-            height: 60px;
-            object-fit: contain;
-            padding: 8px;
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid #8b5cf6;
+            box-shadow: 0 0 15px var(--primary-glow);
         }
 
         .logo-text {
-            font-weight: 500;
-            color: #1e293b;
+            font-weight: 600;
             font-size: 0.9rem;
-            background: #f1f5f9;
             padding: 6px 16px;
             border-radius: 40px;
-            color: #1e40af;
+            background: rgba(139, 92, 246, 0.15);
+            color: #a78bfa;
         }
 
         .btn-back {
-            background: #1e293b;
+            background: var(--primary);
             color: white;
             text-decoration: none;
             padding: 0.7rem 1.5rem;
             border-radius: 40px;
             font-weight: 500;
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             display: inline-flex;
             align-items: center;
-            gap: 10px;
+            gap: 8px;
             transition: all 0.25s;
+            box-shadow: 0 4px 10px var(--primary-glow);
         }
 
         .btn-back:hover {
-            background: #0f172a;
             transform: translateY(-2px);
         }
 
-        .country-banner {
-            background: linear-gradient(135deg, #1e3a5f, #0f2b3d);
-            border-radius: 2rem;
-            padding: 2rem;
-            margin-bottom: 2rem;
+        /* ========== LANGUAGE & THEME ========== */
+        .lang-globe {
+            position: relative;
+        }
+
+        .lang-trigger {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid var(--border-dark);
+            border-radius: 40px;
+            padding: 8px 14px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-dark);
+            font-size: 0.85rem;
+            font-weight: 500;
+            transition: 0.2s;
+        }
+
+        .lang-trigger i {
+            font-size: 1rem;
+            color: #60a5fa;
+        }
+
+        .lang-trigger:hover {
+            background: rgba(139, 92, 246, 0.2);
+            border-color: #8b5cf6;
+        }
+
+        .lang-menu {
+            position: absolute;
+            top: 110%;
+            left: 0;
+            background: var(--glass-dark);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--border-dark);
+            border-radius: 20px;
+            padding: 8px 0;
+            min-width: 130px;
+            z-index: 300;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.25s ease;
+        }
+
+        .lang-globe.open .lang-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .lang-option {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 8px 16px;
+            cursor: pointer;
+            transition: background 0.2s;
+            color: var(--text-dark);
+            font-size: 0.85rem;
+        }
+
+        .lang-option:hover {
+            background: rgba(139, 92, 246, 0.2);
+        }
+
+        .theme-btn {
+            background: var(--primary);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            border: none;
             color: white;
+            box-shadow: 0 4px 12px var(--primary-glow);
+            transition: all 0.3s;
+        }
+
+        .theme-btn:hover {
+            transform: scale(1.05) rotate(15deg);
+        }
+
+        .nav-actions {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        /* ========== COUNTRY BANNER ========== */
+        .country-banner {
             display: flex;
             align-items: center;
             gap: 2rem;
             flex-wrap: wrap;
+            margin-bottom: 2rem;
+            padding: 2rem;
         }
 
         .country-flag {
             width: 100px;
             height: 100px;
-            background: white;
+            background: rgba(255, 255, 255, 0.1);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             overflow: hidden;
-            box-shadow: 0 0 0 5px rgba(255, 255, 255, 0.3), 0 0 0 8px #1e3a5f, 0 10px 20px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 0 0 5px rgba(139, 92, 246, 0.3), 0 0 0 8px rgba(139, 92, 246, 0.1);
             transition: all 0.3s ease;
             animation: borderPulse 2s infinite;
+        }
+
+        @keyframes borderPulse {
+            0% {
+                box-shadow: 0 0 0 5px rgba(139, 92, 246, 0.3), 0 0 0 8px rgba(139, 92, 246, 0.1);
+            }
+
+            50% {
+                box-shadow: 0 0 0 8px rgba(139, 92, 246, 0.5), 0 0 0 12px #8b5cf6;
+            }
+
+            100% {
+                box-shadow: 0 0 0 5px rgba(139, 92, 246, 0.3), 0 0 0 8px rgba(139, 92, 246, 0.1);
+            }
         }
 
         .country-flag img {
@@ -119,50 +346,27 @@
             object-fit: cover;
         }
 
-        @keyframes borderPulse {
-            0% {
-                box-shadow: 0 0 0 5px rgba(255, 255, 255, 0.3), 0 0 0 8px #1e3a5f, 0 10px 20px rgba(0, 0, 0, 0.2);
-            }
-
-            50% {
-                box-shadow: 0 0 0 8px rgba(255, 255, 255, 0.5), 0 0 0 12px #3b82f6, 0 15px 25px rgba(0, 0, 0, 0.25);
-            }
-
-            100% {
-                box-shadow: 0 0 0 5px rgba(255, 255, 255, 0.3), 0 0 0 8px #1e3a5f, 0 10px 20px rgba(0, 0, 0, 0.2);
-            }
-        }
-
-        .country-flag:hover {
-            transform: scale(1.05);
-            transition: transform 0.3s ease;
-        }
-
         .country-title h1 {
-            font-size: 2rem;
+            font-size: 1.8rem;
             margin-bottom: 0.5rem;
         }
 
         .country-title p {
-            font-size: 1rem;
-            opacity: 0.9;
+            opacity: 0.8;
         }
 
+        /* ========== DETAILS SECTION ========== */
         .details-section {
-            background: white;
-            border-radius: 1.8rem;
             padding: 2rem;
             margin-bottom: 2rem;
-            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05);
         }
 
         .details-section h2 {
-            color: #0c4a6e;
+            font-size: 1.4rem;
             margin-bottom: 1rem;
-            font-size: 1.5rem;
-            border-right: 4px solid #3b82f6;
-            padding-right: 1rem;
             margin-top: 1.5rem;
+            border-right: 4px solid #8b5cf6;
+            padding-right: 1rem;
         }
 
         .details-section h2:first-of-type {
@@ -172,7 +376,7 @@
         .details-section p {
             line-height: 1.8;
             margin-bottom: 1rem;
-            color: #334155;
+            color: var(--muted-dark);
         }
 
         .info-list {
@@ -182,14 +386,14 @@
 
         .info-list li {
             padding: 0.75rem 0;
-            border-bottom: 1px solid #e2e8f0;
+            border-bottom: 1px solid var(--border-dark);
             display: flex;
             align-items: center;
             gap: 0.75rem;
         }
 
         .info-list li i {
-            color: #3b82f6;
+            color: #a78bfa;
             width: 24px;
         }
 
@@ -198,15 +402,44 @@
             margin: 1rem 0;
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 0.5rem;
+            gap: 0.75rem;
         }
 
         .eligible-list li {
-            padding: 0.5rem;
-            background: #fef2f2;
+            padding: 0.75rem 1rem;
+            background: rgba(239, 68, 68, 0.1);
             border-right: 3px solid #ef4444;
-            margin-bottom: 0.5rem;
-            border-radius: 8px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s;
+        }
+
+        .eligible-list li:hover {
+            transform: translateX(-5px);
+        }
+
+        .eligible-list li i {
+            color: #ef4444;
+            width: 28px;
+        }
+
+        .warning-note {
+            background: rgba(245, 158, 11, 0.08);
+            border-right: 4px solid #f59e0b;
+            padding: 1rem;
+            border-radius: 1rem;
+            margin: 1rem 0;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: #fbbf24;
+        }
+
+        body.light-mode .warning-note {
+            background: #fffbeb;
+            color: #92400e;
         }
 
         .btn-whatsapp {
@@ -219,158 +452,299 @@
             font-weight: 600;
             margin-top: 1rem;
             transition: all 0.25s;
-            border: none;
-            cursor: pointer;
-            font-size: 1rem;
         }
 
         .btn-whatsapp i {
             margin-left: 10px;
-            font-size: 1.2rem;
         }
 
         .btn-whatsapp:hover {
             background: #128C7E;
             transform: translateY(-2px);
-            box-shadow: 0 8px 18px rgba(0, 0, 0, 0.12);
-        }
-
-        .warning-note {
-            background: #fef3c7;
-            border-right: 4px solid #f59e0b;
-            padding: 1rem;
-            border-radius: 1rem;
-            margin: 1rem 0;
         }
 
         .footer-note {
             text-align: center;
             margin-top: 2rem;
-            font-size: 0.8rem;
-            color: #5b6e8c;
-            border-top: 1px solid #e2e8f0;
             padding-top: 1.8rem;
+            border-top: 1px solid var(--border-dark);
+            color: var(--muted-dark);
+            font-size: 0.8rem;
         }
 
-        @media (max-width: 640px) {
+        @media (max-width: 768px) {
             .page-header {
                 flex-direction: column;
                 text-align: center;
             }
 
-            .country-banner {
-                text-align: center;
+            .logo-area {
                 justify-content: center;
+            }
+
+            .nav-actions {
+                justify-content: center;
+            }
+
+            .country-banner {
+                flex-direction: column;
+                text-align: center;
             }
 
             .country-title h1 {
                 font-size: 1.3rem;
             }
 
-            .btn-whatsapp {
-                display: block;
-                text-align: center;
+            .eligible-list {
+                grid-template-columns: 1fr;
             }
 
-            .country-flag {
-                width: 80px;
-                height: 80px;
+            .details-section {
+                padding: 1.5rem;
             }
         }
     </style>
 </head>
 
 <body>
+    <div class="scene-3d">
+        <div class="grid-3d"></div>
+        <div class="floating-orb orb1"></div>
+        <div class="floating-orb orb2"></div>
+        <div class="floating-orb orb3"></div>
+    </div>
+
     <div class="container">
-        <div class="page-header">
+        <!-- هدر با منوی زبان و دکمه شب/روز -->
+        <div class="page-header glass-3d">
             <div class="logo-area">
                 <img class="logo-img" src="../images/kha.jpg" alt="لوگو">
-                <span class="logo-text"><i class="fas fa-hand-holding-heart"></i> ویزای بشردوستانه</span>
+                <span class="logo-text"><i class="fas fa-hand-holding-heart"></i> <span data-key="visaTitle">ویزای
+                        بشردوستانه</span></span>
+            </div>
+            <div class="nav-actions">
+                <div class="lang-globe" id="langGlobe">
+                    <div class="lang-trigger" id="langTrigger">
+                        <i class="fas fa-globe-americas"></i>
+                        <span id="currentLangLabel">فارسی</span>
+                        <i class="fas fa-chevron-down" style="font-size: 0.7rem;"></i>
+                    </div>
+                    <div class="lang-menu">
+                        <div class="lang-option" data-lang="fa"><span>🇦🇫</span> فارسی</div>
+                        <div class="lang-option" data-lang="en"><span>🇬🇧</span> English</div>
+                        <div class="lang-option" data-lang="ps"><span>🇦🇫</span> پښتو</div>
+                    </div>
+                </div>
+                <button class="theme-btn" id="themeBtn"><i class="fas fa-moon"></i></button>
             </div>
             <a href="visa.html" class="btn-back">
-                <i class="fas fa-arrow-right"></i> برگشت به لیست کشورها
+                <i class="fas fa-arrow-right"></i> <span data-key="backBtn">برگشت به لیست کشورها</span>
             </a>
         </div>
 
-        <div class="country-banner">
+        <!-- بنر کشور شیشه‌ای -->
+        <div class="country-banner glass-3d">
             <div class="country-flag">
-                <img src="visa-pic/brazil.png" alt="پرچم برزیل">
+                <img src="visa-pic/brazil.png" alt="پرچم برزیل"
+                    onerror="this.src='https://placehold.co/100x100?text=BR'">
             </div>
             <div class="country-title">
-                <h1><i class="fas fa-map-marker-alt"></i> ویزای بشردوستانه برزیل ۲۰۲۶</h1>
-                <p>حمایت بین‌المللی برای افغان‌های آسیب‌پذیر</p>
+                <h1><i class="fas fa-map-marker-alt"></i> <span data-key="pageTitle">ویزای بشردوستانه برزیل ۲۰۲۶</span>
+                </h1>
+                <p><span data-key="subtitle">حمایت بین‌المللی برای افغان‌های آسیب‌پذیر</span></p>
             </div>
         </div>
 
-        <div class="details-section">
-            <h2><i class="fas fa-star-of-life"></i> معرفی برنامه</h2>
-            <p>
-                ویزای بشردوستانه برزیل برای سال ۲۰۲۶، این کشور افرادی که به دلیل تهدید جانی، جنگ، آزار و اذیت، یا نقض
-                حقوق بشر در افغانستان در خطر هستند، می‌توانند برای ویزای بشردوستانه برزیل اقدام کنند.
-            </p>
-            <p>
-                کسانی که قادر به بازگشت به کشور خود (افغانستان) نیستند و به حمایت بین‌المللی نیاز دارند.
-            </p>
-            <p>
-                افرادی که در کشور ثالث (مانند ایران، پاکستان، یا کشورهای همجوار) به سر می‌برند و نمی‌توانند به افغانستان
-                بازگردند.
-            </p>
+        <!-- محتوای اصلی شیشه‌ای -->
+        <div class="details-section glass-3d">
+            <h2><i class="fas fa-star-of-life"></i> <span data-key="introTitle">معرفی برنامه</span></h2>
+            <p data-key="introText1">ویزای بشردوستانه برزیل برای سال ۲۰۲۶، این کشور افرادی که به دلیل تهدید جانی، جنگ،
+                آزار و اذیت، یا نقض حقوق بشر در افغانستان در خطر هستند، می‌توانند برای ویزای بشردوستانه برزیل اقدام
+                کنند.</p>
+            <p data-key="introText2">کسانی که قادر به بازگشت به کشور خود (افغانستان) نیستند و به حمایت بین‌المللی نیاز
+                دارند.</p>
+            <p data-key="introText3">افرادی که در کشور ثالث (مانند ایران، پاکستان، یا کشورهای همجوار) به سر می‌برند و
+                نمی‌توانند به افغانستان بازگردند.</p>
 
-            <h2><i class="fas fa-file-alt"></i> مدارک مورد نیاز</h2>
-            <ul class="info-list">
-                <li><i class="fas fa-passport"></i> پاسپورت یا هر مدرک شناسایی معتبر</li>
-                <li><i class="fas fa-file-alt"></i> مدارک مستنداتی که نشان‌دهنده تهدیدات جانی، آزار و اذیت، یا شرایط
-                    بحرانی در افغانستان هستند (گزارش‌های سازمان‌های بین‌المللی، گزارش‌های حقوق بشری، و یا اسناد مشابه)
-                </li>
-                <li><i class="fas fa-notes-medical"></i> مدارک حمایتی از جمله اسناد پزشکی، گزارش‌های حقوق بشری یا حکم
-                    قضائی در صورت وجود تهدیدات جانی</li>
-            </ul>
+            <h2><i class="fas fa-file-alt"></i> <span data-key="requiredDocsTitle">مدارک مورد نیاز</span></h2>
+            <ul class="info-list" id="requiredDocsList"></ul>
 
-            <h2><i class="fas fa-users"></i> افراد واجد شرایط</h2>
-            <ul class="eligible-list">
-                <li><i class="fas fa-user-tie"></i> فعالان مدنی</li>
-                <li><i class="fas fa-female"></i> زنان از تحصیل مانده</li>
-                <li><i class="fas fa-gavel"></i> زنان فعال حقوق بشر</li>
-                <li><i class="fas fa-church"></i> زنان اقلیت‌های مذهبی</li>
-                <li><i class="fas fa-newspaper"></i> خبرنگاران</li>
-                <li><i class="fas fa-bomb"></i> افراد آسیب دیده از جنگ</li>
-                <li><i class="fas fa-futbol"></i> ورزشکاران</li>
-                <li><i class="fas fa-shield-alt"></i> نظامیان پیشین</li>
-                <li><i class="fas fa-users"></i> اقلیت‌های مذهبی (هزاره‌ها، سادات‌ها، سیک‌ها، عرب‌ها)</li>
-                <li><i class="fas fa-chalkboard-teacher"></i> مربیان ورزشی</li>
-                <li><i class="fas fa-cut"></i> آرایشگران</li>
-            </ul>
+            <h2><i class="fas fa-users"></i> <span data-key="eligibleTitle">افراد واجد شرایط</span></h2>
+            <ul class="eligible-list" id="eligibleList"></ul>
 
-            <h2><i class="fas fa-clock"></i> زمان پروسس</h2>
-            <p>
-                بین <strong>سه ماه</strong> کیس شما در جریان پروسیس قرار می‌گیرد و کیس شما نظر به اولویت کاری
-                وزارتخانه‌ها است در چند مدت پروسیس می‌شود. هر کس متفاوت پردازش می‌شود.
-            </p>
+            <h2><i class="fas fa-clock"></i> <span data-key="processingTitle">زمان پروسس</span></h2>
+            <p data-key="processingText">بین <strong>سه ماه</strong> کیس شما در جریان پروسیس قرار می‌گیرد و کیس شما نظر
+                به اولویت کاری وزارتخانه‌ها است در چند مدت پروسیس می‌شود. هر کس متفاوت پردازش می‌شود.</p>
 
-            <h2><i class="fas fa-file-alt"></i> اسناد ضروری</h2>
-            <ul class="info-list">
-                <li><i class="fas fa-id-card"></i> تذکره</li>
-                <li><i class="fas fa-camera"></i> عکس امضای شما با بگروند سفید</li>
-                <li><i class="fas fa-file-signature"></i> اسناد شغلی</li>
-                <li><i class="fas fa-passport"></i> پاسپورت (در صورت وجود)</li>
-                <li><i class="fas fa-phone"></i> شماره تماس</li>
-                <li><i class="fas fa-envelope"></i> ایمیل آدرس</li>
-                <li><i class="fas fa-map-marker-alt"></i> آدرس کنونی شما</li>
-                <li><i class="fas fa-user-friends"></i> نام پدر</li>
-                <li><i class="fas fa-female"></i> نام مادر</li>
-                <li><i class="fas fa-child"></i> تذکره‌های فرزندان (همراه خانم/شوهر)</li>
-            </ul>
+            <h2><i class="fas fa-file-alt"></i> <span data-key="documentsTitle">اسناد ضروری</span></h2>
+            <ul class="info-list" id="documentsList"></ul>
 
-            <!-- دکمه واتساپ -->
+            <div class="warning-note">
+                <i class="fas fa-exclamation-triangle" style="font-size: 1.2rem;"></i>
+                <span data-key="warning">اطلاعات دقیق و به‌روز را از طریق واتساپ از ما دریافت کنید.</span>
+            </div>
+
             <a href="https://wa.me/message/ZY2KWEKZLQCXF1?src=qr" class="btn-whatsapp" target="_blank">
-                <i class="fab fa-whatsapp"></i> ثبت درخواست از طریق واتساپ
+                <i class="fab fa-whatsapp"></i> <span data-key="whatsappBtn">ثبت درخواست از طریق واتساپ</span>
             </a>
         </div>
 
         <div class="footer-note">
-            <i class="fas fa-heart" style="color: #e11d48;"></i> همراه شما تا امنیت و آرامش
+            <i class="fas fa-heart" style="color: #e11d48;"></i> <span data-key="footerText">همراه شما تا امنیت و آرامش
+                | VISA GUIDE AF</span>
         </div>
     </div>
+
+    <script>
+        // ========== MULTILINGUAL DATA ==========
+        const T = {
+            fa: {
+                visaTitle: "ویزای بشردوستانه", backBtn: "برگشت به لیست کشورها",
+                pageTitle: "ویزای بشردوستانه برزیل ۲۰۲۶", subtitle: "حمایت بین‌المللی برای افغان‌های آسیب‌پذیر",
+                introTitle: "معرفی برنامه",
+                introText1: "ویزای بشردوستانه برزیل برای سال ۲۰۲۶، این کشور افرادی که به دلیل تهدید جانی، جنگ، آزار و اذیت، یا نقض حقوق بشر در افغانستان در خطر هستند، می‌توانند برای ویزای بشردوستانه برزیل اقدام کنند.",
+                introText2: "کسانی که قادر به بازگشت به کشور خود (افغانستان) نیستند و به حمایت بین‌المللی نیاز دارند.",
+                introText3: "افرادی که در کشور ثالث (مانند ایران، پاکستان، یا کشورهای همجوار) به سر می‌برند و نمی‌توانند به افغانستان بازگردند.",
+                requiredDocsTitle: "مدارک مورد نیاز",
+                eligibleTitle: "افراد واجد شرایط", processingTitle: "زمان پروسس",
+                processingText: "بین <strong>سه ماه</strong> کیس شما در جریان پروسیس قرار می‌گیرد و کیس شما نظر به اولویت کاری وزارتخانه‌ها است در چند مدت پروسیس می‌شود. هر کس متفاوت پردازش می‌شود.",
+                documentsTitle: "اسناد ضروری", warning: "اطلاعات دقیق و به‌روز را از طریق واتساپ از ما دریافت کنید.",
+                whatsappBtn: "ثبت درخواست از طریق واتساپ", footerText: "همراه شما تا امنیت و آرامش | VISA GUIDE AF"
+            },
+            en: {
+                visaTitle: "Humanitarian Visa", backBtn: "Back to Countries List",
+                pageTitle: "Brazil Humanitarian Visa 2026", subtitle: "International support for vulnerable Afghans",
+                introTitle: "Program Introduction",
+                introText1: "Brazil's humanitarian visa for 2026 allows people who are at risk due to life threats, war, persecution, or human rights violations in Afghanistan to apply for a Brazilian humanitarian visa.",
+                introText2: "Those who are unable to return to their country (Afghanistan) and need international protection.",
+                introText3: "People residing in third countries (such as Iran, Pakistan, or neighboring countries) who cannot return to Afghanistan.",
+                requiredDocsTitle: "Required Documents",
+                eligibleTitle: "Eligible Individuals", processingTitle: "Processing Time",
+                processingText: "Your case will be processed within <strong>three months</strong>, and the processing time depends on the priorities of the ministries.",
+                documentsTitle: "Essential Documents", warning: "Get accurate and up-to-date information from us via WhatsApp.",
+                whatsappBtn: "Submit Request via WhatsApp", footerText: "With you until safety and peace | VISA GUIDE AF"
+            },
+            ps: {
+                visaTitle: "بشري ویزه", backBtn: "بیرته د هیوادونو لیست ته",
+                pageTitle: "د برازیل بشري ویزه ۲۰۲۶", subtitle: "د افغانستان د زیان منونکو افغانانو لپاره نړیوال ملاتړ",
+                introTitle: "د پروګرام پیژندنه",
+                introText1: "د برازیل بشري ویزه د ۲۰۲۶ کال لپاره هغو خلکو ته اجازه ورکوي چې په افغانستان کې د ژوند له ګواښ، جګړې، ځورونې یا د بشري حقونو د سرغړونو له امله له خطر سره مخ دي، د برازیل د بشري ویزې لپاره غوښتنلیک وکړي.",
+                introText2: "هغه کسان چې خپل هیواد (افغانستان) ته د راستنیدو توان نلري او نړیوالې ساتنې ته اړتیا لري.",
+                introText3: "هغه کسان چې په دریمو هیوادونو کې اوسیږي (لکه ایران، پاکستان، یا ګاونډي هیوادونه) او افغانستان ته نه شي راستانه کیدلی.",
+                requiredDocsTitle: "اړین اسناد",
+                eligibleTitle: "واجد شرایط کسان", processingTitle: "د پروسس وخت",
+                processingText: "ستاسو قضیه به د <strong>درې میاشتو</strong> په ترڅ کې پروسس شي، او د پروسس وخت د وزارتونو د لومړیتوبونو پورې اړه لري.",
+                documentsTitle: "اړین اسناد", warning: "سم او تازه معلومات زموږ څخه د واټس اپ له لارې ترلاسه کړئ.",
+                whatsappBtn: "د واټس اپ له لارې غوښتنلیک وسپارئ", footerText: "تر امنیت او آرامۍ پورې ستاسو ملګری | VISA GUIDE AF"
+            }
+        };
+
+        const requiredDocs = {
+            fa: [
+                { icon: "fas fa-passport", text: "پاسپورت یا هر مدرک شناسایی معتبر" },
+                { icon: "fas fa-file-alt", text: "مدارک مستنداتی که نشان‌دهنده تهدیدات جانی، آزار و اذیت، یا شرایط بحرانی در افغانستان هستند" },
+                { icon: "fas fa-notes-medical", text: "مدارک حمایتی از جمله اسناد پزشکی، گزارش‌های حقوق بشری یا حکم قضائی" }
+            ],
+            en: [
+                { icon: "fas fa-passport", text: "Passport or any valid identification document" },
+                { icon: "fas fa-file-alt", text: "Documentary evidence showing life threats, persecution, or critical conditions in Afghanistan" },
+                { icon: "fas fa-notes-medical", text: "Supporting documents including medical records, human rights reports, or court orders" }
+            ],
+            ps: [
+                { icon: "fas fa-passport", text: "پاسپورټ یا کوم معتبر پیژندپاڼه" },
+                { icon: "fas fa-file-alt", text: "هغه اسناد چې د ژوند ګواښ، ځورونې، یا په افغانستان کې د بحراني شرایطو ښکارندوی کوي" },
+                { icon: "fas fa-notes-medical", text: "مستند اسناد لکه طبي ریکارډونه، د بشري حقونو راپورونه، یا محکمي حکمونه" }
+            ]
+        };
+
+        const eligibleItems = {
+            fa: ["فعالان مدنی", "زنان از تحصیل مانده", "زنان فعال حقوق بشر", "زنان اقلیت‌های مذهبی", "خبرنگاران", "افراد آسیب دیده از جنگ", "ورزشکاران", "نظامیان پیشین", "اقلیت‌های مذهبی (هزاره‌ها، سادات‌ها، سیک‌ها، عرب‌ها)", "مربیان ورزشی", "آرایشگران"],
+            en: ["Civil activists", "Women deprived of education", "Women human rights activists", "Women from religious minorities", "Journalists", "War-affected individuals", "Athletes", "Former military personnel", "Religious minorities (Hazaras, Sadats, Sikhs, Arabs)", "Sports coaches", "Barbers"],
+            ps: ["فعالان مدني", "هغه ښځې چې له زده کړو پاتې شوي", "د بشري حقونو فعالې ښځې", "د مذهبي اقلیتونو ښځې", "خبریالان", "د جګړې ځپلي کسان", "سپورتکاران", "پخواني پوځيان", "مذهبي اقلیتونه (هزاره ګان، سادات، سیک‌ها، عربان)", "سپورتي روزونکي", "حجامان"]
+        };
+
+        const documentsItems = {
+            fa: ["تذکره", "عکس امضای شما با بگروند سفید", "اسناد شغلی", "پاسپورت (در صورت وجود)", "شماره تماس", "ایمیل آدرس", "آدرس کنونی شما", "نام پدر", "نام مادر", "تذکره‌های فرزندان (همراه خانم/شوهر)"],
+            en: ["National ID", "Signed photo with white background", "Employment documents", "Passport (if available)", "Phone number", "Email address", "Your current address", "Father's name", "Mother's name", "Children's ID cards (with spouse)"],
+            ps: ["تذکره", "سپین شالید سره ستاسو لاسلیک شوی عکس", "د دندې اسناد", "پاسپورټ (که شتون ولري)", "د تلیفون شمېره", "د بریښنالیک آدرس", "ستاسو اوسنی آدرس", "د پلار نوم", "د مور نوم", "د ماشومانو تذکرې (د میړه/ښځې سره)"]
+        };
+
+        let currentLang = 'fa';
+
+        function updateLists() {
+            // مدارک مورد نیاز
+            const requiredContainer = document.getElementById('requiredDocsList');
+            if (requiredContainer) {
+                requiredContainer.innerHTML = requiredDocs[currentLang].map(doc => `<li><i class="${doc.icon}"></i> ${doc.text}</li>`).join('');
+            }
+            // افراد واجد شرایط
+            const eligibleContainer = document.getElementById('eligibleList');
+            if (eligibleContainer) {
+                eligibleContainer.innerHTML = eligibleItems[currentLang].map(item => `<li><i class="fas fa-check-circle"></i> ${item}</li>`).join('');
+            }
+            // اسناد ضروری
+            const documentsContainer = document.getElementById('documentsList');
+            if (documentsContainer) {
+                documentsContainer.innerHTML = documentsItems[currentLang].map(item => `<li><i class="fas fa-file-alt"></i> ${item}</li>`).join('');
+            }
+        }
+
+        function applyLanguage(lang) {
+            currentLang = lang;
+            document.querySelectorAll('[data-key]').forEach(el => {
+                const key = el.getAttribute('data-key');
+                if (T[lang][key]) {
+                    if (key.includes('Text1') || key.includes('Text2') || key.includes('Text3') || key === 'processingText') {
+                        el.innerHTML = T[lang][key];
+                    } else {
+                        el.innerText = T[lang][key];
+                    }
+                }
+            });
+            const labelMap = { fa: "فارسی", en: "English", ps: "پښتو" };
+            document.getElementById('currentLangLabel').innerText = labelMap[lang];
+            updateLists();
+        }
+
+        // ========== THEME TOGGLE ==========
+        const themeBtn = document.getElementById('themeBtn');
+        const savedTheme = localStorage.getItem('srs-theme') || 'dark';
+        if (savedTheme === 'light') {
+            document.body.classList.add('light-mode');
+            themeBtn.innerHTML = '<i class="fas fa-sun"></i>';
+        } else {
+            document.body.classList.remove('light-mode');
+            themeBtn.innerHTML = '<i class="fas fa-moon"></i>';
+        }
+
+        themeBtn.addEventListener('click', () => {
+            const isLight = document.body.classList.contains('light-mode');
+            if (isLight) {
+                document.body.classList.remove('light-mode');
+                themeBtn.innerHTML = '<i class="fas fa-moon"></i>';
+                localStorage.setItem('srs-theme', 'dark');
+            } else {
+                document.body.classList.add('light-mode');
+                themeBtn.innerHTML = '<i class="fas fa-sun"></i>';
+                localStorage.setItem('srs-theme', 'light');
+            }
+        });
+
+        // ========== LANGUAGE GLOBE ==========
+        const globe = document.getElementById('langGlobe');
+        const trigger = document.getElementById('langTrigger');
+        trigger.addEventListener('click', (e) => { e.stopPropagation(); globe.classList.toggle('open'); });
+        document.addEventListener('click', (e) => { if (!globe.contains(e.target)) globe.classList.remove('open'); });
+        document.querySelectorAll('.lang-option').forEach(opt => {
+            opt.addEventListener('click', (e) => {
+                const newLang = opt.getAttribute('data-lang');
+                if (newLang) applyLanguage(newLang);
+                globe.classList.remove('open');
+            });
+        });
+
+        applyLanguage('fa');
+    </script>
 </body>
 
 </html>
