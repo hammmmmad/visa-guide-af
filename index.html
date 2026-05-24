@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
@@ -29,6 +28,7 @@
             --primary-glow: rgba(139, 92, 246, 0.5);
             --accent: linear-gradient(135deg, #f97316, #ef4444);
             --font: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+            --icon-filter: brightness(0) invert(1);
         }
 
         body {
@@ -49,6 +49,7 @@
             --muted-dark: var(--muted-light);
             background: var(--bg-light);
             color: var(--text-light);
+            --icon-filter: brightness(0);
         }
 
         /* ========== 3D BACKGROUND SCENE ========== */
@@ -79,13 +80,8 @@
         }
 
         @keyframes gridFlow {
-            0% {
-                transform: rotateX(50deg) rotateZ(30deg) translateZ(-80px) translateY(0);
-            }
-
-            100% {
-                transform: rotateX(50deg) rotateZ(30deg) translateZ(-80px) translateY(80px);
-            }
+            0% { transform: rotateX(50deg) rotateZ(30deg) translateZ(-80px) translateY(0); }
+            100% { transform: rotateX(50deg) rotateZ(30deg) translateZ(-80px) translateY(80px); }
         }
 
         .floating-orb {
@@ -96,41 +92,13 @@
             animation: floatGlow 22s infinite alternate;
         }
 
-        .orb1 {
-            width: 450px;
-            height: 450px;
-            background: #8b5cf6;
-            top: -15%;
-            left: -10%;
-        }
-
-        .orb2 {
-            width: 550px;
-            height: 550px;
-            background: #3b82f6;
-            bottom: -20%;
-            right: -15%;
-            animation-delay: -6s;
-        }
-
-        .orb3 {
-            width: 350px;
-            height: 350px;
-            background: #f97316;
-            top: 45%;
-            left: 30%;
-            filter: blur(110px);
-            animation-delay: -12s;
-        }
+        .orb1 { width: 450px; height: 450px; background: #8b5cf6; top: -15%; left: -10%; }
+        .orb2 { width: 550px; height: 550px; background: #3b82f6; bottom: -20%; right: -15%; animation-delay: -6s; }
+        .orb3 { width: 350px; height: 350px; background: #f97316; top: 45%; left: 30%; filter: blur(110px); animation-delay: -12s; }
 
         @keyframes floatGlow {
-            0% {
-                transform: translate(0, 0) scale(1);
-            }
-
-            100% {
-                transform: translate(70px, 50px) scale(1.2);
-            }
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(70px, 50px) scale(1.2); }
         }
 
         /* ========== GLASS CORE ========== */
@@ -181,9 +149,7 @@
             transition: transform 0.4s;
         }
 
-        .logo-wrap:hover img {
-            transform: rotateY(180deg);
-        }
+        .logo-wrap:hover img { transform: rotateY(180deg); }
 
         .logo-name {
             font-weight: 800;
@@ -196,7 +162,6 @@
 
         body.light-mode .logo-name {
             background: linear-gradient(120deg, #1e1b4b, #4f46e5);
-            -webkit-background-clip: text;
         }
 
         .nav-links {
@@ -218,7 +183,6 @@
             position: relative;
         }
 
-        /* انیمیشن خط زیرین منو */
         .nav-links a::after {
             content: '';
             position: absolute;
@@ -233,9 +197,7 @@
         }
 
         .nav-links a:hover::after,
-        .nav-links a.active::after {
-            width: 40%;
-        }
+        .nav-links a.active::after { width: 40%; }
 
         .nav-links a::before {
             content: '';
@@ -249,9 +211,7 @@
         }
 
         .nav-links a:hover::before,
-        .nav-links a.active::before {
-            opacity: 0.15;
-        }
+        .nav-links a.active::before { opacity: 0.15; }
 
         .nav-links a:hover,
         .nav-links a.active {
@@ -263,21 +223,11 @@
             width: 18px;
             height: 18px;
             transition: filter 0.3s;
-        }
-
-        .dark-mode .nav-links a img {
-            filter: brightness(0) invert(1);
-        }
-
-        .light-mode .nav-links a img {
-            filter: brightness(0);
+            filter: var(--icon-filter);
         }
 
         /* ========== LANGUAGE GLOBE ========== */
-        .lang-globe {
-            position: relative;
-        }
-
+        .lang-globe { position: relative; }
         .globe-trigger {
             background: rgba(255, 255, 255, 0.06);
             border: 1px solid var(--border-dark);
@@ -290,16 +240,8 @@
             font-weight: 500;
             transition: 0.2s;
         }
-
-        .globe-trigger i {
-            font-size: 1rem;
-            color: #60a5fa;
-        }
-
-        .globe-trigger:hover {
-            background: rgba(139, 92, 246, 0.2);
-            border-color: #8b5cf6;
-        }
+        .globe-trigger i { font-size: 1rem; color: #60a5fa; }
+        .globe-trigger:hover { background: rgba(139, 92, 246, 0.2); border-color: #8b5cf6; }
 
         .lang-dropdown {
             position: absolute;
@@ -316,12 +258,7 @@
             transition: all 0.25s;
             z-index: 300;
         }
-
-        .lang-globe.open .lang-dropdown {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0);
-        }
+        .lang-globe.open .lang-dropdown { opacity: 1; visibility: visible; transform: translateY(0); }
 
         .lang-option {
             padding: 10px 16px;
@@ -332,16 +269,9 @@
             transition: 0.2s;
             border-radius: 16px;
         }
+        .lang-option:hover { background: rgba(139, 92, 246, 0.2); }
 
-        .lang-option:hover {
-            background: rgba(139, 92, 246, 0.2);
-        }
-
-        .nav-actions {
-            display: flex;
-            gap: 12px;
-            align-items: center;
-        }
+        .nav-actions { display: flex; gap: 12px; align-items: center; }
 
         .theme-btn {
             background: var(--primary);
@@ -374,13 +304,7 @@
             margin: 50px auto 30px;
             padding: 0 24px;
         }
-
-        .hero-card {
-            padding: 60px 40px;
-            text-align: center;
-            transform-style: preserve-3d;
-        }
-
+        .hero-card { padding: 60px 40px; text-align: center; transform-style: preserve-3d; }
         .badge-3d {
             display: inline-flex;
             align-items: center;
@@ -392,7 +316,6 @@
             font-weight: 600;
             margin-bottom: 24px;
         }
-
         .hero-logo-3d {
             width: 110px;
             height: 110px;
@@ -402,22 +325,18 @@
             margin-bottom: 25px;
             transition: transform 0.5s;
         }
-
-        .hero-logo-3d:hover {
-            transform: rotateY(360deg);
-        }
-
+        .hero-logo-3d:hover { transform: rotateY(360deg); }
         .hero-title {
             font-size: 2.8rem;
             font-weight: 800;
-            color: white;
-
+            background: linear-gradient(135deg, #fff 20%, #c084fc 80%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 20px;
         }
-
         body.light-mode .hero-title {
-            filter: invert(1);
+            background: linear-gradient(135deg, #1e1b4b, #6366f1);
         }
-
         .hero-desc {
             max-width: 700px;
             margin: 0 auto 32px;
@@ -425,7 +344,6 @@
             line-height: 1.7;
             color: var(--muted-dark);
         }
-
         .btn-3d {
             display: inline-flex;
             align-items: center;
@@ -439,11 +357,7 @@
             box-shadow: 0 8px 20px var(--primary-glow);
             transition: all 0.2s;
         }
-
-        .btn-3d:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 14px 28px var(--primary-glow);
-        }
+        .btn-3d:hover { transform: translateY(-4px); box-shadow: 0 14px 28px var(--primary-glow); }
 
         /* ========== STATS ========== */
         .stats-3d {
@@ -454,12 +368,7 @@
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 24px;
         }
-
-        .stat-item {
-            padding: 28px 20px;
-            text-align: center;
-        }
-
+        .stat-item { padding: 28px 20px; text-align: center; }
         .stat-number {
             font-size: 2.5rem;
             font-weight: 900;
@@ -468,12 +377,7 @@
             -webkit-text-fill-color: transparent;
             margin-bottom: 8px;
         }
-
-        .stat-label {
-            color: var(--muted-dark);
-            font-size: 0.9rem;
-            font-weight: 500;
-        }
+        .stat-label { color: var(--muted-dark); font-size: 0.9rem; font-weight: 500; }
 
         /* ========== NEWS SECTION ========== */
         .section-header {
@@ -481,14 +385,12 @@
             margin: 60px auto 20px;
             padding: 0 24px;
         }
-
         .section-title-3d {
             font-size: 2rem;
             font-weight: 800;
             display: inline-block;
             position: relative;
         }
-
         .section-title-3d::after {
             content: '';
             position: absolute;
@@ -499,53 +401,19 @@
             background: var(--primary);
             border-radius: 4px;
         }
-
         .news-grid {
             max-width: 1300px;
             margin: 30px auto 60px;
             padding: 0 24px;
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
             gap: 32px;
         }
-
-        .news-card {
-            overflow: hidden;
-            transition: all 0.3s;
-            cursor: pointer;
-        }
-
-        .news-img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-            transition: transform 0.5s;
-        }
-
-        .news-card:hover .news-img {
-            transform: scale(1.03);
-        }
-
-        .news-body {
-            padding: 22px;
-        }
-
-        .news-title {
-            font-weight: 800;
-            margin-bottom: 12px;
-            font-size: 1.05rem;
-            color: var(--text-dark);
-        }
-
-        .news-meta {
-            font-size: 0.75rem;
-            color: var(--muted-dark);
-            margin-bottom: 18px;
-            display: flex;
-            gap: 10px;
-            align-items: center;
-        }
-
+        .news-card { overflow: hidden; transition: all 0.3s; cursor: pointer; }
+        .news-img { width: 100%; height: 200px; object-fit: cover; transition: transform 0.5s; }
+        .news-card:hover .news-img { transform: scale(1.03); }
+        .news-body { padding: 22px; }
+        .news-title { font-weight: 800; margin-bottom: 12px; font-size: 1.05rem; color: var(--text-dark); }
+        .news-meta { font-size: 0.75rem; color: var(--muted-dark); margin-bottom: 18px; display: flex; gap: 10px; align-items: center; }
         .btn-sm {
             background: rgba(255, 255, 255, 0.05);
             border: 1px solid var(--border-dark);
@@ -556,12 +424,7 @@
             color: var(--text-dark);
             transition: 0.2s;
         }
-
-        .news-card:hover .btn-sm {
-            background: var(--primary);
-            border-color: transparent;
-            color: white;
-        }
+        .news-card:hover .btn-sm { background: var(--primary); border-color: transparent; color: white; }
 
         /* ========== FOOTER ========== */
         .footer-3d {
@@ -571,11 +434,7 @@
             margin-top: auto;
             padding: 50px 24px 25px;
         }
-
-        .light-mode .footer-3d {
-            background: rgba(255, 255, 255, 0.85);
-        }
-
+        .light-mode .footer-3d { background: rgba(255, 255, 255, 0.85); }
         .footer-inner {
             max-width: 1300px;
             margin: 0 auto;
@@ -583,15 +442,8 @@
             grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
             gap: 40px;
         }
-
-        .footer-col h4 {
-            font-size: 1.1rem;
-            margin-bottom: 20px;
-            color: var(--text-dark);
-        }
-
-        .footer-col p,
-        .footer-col a {
+        .footer-col h4 { font-size: 1.1rem; margin-bottom: 20px; color: var(--text-dark); }
+        .footer-col p, .footer-col a {
             display: flex;
             align-items: center;
             gap: 12px;
@@ -601,79 +453,109 @@
             margin-bottom: 12px;
             transition: 0.2s;
         }
-
-        .footer-col a:hover {
-            color: var(--text-dark);
-            transform: translateX(-5px);
-        }
-
-        .footer-bottom {
-            text-align: center;
-            margin-top: 40px;
-            padding-top: 20px;
-            border-top: 1px solid var(--border-dark);
+        .footer-col a:hover { color: var(--text-dark); transform: translateX(-5px); }
+        .footer-social { display: flex; gap: 15px; margin-top: 1rem; }
+        .footer-social a {
+            background: var(--glass-dark);
+            border: 1px solid var(--border-dark);
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: 0.3s;
             color: var(--muted-dark);
-            font-size: 0.8rem;
         }
+        .footer-social a:hover { background: var(--primary); color: white; transform: translateY(-3px); }
+        .footer-bottom { text-align: center; margin-top: 40px; padding-top: 20px; border-top: 1px solid var(--border-dark); color: var(--muted-dark); font-size: 0.8rem; }
 
-        /* ========== RESPONSIVE ========== */
-        @media (max-width: 900px) {
-            .navbar {
-                width: 90%;
-                border-radius: 24px;
-            }
-
-            .menu-btn {
-                display: flex;
-                align-items: center;
-                justify-content: center;
-            }
-
+        /* ========== RESPONSIVE - دسکتاپ، تبلت، موبایل ========== */
+        /* دسکتاپ بزرگ (بیشتر از 1200px) */
+        @media (min-width: 1200px) {
+            .news-grid { grid-template-columns: repeat(3, 1fr); }
+            .hero-title { font-size: 2.8rem; }
+            .hero-card { padding: 60px 40px; }
+        }
+        /* تبلت (768px تا 1199px) */
+        @media (min-width: 769px) and (max-width: 1199px) {
+            .news-grid { grid-template-columns: repeat(2, 1fr); }
+            .hero-title { font-size: 2.2rem; }
+            .hero-card { padding: 50px 30px; }
+            .stats-3d { grid-template-columns: repeat(2, 1fr); gap: 20px; }
+            .section-title-3d { font-size: 1.8rem; }
+        }
+        /* موبایل (تا 768px) */
+        @media (max-width: 768px) {
+            .navbar { width: 90%; border-radius: 24px; padding: 8px 16px; }
+            .menu-btn { display: flex; align-items: center; justify-content: center; }
             .nav-links {
                 position: fixed;
-                top: 85px;
+                top: 75px;
                 left: 5%;
                 width: 90%;
                 background: var(--glass-dark);
                 backdrop-filter: blur(30px);
                 flex-direction: column;
-                border-radius: 32px;
-                padding: 20px;
-                gap: 8px;
+                border-radius: 24px;
+                padding: 16px;
+                gap: 6px;
                 opacity: 0;
                 visibility: hidden;
                 transform: scale(0.95);
                 transition: all 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.2);
                 z-index: 999;
             }
-
             .nav-links.open {
                 opacity: 1;
                 visibility: visible;
                 transform: scale(1);
             }
-
-            .hero-title {
-                font-size: 2rem;
-            }
-
-            .stats-3d {
-                grid-template-columns: 1fr 1fr;
-            }
+            .nav-links a { padding: 10px 16px; font-size: 0.9rem; }
+            .logo-name { display: none; }
+            .globe-trigger span { display: none; }
+            .globe-trigger { padding: 6px 10px; }
+            .theme-btn { width: 36px; height: 36px; }
+            
+            .hero { margin: 30px auto 20px; padding: 0 16px; }
+            .hero-card { padding: 30px 20px; }
+            .hero-title { font-size: 1.6rem; margin-bottom: 12px; }
+            .hero-desc { font-size: 0.9rem; margin-bottom: 20px; }
+            .hero-logo-3d { width: 80px; height: 80px; margin-bottom: 16px; }
+            .badge-3d { padding: 4px 14px; font-size: 0.7rem; margin-bottom: 16px; }
+            .btn-3d { padding: 8px 20px; font-size: 0.85rem; }
+            
+            .stats-3d { gap: 12px; margin: 20px auto; padding: 0 16px; grid-template-columns: repeat(2, 1fr); }
+            .stat-item { padding: 16px 12px; }
+            .stat-number { font-size: 1.6rem; }
+            .stat-label { font-size: 0.7rem; }
+            
+            .section-header { margin: 40px auto 15px; padding: 0 16px; }
+            .section-title-3d { font-size: 1.5rem; }
+            .section-title-3d::after { width: 50px; height: 3px; bottom: -6px; }
+            
+            .news-grid { gap: 20px; margin: 20px auto 40px; padding: 0 16px; grid-template-columns: 1fr; }
+            .news-img { height: 180px; }
+            .news-body { padding: 16px; }
+            .news-title { font-size: 0.95rem; margin-bottom: 8px; }
+            .news-meta { font-size: 0.7rem; margin-bottom: 12px; }
+            .btn-sm { padding: 6px 14px; font-size: 0.75rem; }
+            
+            .footer-3d { padding: 30px 16px 20px; }
+            .footer-inner { gap: 24px; grid-template-columns: 1fr; text-align: center; }
+            .footer-col p, .footer-col a { justify-content: center; }
+            .footer-social { justify-content: center; }
+            .footer-bottom { font-size: 0.7rem; margin-top: 20px; }
         }
 
-        @media (max-width: 550px) {
-            .hero-title {
-                font-size: 1.6rem;
-            }
-
-            .globe-trigger span {
-                display: none;
-            }
-
-            .logo-name {
-                display: none;
-            }
+        /* موبایل بسیار کوچک (تا 480px) */
+        @media (max-width: 480px) {
+            .hero-title { font-size: 1.3rem; }
+            .hero-desc { font-size: 0.8rem; }
+            .stat-number { font-size: 1.4rem; }
+            .stat-label { font-size: 0.65rem; }
+            .section-title-3d { font-size: 1.3rem; }
+            .news-title { font-size: 0.85rem; }
         }
     </style>
 </head>
@@ -693,20 +575,17 @@
         </a>
         <button class="menu-btn" id="menuBtn">☰</button>
         <ul class="nav-links" id="navLinks">
-            <li><a href="index.html" class="active"><img src="images/home.png"> <span data-key="home">خانه</span></a>
-            </li>
+            <li><a href="index.html" class="active"><img src="images/home.png"> <span data-key="home">خانه</span></a></li>
             <li><a href="services.html"><img src="images/customer.png"> <span data-key="services">خدمات</span></a></li>
             <li><a href="ai.html"><img src="images/ai.png"> <span data-key="ai">هوش مصنوعی</span></a></li>
             <li><a href="contact.html"><img src="images/call.png"> <span data-key="contact">تماس</span></a></li>
             <li><a href="faq.html"><img src="images/f&a.png"> <span data-key="faq">سوالات</span></a></li>
-            <li><a href="news/day-news/day.html"><img src="images/event.png"> <span data-key="news">اخبار</span></a>
-            </li>
+            <li><a href="news/day-news/day.html"><img src="images/event.png"> <span data-key="news">اخبار</span></a></li>
         </ul>
         <div class="nav-actions">
             <div class="lang-globe" id="langGlobe">
                 <div class="globe-trigger" id="globeTrigger">
-                    <i class="fas fa-globe-americas"></i> <span id="currentLangLabel">فارسی</span> <i
-                        class="fas fa-chevron-down"></i>
+                    <i class="fas fa-globe-americas"></i> <span id="currentLangLabel">فارسی</span> <i class="fas fa-chevron-down"></i>
                 </div>
                 <div class="lang-dropdown">
                     <div class="lang-option" data-lang="fa"><span>🇦🇫</span> فارسی</div>
@@ -720,51 +599,32 @@
 
     <div class="hero">
         <div class="glass-3d hero-card">
-            <div class="badge-3d"><i class="fas fa-star-of-life"></i> <span data-key="trusted">خدمات معتبر مهاجرت</span>
-            </div>
-            <img src="images/na.png" class="hero-logo-3d" alt="Visa Guide">
+            <div class="badge-3d"><i class="fas fa-star-of-life"></i> <span data-key="trusted">خدمات معتبر مهاجرت</span></div>
+            <img src="images/kha.jpg" class="hero-logo-3d" alt="Visa Guide">
             <h1 class="hero-title" data-key="heroTitle">خدمات مهاجرت برای افغان‌ها</h1>
-            <div class="hero-desc" id="heroDesc"><strong>VISA GUIDE AF</strong> بزرگترین مرجع مشاوره مهاجرت و ثبت‌نام
-                ویزای بشردوستانه برای <strong>افغان‌ها</strong> — همراه مطمئن شما تا امنیت و آرامش.</div>
+            <div class="hero-desc" id="heroDesc"><strong>VISA GUIDE AF</strong> بزرگترین مرجع مشاوره مهاجرت و ثبت‌نام ویزای بشردوستانه برای <strong>افغان‌ها</strong> — همراه مطمئن شما تا امنیت و آرامش.</div>
             <div style="display: flex; gap: 18px; justify-content: center; flex-wrap: wrap;">
-                <a href="services.html" class="btn-3d"><i class="fas fa-passport"></i> <span
-                        data-key="seeServices">مشاهده خدمات</span></a>
-                <a href="contact.html" class="btn-3d" style="background: var(--accent);"><i class="fas fa-headset"></i>
-                    <span data-key="getHelp">دریافت مشاوره</span></a>
+                <a href="services.html" class="btn-3d"><i class="fas fa-passport"></i> <span data-key="seeServices">مشاهده خدمات</span></a>
+                <a href="contact.html" class="btn-3d" style="background: var(--accent);"><i class="fas fa-headset"></i> <span data-key="getHelp">دریافت مشاوره</span></a>
             </div>
         </div>
     </div>
 
     <div class="stats-3d">
-        <div class="glass-3d stat-item">
-            <div class="stat-number" id="statNum1">۵۰۰۰+</div>
-            <div class="stat-label" data-key="stat1">پرونده موفق</div>
-        </div>
-        <div class="glass-3d stat-item">
-            <div class="stat-number" id="statNum2">۱۵+</div>
-            <div class="stat-label" data-key="stat2">کشور مقصد</div>
-        </div>
-        <div class="glass-3d stat-item">
-            <div class="stat-number" id="statNum3">۲۴/۷</div>
-            <div class="stat-label" data-key="stat3">پشتیبانی آنلاین</div>
-        </div>
-        <div class="glass-3d stat-item">
-            <div class="stat-number" id="statNum4">۱۰+</div>
-            <div class="stat-label" data-key="stat4">سال تجربه</div>
-        </div>
+        <div class="glass-3d stat-item"><div class="stat-number" id="statNum1">۵۰۰۰+</div><div class="stat-label" data-key="stat1">پرونده موفق</div></div>
+        <div class="glass-3d stat-item"><div class="stat-number" id="statNum2">۱۵+</div><div class="stat-label" data-key="stat2">کشور مقصد</div></div>
+        <div class="glass-3d stat-item"><div class="stat-number" id="statNum3">۲۴/۷</div><div class="stat-label" data-key="stat3">پشتیبانی آنلاین</div></div>
+        <div class="glass-3d stat-item"><div class="stat-number" id="statNum4">۱۰+</div><div class="stat-label" data-key="stat4">سال تجربه</div></div>
     </div>
 
-    <div class="section-header">
-        <h2 class="section-title-3d" data-key="latestNews">آخرین اخبار</h2>
-    </div>
+    <div class="section-header"><h2 class="section-title-3d" data-key="latestNews">آخرین اخبار</h2></div>
     <div class="news-grid" id="newsGrid"></div>
 
     <footer class="footer-3d">
         <div class="footer-inner">
             <div class="footer-col">
                 <h4 data-key="footTitle1">خدمات مهاجرت</h4>
-                <p><i class="fas fa-check-circle"></i> <span data-key="footDesc1">معتبرترین خدمات در افغانستان</span>
-                </p>
+                <p><i class="fas fa-check-circle"></i> <span data-key="footDesc1">معتبرترین خدمات در افغانستان</span></p>
                 <p><i class="fas fa-globe"></i> <span data-key="footDesc2">خدمات مهاجرتی جهانی</span></p>
             </div>
             <div class="footer-col">
@@ -775,62 +635,23 @@
             </div>
             <div class="footer-col">
                 <h4 data-key="footTitle3">شبکه‌های اجتماعی</h4>
-                <a href="https://whatsapp.com/channel/0029Vae7U29AzNbpZIv5T81R" target="_blank"><i
-                        class="fab fa-whatsapp"></i> WhatsApp</a>
+                <a href="https://whatsapp.com/channel/0029Vae7U29AzNbpZIv5T81R" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a>
                 <a href="https://t.me/visaguidee" target="_blank"><i class="fab fa-telegram"></i> Telegram</a>
-                <a href="https://www.facebook.com/profile.php?id=61589943461514" target="_blank"><i
-                        class="fab fa-facebook-f"></i> Facebook</a>
-                <a href="https://www.instagram.com/sarfraz_refugee_service" target="_blank"><i
-                        class="fab fa-instagram"></i> Instagram</a>
+                <a href="https://www.facebook.com/profile.php?id=61589943461514" target="_blank"><i class="fab fa-facebook-f"></i> Facebook</a>
+                <a href="https://www.instagram.com/sarfraz_refugee_service" target="_blank"><i class="fab fa-instagram"></i> Instagram</a>
             </div>
         </div>
         <div class="footer-bottom"><span data-key="copy">© 2026 VISA GUIDE AF — همه حقوق محفوظ است</span></div>
     </footer>
 
     <script>
-        // ========== MULTILINGUAL DATA ==========
         const T = {
-            fa: {
-                home: "خانه", services: "خدمات", ai: "هوش مصنوعی", contact: "تماس", faq: "سوالات", news: "اخبار",
-                trusted: "خدمات معتبر مهاجرت", heroTitle: "خدمات مهاجرت برای افغان‌ها",
-                heroDesc: '<strong>VISA GUIDE AF</strong> بزرگترین مرجع مشاوره مهاجرت و ثبت‌نام ویزای بشردوستانه برای <strong>افغان‌ها</strong> — همراه مطمئن شما تا امنیت و آرامش.',
-                seeServices: "مشاهده خدمات", getHelp: "دریافت مشاوره",
-                stat1: "پرونده موفق", stat2: "کشور مقصد", stat3: "پشتیبانی آنلاین", stat4: "سال تجربه",
-                latestNews: "آخرین اخبار",
-                footTitle1: "خدمات مهاجرت", footDesc1: "معتبرترین خدمات در افغانستان", footDesc2: "خدمات مهاجرتی جهانی",
-                footTitle2: "تماس با ما", footAddr: "ایبک، سمنگان، افغانستان", footTitle3: "شبکه‌های اجتماعی",
-                copy: "© 2026 VISA GUIDE AF — همه حقوق محفوظ است", readMore: "بیشتر بخوانید", breaking: "لحظاتی پیش"
-            },
-            en: {
-                home: "Home", services: "Services", ai: "AI Assistant", contact: "Contact", faq: "FAQ", news: "News",
-                trusted: "Trusted Migration Services", heroTitle: "Migration Services for Afghans",
-                heroDesc: '<strong>VISA GUIDE AF</strong> — the largest immigration consulting center for <strong>Afghans</strong>. Your trusted partner to safety and peace.',
-                seeServices: "View Services", getHelp: "Get Consultation",
-                stat1: "Successful Cases", stat2: "Destination Countries", stat3: "24/7 Support", stat4: "Years Experience",
-                latestNews: "Latest News",
-                footTitle1: "Immigration Services", footDesc1: "Most reliable services in Afghanistan", footDesc2: "Global immigration services",
-                footTitle2: "Contact Us", footAddr: "Aibak, Samangan, Afghanistan", footTitle3: "Social Networks",
-                copy: "© 2026 VISA GUIDE AF — All rights reserved", readMore: "Read More", breaking: "Breaking"
-            },
-            ps: {
-                home: "کور", services: "خدمات", ai: "AI", contact: "اړیکه", faq: "پوښتنې", news: "خبرونه",
-                trusted: "د مهاجرت باوري خدمات", heroTitle: "د افغانانو لپاره د مهاجرت خدمات",
-                heroDesc: '<strong>VISA GUIDE AF</strong> د افغانانو لپاره ترټولو لوی د کډوالۍ مرکز — ستاسو باوري ملګری.',
-                seeServices: "خدمات وګورئ", getHelp: "مشوره ترلاسه کړئ",
-                stat1: "بریالي قضیې", stat2: "مقصد هیوادونه", stat3: "آنلاین ملاتړ", stat4: "کلونه تجربه",
-                latestNews: "وروستي خبرونه",
-                footTitle1: "د کډوالۍ خدمات", footDesc1: "افغانستان کې ترټولو معتبر خدمات", footDesc2: "نړیوال د کډوالۍ خدمات",
-                footTitle2: "اړیکه", footAddr: "ایبک, سمنګان، افغانستان", footTitle3: "ټولنیزې شبکې",
-                copy: "© 2026 VISA GUIDE AF — ټول حقونه خوندي", readMore: "نور ولولئ", breaking: "شیبې مخکې"
-            }
+            fa: { home: "خانه", services: "خدمات", ai: "هوش مصنوعی", contact: "تماس", faq: "سوالات", news: "اخبار", trusted: "خدمات معتبر مهاجرت", heroTitle: "خدمات مهاجرت برای افغان‌ها", heroDesc: '<strong>VISA GUIDE AF</strong> بزرگترین مرجع مشاوره مهاجرت و ثبت‌نام ویزای بشردوستانه برای <strong>افغان‌ها</strong> — همراه مطمئن شما تا امنیت و آرامش.', seeServices: "مشاهده خدمات", getHelp: "دریافت مشاوره", stat1: "پرونده موفق", stat2: "کشور مقصد", stat3: "پشتیبانی آنلاین", stat4: "سال تجربه", latestNews: "آخرین اخبار", footTitle1: "خدمات مهاجرت", footDesc1: "معتبرترین خدمات در افغانستان", footDesc2: "خدمات مهاجرتی جهانی", footTitle2: "تماس با ما", footAddr: "ایبک، سمنگان، افغانستان", footTitle3: "شبکه‌های اجتماعی", copy: "© 2026 VISA GUIDE AF — همه حقوق محفوظ است", readMore: "بیشتر بخوانید", breaking: "لحظاتی پیش" },
+            en: { home: "Home", services: "Services", ai: "AI Assistant", contact: "Contact", faq: "FAQ", news: "News", trusted: "Trusted Migration Services", heroTitle: "Migration Services for Afghans", heroDesc: '<strong>VISA GUIDE AF</strong> — the largest immigration consulting center for <strong>Afghans</strong>. Your trusted partner to safety and peace.', seeServices: "View Services", getHelp: "Get Consultation", stat1: "Successful Cases", stat2: "Destination Countries", stat3: "24/7 Support", stat4: "Years Experience", latestNews: "Latest News", footTitle1: "Immigration Services", footDesc1: "Most reliable services in Afghanistan", footDesc2: "Global immigration services", footTitle2: "Contact Us", footAddr: "Aibak, Samangan, Afghanistan", footTitle3: "Social Networks", copy: "© 2026 VISA GUIDE AF — All rights reserved", readMore: "Read More", breaking: "Breaking" },
+            ps: { home: "کور", services: "خدمات", ai: "AI", contact: "اړیکه", faq: "پوښتنې", news: "خبرونه", trusted: "د مهاجرت باوري خدمات", heroTitle: "د افغانانو لپاره د مهاجرت خدمات", heroDesc: '<strong>VISA GUIDE AF</strong> د افغانانو لپاره ترټولو لوی د کډوالۍ مرکز — ستاسو باوري ملګری.', seeServices: "خدمات وګورئ", getHelp: "مشوره ترلاسه کړئ", stat1: "بریالي قضیې", stat2: "مقصد هیوادونه", stat3: "آنلاین ملاتړ", stat4: "کلونه تجربه", latestNews: "وروستي خبرونه", footTitle1: "د کډوالۍ خدمات", footDesc1: "افغانستان کې ترټولو معتبر خدمات", footDesc2: "نړیوال د کډوالۍ خدمات", footTitle2: "اړیکه", footAddr: "ایبک, سمنګان، افغانستان", footTitle3: "ټولنیزې شبکې", copy: "© 2026 VISA GUIDE AF — ټول حقونه خوندي", readMore: "نور ولولئ", breaking: "شیبې مخکې" }
         };
 
-        const statValues = {
-            fa: { num1: "۵۰۰۰+", num2: "۱۵+", num3: "۲۴/۷", num4: "۱۰+" },
-            en: { num1: "5000+", num2: "15+", num3: "24/7", num4: "10+" },
-            ps: { num1: "۵۰۰۰+", num2: "۱۵+", num3: "۲۴/۷", num4: "۱۰+" }
-        };
-
+        const statValues = { fa: { num1: "۵۰۰۰+", num2: "۱۵+", num3: "۲۴/۷", num4: "۱۰+" }, en: { num1: "5000+", num2: "15+", num3: "24/7", num4: "10+" }, ps: { num1: "۵۰۰۰+", num2: "۱۵+", num3: "۲۴/۷", num4: "۱۰+" } };
         const newsData = [
             { fa: "خبر فوری: ممنوعیت پناهندگان آمریکا وارد مرحله سرنوشت‌ساز شد", en: "Breaking: US refugee ban enters final stage", ps: "بیړنی خبر: د امریکا پناهندګۍ بند وروستي پړاو ته ننوت", img: "news/pic/p.jpg", link: "news/7.html", breaking: true, date: "۵ می ۲۰۲۶" },
             { fa: "بلاتکلیفی ۱۱۰۰ افغان در کمپ قطر", en: "Uncertainty of 1100 Afghans in Qatar camp", ps: "د ۱۱۰۰ افغانانو ناڅرګنده حالت", img: "news/pic/us.jpg", link: "news/6.html", breaking: false, date: "۲۸ اپریل ۲۰۲۶" },
@@ -841,91 +662,34 @@
         ];
 
         let currentLang = 'fa';
-
         function renderNews() {
             const grid = document.getElementById('newsGrid');
             if (!grid) return;
-            grid.innerHTML = newsData.map(n => `
-                <div class="glass-3d news-card" onclick="window.location.href='${n.link}'">
-                    <img src="${n.img}" class="news-img" alt="news">
-                    <div class="news-body">
-                        <div class="news-title">${n[currentLang]}</div>
-                        <div class="news-meta"><i class="fas fa-calendar-alt"></i> ${n.date} ${n.breaking ? `🔴 ${T[currentLang].breaking}` : ''}</div>
-                        <div class="btn-sm">${T[currentLang].readMore} →</div>
-                    </div>
-                </div>
-            `).join('');
+            grid.innerHTML = newsData.map(n => `<div class="glass-3d news-card" onclick="window.location.href='${n.link}'"><img src="${n.img}" class="news-img" alt="news"><div class="news-body"><div class="news-title">${n[currentLang]}</div><div class="news-meta"><i class="fas fa-calendar-alt"></i> ${n.date} ${n.breaking ? `🔴 ${T[currentLang].breaking}` : ''}</div><div class="btn-sm">${T[currentLang].readMore} →</div></div></div>`).join('');
         }
+        function updateStatsNumbers(lang) { const vals = statValues[lang]; if (vals) { document.getElementById('statNum1').innerText = vals.num1; document.getElementById('statNum2').innerText = vals.num2; document.getElementById('statNum3').innerText = vals.num3; document.getElementById('statNum4').innerText = vals.num4; } }
+        function applyLanguage(lang) { currentLang = lang; document.querySelectorAll('[data-key]').forEach(el => { const key = el.getAttribute('data-key'); if (T[lang][key]) el.innerHTML = T[lang][key]; }); document.getElementById('heroDesc').innerHTML = T[lang].heroDesc; updateStatsNumbers(lang); renderNews(); const labelMap = { fa: "فارسی", en: "English", ps: "پښتو" }; document.getElementById('currentLangLabel').innerText = labelMap[lang]; }
 
-        function updateStatsNumbers(lang) {
-            const vals = statValues[lang];
-            if (vals) {
-                document.getElementById('statNum1').innerText = vals.num1;
-                document.getElementById('statNum2').innerText = vals.num2;
-                document.getElementById('statNum3').innerText = vals.num3;
-                document.getElementById('statNum4').innerText = vals.num4;
-            }
-        }
-
-        function applyLanguage(lang) {
-            currentLang = lang;
-            document.querySelectorAll('[data-key]').forEach(el => {
-                const key = el.getAttribute('data-key');
-                if (T[lang][key]) el.innerHTML = T[lang][key];
-            });
-            document.getElementById('heroDesc').innerHTML = T[lang].heroDesc;
-            updateStatsNumbers(lang);
-            renderNews();
-            const labelMap = { fa: "فارسی", en: "English", ps: "پښتو" };
-            document.getElementById('currentLangLabel').innerText = labelMap[lang];
-        }
-
-        // ========== THEME TOGGLE ==========
         const themeBtn = document.getElementById('themeBtn');
         const savedTheme = localStorage.getItem('srs-theme') || 'dark';
         document.body.className = savedTheme === 'dark' ? 'dark-mode' : 'light-mode';
         themeBtn.innerHTML = savedTheme === 'dark' ? '<i class="fas fa-moon"></i>' : '<i class="fas fa-sun"></i>';
-        themeBtn.addEventListener('click', () => {
-            const isDark = document.body.classList.contains('dark-mode');
-            document.body.className = isDark ? 'light-mode' : 'dark-mode';
-            themeBtn.innerHTML = isDark ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
-            localStorage.setItem('srs-theme', isDark ? 'light' : 'dark');
-        });
+        themeBtn.addEventListener('click', () => { const isDark = document.body.classList.contains('dark-mode'); document.body.className = isDark ? 'light-mode' : 'dark-mode'; themeBtn.innerHTML = isDark ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>'; localStorage.setItem('srs-theme', isDark ? 'light' : 'dark'); });
 
-        // ========== LANGUAGE GLOBE ==========
         const globe = document.getElementById('langGlobe');
         const trigger = document.getElementById('globeTrigger');
         trigger.addEventListener('click', (e) => { e.stopPropagation(); globe.classList.toggle('open'); });
         document.addEventListener('click', (e) => { if (!globe.contains(e.target)) globe.classList.remove('open'); });
-        document.querySelectorAll('.lang-option').forEach(opt => {
-            opt.addEventListener('click', (e) => {
-                const newLang = opt.getAttribute('data-lang');
-                if (newLang) applyLanguage(newLang);
-                globe.classList.remove('open');
-            });
-        });
+        document.querySelectorAll('.lang-option').forEach(opt => { opt.addEventListener('click', (e) => { const newLang = opt.getAttribute('data-lang'); if (newLang) applyLanguage(newLang); globe.classList.remove('open'); }); });
 
-        // ========== MOBILE MENU (Hamburger -> X) ==========
         const menuBtn = document.getElementById('menuBtn');
         const navLinks = document.getElementById('navLinks');
-        function closeMenu() {
-            navLinks.classList.remove('open');
-            if (menuBtn) menuBtn.innerHTML = '☰';
-        }
-        menuBtn.addEventListener('click', (e) => {
-            e.stopPropagation();
-            const isOpen = navLinks.classList.contains('open');
-            if (isOpen) closeMenu();
-            else { navLinks.classList.add('open'); menuBtn.innerHTML = '✕'; }
-        });
-        document.addEventListener('click', (e) => {
-            if (!navLinks.contains(e.target) && !menuBtn.contains(e.target) && navLinks.classList.contains('open')) closeMenu();
-        });
+        function closeMenu() { navLinks.classList.remove('open'); if (menuBtn) menuBtn.innerHTML = '☰'; }
+        menuBtn.addEventListener('click', (e) => { e.stopPropagation(); const isOpen = navLinks.classList.contains('open'); if (isOpen) closeMenu(); else { navLinks.classList.add('open'); menuBtn.innerHTML = '✕'; } });
+        document.addEventListener('click', (e) => { if (!navLinks.contains(e.target) && !menuBtn.contains(e.target) && navLinks.classList.contains('open')) closeMenu(); });
         navLinks.querySelectorAll('a').forEach(link => link.addEventListener('click', closeMenu));
 
-        // ========== INITIAL ==========
         applyLanguage('fa');
     </script>
 </body>
-
 </html>
