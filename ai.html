@@ -4,13 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>دستیار هوشمند | VISA GUIDE AF</title>
+    <title>دستیار هوشمند مهاجرت | VISA GUIDE AF</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@300;400;500;600;700;800&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-
     <style>
-        /* تعریف متغیرهای رنگی و استایل پایه */
+        /* تمام استایل‌های قبلی شما به همان صورت باقی می‌ماند */
         :root {
             --bg: #070b13;
             --panel: rgba(255, 255, 255, 0.03);
@@ -53,7 +52,6 @@
             overflow-x: hidden;
         }
 
-        /* جلوه ذرات و اورب‌های سه‌بعدی پس‌زمینه */
         .bg-scene {
             position: fixed;
             top: 0;
@@ -108,7 +106,6 @@
             }
         }
 
-        /* ========== NAVBAR (مشابه سایر صفحات) ========== */
         .navbar {
             position: sticky;
             top: 15px;
@@ -233,7 +230,6 @@
             background: rgba(0, 0, 0, 0.05);
         }
 
-        /* ========== منوی زبان با کره زمین ========== */
         .lang-dropdown {
             position: relative;
             display: inline-block;
@@ -335,7 +331,6 @@
             cursor: pointer;
         }
 
-        /* ========== کانتینر اصلی چت ========== */
         .container {
             max-width: 1000px;
             margin: 30px auto 40px;
@@ -343,7 +338,6 @@
             width: 100%;
         }
 
-        /* کارت شیشه‌ای پنل چت */
         .glass-card {
             background: var(--panel);
             backdrop-filter: blur(16px);
@@ -359,7 +353,6 @@
             box-shadow: 0 20px 50px -10px rgba(0, 0, 0, 0.05);
         }
 
-        /* هدر کارت */
         .brand-header {
             text-align: center;
             padding: 24px 20px 16px;
@@ -421,7 +414,6 @@
             font-size: 0.85rem;
         }
 
-        /* بخش چت */
         .chat-container {
             padding: 0 20px 20px;
         }
@@ -500,7 +492,6 @@
             border-bottom-left-radius: 5px;
         }
 
-        /* ناحیه ورودی */
         .input-area {
             display: flex;
             gap: 10px;
@@ -567,7 +558,6 @@
             }
         }
 
-        /* تایپینگ ایندیکیتور */
         .typing {
             background: var(--panel);
             border: 1px solid var(--border);
@@ -610,7 +600,6 @@
             }
         }
 
-        /* ========== فوتر ========== */
         .footer {
             background: rgba(10, 15, 30, 0.8);
             border-top: 1px solid var(--border);
@@ -693,7 +682,6 @@
             font-size: 0.85rem;
         }
 
-        /* ========== RESPONSIVE ========== */
         @media (max-width: 768px) {
             .navbar {
                 width: 90%;
@@ -749,7 +737,6 @@
             }
         }
 
-        /* ذرات پس‌زمینه */
         .particles {
             position: fixed;
             top: 0;
@@ -786,6 +773,32 @@
                 opacity: 0;
             }
         }
+
+        /* مدل سلکت */
+        .model-selector {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: var(--panel);
+            padding: 5px 15px;
+            border-radius: 40px;
+            margin: 0 20px 10px 20px;
+            border: 1px solid var(--border);
+            justify-content: center;
+        }
+
+        .model-selector select {
+            background: var(--input-bg);
+            border: 1px solid var(--border);
+            border-radius: 30px;
+            padding: 6px 12px;
+            color: var(--text);
+            font-size: 0.8rem;
+        }
+
+        .light-mode .model-selector select {
+            background: white;
+        }
     </style>
 </head>
 
@@ -797,7 +810,6 @@
     <div class="bg-orb"></div>
     <div class="particles" id="particles"></div>
 
-    <!-- نوار ناوبری (مشابه سایر صفحات) -->
     <nav class="navbar">
         <a href="index.html" class="logo-wrap">
             <img src="images/kha.jpg" alt="logo">
@@ -831,41 +843,45 @@
         </div>
     </nav>
 
-    <!-- محتوای اصلی چت -->
     <div class="container">
         <div class="glass-card">
             <div class="brand-header">
-                <div class="logo-icon" id="logoIcon">
-                    <span class="default-logo">⭐</span>
-                </div>
-                <h1>دستیار هوشمند | VISA GUIDE AF</h1>
-                <p>پاسخ سریع و دقیق به سوالات مهاجرتی شما به سه زبان</p>
+                <div class="logo-icon" id="logoIcon"><span class="default-logo">⭐</span></div>
+                <h1>دستیار هوشمند مهاجرت | VISA GUIDE AF</h1>
+                <p>پاسخ‌های عمیق و تخصصی به سوالات ویزا و مهاجرت شما (۳ زبانه)</p>
+            </div>
+
+            <div class="model-selector">
+                <span style="font-size:0.8rem;">🧠 مدل:</span>
+                <select id="modelSelect">
+                    <option value="gemini-2.5-flash">🔥 Gemini 2.5 Flash (توصیه شده)</option>
+                    <option value="gemini-2.0-flash">⚡ Gemini 2.0 Flash</option>
+                    <option value="gemini-flash-latest">🌟 Gemini Flash Latest</option>
+                    <option value="gemini-2.5-pro">💎 Gemini 2.5 Pro</option>
+                </select>
             </div>
 
             <div class="chat-container">
                 <div class="messages" id="messages">
                     <div class="message ai-message">
                         <div class="bubble">
-                            🌟 به دستیار هوشمند VISA GUIDE AF خوش آمدید! سوال خود را بپرسید.<br>
-                            ✨ VISA GUIDE AF ځیرک مرستیال ته ښه راغلاست! خپله پوښتنه وکړئ.<br>
-                            Welcome to VISA GUIDE AF Smart AI Assistant! Ask your question.
+                            🌟 به مشاور هوشمند مهاجرت VISA GUIDE AF خوش آمدید!<br>
+                            📌 من می‌توانم درباره انواع ویزا، مدارک مورد نیاز، قوانین سفارت‌ها، هزینه‌ها و فرآیندهای
+                            مهاجرتی پاسخ کامل بدهم.<br>
+                            ✨ سوال خود را بپرسید.
                         </div>
                     </div>
                 </div>
-
                 <div class="input-area">
                     <input type="text" id="question"
                         placeholder="سوال خود را بنویسید... / خپله پوښتنه ولیکئ... / Type your question...">
-                    <button id="sendBtn" onclick="sendMessage()">
-                        <i class="fas fa-paper-plane"></i>
-                        <span>ارسال</span>
-                    </button>
+                    <button id="sendBtn" onclick="sendMessage()"><i
+                            class="fas fa-paper-plane"></i><span>ارسال</span></button>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- فوتر (مشابه سایر صفحات) -->
     <footer class="footer">
         <div class="footer-inner">
             <div class="footer-col">
@@ -884,20 +900,16 @@
             </div>
             <div class="footer-col">
                 <h4 data-key="footTitle3">شبکه‌های اجتماعی</h4>
-                <div class="footer-social">
-                    <a href="https://whatsapp.com/channel/0029Vae7U29AzNbpZIv5T81R" target="_blank"><i
-                            class="fab fa-whatsapp"></i></a>
-                    <a href="https://t.me/visaguidee" target="_blank"><i class="fab fa-telegram"></i></a>
-                    <a href="https://www.facebook.com/profile.php?id=61589943461514" target="_blank"><i
-                            class="fab fa-facebook-f"></i></a>
-                    <a href="https://www.instagram.com/sarfraz_refugee_service" target="_blank"><i
-                            class="fab fa-instagram"></i></a>
-                </div>
+                <div class="footer-social"><a href="https://whatsapp.com/channel/0029Vae7U29AzNbpZIv5T81R"
+                        target="_blank"><i class="fab fa-whatsapp"></i></a><a href="https://t.me/visaguidee"
+                        target="_blank"><i class="fab fa-telegram"></i></a><a
+                        href="https://www.facebook.com/profile.php?id=61589943461514" target="_blank"><i
+                            class="fab fa-facebook-f"></i></a><a
+                        href="https://www.instagram.com/sarfraz_refugee_service" target="_blank"><i
+                            class="fab fa-instagram"></i></a></div>
             </div>
         </div>
-        <div class="footer-bottom">
-            <span data-key="copy">© 2026 VISA GUIDE AF — همه حقوق محفوظ است</span>
-        </div>
+        <div class="footer-bottom"><span data-key="copy">© 2026 VISA GUIDE AF — همه حقوق محفوظ است</span></div>
     </footer>
 
     <script>
@@ -906,54 +918,35 @@
         let logoLoaded = false;
         for (const imgSrc of logoImages) {
             const img = new Image();
-            img.onload = function () {
-                if (!logoLoaded) {
-                    document.getElementById('logoIcon').innerHTML = `<img src="${imgSrc}" alt="Logo">`;
-                    logoLoaded = true;
-                }
-            };
+            img.onload = function () { if (!logoLoaded) { document.getElementById('logoIcon').innerHTML = `<img src="${imgSrc}" alt="Logo">`; logoLoaded = true; } };
             img.src = imgSrc;
         }
 
-        // ========== API SETUP ==========
-        const API_KEY = "AIzaSyDwT4Pg9wymYf8dtXDUaIJtkqyW4U_3tKs";
-        const MODEL = "980989663603";
-
-        let currentLanguage = "fa";  // fa, en, ps
+        // ========== GEMINI API SETUP (با مدل قابل انتخاب) ==========
+        const API_KEY = "AIzaSyA7H8sl_ltJhDX4f5VthodVZnj1T6DKcPc";
+        let currentLanguage = "fa";
         let isLoading = false;
 
         const messagesDiv = document.getElementById('messages');
         const questionInput = document.getElementById('question');
         const sendBtn = document.getElementById('sendBtn');
+        const modelSelect = document.getElementById('modelSelect');
 
-        // ========== MULTILINGUAL TEXT FOR UI ==========
+        let selectedModel = modelSelect.value;  // پیش‌فرض gemini-2.5-flash
+
+        modelSelect.addEventListener('change', () => {
+            selectedModel = modelSelect.value;
+            addMessage(`🔄 مدل به ${selectedModel} تغییر یافت. اکنون می‌توانید سوال خود را بپرسید.`, false);
+        });
+
+        // ========== MULTILINGUAL UI ==========
         const translations = {
-            fa: {
-                home: "خانه", services: "خدمات", ai: "هوش مصنوعی", contact: "تماس", faq: "سوالات", news: "اخبار",
-                footTitle1: "خدمات مهاجرت", footDesc1: "معتبرترین خدمات در افغانستان", footDesc2: "خدمات مهاجرتی جهانی",
-                footTitle2: "تماس با ما", footAddr: "ایبک، سمنگان، افغانستان", footTitle3: "شبکه‌های اجتماعی",
-                copy: "© 2026 VISA GUIDE AF — همه حقوق محفوظ است"
-            },
-            en: {
-                home: "Home", services: "Services", ai: "AI Assistant", contact: "Contact", faq: "FAQ", news: "News",
-                footTitle1: "Immigration Services", footDesc1: "Most reliable services in Afghanistan", footDesc2: "Global immigration services",
-                footTitle2: "Contact Us", footAddr: "Aibak, Samangan, Afghanistan", footTitle3: "Social Networks",
-                copy: "© 2026 VISA GUIDE AF — All rights reserved"
-            },
-            ps: {
-                home: "کور", services: "خدمات", ai: "AI", contact: "اړیکه", faq: "پوښتنې", news: "خبرونه",
-                footTitle1: "د کډوالۍ خدمات", footDesc1: "افغانستان کې ترټولو معتبر خدمات", footDesc2: "نړیوال د کډوالۍ خدمات",
-                footTitle2: "اړیکه", footAddr: "ایبک, سمنګان، افغانستان", footTitle3: "ټولنیزې شبکې",
-                copy: "© 2026 VISA GUIDE AF — ټول حقونه خوندي دي"
-            }
+            fa: { home: "خانه", services: "خدمات", ai: "هوش مصنوعی", contact: "تماس", faq: "سوالات", news: "اخبار", footTitle1: "خدمات مهاجرت", footDesc1: "معتبرترین خدمات در افغانستان", footDesc2: "خدمات مهاجرتی جهانی", footTitle2: "تماس با ما", footAddr: "ایبک، سمنگان، افغانستان", footTitle3: "شبکه‌های اجتماعی", copy: "© 2026 VISA GUIDE AF — همه حقوق محفوظ است" },
+            en: { home: "Home", services: "Services", ai: "AI Assistant", contact: "Contact", faq: "FAQ", news: "News", footTitle1: "Immigration Services", footDesc1: "Most reliable services in Afghanistan", footDesc2: "Global immigration services", footTitle2: "Contact Us", footAddr: "Aibak, Samangan, Afghanistan", footTitle3: "Social Networks", copy: "© 2026 VISA GUIDE AF — All rights reserved" },
+            ps: { home: "کور", services: "خدمات", ai: "AI", contact: "اړیکه", faq: "پوښتنې", news: "خبرونه", footTitle1: "د کډوالۍ خدمات", footDesc1: "افغانستان کې ترټولو معتبر خدمات", footDesc2: "نړیوال د کډوالۍ خدمات", footTitle2: "اړیکه", footAddr: "ایبک, سمنګان، افغانستان", footTitle3: "ټولنیزې شبکې", copy: "© 2026 VISA GUIDE AF — ټول حقونه خوندي دي" }
         };
 
-        function updateUILanguage(lang) {
-            document.querySelectorAll('[data-key]').forEach(el => {
-                const key = el.getAttribute('data-key');
-                if (translations[lang][key]) el.innerHTML = translations[lang][key];
-            });
-        }
+        function updateUILanguage(lang) { document.querySelectorAll('[data-key]').forEach(el => { const key = el.getAttribute('data-key'); if (translations[lang][key]) el.innerHTML = translations[lang][key]; }); }
 
         function addMessage(text, isUser) {
             const messageDiv = document.createElement('div');
@@ -974,39 +967,36 @@
             messagesDiv.appendChild(typingDiv);
             messagesDiv.scrollTop = messagesDiv.scrollHeight;
         }
-
-        function hideTyping() {
-            const indicator = document.getElementById('typingIndicator');
-            if (indicator) indicator.remove();
-        }
+        function hideTyping() { const indicator = document.getElementById('typingIndicator'); if (indicator) indicator.remove(); }
 
         function cleanAnswer(text, lang) {
             let cleaned = text;
             cleaned = cleaned.replace(/[\u4e00-\u9fff\u3400-\u4dbf\u3000-\u303f]/g, '');
-            if (lang === 'fa') {
-                const unwanted = ['خوبی جان', 'چنایی', 'صاحب جان', 'جان جان', 'جانم', 'عزیزم', 'قربونت', 'دلبرم', 'فدایت'];
-                for (const w of unwanted) cleaned = cleaned.replace(new RegExp(w, 'gi'), '');
-            } else if (lang === 'ps') {
-                const unwantedPashto = ['ښه یاست', 'څنګه یاست', 'ښه راغلئ', 'جان', 'زما عزیز'];
-                for (const w of unwantedPashto) cleaned = cleaned.replace(new RegExp(w, 'gi'), '');
-            } else if (lang === 'en') {
-                cleaned = cleaned.replace(/\b(hey|dude|bro|awesome|no worries|you know|well|so|actually|just)\b/gi, '');
-            }
+            if (lang === 'fa') { const unwanted = ['خوبی جان', 'چنایی', 'صاحب جان', 'جان جان', 'جانم', 'عزیزم', 'قربونت', 'دلبرم', 'فدایت']; for (const w of unwanted) cleaned = cleaned.replace(new RegExp(w, 'gi'), ''); }
+            else if (lang === 'ps') { const unwantedPashto = ['ښه یاست', 'څنګه یاست', 'ښه راغلئ', 'جان', 'زما عزیز']; for (const w of unwantedPashto) cleaned = cleaned.replace(new RegExp(w, 'gi'), ''); }
+            else if (lang === 'en') { cleaned = cleaned.replace(/\b(hey|dude|bro|awesome|no worries|you know|well|so|actually|just)\b/gi, ''); }
             cleaned = cleaned.replace(/\s+/g, ' ').trim();
-            if (cleaned.length === 0) {
-                cleaned = lang === 'fa' ? 'پاسخی دریافت نشد. لطفاً دوباره تلاش کنید.' :
-                    (lang === 'ps' ? 'ځواب ترلاسه نه شو. بیا هڅه وکړئ.' : 'No response. Please try again.');
-            }
+            if (cleaned.length === 0) cleaned = lang === 'fa' ? 'پاسخی دریافت نشد. لطفاً دوباره تلاش کنید.' : (lang === 'ps' ? 'ځواب ترلاسه نه شو. بیا هڅه وکړئ.' : 'No response. Please try again.');
             return cleaned;
         }
 
         function getSystemPrompt(lang) {
             if (lang === 'fa') {
-                return `شما یک دستیار حرفه‌ای به نام "دستیار هوشمند" هستید برای وب‌سایت "VISA GUIDE AF". فقط به زبان فارسی پاسخ دهید. مستقیم، مفید و کوتاه پاسخ دهید.`;
+                return `شما یک مشاور حرفه‌ای مهاجرت و ویزا با نام "دستیار هوشمند VISA GUIDE AF" هستید. 
+            وظیفه شما: پاسخ به سوالات مربوط به انواع ویزا (توریستی، تحصیلی، کاری، سرمایه‌گذاری، درمانی، خانوادگی)، مدارک لازم، شرایط اخذ ویزا، قوانین سفارت‌ها (به ویژه کشورهای ترکیه، آلمان، کانادا، آمریکا، امارات، پاکستان، هند و کشورهای اروپایی)، هزینه‌های تقریبی، زمان رسیدگی، مراحل اقدام، نکات مهم و اشتباهات رایج.
+            پاسخ‌های خود را بر اساس آخرین قوانین بین‌المللی و تجربیات متقاضیان ارائه دهید. اگر سوال خارج از حیطه مهاجرت است، مودبانه بگویید که تخصص شما فقط مسائل ویزا و مهاجرت است.
+            پاسخ شما باید دقیق، کامل، مفید و در عین حال مختصر باشد. از اصطلاحات تخصصی استفاده کنید اما آنها را توضیح دهید. در صورت نیاز مثال بزنید.
+            فقط به زبان فارسی پاسخ دهید.`;
             } else if (lang === 'ps') {
-                return `تاسو د "ځیرک مرستیال" په نوم مسلکي مرستیال یاست د "VISA GUIDE AF" لپاره. یوازې په پښتو ژبه ځواب ورکړئ. لنډ او ګټور ځواب ورکړئ.`;
+                return `تاسو د مهاجرت او ویزې مسلکي مشاور یاست چې نوم یې "ځیرک مرستیال VISA GUIDE AF" دی. 
+            دنده: د ویزې ډولونو، اړینو اسنادو، شرایطو، سفارتخانو قوانینو (په ځانګړي توګه ترکیې، آلمان، کاناډا، امریکا، متحده عربي امارات، پاکستان، هند او اروپایي هیوادونو)، لګښتونو، وختونو، پروسو او عامو تېروتنو په اړه ځواب ووایاست.
+            ځوابونه باید دقیق، بشپړ او ګټور وي. که پوښتنه د مهاجرت څخه بهر وي، په مهربانۍ سره ووایاست چې ستاسو تخصص یوازې د ویزې او مهاجرت چارې دي.
+            یوازې په پښتو ژبه ځواب ورکړئ.`;
             } else {
-                return `You are "AI Assistant", a professional AI assistant for "VISA GUIDE AF". Respond ONLY in English. Be direct and helpful.`;
+                return `You are a professional immigration and visa advisor named "VISA GUIDE AF Smart Assistant". 
+            Your role: Answer questions about visa types (tourist, student, work, investment, medical, family), required documents, eligibility, embassy regulations (especially Turkey, Germany, Canada, USA, UAE, Pakistan, India, European countries), costs, processing times, application steps, and common mistakes.
+            Provide accurate, detailed, and helpful answers based on current international rules and applicant experiences. If the question is outside immigration, politely state that your expertise is only visa and immigration matters.
+            Respond ONLY in English.`;
             }
         }
 
@@ -1022,36 +1012,42 @@
             showTyping();
 
             try {
-                const response = await fetch("https://api.groq.com/openai/v1/chat/completions", {
+                const fullPrompt = `${getSystemPrompt(currentLanguage)}\n\nسوال کاربر: ${question}\n\nپاسخ:`;
+                const url = `https://generativelanguage.googleapis.com/v1beta/models/${selectedModel}:generateContent?key=${API_KEY}`;
+
+                const response = await fetch(url, {
                     method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                        "Authorization": `Bearer ${API_KEY}`
-                    },
+                    headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({
-                        model: MODEL,
-                        messages: [
-                            { role: "system", content: getSystemPrompt(currentLanguage) },
-                            { role: "user", content: question }
-                        ],
-                        temperature: 0.5,
-                        max_tokens: 600
+                        contents: [{ parts: [{ text: fullPrompt }] }],
+                        generationConfig: { temperature: 0.3, maxOutputTokens: 1000, topP: 0.9 }
                     })
                 });
 
-                const data = await response.json();
-                if (!response.ok) throw new Error(data.error?.message || `خطا ${response.status}`);
+                if (!response.ok) {
+                    const errorData = await response.json();
+                    throw new Error(errorData.error?.message || `HTTP ${response.status}`);
+                }
 
-                let rawAnswer = data.choices[0]?.message?.content || "پاسخی دریافت نشد";
+                const data = await response.json();
+                let rawAnswer = data.candidates?.[0]?.content?.parts?.[0]?.text || "پاسخی دریافت نشد";
                 let finalAnswer = cleanAnswer(rawAnswer, currentLanguage);
 
                 hideTyping();
                 addMessage(finalAnswer, false);
             } catch (error) {
+                console.error("Gemini Error:", error);
                 hideTyping();
-                let errorMsg = currentLanguage === 'fa' ? '❌ خطا: ' :
-                    (currentLanguage === 'ps' ? '❌ تېروتنه: ' : '❌ Error: ');
-                addMessage(errorMsg + error.message, false);
+                let userFriendlyMsg = '';
+                if (error.message.includes('quota') || error.message.includes('Quota exceeded')) {
+                    userFriendlyMsg = '⚠️ سهمیه رایگان این مدل تمام شد. لطفاً از منوی بالا مدل دیگری (مثل Gemini 2.5 Flash یا Gemini Flash Latest) انتخاب کنید.';
+                } else if (error.message.includes('Failed to fetch') || error.message.includes('CORS')) {
+                    userFriendlyMsg = '🌐 خطای اتصال یا CORS. فایل را روی یک سرور محلی (Live Server) اجرا کنید.';
+                } else {
+                    userFriendlyMsg = error.message;
+                }
+                let errorMsg = currentLanguage === 'fa' ? '❌ خطا: ' : (currentLanguage === 'ps' ? '❌ تېروتنه: ' : '❌ Error: ');
+                addMessage(errorMsg + userFriendlyMsg, false);
             } finally {
                 isLoading = false;
                 sendBtn.disabled = false;
@@ -1059,11 +1055,9 @@
             }
         }
 
-        questionInput.addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') sendMessage();
-        });
+        questionInput.addEventListener('keypress', (e) => { if (e.key === 'Enter') sendMessage(); });
 
-        // ========== THEME TOGGLE (day/night) ==========
+        // theme toggle
         const themeBtn = document.getElementById('themeBtn');
         const savedTheme = localStorage.getItem('srs-theme') || 'dark';
         document.body.className = savedTheme + '-mode';
@@ -1075,7 +1069,7 @@
             localStorage.setItem('srs-theme', isDark ? 'light' : 'dark');
         });
 
-        // ========== LANGUAGE DROPDOWN ==========
+        // language dropdown
         const dropdown = document.getElementById('langDropdown');
         const trigger = document.getElementById('langTrigger');
         trigger.addEventListener('click', (e) => { e.stopPropagation(); dropdown.classList.toggle('open'); });
@@ -1088,15 +1082,14 @@
                     const labelMap = { fa: "فارسی", en: "English", ps: "پښتو" };
                     document.getElementById('currentLangLabel').innerText = labelMap[newLang];
                     updateUILanguage(newLang);
-                    let msg = newLang === 'fa' ? '🔄 به زبان فارسی تغییر کرد' :
-                        (newLang === 'ps' ? '🔄 پښتو ته بدل شو' : '🔄 Switched to English');
+                    let msg = newLang === 'fa' ? '🔄 به زبان فارسی تغییر کرد' : (newLang === 'ps' ? '🔄 پښتو ته بدل شو' : '🔄 Switched to English');
                     addMessage(msg, false);
                 }
                 dropdown.classList.remove('open');
             });
         });
 
-        // ========== MOBILE MENU (hamburger) ==========
+        // mobile menu
         const menuBtn = document.getElementById('menuBtn');
         const navLinks = document.getElementById('navLinks');
         function closeMenu() { navLinks.classList.remove('open'); if (menuBtn) menuBtn.innerHTML = '☰'; }
@@ -1111,7 +1104,7 @@
         });
         navLinks.querySelectorAll('a').forEach(link => link.addEventListener('click', closeMenu));
 
-        // ========== PARTICLES ==========
+        // particles
         const pc = document.getElementById('particles');
         for (let i = 0; i < 45; i++) {
             const p = document.createElement('div');
@@ -1121,7 +1114,6 @@
             pc.appendChild(p);
         }
 
-        // اعمال زبان اولیه روی فوتر و منو
         updateUILanguage('fa');
     </script>
 </body>
