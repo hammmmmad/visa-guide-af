@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>دستیار هوشمند مهاجرت | VISA GUIDE AF</title>
+    <title>مشاور هوشمند مهاجرت افغانستان | VISA GUIDE AF</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@300;400;500;600;700;800&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -414,6 +414,32 @@
             font-size: 0.85rem;
         }
 
+        /* دکمه‌های موضوعات سریع */
+        .topics-panel {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            justify-content: center;
+            margin: 10px 20px 0 20px;
+        }
+
+        .topic-btn {
+            background: rgba(124, 58, 237, 0.15);
+            border: 1px solid rgba(124, 58, 237, 0.3);
+            border-radius: 40px;
+            padding: 6px 14px;
+            font-size: 0.75rem;
+            color: #c084fc;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .topic-btn:hover {
+            background: #7c3aed;
+            color: white;
+            transform: scale(1.02);
+        }
+
         .chat-container {
             padding: 0 20px 20px;
         }
@@ -470,12 +496,13 @@
         }
 
         .bubble {
-            max-width: 80%;
+            max-width: 85%;
             padding: 10px 18px;
             border-radius: 24px;
             word-wrap: break-word;
-            line-height: 1.5;
+            line-height: 1.6;
             font-size: 0.9rem;
+            white-space: pre-wrap;
         }
 
         .user-message .bubble {
@@ -847,8 +874,32 @@
         <div class="glass-card">
             <div class="brand-header">
                 <div class="logo-icon" id="logoIcon"><span class="default-logo">⭐</span></div>
-                <h1>دستیار هوشمند مهاجرت | VISA GUIDE AF</h1>
-                <p>پاسخ‌های عمیق و تخصصی به سوالات ویزا و مهاجرت شما (۳ زبانه)</p>
+                <h1>مشاور هوشمند مهاجرت افغانستان | VISA GUIDE AF</h1>
+                <p>پاسخ‌های تخصصی برای برنامه‌های P1, P2, SIV, پناهندگی, Parole, Sponsor, ازدواج در آمریکا</p>
+            </div>
+
+            <!-- دکمه‌های موضوعات سریع -->
+            <div class="topics-panel">
+                <button class="topic-btn"
+                    data-question="شرایط برنامه P1 و P2 برای افغان ها چیست؟ مراحل اقدام را کامل توضیح بده.">🇺🇸 P1 &
+                    P2</button>
+                <button class="topic-btn"
+                    data-question="ویزای SIV برای افغان ها چگونه است؟ مدارک و مراحل دریافت آن را گام به گام بگو.">🛡️
+                    SIV</button>
+                <button class="topic-btn"
+                    data-question="پناهندگی (Asylum) برای افغان ها در آمریکا چه شرایطی دارد؟ مراحل و مدارک لازم را بگو.">⚖️
+                    پناهندگی</button>
+                <button class="topic-btn"
+                    data-question="Humanitarian Parole چیست و افغان ها چگونه می توانند درخواست دهند؟">🕊️
+                    Parole</button>
+                <button class="topic-btn"
+                    data-question="حمایت مالی (Sponsor) برای مهاجرت به آمریکا چگونه کار می کند؟">🤝 Sponsor</button>
+                <button class="topic-btn"
+                    data-question="برنامه ۱۳۰ (فرم I-130) برای همسران و فرزندان چیست و چه مراحلی دارد؟">📋 برنامه
+                    ۱۳۰</button>
+                <button class="topic-btn"
+                    data-question="فرآیند ازدواج و نامزدی برای آمریکا: ویزای K-1 و K-3 و CR-1 را با جزئیات توضیح بده.">💍
+                    ازدواج آمریکا</button>
             </div>
 
             <div class="model-selector">
@@ -865,10 +916,16 @@
                 <div class="messages" id="messages">
                     <div class="message ai-message">
                         <div class="bubble">
-                            🌟 به مشاور هوشمند مهاجرت VISA GUIDE AF خوش آمدید!<br>
-                            📌 من می‌توانم درباره انواع ویزا، مدارک مورد نیاز، قوانین سفارت‌ها، هزینه‌ها و فرآیندهای
-                            مهاجرتی پاسخ کامل بدهم.<br>
-                            ✨ سوال خود را بپرسید.
+                            🌟 به مشاور هوشمند مهاجرت افغانستان خوش آمدید!<br>
+                            📌 من به طور تخصصی در مورد برنامه‌های زیر برای افغان‌ها اطلاعات دارم:<br>
+                            • P1 و P2 (برنامه‌های اولویت‌دار)<br>
+                            • SIV (ویزای ویژه مهاجران)<br>
+                            • پناهندگی (Asylum)<br>
+                            • Humanitarian Parole<br>
+                            • حمایت مالی (Sponsor)<br>
+                            • آیین‌نامه ۱۳۰ (فرم I-130)<br>
+                            • ازدواج و نامزدی در آمریکا (K-1, K-3, CR-1)<br>
+                            ✨ سوال خود را بپرسید تا راهنمایی گام‌به‌گام دریافت کنید.
                         </div>
                     </div>
                 </div>
@@ -922,7 +979,7 @@
             img.src = imgSrc;
         }
 
-        // ========== GEMINI API SETUP (با مدل قابل انتخاب) ==========
+        // ========== GEMINI API SETUP ==========
         const API_KEY = "AIzaSyA7H8sl_ltJhDX4f5VthodVZnj1T6DKcPc";
         let currentLanguage = "fa";
         let isLoading = false;
@@ -931,12 +988,22 @@
         const questionInput = document.getElementById('question');
         const sendBtn = document.getElementById('sendBtn');
         const modelSelect = document.getElementById('modelSelect');
-
-        let selectedModel = modelSelect.value;  // پیش‌فرض gemini-2.5-flash
+        let selectedModel = modelSelect.value;
 
         modelSelect.addEventListener('change', () => {
             selectedModel = modelSelect.value;
             addMessage(`🔄 مدل به ${selectedModel} تغییر یافت. اکنون می‌توانید سوال خود را بپرسید.`, false);
+        });
+
+        // ========== دکمه‌های موضوعات سریع ==========
+        document.querySelectorAll('.topic-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const question = btn.getAttribute('data-question');
+                if (question) {
+                    questionInput.value = question;
+                    sendMessage();
+                }
+            });
         });
 
         // ========== MULTILINGUAL UI ==========
@@ -953,7 +1020,9 @@
             messageDiv.className = `message ${isUser ? 'user-message' : 'ai-message'}`;
             const bubble = document.createElement('div');
             bubble.className = 'bubble';
-            bubble.innerHTML = text.replace(/\n/g, '<br>');
+            // حذف هرگونه ستاره از متن پیام (فقط برای اطمینان)
+            let cleanText = text.replace(/\*/g, '');
+            bubble.innerHTML = cleanText.replace(/\n/g, '<br>');
             messageDiv.appendChild(bubble);
             messagesDiv.appendChild(messageDiv);
             messagesDiv.scrollTop = messagesDiv.scrollHeight;
@@ -969,9 +1038,14 @@
         }
         function hideTyping() { const indicator = document.getElementById('typingIndicator'); if (indicator) indicator.remove(); }
 
+        // حذف کامل ستاره و برخی کاراکترهای ناخواسته
         function cleanAnswer(text, lang) {
             let cleaned = text;
+            // حذف ستاره‌ها
+            cleaned = cleaned.replace(/\*/g, '');
+            // حذف کاراکترهای چینی/ژاپنی (در صورت وجود)
             cleaned = cleaned.replace(/[\u4e00-\u9fff\u3400-\u4dbf\u3000-\u303f]/g, '');
+            // حذف کلمات غیررسمی
             if (lang === 'fa') { const unwanted = ['خوبی جان', 'چنایی', 'صاحب جان', 'جان جان', 'جانم', 'عزیزم', 'قربونت', 'دلبرم', 'فدایت']; for (const w of unwanted) cleaned = cleaned.replace(new RegExp(w, 'gi'), ''); }
             else if (lang === 'ps') { const unwantedPashto = ['ښه یاست', 'څنګه یاست', 'ښه راغلئ', 'جان', 'زما عزیز']; for (const w of unwantedPashto) cleaned = cleaned.replace(new RegExp(w, 'gi'), ''); }
             else if (lang === 'en') { cleaned = cleaned.replace(/\b(hey|dude|bro|awesome|no worries|you know|well|so|actually|just)\b/gi, ''); }
@@ -980,23 +1054,42 @@
             return cleaned;
         }
 
+        // ========== پرامپت تخصصی و عمیق برای افغان‌ها ==========
         function getSystemPrompt(lang) {
             if (lang === 'fa') {
-                return `شما یک مشاور حرفه‌ای مهاجرت و ویزا با نام "دستیار هوشمند VISA GUIDE AF" هستید. 
-            وظیفه شما: پاسخ به سوالات مربوط به انواع ویزا (توریستی، تحصیلی، کاری، سرمایه‌گذاری، درمانی، خانوادگی)، مدارک لازم، شرایط اخذ ویزا، قوانین سفارت‌ها (به ویژه کشورهای ترکیه، آلمان، کانادا، آمریکا، امارات، پاکستان، هند و کشورهای اروپایی)، هزینه‌های تقریبی، زمان رسیدگی، مراحل اقدام، نکات مهم و اشتباهات رایج.
-            پاسخ‌های خود را بر اساس آخرین قوانین بین‌المللی و تجربیات متقاضیان ارائه دهید. اگر سوال خارج از حیطه مهاجرت است، مودبانه بگویید که تخصص شما فقط مسائل ویزا و مهاجرت است.
-            پاسخ شما باید دقیق، کامل، مفید و در عین حال مختصر باشد. از اصطلاحات تخصصی استفاده کنید اما آنها را توضیح دهید. در صورت نیاز مثال بزنید.
-            فقط به زبان فارسی پاسخ دهید.`;
+                return `شما یک مشاور حرفه‌ای مهاجرت و پناهندگی با تخصص ویژه برای شهروندان افغانستان هستید. نام شما "مشاور هوشمند VISA GUIDE AF" است.
+
+دانش تخصصی شما شامل جزئیات کامل برنامه‌های زیر است:
+1. برنامه‌های P1 و P2 (برنامه‌های اولویت‌دار برای افغان‌های آسیب‌پذیر)
+2. ویزای ویژه مهاجران SIV (برای مترجمین و کارمندانی که به دولت آمریکا کمک کردند)
+3. پناهندگی (Asylum) در آمریکا – شرایط و مراحل
+4. Humanitarian Parole (ورود موقت بشردوستانه)
+5. حمایت مالی (Sponsor) – فرم I-864 و الزامات
+6. آیین‌نامه ۱۳۰ (فرم I-130) برای بستگان درجه یک (همسر، فرزند، والدین)
+7. ازدواج و نامزدی در آمریکا – ویزای K-1 (نامزدی)، K-3 (همسر)، CR-1/IR-1 (همسر)
+
+وظیفه شما: به هر سوال کاربر با دقت و بر اساس آخرین قوانین USCIS پاسخ دهید. پاسخ شما باید بسیار شفاف، گام‌به‌گام، عملی و راه‌حل‌محور باشد. از اصطلاحات تخصصی استفاده کنید اما آنها را توضیح دهید. مدارک لازم، فرم‌ها، هزینه‌ها، زمان تقریبی و لینک‌های رسمی (در صورت وجود) را ذکر کنید.
+
+تأکید: هرگز از علامت ستاره (*) در پاسخ استفاده نکنید. به جای آن از ایموجی‌های ساده مثل ✅، 📌، 🔹، 📄، ⏳، 💰، 🌐 استفاده کنید. پاسخ را با خط فاصله یا پاراگراف‌بندی خوانا بنویسید.
+
+اگر سوال خارج از حیطه مهاجرت است، مودبانه بگویید که تخصص شما فقط مسائل مهاجرتی و ویزا است.
+
+فقط به زبان فارسی پاسخ دهید.`;
             } else if (lang === 'ps') {
-                return `تاسو د مهاجرت او ویزې مسلکي مشاور یاست چې نوم یې "ځیرک مرستیال VISA GUIDE AF" دی. 
-            دنده: د ویزې ډولونو، اړینو اسنادو، شرایطو، سفارتخانو قوانینو (په ځانګړي توګه ترکیې، آلمان، کاناډا، امریکا، متحده عربي امارات، پاکستان، هند او اروپایي هیوادونو)، لګښتونو، وختونو، پروسو او عامو تېروتنو په اړه ځواب ووایاست.
-            ځوابونه باید دقیق، بشپړ او ګټور وي. که پوښتنه د مهاجرت څخه بهر وي، په مهربانۍ سره ووایاست چې ستاسو تخصص یوازې د ویزې او مهاجرت چارې دي.
-            یوازې په پښتو ژبه ځواب ورکړئ.`;
+                return `تاسو د مهاجرت او پناهندګۍ مسلکي مشاور یاست چې تخصص یې د افغانستان اتباعو لپاره دی. ستاسو نوم "ځیرک مرستیال VISA GUIDE AF" دی.
+تاسو باید د لاندې پروګرامونو بشپړ معلومات ولرئ:
+1. P1 او P2 پروګرامونه (د افغانستان د زیان مند وګړو لپاره لومړیتوب)
+2. SIV ځانګړی مهاجرتي ویزه (د ژباړونکو او کارکوونکو لپاره)
+3. پناهندګۍ (Asylum) په امریکا کې – شرایط او کړنلاره
+4. بشردوستانه Parole
+5. سپانسر (مالي ملاتړ) – فرم I-864
+6. قانون ۱۳۰ (فرم I-130) د کورنۍ غړو لپاره
+7. واده او نومزدي په امریکا کې – ویزې K-1, K-3, CR-1
+ځوابونه باید ګام په ګام، عملي او دقیق وي. هیڅکله د ستاره (*) نښه مه کاروئ. پرځای یې له ساده ایموجیو څخه کار واخلئ. یوازې په پښتو ژبه ځواب ورکړئ.`;
             } else {
-                return `You are a professional immigration and visa advisor named "VISA GUIDE AF Smart Assistant". 
-            Your role: Answer questions about visa types (tourist, student, work, investment, medical, family), required documents, eligibility, embassy regulations (especially Turkey, Germany, Canada, USA, UAE, Pakistan, India, European countries), costs, processing times, application steps, and common mistakes.
-            Provide accurate, detailed, and helpful answers based on current international rules and applicant experiences. If the question is outside immigration, politely state that your expertise is only visa and immigration matters.
-            Respond ONLY in English.`;
+                return `You are a professional immigration and asylum advisor specializing in Afghan nationals. Your name is "VISA GUIDE AF Smart Assistant".
+You have deep knowledge of: P1/P2 programs, SIV, Asylum, Humanitarian Parole, Sponsor (I-864), I-130 petition, K-1/K-3/CR-1 visas for marriage/fiancé.
+Provide step-by-step practical solutions, required documents, forms, costs, timelines, and official links. Never use asterisk (*) in responses. Use simple emojis instead. Respond only in English.`;
             }
         }
 
@@ -1012,7 +1105,7 @@
             showTyping();
 
             try {
-                const fullPrompt = `${getSystemPrompt(currentLanguage)}\n\nسوال کاربر: ${question}\n\nپاسخ:`;
+                const fullPrompt = `${getSystemPrompt(currentLanguage)}\n\nسوال کاربر: ${question}\n\nپاسخ (بدون استفاده از علامت ستاره):`;
                 const url = `https://generativelanguage.googleapis.com/v1beta/models/${selectedModel}:generateContent?key=${API_KEY}`;
 
                 const response = await fetch(url, {
@@ -1020,7 +1113,7 @@
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({
                         contents: [{ parts: [{ text: fullPrompt }] }],
-                        generationConfig: { temperature: 0.3, maxOutputTokens: 1000, topP: 0.9 }
+                        generationConfig: { temperature: 0.2, maxOutputTokens: 1200, topP: 0.9 }
                     })
                 });
 
