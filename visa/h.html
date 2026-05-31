@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>ویزای بشردوستانه هلند | اقامت ویژه بانوان | VISA GUIDE AF</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-dark: #03050b;
+            --bg-light: #eef2ff;
+            --glass-dark: rgba(8, 12, 25, 0.45);
+            --glass-light: rgba(255, 255, 255, 0.55);
+            --border-dark: rgba(255, 255, 255, 0.1);
+            --border-light: rgba(0, 0, 0, 0.08);
+            --text-dark: #f1f5f9;
+            --text-light: #0a0f1c;
+            --muted-dark: #94a3b8;
+            --muted-light: #475569;
+            --primary: linear-gradient(135deg, #8b5cf6, #3b82f6);
+            --primary-glow: rgba(139, 92, 246, 0.5);
+            --accent: linear-gradient(135deg, #f97316, #ef4444);
+            --font: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+        }
+
+        body {
+            background: var(--bg-dark);
+            color: var(--text-dark);
+            font-family: var(--font);
+            min-height: 100vh;
+            transition: background 0.4s, color 0.3s;
+        }
+
+        body.light-mode {
+            --bg-dark: var(--bg-light);
+            --glass-dark: var(--glass-light);
+            --border-dark: var(--border-light);
+            --text-dark: var(--text-light);
+            --muted-dark: var(--muted-light);
+            background: var(--bg-light);
+            color: var(--text-light);
+        }
+
+        .scene-3d {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            overflow: hidden;
+            perspective: 1200px;
+        }
+
+        .grid-3d {
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            top: -50%;
+            left: -50%;
+            background-image: linear-gradient(var(--border-dark) 1px, transparent 1px), linear-gradient(90deg, var(--border-dark) 1px, transparent 1px);
+            background-size: 60px 60px;
+            transform: rotateX(50deg) rotateZ(30deg) translateZ(-80px);
+            animation: gridFlow 20s infinite linear;
+            opacity: 0.3;
+        }
+
+        @keyframes gridFlow {
+            0% {
+                transform: rotateX(50deg) rotateZ(30deg) translateZ(-80px) translateY(0);
+            }
+
+            100% {
+                transform: rotateX(50deg) rotateZ(30deg) translateZ(-80px) translateY(80px);
+            }
+        }
+
+        .floating-orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(90px);
+            opacity: 0.5;
+            animation: floatGlow 22s infinite alternate;
+        }
+
+        .orb1 {
+            width: 450px;
+            height: 450px;
+            background: #8b5cf6;
+            top: -15%;
+            left: -10%;
+        }
+
+        .orb2 {
+            width: 550px;
+            height: 550px;
+            background: #3b82f6;
+            bottom: -20%;
+            right: -15%;
+            animation-delay: -6s;
+        }
+
+        .orb3 {
+            width: 350px;
+            height: 350px;
+            background: #f97316;
+            top: 45%;
+            left: 30%;
+            filter: blur(110px);
+            animation-delay: -12s;
+        }
+
+        @keyframes floatGlow {
+            0% {
+                transform: translate(0, 0) scale(1);
+            }
+
+            100% {
+                transform: translate(70px, 50px) scale(1.2);
+            }
+        }
+
+        .glass-3d {
+            background: var(--glass-dark);
+            backdrop-filter: blur(14px);
+            border: 1px solid var(--border-dark);
+            border-radius: 32px;
+            transition: transform 0.35s cubic-bezier(0.2, 0.9, 0.4, 1.1), box-shadow 0.3s;
+        }
+
+        .glass-3d:hover {
+            transform: translateY(-6px) rotateX(2deg) rotateY(1deg);
+            box-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(139, 92, 246, 0.3);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+        }
+
+        .page-header {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            margin-bottom: 2.5rem;
+            padding: 1rem 2rem;
+        }
+
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo-img {
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid #8b5cf6;
+            box-shadow: 0 0 15px var(--primary-glow);
+        }
+
+        .logo-text {
+            font-weight: 600;
+            font-size: 0.9rem;
+            padding: 6px 16px;
+            border-radius: 40px;
+            background: rgba(139, 92, 246, 0.15);
+            color: #a78bfa;
+        }
+
+        .btn-back {
+            background: var(--primary);
+            color: white;
+            text-decoration: none;
+            padding: 0.7rem 1.5rem;
+            border-radius: 40px;
+            font-weight: 500;
+            font-size: 0.9rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.25s;
+            box-shadow: 0 4px 10px var(--primary-glow);
+        }
+
+        .btn-back:hover {
+            transform: translateY(-2px);
+        }
+
+        .lang-globe {
+            position: relative;
+        }
+
+        .lang-trigger {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid var(--border-dark);
+            border-radius: 40px;
+            padding: 8px 14px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-dark);
+            font-size: 0.85rem;
+            font-weight: 500;
+            transition: 0.2s;
+        }
+
+        .lang-trigger:hover {
+            background: rgba(139, 92, 246, 0.2);
+            border-color: #8b5cf6;
+        }
+
+        .lang-menu {
+            position: absolute;
+            top: 110%;
+            left: 0;
+            background: var(--glass-dark);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--border-dark);
+            border-radius: 20px;
+            padding: 8px 0;
+            min-width: 130px;
+            z-index: 300;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.25s ease;
+        }
+
+        .lang-globe.open .lang-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .lang-option {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 8px 16px;
+            cursor: pointer;
+            transition: background 0.2s;
+            color: var(--text-dark);
+            font-size: 0.85rem;
+        }
+
+        .lang-option:hover {
+            background: rgba(139, 92, 246, 0.2);
+        }
+
+        .theme-btn {
+            background: var(--primary);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            border: none;
+            color: white;
+            box-shadow: 0 4px 12px var(--primary-glow);
+            transition: all 0.3s;
+        }
+
+        .theme-btn:hover {
+            transform: scale(1.05) rotate(15deg);
+        }
+
+        .nav-actions {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .country-banner {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin-bottom: 2rem;
+            padding: 2rem;
+        }
+
+        .country-flag {
+            width: 100px;
+            height: 100px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            box-shadow: 0 0 0 5px rgba(139, 92, 246, 0.3), 0 0 0 8px rgba(139, 92, 246, 0.1);
+            transition: all 0.3s ease;
+            animation: borderPulse 2s infinite;
+        }
+
+        @keyframes borderPulse {
+            0% {
+                box-shadow: 0 0 0 5px rgba(139, 92, 246, 0.3), 0 0 0 8px rgba(139, 92, 246, 0.1);
+            }
+
+            50% {
+                box-shadow: 0 0 0 8px rgba(139, 92, 246, 0.5), 0 0 0 12px #8b5cf6;
+            }
+
+            100% {
+                box-shadow: 0 0 0 5px rgba(139, 92, 246, 0.3), 0 0 0 8px rgba(139, 92, 246, 0.1);
+            }
+        }
+
+        .country-flag img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .country-title h1 {
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .country-title p {
+            opacity: 0.8;
+        }
+
+        .details-section {
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .details-section h2 {
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            margin-top: 1.5rem;
+            border-right: 4px solid #8b5cf6;
+            padding-right: 1rem;
+        }
+
+        .details-section h2:first-of-type {
+            margin-top: 0;
+        }
+
+        .details-section p {
+            line-height: 1.8;
+            margin-bottom: 1rem;
+            color: var(--muted-dark);
+        }
+
+        .info-list {
+            list-style: none;
+            margin: 1.5rem 0;
+        }
+
+        .info-list li {
+            padding: 0.75rem 0;
+            border-bottom: 1px solid var(--border-dark);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .info-list li i {
+            color: #a78bfa;
+            width: 24px;
+        }
+
+        .eligible-list {
+            list-style: none;
+            margin: 1rem 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 0.75rem;
+        }
+
+        .eligible-list li {
+            padding: 0.75rem 1rem;
+            background: rgba(239, 68, 68, 0.1);
+            border-right: 3px solid #ef4444;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s;
+        }
+
+        .eligible-list li:hover {
+            transform: translateX(-5px);
+        }
+
+        .eligible-list li i {
+            color: #ef4444;
+            width: 28px;
+        }
+
+        .warning-note {
+            background: rgba(245, 158, 11, 0.08);
+            border-right: 4px solid #f59e0b;
+            padding: 1rem;
+            border-radius: 1rem;
+            margin: 1rem 0;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: #fbbf24;
+        }
+
+        body.light-mode .warning-note {
+            background: #fffbeb;
+            color: #92400e;
+        }
+
+        .btn-whatsapp {
+            display: inline-block;
+            background: #25D366;
+            color: white;
+            text-decoration: none;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            margin-top: 1rem;
+            transition: all 0.25s;
+        }
+
+        .btn-whatsapp:hover {
+            background: #128C7E;
+            transform: translateY(-2px);
+        }
+
+        .footer-note {
+            text-align: center;
+            margin-top: 2rem;
+            padding-top: 1.8rem;
+            border-top: 1px solid var(--border-dark);
+            color: var(--muted-dark);
+            font-size: 0.8rem;
+        }
+
+        @media (max-width: 768px) {
+            .page-header {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .logo-area {
+                justify-content: center;
+            }
+
+            .nav-actions {
+                justify-content: center;
+            }
+
+            .country-banner {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .country-title h1 {
+                font-size: 1.3rem;
+            }
+
+            .eligible-list {
+                grid-template-columns: 1fr;
+            }
+
+            .details-section {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="scene-3d">
+        <div class="grid-3d"></div>
+        <div class="floating-orb orb1"></div>
+        <div class="floating-orb orb2"></div>
+        <div class="floating-orb orb3"></div>
+    </div>
+
+    <div class="container">
+        <div class="page-header glass-3d">
+            <div class="logo-area">
+                <img class="logo-img" src="../images/kha.jpg" alt="لوگو">
+                <span class="logo-text"><i class="fas fa-hand-holding-heart"></i> <span data-key="visaTitle">ویزای
+                        بشردوستانه</span></span>
+            </div>
+            <div class="nav-actions">
+                <div class="lang-globe" id="langGlobe">
+                    <div class="lang-trigger" id="langTrigger">
+                        <i class="fas fa-globe-americas"></i>
+                        <span id="currentLangLabel">فارسی</span>
+                        <i class="fas fa-chevron-down" style="font-size: 0.7rem;"></i>
+                    </div>
+                    <div class="lang-menu">
+                        <div class="lang-option" data-lang="fa"><span>🇦🇫</span> فارسی</div>
+                        <div class="lang-option" data-lang="en"><span>🇬🇧</span> English</div>
+                        <div class="lang-option" data-lang="ps"><span>🇦🇫</span> پښتو</div>
+                    </div>
+                </div>
+                <button class="theme-btn" id="themeBtn"><i class="fas fa-moon"></i></button>
+            </div>
+            <a href="visa.html" class="btn-back">
+                <i class="fas fa-arrow-right"></i> <span data-key="backBtn">برگشت به لیست کشورها</span>
+            </a>
+        </div>
+
+        <div class="country-banner glass-3d">
+            <div class="country-flag">
+                <img src="visa-pic/nettherlands.png" alt="پرچم هلند"
+                    onerror="this.src='https://placehold.co/100x100?text=NL'">
+            </div>
+            <div class="country-title">
+                <h1><i class="fas fa-map-marker-alt"></i> <span data-key="pageTitle">ویزای بشردوستانه هلند و اقامت ویژه
+                        بانوان</span></h1>
+                <p><span data-key="subtitle">راه قانونی پناهندگی برای بانوان افغان | حمایت از طریق UNHCR</span></p>
+            </div>
+        </div>
+
+        <div class="details-section glass-3d">
+            <h2><i class="fas fa-gavel"></i> <span data-key="factsTitle">حقایق قانونی که باید بدانید (قوانین ویژه
+                    بانوان)</span></h2>
+            <p data-key="fact1">• <strong>هیچ لینک ثبت‌نامی وجود ندارد:</strong> وزارت امور خارجه هلند در حال حاضر
+                هیچ‌گونه لینک مستقیم یا وب‌سایت رسمی برای ثبت‌نام پناهندگی بانوان از خارج از کشور ندارد. فریب لینک‌های
+                جعلی را نخورید.</p>
+            <p data-key="fact2">• <strong>پناهندگی فقط در داخل هلند:</strong> درخواست‌های پناهندگی بانوان فقط و فقط
+                زمانی قابل بررسی است که شخص به داخل خاک هلند رسیده باشد تا پرونده او توسط اداره مهاجرت (IND) ثبت شود.
+            </p>
+            <p data-key="fact3">• <strong>شرط جنسیت:</strong> تنها زنانی می‌توانند از این مسیر بررسی شوند که ثابت کنند
+                به دلیل جنسیت خود (مانند تهدید به ازدواج اجباری، خشونت جنسیتی، ممنوعیت تحصیل یا کار) در معرض خطر جدی
+                هستند.</p>
+
+            <div class="warning-note">
+                <i class="fas fa-exclamation-triangle" style="font-size: 1.2rem;"></i>
+                <span data-key="warning">تنها راه قانونی برای بانوان خارج از هلند: ثبت‌نام از طریق UNHCR و برنامه اسکان
+                    مجدد (Resettlement) با معرفی سازمان ملل. هیچ مسیر مستقیم دیگری وجود ندارد.</span>
+            </div>
+
+            <h2><i class="fas fa-users"></i> <span data-key="eligibleTitle">✅ واجدین شرایط برنامه (ویژه بانوان
+                    افغان)</span></h2>
+            <ul class="eligible-list" id="eligibleList"></ul>
+
+            <h2><i class="fas fa-hand-holding-heart"></i> <span data-key="supportTitle">📌 چگونه Visa Guide AF شما را
+                    حمایت می‌کند؟</span></h2>
+            <p data-key="support1">۱. ارائه فهرست‌های مشخص از تمام اسناد، مدارک و شواهد لازم برای تشکیل یک پرونده قوی
+                (شامل مدارک هویتی، اثبات تهدید مبتنی بر جنسیت، گزارش‌های پزشکی، مدارک تحصیلی و شغلی)</p>
+            <p data-key="support2">۲. برگزاری سمینارها جهت آشنایی کامل با روند کاری سازمان ملل و آمادگی برای مصاحبه‌ها
+                (با تأکید بر نحوه بیان خطرات ویژه زنان)</p>
+            <p data-key="support3">۳. ارائه رهنمودهای دقیق و گام‌به‌گام برای نحوه درست ارتباط با دفاتر مربوطه و پیگیری
+                پرونده (مخصوص بانوانی که سرپرست خانوار هستند یا دسترسی محدود به اینترنت دارند)</p>
+            <p data-key="support4">۴. مشاوره و پشتیبانی تخصصی برای ارزیابی مداوم وضعیت شما (با مشاوران زن متخصص در حقوق
+                زنان و پناهندگی)</p>
+
+            <h2><i class="fas fa-file-alt"></i> <span data-key="documentsTitle">مدارک ضروری برای شروع فرآیند (راهنمای
+                    اولیه)</span></h2>
+            <ul class="info-list" id="documentsList"></ul>
+
+            <a href="https://wa.me/message/ZY2KWEKZLQCXF1?src=qr" class="btn-whatsapp" target="_blank">
+                <i class="fab fa-whatsapp"></i> <span data-key="whatsappBtn">ثبت‌نام و دریافت خدمات از طریق
+                    واتساپ</span>
+            </a>
+        </div>
+
+        <div class="footer-note">
+            <i class="fas fa-heart" style="color: #e11d48;"></i> <span data-key="footerText">قطب‌نمای مطمئن شما در مسیر
+                قانونی مهاجرت | VISA GUIDE AF</span>
+        </div>
+    </div>
+
+    <script>
+        // ========== MULTILINGUAL DATA (جایگزین شده با اطلاعات هلند) ==========
+        const T = {
+            fa: {
+                visaTitle: "ویزای بشردوستانه", backBtn: "برگشت به لیست کشورها",
+                pageTitle: "ویزای بشردوستانه هلند و اقامت ویژه بانوان", subtitle: "راه قانونی پناهندگی برای بانوان افغان | حمایت از طریق UNHCR",
+                factsTitle: "حقایق قانونی که باید بدانید (قوانین ویژه بانوان)",
+                fact1: "• <strong>هیچ لینک ثبت‌نامی وجود ندارد:</strong> وزارت امور خارجه هلند در حال حاضر هیچ‌گونه لینک مستقیم یا وب‌سایت رسمی برای ثبت‌نام پناهندگی بانوان از خارج از کشور ندارد. فریب لینک‌های جعلی را نخورید.",
+                fact2: "• <strong>پناهندگی فقط در داخل هلند:</strong> درخواست‌های پناهندگی بانوان فقط و فقط زمانی قابل بررسی است که شخص به داخل خاک هلند رسیده باشد تا پرونده او توسط اداره مهاجرت (IND) ثبت شود.",
+                fact3: "• <strong>شرط جنسیت:</strong> تنها زنانی می‌توانند از این مسیر بررسی شوند که ثابت کنند به دلیل جنسیت خود (مانند تهدید به ازدواج اجباری، خشونت جنسیتی، ممنوعیت تحصیل یا کار) در معرض خطر جدی هستند.",
+                warning: "تنها راه قانونی برای بانوان خارج از هلند: ثبت‌نام از طریق UNHCR و برنامه اسکان مجدد (Resettlement) با معرفی سازمان ملل. هیچ مسیر مستقیم دیگری وجود ندارد.",
+                eligibleTitle: "✅ واجدین شرایط برنامه (ویژه بانوان افغان)",
+                supportTitle: "📌 چگونه Visa Guide AF شما را حمایت می‌کند؟",
+                support1: "۱. ارائه فهرست‌های مشخص از تمام اسناد، مدارک و شواهد لازم برای تشکیل یک پرونده قوی (شامل مدارک هویتی، اثبات تهدید مبتنی بر جنسیت، گزارش‌های پزشکی، مدارک تحصیلی و شغلی)",
+                support2: "۲. برگزاری سمینارها جهت آشنایی کامل با روند کاری سازمان ملل و آمادگی برای مصاحبه‌ها (با تأکید بر نحوه بیان خطرات ویژه زنان)",
+                support3: "۳. ارائه رهنمودهای دقیق و گام‌به‌گام برای نحوه درست ارتباط با دفاتر مربوطه و پیگیری پرونده (مخصوص بانوانی که سرپرست خانوار هستند یا دسترسی محدود به اینترنت دارند)",
+                support4: "۴. مشاوره و پشتیبانی تخصصی برای ارزیابی مداوم وضعیت شما (با مشاوران زن متخصص در حقوق زنان و پناهندگی)",
+                documentsTitle: "مدارک ضروری برای شروع فرآیند (راهنمای اولیه)",
+                whatsappBtn: "ثبت‌نام و دریافت خدمات از طریق واتساپ",
+                footerText: "قطب‌نمای مطمئن شما در مسیر قانونی مهاجرت | VISA GUIDE AF"
+            },
+            en: {
+                visaTitle: "Humanitarian Visa", backBtn: "Back to Countries List",
+                pageTitle: "Netherlands Humanitarian Visa & Women's Residence", subtitle: "Legal asylum pathway for Afghan women | Support via UNHCR",
+                factsTitle: "Legal Facts You Must Know (Women-Specific Laws)",
+                fact1: "• <strong>No registration link exists:</strong> The Dutch Ministry of Foreign Affairs currently has no direct link or official website for women to apply for asylum from outside the country. Don't be fooled by fake links.",
+                fact2: "• <strong>Asylum only within Netherlands:</strong> Women's asylum applications can only be assessed when the person has arrived on Dutch soil, so that the IND can register the case.",
+                fact3: "• <strong>Gender condition:</strong> Only women who can prove they are at serious risk because of their gender (e.g., forced marriage, gender-based violence, ban on education or work) can be considered.",
+                warning: "The only legal pathway for women outside the Netherlands: registration through UNHCR and the Resettlement program referred by the UN. No other direct route exists.",
+                eligibleTitle: "✅ Eligible Candidates (Afghan Women)",
+                supportTitle: "📌 How does Visa Guide AF support you?",
+                support1: "1. Providing clear checklists of all necessary documents and evidence to build a strong case (identity documents, proof of gender-based threats, medical reports, education and employment records).",
+                support2: "2. Organizing seminars to fully understand UNHCR procedures and prepare for interviews (focusing on how to articulate women-specific risks).",
+                support3: "3. Offering step-by-step guidance on how to properly contact relevant offices and follow up on your case (especially for women who are heads of household or have limited internet access).",
+                support4: "4. Professional consultation and ongoing assessment of your situation (with female experts in women's rights and asylum law).",
+                documentsTitle: "Essential Documents to Start the Process (Initial Guide)",
+                whatsappBtn: "Register & Get Services via WhatsApp",
+                footerText: "Your trusted guide on the legal migration path | VISA GUIDE AF"
+            },
+            ps: {
+                visaTitle: "بشري ویزه", backBtn: "بیرته د هیوادونو لیست ته",
+                pageTitle: "د هالنډ بشري ویزه او د ښځو ځانګړی اقامت", subtitle: "د افغان ښځو لپاره د پناه غوښتنې قانوني لار | د UNHCR له لارې ملاتړ",
+                factsTitle: "هغه قانوني حقایق چې باید پوه شئ (د ښځو ځانګړي قوانین)",
+                fact1: "• <strong>د ثبت نام کوم لینک شتون نلري:</strong> د هالنډ د بهرنیو چارو وزارت اوس مهال له بهر هېوادونو څخه د ښځو د پناه غوښتنې لپاره کوم مستقیم لینک یا رسمي ویب سایټ نلري. د جعلي لینکونو څخه مه کوږیږئ.",
+                fact2: "• <strong>پناه غوښتنه یوازې د هالنډ دننه:</strong> د ښځو د پناه غوښتنې یوازې هغه وخت ارزول کېدی شي چې کس د هالنډ خاورې ته رسیدلی وي، ترڅو د کډوالۍ ادارې (IND) لخوا د هغې قضیه ثبت شي.",
+                fact3: "• <strong>د جنسیت شرط:</strong> یوازې هغه ښځې کولی شي له دې لارې وارزول شي چې ثابت کړي د خپل جنسیت له امله (لکه د اجباري واده ګواښ، د جنسیتي تاوتریخوالي، د زده کړې یا کار بندیز) په جدي خطر کې دي.",
+                warning: "د هالنډ څخه بهر د ښځو لپاره یوازینۍ قانوني لار: د UNHCR له لارې ثبت نام او د ملګرو ملتونو د معرفي له مخې د بیا میشتیدنې پروګرام. بله مستقیمه لار نشته.",
+                eligibleTitle: "✅ واجد شرایط کسان (افغان ښځې)",
+                supportTitle: "📌 Visa Guide AF تاسو سره څنګه مرسته کوي؟",
+                support1: "۱. د قوي قضیې جوړولو لپاره د ټولو اړینو اسنادو او شواهدو روښانه لیستونه وړاندې کول (د هویت اسناد، د جنسیت پر بنسټ د ګواښونو ثبوت، طبي راپورونه، تعلیمي او دندې ریکارډونه).",
+                support2: "۲. د UNHCR د کاري پروسو بشپړې پوهې او د مرکو لپاره چمتووالي سیمینارونه جوړول (په ځانګړي ډول د ښځو د خطرونو د څرګندولو په اړه).",
+                support3: "۳. د اړوندو دفترونو سره د سم تماس نیولو او ستاسو د قضیې د تعقیب لپاره ګام په ګام لارښوونې وړاندې کول (په ځانګړي ډول هغو ښځو لپاره چې د کورنۍ مسؤل دي یا محدود انټرنیټ لاسرسی لري).",
+                support4: "۴. ستاسو د وضعیت د روانې ارزونې لپاره مسلکي مشوره او ملاتړ (د ښځو په حقونو او پناه کې تخصص لرونکې ښځینه مشاورین).",
+                documentsTitle: "د پیل لپاره اړین اسناد (لومړنۍ لارښودنه)",
+                whatsappBtn: "د واټس اپ له لارې ثبت نام او خدمات ترلاسه کړئ",
+                footerText: "په قانوني کډوالۍ کې ستاسو باوري لارښود | VISA GUIDE AF"
+            }
+        };
+
+        const eligibleItems = {
+            fa: [
+                "زنان و دختران بازمانده از تحصیل", "زنان فعال حقوق بشر و مدنی", "زنان خبرنگار و روزنامه‌نگار",
+                "زنان قاضی، وکیل و فعالان قضایی", "زنان ورزشکار و مربیان ورزشی", "زنان اقلیت‌های مذهبی (هزاره، مسیحی، سیک، هندو، سادات)",
+                "زنان بازمانده از خشونت جنسی و جنگی", "زنان بیوه و سرپرست خانوار در مناطق جنگی", "زنان پناهجوی سابق که در کشور دیگر نیز در خطر هستند",
+                "زنانی که به دلیل بی‌حجابی یا عدم رعایت قوانین اجباری پوشش تهدید شده‌اند", "زنانی که بدون محرم قادر به خروج از منزل یا سفر نیستند",
+                "زنانی که با سازمان‌های بین‌المللی یا سازمان‌های زنان هلند همکاری داشته‌اند"
+            ],
+            en: [
+                "Women and girls deprived of education", "Women human rights and civil activists", "Female journalists and reporters",
+                "Female judges, lawyers, and judicial activists", "Female athletes and sports coaches", "Women from religious minorities (Hazara, Christian, Sikh, Hindu, Sadat)",
+                "Women survivors of sexual and war violence", "Widows and female heads of households in war zones", "Former female refugees still at risk in another country",
+                "Women threatened due to lack of hijab or not following mandatory dress codes", "Women who cannot leave home or travel without a male guardian",
+                "Women who have cooperated with international organizations or Dutch women's organizations"
+            ],
+            ps: [
+                "هغه ښځې او نجونې چې له زده کړو پاتې شوي", "د بشري حقونو او مدني فعالې ښځې", "خبریالې او ورځپاڼې لیکونکې ښځې",
+                "قاضیات، وکیلان او قضايي فعالې ښځې", "سپورتکارې او سپورتي روزونکې ښځې", "د مذهبي اقلیتونو ښځې (هزاره، عیسوي، سیک، هندو، سادات)",
+                "د جنسي او جنګي تاوتریخوالي ځپلې ښځې", "کونډې او د جګړې په سیمو کې د کورنۍ مسؤلې ښځې", "هغه پخوانۍ پناه غوښتونکې ښځې چې په بل هېواد کې هم له خطر سره مخ دي",
+                "هغه ښځې چې د حجاب نه لرلو یا د اجباري پوښاک قوانینو نه پابندۍ له امله ګواښل شوي", "هغه ښځې چې له نارینه محرم پرته له کوره وتلو یا سفر کولو توان نلري",
+                "هغه ښځې چې له نړیوالو سازمانونو یا د هالنډ د ښځو سازمانونو سره همکاري کړې"
+            ]
+        };
+
+        const documentsItems = {
+            fa: ["تذکره (کارت ملی)", "پاسپورت معتبر", "ایمیل آدرس معتبر", "شماره تماس فعال", "مدارک اثبات تهدید (نامه‌ها، پیام‌ها، گزارش‌ها)", "گزارش‌های پزشکی در صورت خشونت", "مدارک تحصیلی و شغلی", "اثبات وضعیت تأهل یا سرپرستی خانواده", "هرگونه مدرک همکاری با سازمان‌های بین‌المللی"],
+            en: ["National ID (Tazkira)", "Valid passport", "Valid email address", "Active phone number", "Evidence of threats (letters, messages, reports)", "Medical reports in case of violence", "Education and employment documents", "Proof of marital status or family headship", "Any proof of cooperation with international organizations"],
+            ps: ["تذکره", "اعتباري پاسپورټ", "اعتباري بریښنالیک آدرس", "فعال تلیفون شمېره", "د ګواښونو ثبوت (لیکونه، پیغامونه، راپورونه)", "د تاوتریخوالي په صورت کې طبي راپورونه", "تعلیمي او دندې اسناد", "د واده حالت یا د کورنۍ مسؤلیت ثبوت", "د نړیوالو سازمانونو سره د همکارۍ هر ډول ثبوت"]
+        };
+
+        let currentLang = 'fa';
+
+        function updateLists() {
+            document.getElementById('eligibleList').innerHTML = eligibleItems[currentLang].map(item => `<li><i class="fas fa-check-circle"></i> ${item}</li>`).join('');
+            document.getElementById('documentsList').innerHTML = documentsItems[currentLang].map(item => `<li><i class="fas fa-file-alt"></i> ${item}</li>`).join('');
+        }
+
+        function applyLanguage(lang) {
+            currentLang = lang;
+            document.querySelectorAll('[data-key]').forEach(el => {
+                const key = el.getAttribute('data-key');
+                if (T[lang][key]) {
+                    // برای پاراگراف‌هایی که HTML tag دارند innerHTML استفاده شود
+                    if (key === 'fact1' || key === 'fact2' || key === 'fact3' || key === 'support1' || key === 'support2' || key === 'support3' || key === 'support4') {
+                        el.innerHTML = T[lang][key];
+                    } else {
+                        el.innerText = T[lang][key];
+                    }
+                }
+            });
+            const labelMap = { fa: "فارسی", en: "English", ps: "پښتو" };
+            document.getElementById('currentLangLabel').innerText = labelMap[lang];
+            updateLists();
+        }
+
+        // Theme toggle
+        const themeBtn = document.getElementById('themeBtn');
+        const savedTheme = localStorage.getItem('srs-theme') || 'dark';
+        if (savedTheme === 'light') {
+            document.body.classList.add('light-mode');
+            themeBtn.innerHTML = '<i class="fas fa-sun"></i>';
+        } else {
+            document.body.classList.remove('light-mode');
+            themeBtn.innerHTML = '<i class="fas fa-moon"></i>';
+        }
+        themeBtn.addEventListener('click', () => {
+            const isLight = document.body.classList.contains('light-mode');
+            if (isLight) {
+                document.body.classList.remove('light-mode');
+                themeBtn.innerHTML = '<i class="fas fa-moon"></i>';
+                localStorage.setItem('srs-theme', 'dark');
+            } else {
+                document.body.classList.add('light-mode');
+                themeBtn.innerHTML = '<i class="fas fa-sun"></i>';
+                localStorage.setItem('srs-theme', 'light');
+            }
+        });
+
+        // Language globe
+        const globe = document.getElementById('langGlobe');
+        const trigger = document.getElementById('langTrigger');
+        trigger.addEventListener('click', (e) => { e.stopPropagation(); globe.classList.toggle('open'); });
+        document.addEventListener('click', (e) => { if (!globe.contains(e.target)) globe.classList.remove('open'); });
+        document.querySelectorAll('.lang-option').forEach(opt => {
+            opt.addEventListener('click', (e) => {
+                const newLang = opt.getAttribute('data-lang');
+                if (newLang) applyLanguage(newLang);
+                globe.classList.remove('open');
+            });
+        });
+
+        applyLanguage('fa');
+    </script>
+</body>
+
+</html>
