@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=yes">
-    <title>VISA GUIDE AF | خدمات مهاجرتی افغان‌ها</title>
+    <title>VISA GUIDE AF | رهنمای ویزا</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <style>
         /* ========== RESET & VARIABLES ========== */
@@ -698,6 +698,12 @@
             <li><a href="faq.html"><img src="images/f&a.png"> <span data-key="faq">سوالات</span></a></li>
             <li><a href="news/day-news/day.html"><img src="images/event.png"> <span data-key="news">اخبار</span></a>
             </li>
+            <li>
+                <a href="document.html">
+                    <img src="images/event.png">
+                    <span data-key="documents">مستندات</span>
+                </a>
+            </li>
         </ul>
         <div class="nav-actions">
             <div class="lang-globe" id="langGlobe">
@@ -787,9 +793,90 @@
     <script>
         // MULTILINGUAL DATA
         const T = {
-            fa: { home: "خانه", services: "خدمات", ai: "هوش مصنوعی", contact: "تماس", faq: "سوالات", news: "اخبار", trusted: "خدمات معتبر مهاجرت", heroTitle: "خدمات مهاجرت برای افغان‌ها", heroDesc: '<strong>VISA GUIDE AF</strong> بزرگترین مرجع مشاوره مهاجرت و ثبت‌نام ویزای بشردوستانه برای <strong>افغان‌ها</strong> — همراه مطمئن شما تا امنیت و آرامش.', seeServices: "مشاهده خدمات", getHelp: "دریافت مشاوره", stat1: "پرونده موفق", stat2: "کشور مقصد", stat3: "پشتیبانی آنلاین", stat4: "سال تجربه", latestNews: "آخرین اخبار", footTitle1: "خدمات مهاجرت", footDesc1: "معتبرترین خدمات در افغانستان", footDesc2: "خدمات مهاجرتی جهانی", footTitle2: "تماس با ما", footAddr: "ایبک، سمنگان، افغانستان", footTitle3: "شبکه‌های اجتماعی", copy: "© 2026 VISA GUIDE AF — همه حقوق محفوظ است", readMore: "بیشتر بخوانید", breaking: "لحظاتی پیش" },
-            en: { home: "Home", services: "Services", ai: "AI Assistant", contact: "Contact", faq: "FAQ", news: "News", trusted: "Trusted Migration Services", heroTitle: "Migration Services for Afghans", heroDesc: '<strong>VISA GUIDE AF</strong> — the largest immigration consulting center for <strong>Afghans</strong>. Your trusted partner to safety and peace.', seeServices: "View Services", getHelp: "Get Consultation", stat1: "Successful Cases", stat2: "Destination Countries", stat3: "24/7 Support", stat4: "Years Experience", latestNews: "Latest News", footTitle1: "Immigration Services", footDesc1: "Most reliable services in Afghanistan", footDesc2: "Global immigration services", footTitle2: "Contact Us", footAddr: "Aibak, Samangan, Afghanistan", footTitle3: "Social Networks", copy: "© 2026 VISA GUIDE AF — All rights reserved", readMore: "Read More", breaking: "Breaking" },
-            ps: { home: "کور", services: "خدمات", ai: "AI", contact: "اړیکه", faq: "پوښتنې", news: "خبرونه", trusted: "د مهاجرت باوري خدمات", heroTitle: "د افغانانو لپاره د مهاجرت خدمات", heroDesc: '<strong>VISA GUIDE AF</strong> د افغانانو لپاره ترټولو لوی د کډوالۍ مرکز — ستاسو باوري ملګری.', seeServices: "خدمات وګورئ", getHelp: "مشوره ترلاسه کړئ", stat1: "بریالي قضیې", stat2: "مقصد هیوادونه", stat3: "آنلاین ملاتړ", stat4: "کلونه تجربه", latestNews: "وروستي خبرونه", footTitle1: "د کډوالۍ خدمات", footDesc1: "افغانستان کې ترټولو معتبر خدمات", footDesc2: "نړیوال د کډوالۍ خدمات", footTitle2: "اړیکه", footAddr: "ایبک, سمنګان، افغانستان", footTitle3: "ټولنیزې شبکې", copy: "© 2026 VISA GUIDE AF — ټول حقونه خوندي", readMore: "نور ولولئ", breaking: "شیبې مخکې" }
+            fa: {
+                home: "خانه",
+                services: "خدمات",
+                ai: "هوش مصنوعی",
+                contact: "تماس",
+                faq: "سوالات",
+                news: "اخبار",
+                documents: "مستندات",  // <-- اضافه شد
+                trusted: "خدمات معتبر مهاجرت",
+                heroTitle: "خدمات مهاجرت برای افغان‌ها",
+                heroDesc: '<strong>VISA GUIDE AF</strong> بزرگترین مرجع مشاوره مهاجرت و ثبت‌نام ویزای بشردوستانه برای <strong>افغان‌ها</strong> — همراه مطمئن شما تا امنیت و آرامش.',
+                seeServices: "مشاهده خدمات",
+                getHelp: "دریافت مشاوره",
+                stat1: "پرونده موفق",
+                stat2: "کشور مقصد",
+                stat3: "پشتیبانی آنلاین",
+                stat4: "سال تجربه",
+                latestNews: "آخرین اخبار",
+                footTitle1: "خدمات مهاجرت",
+                footDesc1: "معتبرترین خدمات در افغانستان",
+                footDesc2: "خدمات مهاجرتی جهانی",
+                footTitle2: "تماس با ما",
+                footAddr: "ایبک، سمنگان، افغانستان",
+                footTitle3: "شبکه‌های اجتماعی",
+                copy: "© 2026 VISA GUIDE AF — همه حقوق محفوظ است",
+                readMore: "بیشتر بخوانید",
+                breaking: "لحظاتی پیش"
+            },
+            en: {
+                home: "Home",
+                services: "Services",
+                ai: "AI Assistant",
+                contact: "Contact",
+                faq: "FAQ",
+                news: "News",
+                documents: "Documents",  // <-- اضافه شد
+                trusted: "Trusted Migration Services",
+                heroTitle: "Migration Services for Afghans",
+                heroDesc: '<strong>VISA GUIDE AF</strong> — the largest immigration consulting center for <strong>Afghans</strong>. Your trusted partner to safety and peace.',
+                seeServices: "View Services",
+                getHelp: "Get Consultation",
+                stat1: "Successful Cases",
+                stat2: "Destination Countries",
+                stat3: "24/7 Support",
+                stat4: "Years Experience",
+                latestNews: "Latest News",
+                footTitle1: "Immigration Services",
+                footDesc1: "Most reliable services in Afghanistan",
+                footDesc2: "Global immigration services",
+                footTitle2: "Contact Us",
+                footAddr: "Aibak, Samangan, Afghanistan",
+                footTitle3: "Social Networks",
+                copy: "© 2026 VISA GUIDE AF — All rights reserved",
+                readMore: "Read More",
+                breaking: "Breaking"
+            },
+            ps: {
+                home: "کور",
+                services: "خدمات",
+                ai: "AI",
+                contact: "اړیکه",
+                faq: "پوښتنې",
+                news: "خبرونه",
+                documents: "اسناد",  // <-- اضافه شد (پشتو)
+                trusted: "د مهاجرت باوري خدمات",
+                heroTitle: "د افغانانو لپاره د مهاجرت خدمات",
+                heroDesc: '<strong>VISA GUIDE AF</strong> د افغانانو لپاره ترټولو لوی د کډوالۍ مرکز — ستاسو باوري ملګری.',
+                seeServices: "خدمات وګورئ",
+                getHelp: "مشوره ترلاسه کړئ",
+                stat1: "بریالي قضیې",
+                stat2: "مقصد هیوادونه",
+                stat3: "آنلاین ملاتړ",
+                stat4: "کلونه تجربه",
+                latestNews: "وروستي خبرونه",
+                footTitle1: "د کډوالۍ خدمات",
+                footDesc1: "افغانستان کې ترټولو معتبر خدمات",
+                footDesc2: "نړیوال د کډوالۍ خدمات",
+                footTitle2: "اړیکه",
+                footAddr: "ایبک, سمنګان، افغانستان",
+                footTitle3: "ټولنیزې شبکې",
+                copy: "© 2026 VISA GUIDE AF — ټول حقونه خوندي",
+                readMore: "نور ولولئ",
+                breaking: "شیبې مخکې"
+            }
         };
 
         const statValues = {

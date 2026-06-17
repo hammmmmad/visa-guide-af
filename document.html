@@ -1,0 +1,1177 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=yes">
+    <title>مستندات و اخبار | VISA GUIDE AF</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-dark: #03050b;
+            --bg-light: #eef2ff;
+            --glass-dark: rgba(8, 12, 25, 0.45);
+            --glass-light: rgba(255, 255, 255, 0.55);
+            --border-dark: rgba(255, 255, 255, 0.1);
+            --border-light: rgba(0, 0, 0, 0.08);
+            --text-dark: #f1f5f9;
+            --text-light: #0a0f1c;
+            --muted-dark: #94a3b8;
+            --muted-light: #475569;
+            --primary: linear-gradient(135deg, #8b5cf6, #3b82f6);
+            --primary-glow: rgba(139, 92, 246, 0.5);
+            --font: 'Vazirmatn', 'Inter', system-ui, -apple-system, 'Segoe UI', Tahoma, sans-serif;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+        }
+
+        body {
+            background: var(--bg-dark);
+            color: var(--text-dark);
+            font-family: var(--font);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            transition: background 0.4s, color 0.3s;
+        }
+
+        body.light-mode {
+            --bg-dark: var(--bg-light);
+            --glass-dark: var(--glass-light);
+            --border-dark: var(--border-light);
+            --text-dark: var(--text-light);
+            --muted-dark: var(--muted-light);
+            background: var(--bg-light);
+            color: var(--text-light);
+        }
+
+        .scene-3d {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            overflow: hidden;
+            perspective: 1200px;
+        }
+
+        .grid-3d {
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            top: -50%;
+            left: -50%;
+            background-image: linear-gradient(var(--border-dark) 1px, transparent 1px),
+                linear-gradient(90deg, var(--border-dark) 1px, transparent 1px);
+            background-size: 40px 40px;
+            transform: rotateX(50deg) rotateZ(30deg) translateZ(-80px);
+            animation: gridFlow 20s infinite linear;
+            opacity: 0.3;
+        }
+
+        @keyframes gridFlow {
+            0% {
+                transform: rotateX(50deg) rotateZ(30deg) translateZ(-80px) translateY(0);
+            }
+
+            100% {
+                transform: rotateX(50deg) rotateZ(30deg) translateZ(-80px) translateY(80px);
+            }
+        }
+
+        .floating-orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(90px);
+            opacity: 0.5;
+            animation: floatGlow 22s infinite alternate;
+        }
+
+        .orb1 {
+            width: 450px;
+            height: 450px;
+            background: #8b5cf6;
+            top: -15%;
+            left: -10%;
+        }
+
+        .orb2 {
+            width: 550px;
+            height: 550px;
+            background: #3b82f6;
+            bottom: -20%;
+            right: -15%;
+            animation-delay: -6s;
+        }
+
+        .orb3 {
+            width: 350px;
+            height: 350px;
+            background: #f97316;
+            top: 45%;
+            left: 30%;
+            filter: blur(110px);
+            animation-delay: -12s;
+        }
+
+        @keyframes floatGlow {
+            0% {
+                transform: translate(0, 0) scale(1);
+            }
+
+            100% {
+                transform: translate(70px, 50px) scale(1.2);
+            }
+        }
+
+        .glass-3d {
+            background: var(--glass-dark);
+            backdrop-filter: blur(14px);
+            border: 1px solid var(--border-dark);
+            border-radius: 32px;
+            transition: transform 0.35s cubic-bezier(0.2, 0.9, 0.4, 1.1), box-shadow 0.3s;
+        }
+
+        .glass-3d:hover {
+            transform: translateY(-6px) rotateX(2deg) rotateY(1deg);
+            box-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(139, 92, 246, 0.3);
+        }
+
+        /* ===== NAVBAR ===== */
+        .navbar {
+            position: sticky;
+            top: 20px;
+            width: calc(100% - 40px);
+            max-width: 1300px;
+            margin: 0 auto;
+            z-index: 200;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 20px;
+            background: var(--glass-dark);
+            backdrop-filter: blur(16px);
+            border: 1px solid var(--border-dark);
+            border-radius: 80px;
+        }
+
+        .logo-wrap {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+        }
+
+        .logo-wrap img {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            border: 2px solid #8b5cf6;
+            box-shadow: 0 0 15px var(--primary-glow);
+            transition: transform 0.4s;
+        }
+
+        .logo-name {
+            font-weight: 800;
+            font-size: 0.75rem;
+            line-height: 1.2;
+            background: linear-gradient(120deg, #fff, #c084fc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 5px;
+        }
+
+        .nav-links a {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 14px;
+            text-decoration: none;
+            color: var(--muted-dark);
+            font-weight: 600;
+            font-size: 0.85rem;
+            border-radius: 50px;
+            transition: 0.2s;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 4px;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #8b5cf6, #3b82f6);
+            transition: width 0.25s;
+            transform: translateX(-50%);
+        }
+
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 40%;
+        }
+
+        .nav-links a::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 50px;
+            background: var(--primary);
+            opacity: 0;
+            transition: opacity 0.3s;
+            z-index: -1;
+        }
+
+        .nav-links a:hover::before,
+        .nav-links a.active::before {
+            opacity: 0.15;
+        }
+
+        .nav-links a img {
+            width: 20px;
+            height: 20px;
+            transition: filter 0.3s;
+            vertical-align: middle;
+        }
+
+        .dark-mode .nav-links a img {
+            filter: brightness(0) invert(1);
+        }
+
+        .light-mode .nav-links a img {
+            filter: brightness(0);
+        }
+
+        /* ===== LANGUAGE ===== */
+        .lang-globe {
+            position: relative;
+        }
+
+        .globe-trigger {
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid var(--border-dark);
+            border-radius: 40px;
+            padding: 6px 12px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.8rem;
+        }
+
+        .lang-dropdown {
+            position: absolute;
+            top: 110%;
+            left: 0;
+            background: var(--glass-dark);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--border-dark);
+            border-radius: 20px;
+            min-width: 130px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.25s;
+            z-index: 300;
+        }
+
+        .lang-globe.open .lang-dropdown {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .lang-option {
+            padding: 10px 16px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            cursor: pointer;
+            border-radius: 16px;
+        }
+
+        .lang-option:hover {
+            background: rgba(139, 92, 246, 0.2);
+        }
+
+        .nav-actions {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+
+        .theme-btn {
+            background: var(--primary);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            border: none;
+            color: white;
+        }
+
+        .menu-btn {
+            display: none;
+            width: 44px;
+            height: 44px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border-dark);
+            border-radius: 30px;
+            font-size: 1.6rem;
+            cursor: pointer;
+        }
+
+        /* ===== DOCUMENTS ===== */
+        .doc-container {
+            max-width: 1300px;
+            margin: 40px auto 60px;
+            padding: 0 20px;
+        }
+
+        .doc-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .doc-header h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #c084fc, #60a5fa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: inline-block;
+        }
+
+        .doc-header p {
+            color: var(--muted-dark);
+            font-size: 1.05rem;
+            margin-top: 10px;
+        }
+
+        .doc-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 30px;
+        }
+
+        .doc-card {
+            padding: 24px 20px 20px;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: default;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            min-height: 380px;
+        }
+
+        .doc-card .card-img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid rgba(139, 92, 246, 0.3);
+            box-shadow: 0 0 20px var(--primary-glow);
+            margin-bottom: 14px;
+            transition: transform 0.4s;
+        }
+
+        .doc-card:hover .card-img {
+            transform: scale(1.08) rotate(-4deg);
+        }
+
+        .doc-card h3 {
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 6px;
+            line-height: 1.5;
+            min-height: 3rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .doc-card .card-date {
+            font-size: 0.75rem;
+            color: var(--muted-dark);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            justify-content: center;
+        }
+
+        .doc-card .card-date i {
+            font-size: 0.7rem;
+        }
+
+        /* ===== BUTTONS ===== */
+        .btn-group {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            width: 100%;
+            margin-top: 8px;
+        }
+
+        .btn-row {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: center;
+            width: 100%;
+        }
+
+        .doc-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 18px;
+            background: var(--primary);
+            color: white;
+            border-radius: 40px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.78rem;
+            transition: all 0.2s;
+            box-shadow: 0 4px 12px var(--primary-glow);
+            border: none;
+            cursor: pointer;
+            min-width: 110px;
+            justify-content: center;
+        }
+
+        .doc-link:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 20px var(--primary-glow);
+        }
+
+        .doc-link i {
+            font-size: 0.85rem;
+            margin: 0;
+            color: white;
+        }
+
+        .doc-link:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none !important;
+            box-shadow: none !important;
+        }
+
+        .doc-link-external {
+            background: linear-gradient(135deg, #3b82f6, #2563eb);
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
+        }
+
+        .doc-link-external:hover {
+            box-shadow: 0 8px 20px rgba(59, 130, 246, 0.6);
+        }
+
+        .doc-link-pdf {
+            background: linear-gradient(135deg, #ef4444, #dc2626);
+            box-shadow: 0 4px 12px rgba(239, 68, 68, 0.4);
+        }
+
+        .doc-link-pdf:hover {
+            box-shadow: 0 8px 20px rgba(239, 68, 68, 0.6);
+        }
+
+        /* ===== TOAST (Glass Snapper) ===== */
+        .toast-snapper {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background: var(--glass-dark);
+            backdrop-filter: blur(24px);
+            border: 1px solid var(--border-dark);
+            border-radius: 24px;
+            padding: 20px 28px;
+            max-width: 480px;
+            width: 90%;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+            z-index: 9999;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.5s cubic-bezier(0.2, 0.9, 0.4, 1.2);
+            text-align: center;
+        }
+
+        .toast-snapper.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        .toast-snapper .toast-icon {
+            font-size: 2.2rem;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .toast-snapper .toast-icon.success {
+            color: var(--success);
+        }
+
+        .toast-snapper .toast-icon.warning {
+            color: var(--warning);
+        }
+
+        .toast-snapper .toast-icon.danger {
+            color: var(--danger);
+        }
+
+        .toast-snapper .toast-title {
+            font-weight: 700;
+            font-size: 1.1rem;
+            margin-bottom: 6px;
+        }
+
+        .toast-snapper .toast-msg {
+            color: var(--muted-dark);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 14px;
+        }
+
+        .toast-snapper .toast-btn {
+            background: var(--primary);
+            border: none;
+            color: white;
+            padding: 8px 28px;
+            border-radius: 40px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.2s;
+            font-size: 0.9rem;
+        }
+
+        .toast-snapper .toast-btn:hover {
+            transform: scale(1.04);
+            box-shadow: 0 4px 16px var(--primary-glow);
+        }
+
+        .toast-snapper .toast-close {
+            position: absolute;
+            top: 10px;
+            left: 16px;
+            background: none;
+            border: none;
+            color: var(--muted-dark);
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .toast-snapper .toast-close:hover {
+            color: var(--text-dark);
+            transform: rotate(90deg);
+        }
+
+        /* ===== FOOTER ===== */
+        .footer-3d {
+            background: rgba(0, 0, 0, 0.35);
+            backdrop-filter: blur(12px);
+            border-top: 1px solid var(--border-dark);
+            margin-top: auto;
+            padding: 40px 20px 20px;
+        }
+
+        .footer-inner {
+            max-width: 1300px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 30px;
+        }
+
+        .footer-col h4 {
+            font-size: 1rem;
+            margin-bottom: 16px;
+        }
+
+        .footer-col p,
+        .footer-col a {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.85rem;
+            margin-bottom: 10px;
+            text-decoration: none;
+            color: var(--muted-dark);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 15px;
+            font-size: 0.75rem;
+            border-top: 1px solid var(--border-dark);
+        }
+
+        /* Handle LTR specific alignments */
+        html[dir="ltr"] .lang-dropdown {
+            left: auto;
+            right: 0;
+        }
+
+        html[dir="ltr"] .toast-snapper .toast-close {
+            left: auto;
+            right: 16px;
+        }
+
+        @media (max-width:768px) {
+            .navbar {
+                width: calc(100% - 24px);
+                padding: 6px 16px;
+            }
+
+            .logo-name {
+                display: none;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 80px;
+                left: 5%;
+                width: 90%;
+                background: var(--glass-dark);
+                backdrop-filter: blur(30px);
+                flex-direction: column;
+                gap: 10px;
+                border-radius: 28px;
+                padding: 20px;
+                opacity: 0;
+                visibility: hidden;
+                transform: scale(0.95);
+                transition: all 0.3s;
+                z-index: 999;
+            }
+
+            .nav-links.open {
+                opacity: 1;
+                visibility: visible;
+                transform: scale(1);
+            }
+
+            .nav-links a {
+                justify-content: center;
+                padding: 10px;
+            }
+
+            .menu-btn {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .globe-trigger span {
+                display: none;
+            }
+
+            .globe-trigger {
+                padding: 6px 10px;
+            }
+
+            .doc-header h1 {
+                font-size: 1.8rem;
+            }
+
+            .doc-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .doc-card {
+                min-height: 340px;
+                padding: 20px 16px;
+            }
+
+            .toast-snapper {
+                max-width: 94%;
+                padding: 18px 20px;
+                bottom: 20px;
+            }
+        }
+
+        @media (max-width:480px) {
+            .doc-card {
+                padding: 16px 12px;
+                min-height: 320px;
+            }
+
+            .doc-card h3 {
+                font-size: 0.9rem;
+            }
+
+            .doc-link {
+                font-size: 0.7rem;
+                padding: 6px 12px;
+                min-width: 80px;
+            }
+
+            .doc-header h1 {
+                font-size: 1.5rem;
+            }
+
+            .footer-inner {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .footer-col p,
+            .footer-col a {
+                justify-content: center;
+            }
+
+            .toast-snapper {
+                padding: 16px;
+            }
+
+            .toast-snapper .toast-title {
+                font-size: 1rem;
+            }
+
+            .toast-snapper .toast-msg {
+                font-size: 0.85rem;
+            }
+        }
+
+        @supports (padding-bottom:env(safe-area-inset-bottom)) {
+            body {
+                padding-bottom: env(safe-area-inset-bottom);
+            }
+
+            .navbar {
+                margin-top: env(safe-area-inset-top);
+            }
+        }
+    </style>
+</head>
+
+<body class="dark-mode">
+    <div class="scene-3d">
+        <div class="grid-3d"></div>
+        <div class="floating-orb orb1"></div>
+        <div class="floating-orb orb2"></div>
+        <div class="floating-orb orb3"></div>
+    </div>
+
+    <nav class="navbar">
+        <a href="index.html" class="logo-wrap">
+            <img src="images/kha.jpg" alt="logo">
+            <div class="logo-name">VISA<br>GUIDE AF</div>
+        </a>
+        <button class="menu-btn" id="menuBtn">☰</button>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="index.html"><img src="images/home.png"> <span data-key="home">خانه</span></a></li>
+            <li><a href="services.html"><img src="images/customer.png"> <span data-key="services">خدمات</span></a></li>
+            <li><a href="ai.html"><img src="images/ai.png"> <span data-key="ai">هوش مصنوعی</span></a></li>
+            <li><a href="contact.html"><img src="images/call.png"> <span data-key="contact">تماس</span></a></li>
+            <li><a href="faq.html"><img src="images/f&a.png"> <span data-key="faq">سوالات</span></a></li>
+            <li><a href="news/day-news/day.html"><img src="images/event.png"> <span data-key="news">اخبار</span></a>
+            </li>
+        </ul>
+        <div class="nav-actions">
+            <div class="lang-globe" id="langGlobe">
+                <div class="globe-trigger" id="globeTrigger">
+                    <i class="fas fa-globe-americas"></i> <span id="currentLangLabel">فارسی</span> <i
+                        class="fas fa-chevron-down"></i>
+                </div>
+                <div class="lang-dropdown">
+                    <div class="lang-option" data-lang="fa"><span>🇦🇫</span> فارسی</div>
+                    <div class="lang-option" data-lang="en"><span>🇬🇧</span> English</div>
+                    <div class="lang-option" data-lang="ps"><span>🇦🇫</span> پښتو</div>
+                </div>
+            </div>
+            <button class="theme-btn" id="themeBtn"><i class="fas fa-moon"></i></button>
+        </div>
+    </nav>
+
+    <div class="doc-container">
+        <div class="doc-header">
+            <h1 data-key="docTitle">مستندات و اخبار تخصصی</h1>
+            <p data-key="docDesc">سیستم هوشمند: هر کارت بر اساس داده‌های خود رفتار می‌کند.</p>
+        </div>
+        <div class="doc-grid" id="docGrid"></div>
+    </div>
+
+    <div class="toast-snapper" id="toastSnapper">
+        <button class="toast-close" id="toastClose"><i class="fas fa-times"></i></button>
+        <span class="toast-icon" id="toastIcon"><i class="fas fa-info-circle"></i></span>
+        <div class="toast-title" id="toastTitle">اطلاعیه</div>
+        <div class="toast-msg" id="toastMsg">متن پیام</div>
+        <button class="toast-btn" id="toastBtn">تأیید</button>
+    </div>
+
+    <footer class="footer-3d">
+        <div class="footer-inner">
+            <div class="footer-col">
+                <h4 data-key="footTitle1">خدمات مهاجرت</h4>
+                <p><i class="fas fa-check-circle"></i> <span data-key="footDesc1">معتبرترین خدمات در افغانستان</span>
+                </p>
+                <p><i class="fas fa-globe"></i> <span data-key="footDesc2">خدمات مهاجرتی جهانی</span></p>
+            </div>
+            <div class="footer-col">
+                <h4 data-key="footTitle2">تماس با ما</h4>
+                <p><i class="fas fa-map-marker-alt"></i> <span data-key="footAddr">ایبک، سمنگان، افغانستان</span></p>
+                <p><i class="fas fa-phone-alt"></i> 0792665622</p>
+                <p><i class="fas fa-envelope"></i> visa.guide.af.123@gmail.com</p>
+            </div>
+            <div class="footer-col">
+                <h4 data-key="footTitle3">شبکه‌های اجتماعی</h4>
+                <a href="https://whatsapp.com/channel/0029Vae7U29AzNbpZIv5T81R" target="_blank"><i
+                        class="fab fa-whatsapp"></i> WhatsApp</a>
+                <a href="https://t.me/visaguidee" target="_blank"><i class="fab fa-telegram"></i> Telegram</a>
+                <a href="https://www.facebook.com/profile.php?id=61589943461514" target="_blank"><i
+                        class="fab fa-facebook-f"></i> Facebook</a>
+                <a href="https://www.instagram.com/sarfraz_refugee_service" target="_blank"><i
+                        class="fab fa-instagram"></i> Instagram</a>
+            </div>
+        </div>
+        <div class="footer-bottom"><span data-key="copy">© 2026 VISA GUIDE AF — همه حقوق محفوظ است</span></div>
+    </footer>
+
+    <script>
+        const T = {
+            fa: {
+                home: "خانه", services: "خدمات", ai: "هوش مصنوعی", contact: "تماس", faq: "سوالات", news: "اخبار",
+                docTitle: "مستندات و اخبار تخصصی",
+                docDesc: "سیستم هوشمند: هر کارت بر اساس داده‌های خود رفتار می‌کند.",
+                footTitle1: "خدمات مهاجرت", footDesc1: "معتبرترین خدمات در افغانستان", footDesc2: "خدمات مهاجرتی جهانی",
+                footTitle2: "تماس با ما", footAddr: "ایبک، سمنگان، افغانستان", footTitle3: "شبکه‌های اجتماعی",
+                copy: "© 2026 VISA GUIDE AF — همه حقوق محفوظ است",
+                btnExternal: "منبع خارجی", btnPdf: "دانلود مدرک PDF",
+                btnViewExternal: "مشاهده منبع خارجی", btnNoPdf: "PDF موجود نیست", btnNoSource: "منبعی وجود ندارد",
+                toastHeadingNotice: "اطلاعیه", toastHeadingRedirect: "🌐 در حال هدایت به منبع خارجی",
+                toastPdfAvailable: "✅ کاربر گرامی نیازی نیست به منبع خارجی بروید. ما سند قوی‌تر از این منبع خارجی داریم. اگر مدرک PDF نمی‌بود، شما مستقیم به لینک هدایت می‌شدید.",
+                toastPdfUnavailable: "📄 PDF در دسترس نیست. در حال هدایت به منبع خارجی...",
+                toastNoSource: "⚠️ هیچ منبعی (PDF یا لینک) برای این خبر در دسترس نیست.",
+                toastPdfMissing: "❌ فایل PDF موجود نیست. لطفاً از منابع دیگر استفاده کنید.",
+                toastExternalMissing: "⚠️ منبع خارجی وجود ندارد. لطفاً از منابع دیگر استفاده کنید.",
+                btnConfirm: "تأیید", btnGoToSource: "رفتن به منبع"
+            },
+            en: {
+                home: "Home", services: "Services", ai: "AI Assistant", contact: "Contact", faq: "FAQ", news: "News",
+                docTitle: "Documents & Specialized News",
+                docDesc: "Smart system: Each card behaves based on its own data.",
+                footTitle1: "Immigration Services", footDesc1: "Most reliable services in Afghanistan", footDesc2: "Global immigration services",
+                footTitle2: "Contact Us", footAddr: "Aibak, Samangan, Afghanistan", footTitle3: "Social Networks",
+                copy: "© 2026 VISA GUIDE AF — All rights reserved",
+                btnExternal: "External Source", btnPdf: "Download PDF Document",
+                btnViewExternal: "View External Source", btnNoPdf: "PDF Unavailable", btnNoSource: "No Source Available",
+                toastHeadingNotice: "Notice", toastHeadingRedirect: "🌐 Redirecting to External Source",
+                toastPdfAvailable: "✅ Dear user, you don't need to go to an external source. We have a stronger document than this external source. If the PDF document were not available, you would be directly redirected to the link.",
+                toastPdfUnavailable: "📄 PDF is not available. Redirecting to external source...",
+                toastNoSource: "⚠️ No source (PDF or link) is available for this news.",
+                toastPdfMissing: "❌ PDF file is not available. Please use other sources.",
+                toastExternalMissing: "⚠️ External source is missing. Please use other sources.",
+                btnConfirm: "Confirm", btnGoToSource: "Go to Source"
+            },
+            ps: {
+                home: "کور", services: "خدمات", ai: "AI", contact: "اړیکه", faq: "پوښتنې", news: "خبرونه",
+                docTitle: "اسناد او ځانګړي خبرونه",
+                docDesc: "هوشمند سیسټم: هر کارت د خپلو معلوماتو پر اساس چلند کوي.",
+                footTitle1: "د کډوالۍ خدمات", footDesc1: "افغانستان کې ترټولو معتبر خدمات", footDesc2: "نړیوال د کډوالۍ خدمات",
+                footTitle2: "اړیکه", footAddr: "ایبک, سمنګان، افغانستان", footTitle3: "ټولنیزې شبکې",
+                copy: "© 2026 VISA GUIDE AF — ټول حقونه خوندي",
+                btnExternal: "بهرنۍ سرچینه", btnPdf: "د PDF سند ډاونلوډ",
+                btnViewExternal: "بهرنۍ سرچینه کتل", btnNoPdf: "PDF شتون نلري", btnNoSource: "سرچینه شتون نلري",
+                toastHeadingNotice: "خبرتیا", toastHeadingRedirect: "🌐 بهرنۍ سرچینې ته د تګ په حال کې",
+                toastPdfAvailable: "✅ کارن گرامی، تاسو اړتیا نلرئ بهرنۍ سرچینې ته لاړ شئ. موږ د دې بهرنۍ سرچینې څخه قوي سند لرو. که چیرې د PDF سند نه و، تاسو به مستقیم لینک ته لارښوونه شوي یاست.",
+                toastPdfUnavailable: "📄 PDF شتون نلري. بهرنۍ سرچینې ته د تګ په حال کې...",
+                toastNoSource: "⚠️ د دې خبر لپاره هیڅ سرچینه (PDF یا لینک) شتون نلري.",
+                toastPdfMissing: "❌ د PDF فایل شتون نلري. مهرباني وکړئ له نورو سرچینو څخه کار واخلئ.",
+                toastExternalMissing: "⚠️ بهرنۍ سرچینه شتون نلري. مهرباني وکړئ له نورو سرچینو څخه کار واخلئ.",
+                btnConfirm: "تأیید", btnGoToSource: "سرچینې ته تلل"
+            }
+        };
+
+        const today = {
+            fa: "۱۷ ژوئن ۲۰۲۶ - ۲۷ جوزا ۱۴۰۴",
+            en: "June 17, 2026",
+            ps: "د ۲۰۲۶ کال د جون ۱۷ - ۲۷ جوزا ۱۴۰۴"
+        };
+
+        const docCards = [{
+            id: 'news1',
+            image: 'law.png',
+            titles: {
+                fa: "دادگاه آمریکا پرونده ممنوعیت پناهندگان را به محاکمه کشاند؛ امید تازه برای متقاضیان برنامه USRAP و پناهندگان تحت P1-P2-Parole-i730",
+                en: "US court brings refugee ban case to trial; new hope for USRAP applicants and refugees under P1-P2-Parole-i730",
+                ps: "د امریکا محکمې د پناهندګۍ د بند قضیه محکمې ته راوړه؛ د USRAP غوښتونکو او د P1-P2-Parole-i730 لاندې پناه غوښتونکو لپاره نوی هیله"
+            },
+            externalLink: "#",
+            pdfLink: "docs/Pacito-First-Amended-Complaint.pdf",
+            hasPdf: true
+        }, {
+            id: 'news2',
+            image: 'law.png',
+            titles: {
+                fa: "پیروزی بزرگ مهاجران؛ دادگاه آمریکا محدودیت‌های مهاجرتی ترامپ را لغو کرد",
+                en: "Major victory for immigrants; US court strikes down Trump's immigration restrictions",
+                ps: "د کډوالو لویه بریا؛ د امریکا محکمې د ترامپ کډوالۍ محدودیتونه لغوه کړل"
+            },
+            externalLink: "#",
+            pdfLink: "docs/gov.uscourts.rid.61671.41.1.pdf",
+            hasPdf: true
+        }, {
+            id: 'news3',
+            image: 'jamaica.png',
+            titles: {
+                fa: "جامائیکا و قطر در حال مذاکره با آمریکا برای پذیرش مهاجران اخراج‌شده؛ سرنوشت برخی افغان‌های دارای حکم اخراج در هاله‌ای از ابهام",
+                en: "Jamaica and Qatar in talks with US to accept deported migrants; fate of some Afghans with deportation orders remains uncertain",
+                ps: "جمیکا او قطر د امریکا سره د شړل شویو کډوالو د منلو لپاره خبرې کوي؛ د شړلو حکم لرونکو ځینو افغانانو برخلیک ناڅرګند دی"
+            },
+            externalLink: "https://8am.media/eng/jamaica-in-talks-with-u-s-to-accept-deported-third-country-migrants/",
+            pdfLink: "",
+            hasPdf: false
+        }];
+
+        let currentLang = 'fa';
+
+        const toast = document.getElementById('toastSnapper');
+        const toastIcon = document.getElementById('toastIcon');
+        const toastTitle = document.getElementById('toastTitle');
+        const toastMsg = document.getElementById('toastMsg');
+        const toastBtn = document.getElementById('toastBtn');
+        const toastClose = document.getElementById('toastClose');
+        let toastAction = null;
+
+        function showToast(icon, title, msg, btnText, action) {
+            toastIcon.innerHTML = icon || '<i class="fas fa-info-circle"></i>';
+            toastTitle.textContent = title || 'اطلاعیه';
+            toastMsg.textContent = msg || 'متن پیام';
+            toastBtn.textContent = btnText || 'تأیید';
+            toastAction = action || null;
+            toastBtn.style.display = 'inline-flex';
+            toast.classList.add('active');
+        }
+
+        function hideToast() {
+            toast.classList.remove('active');
+            toastAction = null;
+        }
+
+        toastClose.addEventListener('click', hideToast);
+        toastBtn.addEventListener('click', function () {
+            if (typeof toastAction === 'function') toastAction();
+            hideToast();
+        });
+        document.addEventListener('click', function (e) {
+            if (toast.classList.contains('active') && !toast.contains(e.target)) hideToast();
+        });
+
+        function renderCards(lang) {
+            const grid = document.getElementById('docGrid');
+            if (!grid) return;
+
+            grid.innerHTML = docCards.map((card, idx) => {
+                const title = card.titles[lang] || card.titles.fa;
+                const btnExternalLabel = T[lang].btnExternal;
+                const btnPdfLabel = T[lang].btnPdf;
+                const date = today[lang] || today.fa;
+
+                const hasPdf = card.hasPdf === true && card.pdfLink && card.pdfLink !== '';
+                const hasExternal = card.externalLink && card.externalLink !== '#';
+
+                let pdfBtnHtml = '';
+                let externalBtnHtml = '';
+
+                if (hasPdf) {
+                    pdfBtnHtml = `<button class="doc-link doc-link-pdf pdf-download-btn" data-pdf="${card.pdfLink}"><i class="fas fa-download"></i> ${btnPdfLabel}</button>`;
+                    externalBtnHtml = `<button class="doc-link doc-link-external external-toast-btn" data-external="${card.externalLink}"><i class="fas fa-external-link-alt"></i> ${btnExternalLabel}</button>`;
+                } else if (hasExternal) {
+                    pdfBtnHtml = `<button class="doc-link doc-link-pdf pdf-redirect-btn" data-external="${card.externalLink}"><i class="fas fa-external-link-alt"></i> ${T[lang].btnViewExternal}</button>`;
+                    externalBtnHtml = `<a href="${card.externalLink}" target="_blank" class="doc-link doc-link-external"><i class="fas fa-external-link-alt"></i> ${btnExternalLabel}</a>`;
+                } else {
+                    pdfBtnHtml = `<button class="doc-link doc-link-pdf pdf-missing-btn"><i class="fas fa-times-circle"></i> ${T[lang].btnNoPdf}</button>`;
+                    externalBtnHtml = `<button class="doc-link doc-link-external external-missing-btn"><i class="fas fa-times-circle"></i> ${T[lang].btnNoSource}</button>`;
+                }
+
+                return `
+                        <div class="glass-3d doc-card">
+                            <img src="images/${card.image}" alt="${title}" class="card-img" onerror="this.src='images/default-news.png'">
+                            <h3>${title}</h3>
+                            <div class="card-date"><i class="fas fa-calendar-alt"></i> ${date}</div>
+                            <div class="btn-group"><div class="btn-row">${pdfBtnHtml}${externalBtnHtml}</div></div>
+                        </div>
+                    `;
+            }).join('');
+
+            // ===== EVENT BINDINGS =====
+
+            // 1. PDF Download (when PDF exists)
+            document.querySelectorAll('.pdf-download-btn').forEach(btn => {
+                btn.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const pdf = this.getAttribute('data-pdf');
+                    if (pdf) {
+                        const link = document.createElement('a');
+                        link.href = pdf;
+                        link.download = pdf.split('/').pop();
+                        document.body.appendChild(link);
+                        link.click();
+                        document.body.removeChild(link);
+                    } else {
+                        showToast(
+                            '<i class="fas fa-exclamation-circle" style="color:#ef4444;"></i>',
+                            T[currentLang].toastHeadingNotice,
+                            T[currentLang].toastPdfMissing,
+                            T[currentLang].btnConfirm
+                        );
+                    }
+                });
+            });
+
+            // 2. External Toast (when PDF exists, and user clicks external button)
+            // کاربر گرامی نیاز نیست به منبع خارجی بروید ما سند قویتر داریم
+            document.querySelectorAll('.external-toast-btn').forEach(btn => {
+                btn.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    showToast(
+                        '<i class="fas fa-check-circle" style="color:#10b981;"></i>',
+                        T[currentLang].toastHeadingNotice,
+                        T[currentLang].toastPdfAvailable,
+                        T[currentLang].btnConfirm
+                    );
+                });
+            });
+
+            // 3. PDF Redirect (when no PDF but external link exists)
+            document.querySelectorAll('.pdf-redirect-btn').forEach(btn => {
+                btn.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const external = this.getAttribute('data-external');
+                    if (external && external !== '#') {
+                        showToast(
+                            '<i class="fas fa-external-link-alt" style="color:#60a5fa;"></i>',
+                            T[currentLang].toastHeadingRedirect,
+                            T[currentLang].toastPdfUnavailable,
+                            T[currentLang].btnGoToSource,
+                            function () { window.open(external, '_blank'); }
+                        );
+                    } else {
+                        showToast(
+                            '<i class="fas fa-exclamation-circle" style="color:#ef4444;"></i>',
+                            T[currentLang].toastHeadingNotice,
+                            T[currentLang].toastPdfMissing,
+                            T[currentLang].btnConfirm
+                        );
+                    }
+                });
+            });
+
+            // 4. PDF Missing Button
+            document.querySelectorAll('.pdf-missing-btn').forEach(btn => {
+                btn.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    showToast(
+                        '<i class="fas fa-exclamation-circle" style="color:#ef4444;"></i>',
+                        T[currentLang].toastHeadingNotice,
+                        T[currentLang].toastPdfMissing,
+                        T[currentLang].btnConfirm
+                    );
+                });
+            });
+
+            // 5. External Missing Button
+            document.querySelectorAll('.external-missing-btn').forEach(btn => {
+                btn.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    showToast(
+                        '<i class="fas fa-exclamation-triangle" style="color:#f59e0b;"></i>',
+                        T[currentLang].toastHeadingNotice,
+                        T[currentLang].toastExternalMissing,
+                        T[currentLang].btnConfirm
+                    );
+                });
+            });
+        }
+
+        function applyLanguage(lang) {
+            currentLang = lang;
+
+            if (lang === 'en') {
+                document.documentElement.setAttribute('dir', 'ltr');
+                document.documentElement.setAttribute('lang', 'en');
+            } else {
+                document.documentElement.setAttribute('dir', 'rtl');
+                document.documentElement.setAttribute('lang', lang);
+            }
+
+            document.querySelectorAll('[data-key]').forEach(el => {
+                const key = el.getAttribute('data-key');
+                if (T[lang][key]) el.innerHTML = T[lang][key];
+            });
+            document.getElementById('currentLangLabel').innerText = lang === 'fa' ? 'فارسی' : lang === 'en' ? 'English' : 'پښتو';
+            renderCards(lang);
+        }
+
+        // Theme
+        const themeBtn = document.getElementById('themeBtn');
+        const savedTheme = localStorage.getItem('srs-theme') || 'dark';
+        document.body.className = savedTheme === 'dark' ? 'dark-mode' : 'light-mode';
+        themeBtn.innerHTML = savedTheme === 'dark' ? '<i class="fas fa-moon"></i>' : '<i class="fas fa-sun"></i>';
+        themeBtn.addEventListener('click', () => {
+            const isDark = document.body.classList.contains('dark-mode');
+            document.body.className = isDark ? 'light-mode' : 'dark-mode';
+            themeBtn.innerHTML = isDark ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+            localStorage.setItem('srs-theme', isDark ? 'light' : 'dark');
+        });
+
+        // Language Dropdown
+        const globe = document.getElementById('langGlobe');
+        const trigger = document.getElementById('globeTrigger');
+        trigger.addEventListener('click', (e) => { e.stopPropagation(); globe.classList.toggle('open'); });
+        document.addEventListener('click', (e) => { if (!globe.contains(e.target)) globe.classList.remove('open'); });
+        document.querySelectorAll('.lang-option').forEach(opt => {
+            opt.addEventListener('click', (e) => {
+                const newLang = opt.getAttribute('data-lang');
+                if (newLang) applyLanguage(newLang);
+                globe.classList.remove('open');
+            });
+        });
+
+        // Mobile Menu
+        const menuBtn = document.getElementById('menuBtn');
+        const navLinks = document.getElementById('navLinks');
+        function closeMenu() {
+            navLinks.classList.remove('open');
+            if (menuBtn) menuBtn.innerHTML = '☰';
+        }
+        menuBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const isOpen = navLinks.classList.contains('open');
+            if (isOpen) closeMenu();
+            else { navLinks.classList.add('open'); menuBtn.innerHTML = '✕'; }
+        });
+        document.addEventListener('click', (e) => {
+            if (!navLinks.contains(e.target) && !menuBtn.contains(e.target) && navLinks.classList.contains('open')) closeMenu();
+        });
+        navLinks.querySelectorAll('a').forEach(link => link.addEventListener('click', closeMenu));
+
+        applyLanguage('fa');
+    </script>
+</body>
+
+</html>
