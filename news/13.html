@@ -1,0 +1,951 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>خبر فوری: محدودیت شدید پناهندگی در آمریکا | VISA GUIDE AF</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;700;800&display=swap"
+        rel="stylesheet">
+
+    <style>
+        /* ========== استایل‌ها (بدون تغییر از نسخه اصلی) ========== */
+        :root {
+            --bg: #070b13;
+            --panel: rgba(255, 255, 255, 0.03);
+            --border: rgba(255, 255, 255, 0.08);
+            --text: #f1f5f9;
+            --text-muted: #94a3b8;
+            --primary: linear-gradient(135deg, #7c3aed, #4f46e5);
+            --primary-glow: rgba(124, 58, 237, 0.4);
+            --accent: linear-gradient(135deg, #38bdf8, #0369a1);
+            --accent-glow: rgba(56, 189, 248, 0.4);
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --font: 'Vazirmatn', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        }
+
+        .light-mode {
+            --bg: #f8fafc;
+            --panel: rgba(0, 0, 0, 0.03);
+            --border: rgba(0, 0, 0, 0.08);
+            --text: #0f172a;
+            --text-muted: #475569;
+            --primary-glow: rgba(124, 58, 237, 0.15);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: var(--font);
+            transition: background-color 0.3s, border-color 0.3s, color 0.3s, filter 0.3s;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            overflow-x: hidden;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* جلوه‌های پس‌زمینه */
+        .bg-scene {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -3;
+            background: radial-gradient(circle at 50% 50%, rgba(15, 23, 42, 0.5) 0%, var(--bg) 100%);
+        }
+
+        .bg-orb {
+            position: fixed;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            filter: blur(80px);
+            z-index: -2;
+            opacity: 0.6;
+            pointer-events: none;
+            animation: floatOrb 20s infinite alternate ease-in-out;
+        }
+
+        .bg-orb:nth-child(2) {
+            background: radial-gradient(circle, #7c3aed 0%, transparent 70%);
+            top: -10%;
+            left: -10%;
+        }
+
+        .bg-orb:nth-child(3) {
+            background: radial-gradient(circle, #38bdf8 0%, transparent 70%);
+            bottom: -10%;
+            right: -10%;
+            animation-delay: -5s;
+        }
+
+        .bg-orb:nth-child(4) {
+            background: radial-gradient(circle, #ec4899 0%, transparent 70%);
+            top: 40%;
+            left: 50%;
+            width: 400px;
+            height: 400px;
+            animation-delay: -10s;
+        }
+
+        @keyframes floatOrb {
+            0% {
+                transform: translate(0, 0) scale(1);
+            }
+
+            100% {
+                transform: translate(80px, 50px) scale(1.2);
+            }
+        }
+
+        /* ========== NAVBAR ========== */
+        .navbar {
+            position: sticky;
+            top: 15px;
+            max-width: 1200px;
+            margin: 0 auto;
+            z-index: 100;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 24px;
+            background: rgba(15, 23, 42, 0.4);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--border);
+            border-radius: 50px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .light-mode .navbar {
+            background: rgba(255, 255, 255, 0.8);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        }
+
+        .logo-wrap {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            color: var(--text);
+        }
+
+        .logo-wrap img {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            border: 2px solid #7c3aed;
+            box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.2), 0 0 15px var(--primary-glow);
+            object-fit: cover;
+        }
+
+        .light-mode .logo-wrap img {
+            box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.1), 0 0 10px rgba(124, 58, 237, 0.2);
+        }
+
+        .logo-name {
+            font-size: 0.85rem;
+            font-weight: 800;
+            letter-spacing: 0.5px;
+            line-height: 1.2;
+            background: linear-gradient(120deg, #fff, #94a3b8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .light-mode .logo-name {
+            background: linear-gradient(120deg, #0f172a, #475569);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 15px;
+        }
+
+        .nav-links a {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            text-decoration: none;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            font-weight: 500;
+            border-radius: 30px;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a img {
+            width: 18px;
+            height: 18px;
+            transition: filter 0.3s;
+        }
+
+        .dark-mode .nav-links a img {
+            filter: brightness(0) invert(1);
+        }
+
+        .light-mode .nav-links a img {
+            filter: brightness(0);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 2px;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #7c3aed, #38bdf8);
+            border-radius: 2px;
+            transition: width 0.3s ease;
+            transform: translateX(-50%);
+        }
+
+        .nav-links a:hover::after {
+            width: 60%;
+        }
+
+        .dark-mode .nav-links a {
+            color: #e2e8f0;
+        }
+
+        .dark-mode .nav-links a:hover {
+            color: #ffffff;
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .light-mode .nav-links a {
+            color: #334155;
+        }
+
+        .light-mode .nav-links a:hover {
+            color: #0f172a;
+            background: rgba(0, 0, 0, 0.05);
+        }
+
+        .lang-dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .lang-trigger {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid var(--border);
+            border-radius: 40px;
+            padding: 6px 14px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text);
+            font-size: 0.85rem;
+            font-weight: 500;
+            transition: 0.2s;
+        }
+
+        .lang-trigger i {
+            font-size: 1rem;
+            color: #38bdf8;
+        }
+
+        .lang-trigger:hover {
+            background: rgba(124, 58, 237, 0.2);
+            border-color: #7c3aed;
+        }
+
+        .lang-menu {
+            position: absolute;
+            top: 110%;
+            left: 0;
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 8px 0;
+            min-width: 130px;
+            z-index: 300;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.25s ease;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .light-mode .lang-menu {
+            background: rgba(255, 255, 255, 0.98);
+        }
+
+        .lang-dropdown.open .lang-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .lang-option {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 8px 16px;
+            cursor: pointer;
+            transition: background 0.2s;
+            color: var(--text);
+            font-size: 0.85rem;
+        }
+
+        .lang-option:hover {
+            background: rgba(124, 58, 237, 0.2);
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .theme-btn {
+            background: var(--primary);
+            border: none;
+            color: white;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 10px var(--primary-glow);
+        }
+
+        .menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* ARTICLE STYLES */
+        .article-container {
+            max-width: 800px;
+            margin: 40px auto 80px auto;
+            padding: 2rem;
+            background: var(--panel);
+            backdrop-filter: blur(16px);
+            border: 1px solid var(--border);
+            border-radius: 32px;
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        .light-mode .article-container {
+            background: rgba(255, 255, 255, 0.85);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .breaking-badge-header {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: linear-gradient(135deg, #ef4444, #b91c1c);
+            color: white;
+            padding: 6px 16px;
+            border-radius: 30px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            margin-bottom: 1.2rem;
+            box-shadow: 0 4px 15px rgba(239, 68, 68, 0.4);
+            animation: pulseGlow 2s infinite ease-in-out;
+        }
+
+        @keyframes pulseGlow {
+            0% {
+                transform: scale(1);
+                box-shadow: 0 4px 15px rgba(239, 68, 68, 0.4);
+            }
+
+            50% {
+                transform: scale(1.05);
+                box-shadow: 0 4px 25px rgba(239, 68, 68, 0.7);
+            }
+
+            100% {
+                transform: scale(1);
+                box-shadow: 0 4px 15px rgba(239, 68, 68, 0.4);
+            }
+        }
+
+        .article-category {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            color: #a78bfa;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .article-title {
+            font-size: 1.8rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            line-height: 1.4;
+            color: var(--text);
+        }
+
+        .article-deck {
+            font-size: 1rem;
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+            border-right: 3px solid #ef4444;
+            padding-right: 1rem;
+        }
+
+        .article-byline {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--border);
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .author-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .author-avatar-large {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid #7c3aed;
+            box-shadow: 0 0 10px var(--primary-glow);
+        }
+
+        .author-name {
+            font-weight: 700;
+            color: var(--text);
+        }
+
+        .author-title {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+
+        .article-date {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        .featured-image {
+            width: 100%;
+            border-radius: 16px;
+            margin: 1.5rem 0;
+        }
+
+        .image-caption {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            text-align: center;
+            margin-top: -1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .article-content {
+            font-size: 1rem;
+            line-height: 1.8;
+            color: var(--text);
+        }
+
+        .article-content p {
+            margin-bottom: 1rem;
+        }
+
+        .back-button {
+            display: inline-flex;
+            margin-top: 2rem;
+            padding: 10px 22px;
+            color: white;
+            background: var(--primary);
+            text-decoration: none;
+            border-radius: 40px;
+            font-weight: 600;
+            box-shadow: 0 4px 10px var(--primary-glow);
+            transition: all 0.2s;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .back-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px var(--primary-glow);
+        }
+
+        /* FOOTER */
+        .footer {
+            background: rgba(10, 15, 30, 0.8);
+            border-top: 1px solid var(--border);
+            padding: 60px 16px 20px 16px;
+            margin-top: auto;
+        }
+
+        .light-mode .footer {
+            background: #f1f5f9;
+        }
+
+        .footer-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-col h4 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: var(--text);
+        }
+
+        .footer-col p,
+        .footer-col a {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            line-height: 1.8;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            transition: transform 0.3s, color 0.3s;
+        }
+
+        .footer-col p:hover,
+        .footer-col a:hover {
+            transform: translateX(-5px);
+            color: var(--text);
+        }
+
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-top: 20px;
+            border-top: 1px solid var(--border);
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .p {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 50%;
+            animation: rise 15s infinite linear;
+        }
+
+        @keyframes rise {
+            0% {
+                transform: translateY(110vh) rotate(0deg);
+                opacity: 0;
+            }
+
+            10% {
+                opacity: 0.5;
+            }
+
+            90% {
+                opacity: 0.5;
+            }
+
+            100% {
+                transform: translateY(-10vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                width: 90%;
+                border-radius: 24px;
+            }
+
+            .menu-btn {
+                display: block;
+            }
+
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 75px;
+                left: 5%;
+                width: 90%;
+                background: rgba(15, 23, 42, 0.95);
+                backdrop-filter: blur(20px);
+                border: 1px solid var(--border);
+                border-radius: 20px;
+                padding: 20px;
+                flex-direction: column;
+                box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+            }
+
+            .light-mode .nav-links {
+                background: rgba(255, 255, 255, 0.98);
+            }
+
+            .nav-links.open {
+                display: flex;
+                animation: menuFadeIn 0.4s ease forwards;
+            }
+
+            @keyframes menuFadeIn {
+                from {
+                    opacity: 0;
+                    transform: translateY(-15px) scale(0.95);
+                }
+
+                to {
+                    opacity: 1;
+                    transform: translateY(0) scale(1);
+                }
+            }
+
+            .article-title {
+                font-size: 1.5rem;
+            }
+
+            .article-container {
+                padding: 1.5rem;
+            }
+
+            .article-byline {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .footer-inner {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+
+<body class="dark-mode">
+
+    <div class="bg-scene"></div>
+    <div class="bg-orb"></div>
+    <div class="bg-orb"></div>
+    <div class="bg-orb"></div>
+    <div class="particles" id="particles"></div>
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <a href="../index.html" class="logo-wrap">
+            <img src="../images/kha.jpg" alt="logo">
+            <div class="logo-name">VISA<br>GUIDE AF</div>
+        </a>
+        <button class="menu-btn" id="menuBtn">☰</button>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="../index.html"><img src="../images/home.png"> <span data-key="home">خانه</span></a></li>
+            <li><a href="../services.html"><img src="../images/customer.png"> <span data-key="services">خدمات</span></a>
+            </li>
+            <li><a href="../ai.html"><img src="../images/ai.png"> <span data-key="ai">هوش مصنوعی</span></a></li>
+            <li><a href="../contact.html"><img src="../images/call.png"> <span data-key="contact">تماس</span></a></li>
+            <li><a href="../faq.html"><img src="../images/f&a.png"> <span data-key="faq">سوالات</span></a></li>
+            <li><a href="../news/day-news/day.html"><img src="../images/event.png"> <span
+                        data-key="news">اخبار</span></a></li>
+        </ul>
+        <div class="nav-actions">
+            <div class="lang-dropdown" id="langDropdown">
+                <div class="lang-trigger" id="langTrigger">
+                    <i class="fas fa-globe-americas"></i>
+                    <span id="currentLangLabel">فارسی</span>
+                    <i class="fas fa-chevron-down" style="font-size: 0.7rem;"></i>
+                </div>
+                <div class="lang-menu">
+                    <div class="lang-option" data-lang="fa"><span>🇦🇫</span> فارسی</div>
+                    <div class="lang-option" data-lang="en"><span>🇬🇧</span> English</div>
+                    <div class="lang-option" data-lang="ps"><span>🇦🇫</span> پښتو</div>
+                </div>
+            </div>
+            <button class="theme-btn" id="themeBtn"><i class="fas fa-moon"></i></button>
+        </div>
+    </nav>
+
+    <!-- ARTICLE CONTENT -->
+    <div class="article-container">
+        <div class="breaking-badge-header" id="breakingBadge"><i class="fas fa-broadcast-tower"></i> خبر فوری</div>
+        <div class="article-category" data-key="category">حقوقی / مهاجرتی</div>
+        <h1 class="article-title" id="articleTitle">آمریکا برنامه پناهندگی را شدیداً محدود کرد؛ افزایش سهمیه‌ها هم فقط
+            برای آفریکانرها</h1>
+        <div class="article-deck" id="articleDeck">آمریکا برنامه پناهندگی را شدیداً محدود کرد؛ افزایش سهمیه‌ها هم فقط
+            برای آفریکانرها</div>
+
+        <div class="article-byline">
+            <div class="author-info">
+                <img src="../images/kha.jpg" alt="author" class="author-avatar-large">
+                <div class="author-details">
+                    <span class="author-name" data-key="author">گزارشگر VISA GUIDE AF</span>
+                    <span class="author-title" data-key="authorTitle">گزارشگر و ادمین</span>
+                </div>
+            </div>
+            <div class="article-date" id="articleDate">🕒 ۱۱:۳۳ - دوشنبه، ۴ جوزا ۱۴۰۴ (۲۵ می ۲۰۲۶)</div>
+        </div>
+
+        <img src="pic/congress.webp" alt="دادگاه مهاجرت آمریکا" class="featured-image">
+        <div class="image-caption" id="imageCaption">دادگاه فدرال آمریکا - تصمیم‌گیری درباره سرنوشت پناهندگان</div>
+
+        <div class="article-content" id="articleContent">
+            <!-- محتوا به صورت داینامیک از T بارگذاری می‌شود -->
+        </div>
+
+        <a href="../index.html" class="back-button" data-key="backBtn">← بازگشت به صفحه اصلی</a>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-inner">
+            <div class="footer-col">
+                <h4 data-key="footTitle1">خدمات مهاجرت</h4>
+                <p><i class="fas fa-check-circle" style="color:var(--success)"></i> <span data-key="footDesc1">معتبرترین
+                        خدمات در افغانستان</span></p>
+                <p><i class="fas fa-globe" style="color:#38bdf8"></i> <span data-key="footDesc2">خدمات مهاجرتی
+                        جهانی</span></p>
+            </div>
+            <div class="footer-col">
+                <h4 data-key="footTitle2">تماس با ما</h4>
+                <p><i class="fas fa-map-marker-alt" style="color:#f59e0b"></i> <span data-key="footAddr">ایبک، سمنگان،
+                        افغانستان</span></p>
+                <p><i class="fas fa-envelope" style="color:#ef4444"></i> visa.guide.af.123@gmail.com</p>
+            </div>
+            <div class="footer-col">
+                <h4 data-key="footTitle3">شبکه‌های اجتماعی</h4>
+                <a href="https://www.facebook.com/profile.php?id=61589943461514" target="_blank"><i
+                        class="fab fa-facebook-f" style="color:#1877f2"></i> Facebook</a>
+                <a href="https://t.me/visaguidee" target="_blank"><i class="fab fa-telegram" style="color:#29b6f6"></i>
+                    Telegram</a>
+                <a href="https://whatsapp.com/channel/0029Vae7U29AzNbpZIv5T81R" target="_blank"><i
+                        class="fab fa-whatsapp" style="color:#25d366"></i> WhatsApp</a>
+            </div>
+        </div>
+        <div class="footer-bottom"><span data-key="copy">© 2026 VISA GUIDE AF — همه حقوق محفوظ است</span></div>
+    </footer>
+
+    <script>
+        // ========== MULTILINGUAL DATA (به‌روز شده با تاریخ صحیح دوشنبه ۲۵ می ۲۰۲۶ و caption) ==========
+        const T = {
+            fa: {
+                home: "خانه",
+                services: "خدمات",
+                ai: "هوش مصنوعی",
+                contact: "تماس",
+                faq: "سوالات",
+                news: "اخبار",
+                category: "حقوقی / مهاجرتی",
+                author: "گزارشگر VISA GUIDE AF",
+                authorTitle: "گزارشگر و ادمین",
+                backBtn: "← بازگشت به صفحه اصلی",
+                caption: "نشانه‌های تازه از افزایش حمایت سیاسی برای پناهندگان؛ امیدها برای متقاضیان افغان زنده است",
+                title: "نشانه‌های تازه از افزایش حمایت سیاسی برای پناهندگان؛ امیدها برای متقاضیان افغان زنده است",
+                deck: "در آستانه روز جهانی پناهندگان، گروهی از سناتورها و نمایندگان کنگره آمریکا با معرفی یک قطعنامه جدید، بار دیگر حمایت خود را از پناهندگان اعلام کردند.",
+                date: "🕒 ۱۰:۳۰ - چهارشنبه، ۲۸ جوزا ۱۴۰۵ (۱۸ ژوئن ۲۰۲۶)",
+                content: `
+            <p>در آستانه روز جهانی پناهندگان، گروهی از سناتورها و نمایندگان کنگره آمریکا با معرفی یک قطعنامه جدید، بار دیگر حمایت خود را از پناهندگان و افراد آواره اعلام کردند؛ اقدامی که از سوی بسیاری از ناظران به‌عنوان یکی از مهم‌ترین پیام‌های حمایتی از جامعه پناهندگان در سال ۲۰۲۶ تلقی می‌شود.</p>
+            <p>این قطعنامه که با حمایت ده‌ها عضو کنگره ارائه شده است، بر اهمیت برنامه پذیرش پناهندگان آمریکا و نقش آن در حمایت از افراد آسیب‌پذیر تأکید می‌کند. حامیان این طرح خواستار بازگشت سیاست‌هایی شده‌اند که بتواند بار دیگر مسیر حمایت و اسکان پناهندگان را تقویت کند.</p>
+            <p>همزمان، تلاش‌های حقوقی و سیاسی برای مقابله با محدودیت‌های مهاجرتی همچنان ادامه دارد. سازمان‌های مدافع حقوق پناهندگان، اعضای کنگره و نهادهای حقوقی در حال افزایش فشارها برای احیای برنامه‌های حمایتی و ایجاد راه‌حل‌های پایدار برای خانواده‌های منتظر هستند.</p>
+            <p>برای متقاضیان افغان، این تحولات می‌تواند نشانه‌ای مثبت از ادامه حمایت‌ها در واشنگتن باشد. هرچند هنوز تصمیم رسمی درباره از سرگیری کامل برخی برنامه‌ها اعلام نشده است، اما افزایش فعالیت‌های کنگره، طرح‌های جدید حمایتی و ادامه چالش‌های حقوقی علیه محدودیت‌های موجود نشان می‌دهد که موضوع پناهندگان همچنان در اولویت بخشی از قانون‌گذاران آمریکایی قرار دارد.</p>
+            <p>کارشناسان معتقدند گسترش حمایت سیاسی در کنگره و ادامه تلاش‌های حقوقی می‌تواند زمینه را برای بررسی مجدد برخی سیاست‌های مهاجرتی و پناهندگی در آینده فراهم کند.</p>
+            <p>در شرایطی که هزاران متقاضی افغان همچنان منتظر تحولات بعدی هستند، پیام روز جهانی پناهندگان ۲۰۲۶ این است که حمایت از پناهندگان همچنان در آمریکا صدای قدرتمندی دارد و تلاش‌ها برای یافتن راه‌حل‌های انسانی ادامه خواهد یافت.</p>
+        `,
+                footTitle1: "خدمات مهاجرت",
+                footDesc1: "معتبرترین خدمات در افغانستان",
+                footDesc2: "خدمات مهاجرتی جهانی",
+                footTitle2: "تماس با ما",
+                footAddr: "ایبک، سمنگان، افغانستان",
+                footTitle3: "شبکه‌های اجتماعی",
+                copy: "© ۲۰۲۶ VISA GUIDE AF — همه حقوق محفوظ است"
+            },
+            en: {
+                home: "Home",
+                services: "Services",
+                ai: "AI Assistant",
+                contact: "Contact",
+                faq: "FAQ",
+                news: "News",
+                category: "Legal / Immigration",
+                author: "VISA GUIDE AF Reporter",
+                authorTitle: "Reporter & Admin",
+                backBtn: "← Back to Home",
+                caption: "New signs of increased political support for refugees; hope remains for Afghan applicants",
+                title: "New signs of increased political support for refugees; hope remains for Afghan applicants",
+                deck: "On the eve of World Refugee Day, a group of US senators and representatives introduced a new resolution reaffirming their support for refugees.",
+                date: "🕒 10:30 AM - Wednesday, June 18, 2026",
+                content: `
+            <p>On the eve of World Refugee Day, a group of US senators and representatives introduced a new resolution, once again declaring their support for refugees and displaced persons — an action that many observers consider one of the most significant supportive messages for the refugee community in 2026.</p>
+            <p>The resolution, backed by dozens of congressional members, emphasizes the importance of the US Refugee Admissions Program and its role in protecting vulnerable individuals. Supporters of the initiative are calling for the return of policies that would once again strengthen the path of refugee support and resettlement.</p>
+            <p>Meanwhile, legal and political efforts to counter immigration restrictions continue. Refugee rights advocacy organizations, congressional members, and legal institutions are increasing pressure to revive support programs and create sustainable solutions for waiting families.</p>
+            <p>For Afghan applicants, these developments could be a positive sign of continued support in Washington. Although no official decision has been announced regarding the full resumption of some programs, increased congressional activity, new support initiatives, and ongoing legal challenges to existing restrictions indicate that the refugee issue remains a priority for a segment of US lawmakers.</p>
+            <p>Experts believe that expanding political support in Congress and continuing legal efforts could pave the way for a reevaluation of some immigration and refugee policies in the future.</p>
+            <p>As thousands of Afghan applicants continue to await further developments, the message of World Refugee Day 2026 is that support for refugees still has a powerful voice in America, and efforts to find humane solutions will continue.</p>
+        `,
+                footTitle1: "Immigration Services",
+                footDesc1: "Most reliable services in Afghanistan",
+                footDesc2: "Global immigration services",
+                footTitle2: "Contact Us",
+                footAddr: "Aibak, Samangan, Afghanistan",
+                footTitle3: "Social Networks",
+                copy: "© 2026 VISA GUIDE AF — All rights reserved"
+            },
+            ps: {
+                home: "کور",
+                services: "خدمات",
+                ai: "AI",
+                contact: "اړیکه",
+                faq: "پوښتنې",
+                news: "خبرونه",
+                category: "حقوقي / د کډوالۍ خبرونه",
+                author: "د VISA GUIDE AF خبریال",
+                authorTitle: "خبریال او مدیر",
+                backBtn: "← بیرته کور پاڼې ته",
+                caption: "د پناهندګانو لپاره د سیاسي ملاتړ د زیاتوالي نوي نښې؛ د افغان غوښتونکو لپاره هیله ژوندۍ ده",
+                title: "د پناهندګانو لپاره د سیاسي ملاتړ د زیاتوالي نوي نښې؛ د افغان غوښتونکو لپاره هیله ژوندۍ ده",
+                deck: "د پناهندګانو نړیوالې ورځې په موقع، د امریکا سناتورانو او استازو یو نوی پرېکړه لیک معرفي کړ چې د پناهندګانو ملاتړ یې بیا تایید کړ.",
+                date: "🕒 ۱۰:۳۰ - چهارشنبه، ۲۸ جوزا ۱۴۰۵ (د ۲۰۲۶ کال د جون ۱۸)",
+                content: `
+            <p>د پناهندګانو نړیوالې ورځې په موقع، د امریکا سناتورانو او استازو یو نوی پرېکړه لیک معرفي کړ چې د پناهندګانو او بې ځایه شویو ملاتړ یې بیا تایید کړ؛ دا اقدام چې د ډیری ناظرینو لخوا د ۲۰۲۶ کال د پناهندګانو ټولنې لپاره یو له مهمو ملاتړیزو پیغامونو څخه ګڼل کیږي.</p>
+            <p>دا پرېکړه لیک چې د کانګرس د څو تنو غړو لخوا ملاتړ شوی، د امریکا د پناهندګانو د منلو پروګرام اهمیت او د زیان منونکو کسانو په ساتنه کې د هغه رول ټینګار کوي. د دې طرحې ملاتړي د هغو پالیسیو د بیرته راستنیدو غوښتنه کوي چې کولی شي د پناهندګانو ملاتړ او استوګنې لاره بیا پیاوړې کړي.</p>
+            <p>په ورته وخت کې، د کډوالۍ محدودیتونو سره د مقابلې لپاره حقوقي او سیاسي هڅې دوام لري. د پناهندګانو د حقونو مدافع سازمانونه، د کانګرس غړي او حقوقي بنسټونه د ملاتړیزو پروګرامونو د بیا ژوندي کولو او انتظار لرونکو کورنیو لپاره د دوامدارو حل لارو موندلو لپاره فشارونه زیاتوي.</p>
+            <p>د افغان غوښتونکو لپاره، دا پرمختګونه په واشنګټن کې د ملاتړ د دوام مثبته نښه کیدی شي. که څه هم تر اوسه د ځینو پروګرامونو د بشپړ بیا پیلولو په اړه رسمي پریکړه نه ده اعلان شوې، مګر د کانګرس فعالیتونو زیاتوالی، د ملاتړ نوې طرحې او د موجودو محدودیتونو پر وړاندې د حقوقي ننګونو دوام ښیي چې د پناهندګانو موضوع لا هم د امریکا د قانون جوړونکو یوې برخې لپاره لومړیتوب لري.</p>
+            <p>کارپوهان په دې باور دي چې د کانګرس کې د سیاسي ملاتړ پراختیا او حقوقي هڅو دوام کولی شي د راتلونکي په برخه کې د ځینو کډوالۍ او پناهندګۍ پالیسیو د بیا کتنې لپاره زمینه برابره کړي.</p>
+            <p>په داسې حال کې چې زرګونه افغان غوښتونکي لا هم د راتلونکو پرمختګونو انتظار باسي، د ۲۰۲۶ کال د پناهندګانو نړیوالې ورځې پیغام دا دی چې د پناهندګانو ملاتړ په امریکا کې لاهم پیاوړی غږ لري او د بشري حل لارو د موندلو لپاره هڅې به دوام ولري.</p>
+        `,
+                footTitle1: "د کډوالۍ خدمات",
+                footDesc1: "افغانستان کې ترټولو معتبر خدمات",
+                footDesc2: "نړیوال د کډوالۍ خدمات",
+                footTitle2: "اړیکه",
+                footAddr: "ایبک، سمنګان، افغانستان",
+                footTitle3: "ټولنیزې شبکې",
+                copy: "© ۲۰۲۶ VISA GUIDE AF — ټول حقونه خوندي دي"
+            }
+        };
+        let currentLang = 'fa';
+
+        function applyLanguage(lang) {
+            currentLang = lang;
+            document.querySelectorAll('[data-key]').forEach(el => {
+                const key = el.getAttribute('data-key');
+                if (T[lang][key]) el.innerHTML = T[lang][key];
+            });
+            document.getElementById('breakingBadge').innerHTML = lang === 'fa' ? '<i class="fas fa-broadcast-tower"></i> خبر فوری' : (lang === 'en' ? '<i class="fas fa-broadcast-tower"></i> Breaking News' : '<i class="fas fa-broadcast-tower"></i> بیړنی خبر');
+            document.getElementById('articleTitle').innerHTML = T[lang].title;
+            document.getElementById('articleDeck').innerHTML = T[lang].deck;
+            document.getElementById('articleDate').innerHTML = T[lang].date;
+            document.getElementById('imageCaption').innerHTML = T[lang].caption;
+            document.getElementById('articleContent').innerHTML = T[lang].content;
+            const labelMap = { fa: "فارسی", en: "English", ps: "پښتو" };
+            document.getElementById('currentLangLabel').innerText = labelMap[lang];
+        }
+
+        // theme
+        const themeBtn = document.getElementById('themeBtn');
+        const savedTheme = localStorage.getItem('srs-theme') || 'dark';
+        document.body.className = savedTheme + '-mode';
+        themeBtn.innerHTML = savedTheme === 'dark' ? '<i class="fas fa-moon"></i>' : '<i class="fas fa-sun"></i>';
+        themeBtn.addEventListener('click', () => {
+            const isDark = document.body.classList.contains('dark-mode');
+            document.body.className = isDark ? 'light-mode' : 'dark-mode';
+            themeBtn.innerHTML = isDark ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+            localStorage.setItem('srs-theme', isDark ? 'light' : 'dark');
+        });
+
+        // language dropdown
+        const dropdown = document.getElementById('langDropdown');
+        const trigger = document.getElementById('langTrigger');
+        trigger.addEventListener('click', (e) => {
+            e.stopPropagation();
+            dropdown.classList.toggle('open');
+        });
+        document.addEventListener('click', (e) => {
+            if (!dropdown.contains(e.target)) dropdown.classList.remove('open');
+        });
+        document.querySelectorAll('.lang-option').forEach(opt => {
+            opt.addEventListener('click', (e) => {
+                const newLang = opt.getAttribute('data-lang');
+                if (newLang) applyLanguage(newLang);
+                dropdown.classList.remove('open');
+            });
+        });
+
+        // mobile menu
+        const menuBtn = document.getElementById('menuBtn');
+        const navLinks = document.getElementById('navLinks');
+        function closeMenu() {
+            navLinks.classList.remove('open');
+            if (menuBtn) menuBtn.innerHTML = '☰';
+        }
+        menuBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const isOpen = navLinks.classList.contains('open');
+            if (isOpen) closeMenu();
+            else {
+                navLinks.classList.add('open');
+                menuBtn.innerHTML = '✕';
+            }
+        });
+        document.addEventListener('click', (e) => {
+            if (!navLinks.contains(e.target) && !menuBtn.contains(e.target) && navLinks.classList.contains('open')) closeMenu();
+        });
+        navLinks.querySelectorAll('a').forEach(link => link.addEventListener('click', closeMenu));
+
+        // particles
+        const particles = document.getElementById('particles');
+        for (let i = 0; i < 40; i++) {
+            const p = document.createElement('div');
+            p.className = 'p';
+            const s = Math.random() * 8 + 3;
+            p.style.cssText = `width:${s}px;height:${s}px;left:${Math.random() * 100}%;top:${Math.random() * 100}%;animation-delay:${Math.random() * 12}s;animation-duration:${12 + Math.random() * 10}s`;
+            particles.appendChild(p);
+        }
+
+        applyLanguage('fa');
+    </script>
+</body>
+
+</html>
