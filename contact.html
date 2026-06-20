@@ -7,7 +7,6 @@
   <title>تماس | VISA GUIDE AF</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <style>
-    /* ========== VARIABLES ========== */
     :root {
       --bg: #070b13;
       --panel: rgba(255, 255, 255, 0.04);
@@ -26,10 +25,8 @@
       --danger: #ef4444;
       --font: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
       --icon-filter: brightness(0) invert(1);
-      /* شب: سفید */
     }
 
-    /* حالت روز (Light Mode) - همه چیز تیره و خوانا */
     .light-mode {
       --bg: #f0f4fa;
       --panel: rgba(255, 255, 255, 0.8);
@@ -41,7 +38,6 @@
       --placeholder-color: #64748b;
       --primary-glow: rgba(124, 58, 237, 0.2);
       --icon-filter: brightness(0);
-      /* روز: سیاه */
     }
 
     * {
@@ -61,7 +57,6 @@
       flex-direction: column;
     }
 
-    /* پس‌زمینه سه‌بعدی */
     .bg-scene {
       position: fixed;
       top: 0;
@@ -116,7 +111,6 @@
       }
     }
 
-    /* شیشه‌ای */
     .glass {
       background: var(--panel);
       backdrop-filter: blur(16px);
@@ -132,7 +126,6 @@
       box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.2), 0 0 25px var(--primary-glow);
     }
 
-    /* ========== NAVBAR ========== */
     .navbar {
       position: sticky;
       top: 15px;
@@ -257,7 +250,6 @@
       background: rgba(0, 0, 0, 0.05);
     }
 
-    /* ========== منوی زبان با کره زمین ========== */
     .lang-dropdown {
       position: relative;
       display: inline-block;
@@ -359,7 +351,6 @@
       cursor: pointer;
     }
 
-    /* ========== HERO ========== */
     .hero {
       max-width: 1200px;
       margin: 80px auto 40px auto;
@@ -394,13 +385,10 @@
       font-weight: 900;
       margin-bottom: 16px;
       color: #ffffff;
-
-
     }
 
     .light-mode .hero h1 {
-
-      filter: invert(1)
+      color: #0a0f1c;
     }
 
     .hero-desc {
@@ -408,7 +396,6 @@
       font-size: 1rem;
     }
 
-    /* ========== فرم تماس ========== */
     .contact-grid {
       max-width: 1100px;
       margin: 2rem auto 80px auto;
@@ -442,9 +429,9 @@
       width: 100%;
       padding: 14px 18px;
       border-radius: 16px;
-      background: whitesmoke;
+      background: var(--input-bg);
       border: 1px solid var(--border);
-      color: rgb(0, 0, 0);
+      color: var(--text);
       font-family: inherit;
       font-size: 0.9rem;
       transition: all 0.25s ease;
@@ -468,10 +455,6 @@
       resize: vertical;
     }
 
-    .form-group .dark-mode {
-      filter: invert(1);
-    }
-
     .submit-btn {
       width: 100%;
       padding: 15px;
@@ -491,7 +474,6 @@
       box-shadow: 0 8px 24px var(--primary-glow);
     }
 
-    /* کارت‌های اطلاعات */
     .info-card {
       display: flex;
       align-items: flex-start;
@@ -532,7 +514,6 @@
       color: var(--text-muted);
     }
 
-    /* شبکه اجتماعی */
     .social-row {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -561,7 +542,6 @@
       box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
     }
 
-    /* فوتر */
     .footer {
       background: rgba(10, 15, 30, 0.8);
       border-top: 1px solid var(--border);
@@ -618,7 +598,6 @@
       font-size: 0.85rem;
     }
 
-    /* ذرات */
     .particles {
       position: fixed;
       top: 0;
@@ -656,7 +635,6 @@
       }
     }
 
-    /* موبایل */
     @media (max-width: 768px) {
       .navbar {
         width: 90%;
@@ -730,11 +708,12 @@
     <ul class="nav-links" id="navLinks">
       <li><a href="index.html"><img src="images/home.png"> <span data-key="home">خانه</span></a></li>
       <li><a href="services.html"><img src="images/customer.png"> <span data-key="services">خدمات</span></a></li>
-      <li><a href="ai.html"><img src="images/ai.png"> <span data-key="ai">هوش مصنوعی</span></a></li>
+      <li><a href="agents.html"><img src="images/map.png"> <span data-key="agents">نماینده گی</span></a></li>
       <li><a href="contact.html" class="active"><img src="images/call.png"> <span data-key="contact">تماس</span></a>
       </li>
       <li><a href="faq.html"><img src="images/f&a.png"> <span data-key="faq">سوالات</span></a></li>
       <li><a href="news/day-news/day.html"><img src="images/event.png"> <span data-key="news">اخبار</span></a></li>
+      <li><a href="document.html"><img src="images/event.png"> <span data-key="documents">مستندات</span></a></li>
     </ul>
     <div class="nav-actions">
       <div class="lang-dropdown" id="langDropdown">
@@ -774,7 +753,7 @@
           <option value="consult" data-key="opt1">مشاوره مهاجرت</option>
           <option value="visa" data-key="opt2">ثبت‌نام ویزا</option>
           <option value="general" data-key="opt3">سوال عمومی</option>
-          <option value="asylum" data-key="opt4">مشکل حقوقی مهاجرت[</option>
+          <option value="asylum" data-key="opt4">پناهندگی</option>
         </select>
       </div>
       <div class="form-group"><label data-key="message">پیام</label><textarea id="messageInput"
@@ -856,35 +835,37 @@
   </footer>
 
   <script>
-    // ========== MULTILINGUAL DATA ==========
     const T = {
       fa: {
         home: "خانه", services: "خدمات", ai: "هوش مصنوعی", contact: "تماس", faq: "سوالات", news: "اخبار",
+        documents: "مستندات", agents: "نماینده گی",
         pageTag: "تماس با ما", pageTitle: "فورم تماس", pageDesc: "ما در کنار شما هستیم — پیام بگذارید",
         formSend: "ارسال پیام", fullName: "نام کامل", emailOrWhatsapp: "ایمیل / واتساپ", subject: "موضوع", message: "پیام",
         opt1: "مشاوره مهاجرت", opt2: "ثبت‌نام ویزا", opt3: "سوال عمومی", opt4: "پناهندگی",
         addr: "آدرس", phone: "تلفن", email: "ایمیل", hours: "ساعات کاری", hoursValue: "شنبه تا پنجشنبه — ۸ صبح تا ۶ عصر",
-        submitOriginal: "ارسال پیام", footTitle1: "خدمات مهاجرت", footDesc1: "معتبرترین خدمات در افغانستان",
+        footTitle1: "خدمات مهاجرت", footDesc1: "معتبرترین خدمات در افغانستان",
         footDesc2: "خدمات مهاجرتی جهانی", footTitle2: "تماس با ما", footAddr: "ایبک، سمنگان، افغانستان",
         footTitle3: "شبکه‌های اجتماعی", copy: "© 2026 VISA GUIDE AF — همه حقوق محفوظ است"
       },
       en: {
         home: "Home", services: "Services", ai: "AI Assistant", contact: "Contact", faq: "FAQ", news: "News",
+        documents: "Documents", agents: "Agents",
         pageTag: "Contact Us", pageTitle: "Contact Form", pageDesc: "We are with you — Leave a message",
         formSend: "Send Message", fullName: "Full Name", emailOrWhatsapp: "Email / WhatsApp", subject: "Subject", message: "Message",
         opt1: "Migration Consultation", opt2: "Visa Registration", opt3: "General Inquiry", opt4: "Asylum",
         addr: "Address", phone: "Phone", email: "Email", hours: "Working Hours", hoursValue: "Saturday to Thursday — 8 AM to 6 PM",
-        submitOriginal: "Send Message", footTitle1: "Immigration Services", footDesc1: "Most reliable services in Afghanistan",
+        footTitle1: "Immigration Services", footDesc1: "Most reliable services in Afghanistan",
         footDesc2: "Global immigration services", footTitle2: "Contact Us", footAddr: "Aibak, Samangan, Afghanistan",
         footTitle3: "Social Networks", copy: "© 2026 VISA GUIDE AF — All rights reserved"
       },
       ps: {
         home: "کور", services: "خدمات", ai: "AI", contact: "اړیکه", faq: "پوښتنې", news: "خبرونه",
+        documents: "اسناد", agents: "استازي",
         pageTag: "اړیکه", pageTitle: "د اړیکې فورمه", pageDesc: "موږ ستاسو تر څنګ یو — پیغام پریږدئ",
         formSend: "پیغام واستوئ", fullName: "بشپړ نوم", emailOrWhatsapp: "ایمیل / واټساپ", subject: "موضوع", message: "پیغام",
         opt1: "د مهاجرت مشوره", opt2: "د ویزې ثبتنام", opt3: "عمومي پوښتنه", opt4: "پناه غوښتنه",
         addr: "پته", phone: "تلیفون", email: "بریښنالیک", hours: "کاري ساعتونه", hoursValue: "شنبه تر پنجشنبه — ۸ سهار تر ۶ مازدیګر",
-        submitOriginal: "پیغام واستوئ", footTitle1: "د کډوالۍ خدمات", footDesc1: "افغانستان کې ترټولو معتبر خدمات",
+        footTitle1: "د کډوالۍ خدمات", footDesc1: "افغانستان کې ترټولو معتبر خدمات",
         footDesc2: "نړیوال د کډوالۍ خدمات", footTitle2: "اړیکه", footAddr: "ایبک, سمنګان، افغانستان",
         footTitle3: "ټولنیزې شبکې", copy: "© 2026 VISA GUIDE AF — ټول حقونه خوندي"
       }
@@ -916,7 +897,7 @@
       document.getElementById('messageInput').placeholder = placeholders[lang].message;
       const btn = document.getElementById('submitBtn');
       if (!btn.classList.contains('sent')) {
-        btn.innerHTML = `${T[lang].submitOriginal} <i class="fas fa-paper-plane"></i>`;
+        btn.innerHTML = `${T[lang].formSend} <i class="fas fa-paper-plane"></i>`;
       }
       const labelMap = { fa: "فارسی", en: "English", ps: "پښتو" };
       document.getElementById('currentLangLabel').innerText = labelMap[lang];
@@ -926,30 +907,28 @@
       });
     }
 
-    // دکمه ارسال
     const submitBtn = document.getElementById('submitBtn');
     submitBtn.addEventListener('click', () => {
       submitBtn.classList.add('sent');
-      submitBtn.innerHTML = `<i class="fas fa-check"></i> ${T[currentLang].submitOriginal} ✓`;
+      submitBtn.innerHTML = `<i class="fas fa-check"></i> ${T[currentLang].formSend} ✓`;
       submitBtn.style.background = 'linear-gradient(95deg,#06d6a0,#0ba37d)';
       setTimeout(() => {
         submitBtn.classList.remove('sent');
-        submitBtn.innerHTML = `${T[currentLang].submitOriginal} <i class="fas fa-paper-plane"></i>`;
+        submitBtn.innerHTML = `${T[currentLang].formSend} <i class="fas fa-paper-plane"></i>`;
         submitBtn.style.background = 'var(--primary)';
       }, 2000);
     });
 
-    // ذرات
     const pc = document.getElementById('particles');
     for (let i = 0; i < 40; i++) {
       const p = document.createElement('div');
       p.className = 'p';
       const s = Math.random() * 8 + 3;
-      p.style.cssText = `width:${s}px;height:${s}px;left:${Math.random() * 100}%;top:${Math.random() * 100}%;animation-delay:${Math.random() * 12}s;animation-duration:${12 + Math.random() * 10}s`;
+      p.style.cssText =
+        `width:${s}px;height:${s}px;left:${Math.random() * 100}%;top:${Math.random() * 100}%;animation-delay:${Math.random() * 12}s;animation-duration:${12 + Math.random() * 10}s`;
       pc.appendChild(p);
     }
 
-    // تم شب/روز - با اعمال مستقیم کلاس روی body
     const themeBtn = document.getElementById('themeBtn');
     const savedTheme = localStorage.getItem('srs-theme') || 'dark';
     document.body.className = savedTheme + '-mode';
@@ -961,10 +940,12 @@
       localStorage.setItem('srs-theme', isDark ? 'light' : 'dark');
     });
 
-    // منوی زبان
     const dropdown = document.getElementById('langDropdown');
     const trigger = document.getElementById('langTrigger');
-    trigger.addEventListener('click', (e) => { e.stopPropagation(); dropdown.classList.toggle('open'); });
+    trigger.addEventListener('click', (e) => {
+      e.stopPropagation();
+      dropdown.classList.toggle('open');
+    });
     document.addEventListener('click', (e) => { if (!dropdown.contains(e.target)) dropdown.classList.remove('open'); });
     document.querySelectorAll('.lang-option').forEach(opt => {
       opt.addEventListener('click', (e) => {
@@ -974,18 +955,25 @@
       });
     });
 
-    // منوی همبرگری موبایل
     const menuBtn = document.getElementById('menuBtn');
     const navLinks = document.getElementById('navLinks');
-    function closeMenu() { navLinks.classList.remove('open'); if (menuBtn) menuBtn.innerHTML = '☰'; }
+
+    function closeMenu() {
+      navLinks.classList.remove('open');
+      if (menuBtn) menuBtn.innerHTML = '☰';
+    }
     menuBtn.addEventListener('click', (e) => {
       e.stopPropagation();
       const isOpen = navLinks.classList.contains('open');
       if (isOpen) closeMenu();
-      else { navLinks.classList.add('open'); menuBtn.innerHTML = '✕'; }
+      else {
+        navLinks.classList.add('open');
+        menuBtn.innerHTML = '✕';
+      }
     });
     document.addEventListener('click', (e) => {
-      if (!navLinks.contains(e.target) && !menuBtn.contains(e.target) && navLinks.classList.contains('open')) closeMenu();
+      if (!navLinks.contains(e.target) && !menuBtn.contains(e.target) && navLinks.classList.contains('open'))
+        closeMenu();
     });
     navLinks.querySelectorAll('a').forEach(link => link.addEventListener('click', closeMenu));
 

@@ -7,7 +7,6 @@
   <title>خدمات | VISA GUIDE AF</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <style>
-    /* ========== VARIABLES ========== */
     :root {
       --bg: #070b13;
       --panel: rgba(255, 255, 255, 0.04);
@@ -169,7 +168,7 @@
     }
 
     .light-mode .logo-name {
-      filter: invert(1);
+      color: #0f172a;
     }
 
     .nav-links {
@@ -383,7 +382,7 @@
     }
 
     .light-mode .hero h1 {
-      filter: invert(1);
+      color: #0f172a;
     }
 
     .hero-desc {
@@ -579,10 +578,11 @@
       <li><a href="index.html"><img src="images/home.png"> <span data-key="home">خانه</span></a></li>
       <li><a href="services.html" class="active"><img src="images/customer.png"> <span
             data-key="services">خدمات</span></a></li>
-      <li><a href="ai.html"><img src="images/ai.png"> <span data-key="ai">هوش مصنوعی</span></a></li>
+      <li><a href="agents.html"><img src="images/map.png"> <span data-key="agents">نماینده گی</span></a></li>
       <li><a href="contact.html"><img src="images/call.png"> <span data-key="contact">تماس</span></a></li>
       <li><a href="faq.html"><img src="images/f&a.png"> <span data-key="faq">سوالات</span></a></li>
       <li><a href="news/day-news/day.html"><img src="images/event.png"> <span data-key="news">اخبار</span></a></li>
+      <li><a href="document.html"><img src="images/event.png"> <span data-key="documents">مستندات</span></a></li>
     </ul>
     <div class="nav-actions">
       <div class="lang-dropdown" id="langDropdown">
@@ -643,31 +643,69 @@
   </footer>
 
   <script>
-    // ========== MULTILINGUAL DATA ==========
     const T = {
       fa: {
-        home: "خانه", services: "خدمات", ai: "هوش مصنوعی", contact: "تماس", faq: "سوالات", news: "اخبار",
-        pageTag: "خدمات تخصصی", pageTitle: "خدمات ما",
+        home: "خانه",
+        services: "خدمات",
+        ai: "هوش مصنوعی",
+        contact: "تماس",
+        faq: "سوالات",
+        news: "اخبار",
+        documents: "مستندات",
+        agents: "نماینده گی",
+        pageTag: "خدمات تخصصی",
+        pageTitle: "خدمات ما",
         pageDesc: "راهنمایی کامل در تمام مراحل مهاجرت، از مشاوره تا دریافت ویزا",
-        visitBtn: "مشاهده", footTitle1: "خدمات مهاجرت", footDesc1: "معتبرترین خدمات در افغانستان",
-        footDesc2: "خدمات مهاجرتی جهانی", footTitle2: "تماس با ما", footAddr: "ایبک، سمنگان، افغانستان",
-        footTitle3: "شبکه‌های اجتماعی", copy: "© 2026 VISA GUIDE AF — همه حقوق محفوظ است"
+        visitBtn: "مشاهده",
+        footTitle1: "خدمات مهاجرت",
+        footDesc1: "معتبرترین خدمات در افغانستان",
+        footDesc2: "خدمات مهاجرتی جهانی",
+        footTitle2: "تماس با ما",
+        footAddr: "ایبک، سمنگان، افغانستان",
+        footTitle3: "شبکه‌های اجتماعی",
+        copy: "© 2026 VISA GUIDE AF — همه حقوق محفوظ است"
       },
       en: {
-        home: "Home", services: "Services", ai: "AI Assistant", contact: "Contact", faq: "FAQ", news: "News",
-        pageTag: "Specialized Services", pageTitle: "Our Services",
+        home: "Home",
+        services: "Services",
+        ai: "AI Assistant",
+        contact: "Contact",
+        faq: "FAQ",
+        news: "News",
+        documents: "Documents",
+        agents: "Agents",
+        pageTag: "Specialized Services",
+        pageTitle: "Our Services",
         pageDesc: "Complete guidance through all stages of immigration, from consultation to visa",
-        visitBtn: "Visit", footTitle1: "Immigration Services", footDesc1: "Most reliable services in Afghanistan",
-        footDesc2: "Global immigration services", footTitle2: "Contact Us", footAddr: "Aibak, Samangan, Afghanistan",
-        footTitle3: "Social Networks", copy: "© 2026 VISA GUIDE AF — All rights reserved"
+        visitBtn: "Visit",
+        footTitle1: "Immigration Services",
+        footDesc1: "Most reliable services in Afghanistan",
+        footDesc2: "Global immigration services",
+        footTitle2: "Contact Us",
+        footAddr: "Aibak, Samangan, Afghanistan",
+        footTitle3: "Social Networks",
+        copy: "© 2026 VISA GUIDE AF — All rights reserved"
       },
       ps: {
-        home: "کور", services: "خدمات", ai: "AI", contact: "اړیکه", faq: "پوښتنې", news: "خبرونه",
-        pageTag: "تخصصي خدمات", pageTitle: "زموږ خدمات",
+        home: "کور",
+        services: "خدمات",
+        ai: "AI",
+        contact: "اړیکه",
+        faq: "پوښتنې",
+        news: "خبرونه",
+        documents: "اسناد",
+        agents: "استازي",
+        pageTag: "تخصصي خدمات",
+        pageTitle: "زموږ خدمات",
         pageDesc: "د مهاجرت ټولو مرحلو کې بشپړ لارښود",
-        visitBtn: "وګورئ", footTitle1: "د کډوالۍ خدمات", footDesc1: "افغانستان کې ترټولو معتبر خدمات",
-        footDesc2: "نړیوال د کډوالۍ خدمات", footTitle2: "اړیکه", footAddr: "ایبک, سمنګان، افغانستان",
-        footTitle3: "ټولنیزې شبکې", copy: "© 2026 VISA GUIDE AF — ټول حقونه خوندي"
+        visitBtn: "وګورئ",
+        footTitle1: "د کډوالۍ خدمات",
+        footDesc1: "افغانستان کې ترټولو معتبر خدمات",
+        footDesc2: "نړیوال د کډوالۍ خدمات",
+        footTitle2: "اړیکه",
+        footAddr: "ایبک, سمنګان، افغانستان",
+        footTitle3: "ټولنیزې شبکې",
+        copy: "© 2026 VISA GUIDE AF — ټول حقونه خوندي"
       }
     };
 
@@ -704,15 +742,15 @@
       const g = document.getElementById('servicesGrid');
       if (!g) return;
       g.innerHTML = services[currentLang].map(s => `
-        <a href="${s.link}" class="glass" style="text-decoration:none;display:block;">
-          <div style="padding:2rem;text-align:center;">
-            <div style="font-size:2.5rem;color:${s.color};margin-bottom:1rem;transition:transform 0.3s"><i class="${s.icon}"></i></div>
-            <div style="font-size:1.1rem;font-weight:700;color:var(--text);margin-bottom:0.7rem">${s.title}</div>
-            <div style="font-size:0.85rem;color:var(--text-muted);line-height:1.7">${s.desc}</div>
-            <div style="margin-top:1.2rem;display:inline-block;background:rgba(124,58,237,0.15);border:1px solid rgba(124,58,237,0.3);color:#a78bfa;padding:6px 18px;border-radius:30px;font-size:0.8rem">${T[currentLang].visitBtn} →</div>
-          </div>
-        </a>
-      `).join('');
+                <a href="${s.link}" class="glass" style="text-decoration:none;display:block;">
+                    <div style="padding:2rem;text-align:center;">
+                        <div style="font-size:2.5rem;color:${s.color};margin-bottom:1rem;transition:transform 0.3s"><i class="${s.icon}"></i></div>
+                        <div style="font-size:1.1rem;font-weight:700;color:var(--text);margin-bottom:0.7rem">${s.title}</div>
+                        <div style="font-size:0.85rem;color:var(--text-muted);line-height:1.7">${s.desc}</div>
+                        <div style="margin-top:1.2rem;display:inline-block;background:rgba(124,58,237,0.15);border:1px solid rgba(124,58,237,0.3);color:#a78bfa;padding:6px 18px;border-radius:30px;font-size:0.8rem">${T[currentLang].visitBtn} →</div>
+                    </div>
+                </a>
+            `).join('');
     }
 
     function applyLanguage(lang) {
@@ -726,17 +764,18 @@
       renderServices();
     }
 
-    // ========== PARTICLES ==========
+    // PARTICLES
     const particles = document.getElementById('particles');
     for (let i = 0; i < 40; i++) {
       const p = document.createElement('div');
       p.className = 'p';
       const s = Math.random() * 8 + 3;
-      p.style.cssText = `width:${s}px;height:${s}px;left:${Math.random() * 100}%;top:${Math.random() * 100}%;animation-delay:${Math.random() * 12}s;animation-duration:${12 + Math.random() * 10}s`;
+      p.style.cssText =
+        `width:${s}px;height:${s}px;left:${Math.random() * 100}%;top:${Math.random() * 100}%;animation-delay:${Math.random() * 12}s;animation-duration:${12 + Math.random() * 10}s`;
       particles.appendChild(p);
     }
 
-    // ========== THEME TOGGLE ==========
+    // THEME TOGGLE
     const themeBtn = document.getElementById('themeBtn');
     const savedTheme = localStorage.getItem('srs-theme') || 'dark';
     document.body.className = savedTheme + '-mode';
@@ -748,10 +787,13 @@
       localStorage.setItem('srs-theme', isDark ? 'light' : 'dark');
     });
 
-    // ========== LANGUAGE DROPDOWN ==========
+    // LANGUAGE DROPDOWN
     const dropdown = document.getElementById('langDropdown');
     const trigger = document.getElementById('langTrigger');
-    trigger.addEventListener('click', (e) => { e.stopPropagation(); dropdown.classList.toggle('open'); });
+    trigger.addEventListener('click', (e) => {
+      e.stopPropagation();
+      dropdown.classList.toggle('open');
+    });
     document.addEventListener('click', (e) => { if (!dropdown.contains(e.target)) dropdown.classList.remove('open'); });
     document.querySelectorAll('.lang-option').forEach(opt => {
       opt.addEventListener('click', (e) => {
@@ -761,22 +803,30 @@
       });
     });
 
-    // ========== MOBILE MENU ==========
+    // MOBILE MENU
     const menuBtn = document.getElementById('menuBtn');
     const navLinks = document.getElementById('navLinks');
-    function closeMenu() { navLinks.classList.remove('open'); if (menuBtn) menuBtn.innerHTML = '☰'; }
+
+    function closeMenu() {
+      navLinks.classList.remove('open');
+      if (menuBtn) menuBtn.innerHTML = '☰';
+    }
     menuBtn.addEventListener('click', (e) => {
       e.stopPropagation();
       const isOpen = navLinks.classList.contains('open');
       if (isOpen) closeMenu();
-      else { navLinks.classList.add('open'); menuBtn.innerHTML = '✕'; }
+      else {
+        navLinks.classList.add('open');
+        menuBtn.innerHTML = '✕';
+      }
     });
     document.addEventListener('click', (e) => {
-      if (!navLinks.contains(e.target) && !menuBtn.contains(e.target) && navLinks.classList.contains('open')) closeMenu();
+      if (!navLinks.contains(e.target) && !menuBtn.contains(e.target) && navLinks.classList.contains('open'))
+        closeMenu();
     });
     navLinks.querySelectorAll('a').forEach(link => link.addEventListener('click', closeMenu));
 
-    // ========== INITIAL ==========
+    // INITIAL
     applyLanguage('fa');
   </script>
 </body>

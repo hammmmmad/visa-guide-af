@@ -785,11 +785,12 @@
         <ul class="nav-links" id="navLinks">
             <li><a href="index.html"><img src="images/home.png"> <span data-key="home">خانه</span></a></li>
             <li><a href="services.html"><img src="images/customer.png"> <span data-key="services">خدمات</span></a></li>
-            <li><a href="ai.html"><img src="images/ai.png"> <span data-key="ai">هوش مصنوعی</span></a></li>
+            <li><a href="agents.html"><img src="images/map.png"> <span data-key="agents">نماینده گی</span></a></li>
             <li><a href="contact.html"><img src="images/call.png"> <span data-key="contact">تماس</span></a></li>
             <li><a href="faq.html"><img src="images/f&a.png"> <span data-key="faq">سوالات</span></a></li>
             <li><a href="news/day-news/day.html"><img src="images/event.png"> <span data-key="news">اخبار</span></a>
             </li>
+            <li><a href="document.html"><img src="images/event.png"> <span data-key="documents">مستندات</span></a></li>
         </ul>
         <div class="nav-actions">
             <div class="lang-globe" id="langGlobe">
@@ -855,6 +856,7 @@
         const T = {
             fa: {
                 home: "خانه", services: "خدمات", ai: "هوش مصنوعی", contact: "تماس", faq: "سوالات", news: "اخبار",
+                agents: "نماینده گی", documents: "مستندات",
                 docTitle: "مستندات و اخبار تخصصی",
                 docDesc: "سیستم هوشمند: هر کارت بر اساس داده‌های خود رفتار می‌کند.",
                 footTitle1: "خدمات مهاجرت", footDesc1: "معتبرترین خدمات در افغانستان", footDesc2: "خدمات مهاجرتی جهانی",
@@ -872,6 +874,7 @@
             },
             en: {
                 home: "Home", services: "Services", ai: "AI Assistant", contact: "Contact", faq: "FAQ", news: "News",
+                agents: "Agents", documents: "Documents",
                 docTitle: "Documents & Specialized News",
                 docDesc: "Smart system: Each card behaves based on its own data.",
                 footTitle1: "Immigration Services", footDesc1: "Most reliable services in Afghanistan", footDesc2: "Global immigration services",
@@ -889,6 +892,7 @@
             },
             ps: {
                 home: "کور", services: "خدمات", ai: "AI", contact: "اړیکه", faq: "پوښتنې", news: "خبرونه",
+                agents: "استازي", documents: "اسناد",
                 docTitle: "اسناد او ځانګړي خبرونه",
                 docDesc: "هوشمند سیسټم: هر کارت د خپلو معلوماتو پر اساس چلند کوي.",
                 footTitle1: "د کډوالۍ خدمات", footDesc1: "افغانستان کې ترټولو معتبر خدمات", footDesc2: "نړیوال د کډوالۍ خدمات",
@@ -913,8 +917,6 @@
         };
 
         const docCards = [
-
-
             {
                 id: 'news6',
                 image: 'capitol.png',
@@ -927,11 +929,8 @@
                 pdfLink: "#",
                 hasPdf: false
             },
-
-
-
             {
-                id: 'news6',
+                id: 'news7',
                 image: 'capitol.png',
                 titles: {
                     fa: "خبر فوری | تلاش جدید در کنگره آمریکا برای حمایت از متقاضیان افغان SIV",
@@ -942,7 +941,6 @@
                 pdfLink: "docs/CROWCO_155_xml260616101540673.pdf",
                 hasPdf: true
             },
-
             {
                 id: 'news4',
                 image: 'capitol.png',
@@ -955,8 +953,6 @@
                 pdfLink: "docs/2026 World Refugee Day Resolution_Senate.pdf",
                 hasPdf: true
             },
-
-
             {
                 id: 'news1',
                 image: 'law.png',
@@ -968,7 +964,8 @@
                 externalLink: "#",
                 pdfLink: "docs/Pacito-First-Amended-Complaint.pdf",
                 hasPdf: true
-            }, {
+            },
+            {
                 id: 'news2',
                 image: 'law.png',
                 titles: {
@@ -979,7 +976,8 @@
                 externalLink: "#",
                 pdfLink: "docs/gov.uscourts.rid.61671.41.1.pdf",
                 hasPdf: true
-            }, {
+            },
+            {
                 id: 'news3',
                 image: 'jamaica.png',
                 titles: {
@@ -990,7 +988,8 @@
                 externalLink: "https://8am.media/eng/jamaica-in-talks-with-u-s-to-accept-deported-third-country-migrants/",
                 pdfLink: "",
                 hasPdf: false
-            }];
+            }
+        ];
 
         let currentLang = 'fa';
 
@@ -1043,14 +1042,20 @@
                 let externalBtnHtml = '';
 
                 if (hasPdf) {
-                    pdfBtnHtml = `<button class="doc-link doc-link-pdf pdf-download-btn" data-pdf="${card.pdfLink}"><i class="fas fa-download"></i> ${btnPdfLabel}</button>`;
-                    externalBtnHtml = `<button class="doc-link doc-link-external external-toast-btn" data-external="${card.externalLink}"><i class="fas fa-external-link-alt"></i> ${btnExternalLabel}</button>`;
+                    pdfBtnHtml =
+                        `<button class="doc-link doc-link-pdf pdf-download-btn" data-pdf="${card.pdfLink}"><i class="fas fa-download"></i> ${btnPdfLabel}</button>`;
+                    externalBtnHtml =
+                        `<button class="doc-link doc-link-external external-toast-btn" data-external="${card.externalLink}"><i class="fas fa-external-link-alt"></i> ${btnExternalLabel}</button>`;
                 } else if (hasExternal) {
-                    pdfBtnHtml = `<button class="doc-link doc-link-pdf pdf-redirect-btn" data-external="${card.externalLink}"><i class="fas fa-external-link-alt"></i> ${T[lang].btnViewExternal}</button>`;
-                    externalBtnHtml = `<a href="${card.externalLink}" target="_blank" class="doc-link doc-link-external"><i class="fas fa-external-link-alt"></i> ${btnExternalLabel}</a>`;
+                    pdfBtnHtml =
+                        `<button class="doc-link doc-link-pdf pdf-redirect-btn" data-external="${card.externalLink}"><i class="fas fa-external-link-alt"></i> ${T[lang].btnViewExternal}</button>`;
+                    externalBtnHtml =
+                        `<a href="${card.externalLink}" target="_blank" class="doc-link doc-link-external"><i class="fas fa-external-link-alt"></i> ${btnExternalLabel}</a>`;
                 } else {
-                    pdfBtnHtml = `<button class="doc-link doc-link-pdf pdf-missing-btn"><i class="fas fa-times-circle"></i> ${T[lang].btnNoPdf}</button>`;
-                    externalBtnHtml = `<button class="doc-link doc-link-external external-missing-btn"><i class="fas fa-times-circle"></i> ${T[lang].btnNoSource}</button>`;
+                    pdfBtnHtml =
+                        `<button class="doc-link doc-link-pdf pdf-missing-btn"><i class="fas fa-times-circle"></i> ${T[lang].btnNoPdf}</button>`;
+                    externalBtnHtml =
+                        `<button class="doc-link doc-link-external external-missing-btn"><i class="fas fa-times-circle"></i> ${T[lang].btnNoSource}</button>`;
                 }
 
                 return `
@@ -1089,7 +1094,6 @@
             });
 
             // 2. External Toast (when PDF exists, and user clicks external button)
-            // کاربر گرامی نیاز نیست به منبع خارجی بروید ما سند قویتر داریم
             document.querySelectorAll('.external-toast-btn').forEach(btn => {
                 btn.addEventListener('click', function (e) {
                     e.preventDefault();
@@ -1168,7 +1172,8 @@
                 const key = el.getAttribute('data-key');
                 if (T[lang][key]) el.innerHTML = T[lang][key];
             });
-            document.getElementById('currentLangLabel').innerText = lang === 'fa' ? 'فارسی' : lang === 'en' ? 'English' : 'پښتو';
+            document.getElementById('currentLangLabel').innerText = lang === 'fa' ? 'فارسی' : lang === 'en' ? 'English' :
+                'پښتو';
             renderCards(lang);
         }
 
@@ -1187,7 +1192,10 @@
         // Language Dropdown
         const globe = document.getElementById('langGlobe');
         const trigger = document.getElementById('globeTrigger');
-        trigger.addEventListener('click', (e) => { e.stopPropagation(); globe.classList.toggle('open'); });
+        trigger.addEventListener('click', (e) => {
+            e.stopPropagation();
+            globe.classList.toggle('open');
+        });
         document.addEventListener('click', (e) => { if (!globe.contains(e.target)) globe.classList.remove('open'); });
         document.querySelectorAll('.lang-option').forEach(opt => {
             opt.addEventListener('click', (e) => {
@@ -1200,6 +1208,7 @@
         // Mobile Menu
         const menuBtn = document.getElementById('menuBtn');
         const navLinks = document.getElementById('navLinks');
+
         function closeMenu() {
             navLinks.classList.remove('open');
             if (menuBtn) menuBtn.innerHTML = '☰';
@@ -1208,10 +1217,14 @@
             e.stopPropagation();
             const isOpen = navLinks.classList.contains('open');
             if (isOpen) closeMenu();
-            else { navLinks.classList.add('open'); menuBtn.innerHTML = '✕'; }
+            else {
+                navLinks.classList.add('open');
+                menuBtn.innerHTML = '✕';
+            }
         });
         document.addEventListener('click', (e) => {
-            if (!navLinks.contains(e.target) && !menuBtn.contains(e.target) && navLinks.classList.contains('open')) closeMenu();
+            if (!navLinks.contains(e.target) && !menuBtn.contains(e.target) && navLinks.classList.contains('open'))
+                closeMenu();
         });
         navLinks.querySelectorAll('a').forEach(link => link.addEventListener('click', closeMenu));
 

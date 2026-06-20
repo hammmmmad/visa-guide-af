@@ -8,7 +8,6 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
   <style>
-    /* ========== VARIABLES ========== */
     :root {
       --bg: #070b13;
       --panel: rgba(255, 255, 255, 0.04);
@@ -26,7 +25,6 @@
       --font: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
     }
 
-    /* حالت روز - تمام متن‌ها تیره و خوانا */
     .light-mode {
       --bg: #f0f4fa;
       --panel: rgba(255, 255, 255, 0.8);
@@ -54,7 +52,6 @@
       flex-direction: column;
     }
 
-    /* پس‌زمینه سه‌بعدی */
     .bg-scene {
       position: fixed;
       top: 0;
@@ -109,7 +106,6 @@
       }
     }
 
-    /* شیشه‌ای */
     .glass {
       background: var(--panel);
       backdrop-filter: blur(16px);
@@ -125,7 +121,6 @@
       box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.2), 0 0 25px var(--primary-glow);
     }
 
-    /* ========== NAVBAR ========== */
     .navbar {
       position: sticky;
       top: 15px;
@@ -257,7 +252,6 @@
       background: rgba(0, 0, 0, 0.05);
     }
 
-    /* ========== منوی زبان با کره زمین ========== */
     .lang-dropdown {
       position: relative;
       display: inline-block;
@@ -359,7 +353,6 @@
       cursor: pointer;
     }
 
-    /* ========== HERO ========== */
     .hero {
       max-width: 1200px;
       margin: 80px auto 40px auto;
@@ -394,19 +387,16 @@
       font-weight: 900;
       margin-bottom: 16px;
       color: #ffffff;
-
-
     }
 
     .light-mode .hero h1 {
-      filter: invert(1);
+      color: #0a0f1c;
     }
 
     .hero p {
       color: var(--text-muted);
     }
 
-    /* ========== FAQ SECTION ========== */
     .faq-container {
       max-width: 900px;
       margin: 40px auto 80px auto;
@@ -503,7 +493,6 @@
       line-height: 1.8;
     }
 
-    /* ========== FOOTER - چسبیده به پایین ========== */
     .footer {
       background: rgba(10, 15, 30, 0.8);
       border-top: 1px solid var(--border);
@@ -561,7 +550,6 @@
       font-size: 0.85rem;
     }
 
-    /* ذرات */
     .particles {
       position: fixed;
       top: 0;
@@ -599,7 +587,6 @@
       }
     }
 
-    /* موبایل */
     @media (max-width: 768px) {
       .navbar {
         width: 90%;
@@ -673,10 +660,11 @@
     <ul class="nav-links" id="navLinks">
       <li><a href="index.html"><img src="images/home.png"> <span data-key="home">خانه</span></a></li>
       <li><a href="services.html"><img src="images/customer.png"> <span data-key="services">خدمات</span></a></li>
-      <li><a href="ai.html"><img src="images/ai.png"> <span data-key="ai">هوش مصنوعی</span></a></li>
+      <li><a href="agents.html"><img src="images/map.png"> <span data-key="agents">نماینده گی</span></a></li>
       <li><a href="contact.html"><img src="images/call.png"> <span data-key="contact">تماس</span></a></li>
       <li><a href="faq.html" class="active"><img src="images/f&a.png"> <span data-key="faq">سوالات</span></a></li>
       <li><a href="news/day-news/day.html"><img src="images/event.png"> <span data-key="news">اخبار</span></a></li>
+      <li><a href="document.html"><img src="images/event.png"> <span data-key="documents">مستندات</span></a></li>
     </ul>
     <div class="nav-actions">
       <div class="lang-dropdown" id="langDropdown">
@@ -743,30 +731,74 @@
   </footer>
 
   <script>
-    // ========== MULTILINGUAL DATA ==========
     const T = {
       fa: {
-        home: "خانه", services: "خدمات", ai: "هوش مصنوعی", contact: "تماس", faq: "سوالات", news: "اخبار",
-        faqTitle: "پرسش‌های پرتکرار", faqDesc: "پاسخ سوالات مهاجرتی شما — SIV، اسپانسرشیپ، USRAP", faqTag: "سوالات متداول",
-        tabSiv: "SIV", tabSponsor: " Sponsership", tabUsrap: " USRAP",
-        footTitle1: "خدمات مهاجرت", footDesc1: "معتبرترین خدمات در افغانستان", footDesc2: "خدمات مهاجرتی جهانی",
-        footTitle2: "تماس با ما", footAddr: "ایبک، سمنگان، افغانستان", footTitle3: "شبکه‌های اجتماعی",
+        home: "خانه",
+        services: "خدمات",
+        ai: "هوش مصنوعی",
+        contact: "تماس",
+        faq: "سوالات",
+        news: "اخبار",
+        documents: "مستندات",
+        agents: "نماینده گی",
+        faqTitle: "پرسش‌های پرتکرار",
+        faqDesc: "پاسخ سوالات مهاجرتی شما — SIV، اسپانسرشیپ، USRAP",
+        faqTag: "سوالات متداول",
+        tabSiv: "SIV",
+        tabSponsor: "Sponsership",
+        tabUsrap: "USRAP",
+        footTitle1: "خدمات مهاجرت",
+        footDesc1: "معتبرترین خدمات در افغانستان",
+        footDesc2: "خدمات مهاجرتی جهانی",
+        footTitle2: "تماس با ما",
+        footAddr: "ایبک، سمنگان، افغانستان",
+        footTitle3: "شبکه‌های اجتماعی",
         copy: "© 2026 VISA GUIDE AF — همه حقوق محفوظ است"
       },
       en: {
-        home: "Home", services: "Services", ai: "AI Assistant", contact: "Contact", faq: "FAQ", news: "News",
-        faqTitle: "Frequently Asked Questions", faqDesc: "Answers to your immigration questions — SIV, Sponsorship, USRAP", faqTag: "FAQ",
-        tabSiv: "SIV", tabSponsor: "Sponsorship", tabUsrap: " USRAP",
-        footTitle1: "Immigration Services", footDesc1: "Most reliable services in Afghanistan", footDesc2: "Global immigration services",
-        footTitle2: "Contact Us", footAddr: "Aibak, Samangan, Afghanistan", footTitle3: "Social Networks",
+        home: "Home",
+        services: "Services",
+        ai: "AI Assistant",
+        contact: "Contact",
+        faq: "FAQ",
+        news: "News",
+        documents: "Documents",
+        agents: "Agents",
+        faqTitle: "Frequently Asked Questions",
+        faqDesc: "Answers to your immigration questions — SIV, Sponsorship, USRAP",
+        faqTag: "FAQ",
+        tabSiv: "SIV",
+        tabSponsor: "Sponsorship",
+        tabUsrap: "USRAP",
+        footTitle1: "Immigration Services",
+        footDesc1: "Most reliable services in Afghanistan",
+        footDesc2: "Global immigration services",
+        footTitle2: "Contact Us",
+        footAddr: "Aibak, Samangan, Afghanistan",
+        footTitle3: "Social Networks",
         copy: "© 2026 VISA GUIDE AF — All rights reserved"
       },
       ps: {
-        home: "کور", services: "خدمات", ai: "AI", contact: "اړیکه", faq: "پوښتنې", news: "خبرونه",
-        faqTitle: "پوښتنې او ځوابونه", faqDesc: "ستاسو د مهاجرت پوښتنو ته ځوابونه — SIV، سپانسرشيپ، USRAP", faqTag: "پوښتنې",
-        tabSiv: "SIV", tabSponsor: "Sponsership", tabUsrap: " USRAP",
-        footTitle1: "د کډوالۍ خدمات", footDesc1: "افغانستان کې ترټولو معتبر خدمات", footDesc2: "نړیوال د کډوالۍ خدمات",
-        footTitle2: "اړیکه", footAddr: "ایبک, سمنګان، افغانستان", footTitle3: "ټولنیزې شبکې",
+        home: "کور",
+        services: "خدمات",
+        ai: "AI",
+        contact: "اړیکه",
+        faq: "پوښتنې",
+        news: "خبرونه",
+        documents: "اسناد",
+        agents: "استازي",
+        faqTitle: "پوښتنې او ځوابونه",
+        faqDesc: "ستاسو د مهاجرت پوښتنو ته ځوابونه — SIV، سپانسرشيپ، USRAP",
+        faqTag: "پوښتنې",
+        tabSiv: "SIV",
+        tabSponsor: "Sponsership",
+        tabUsrap: "USRAP",
+        footTitle1: "د کډوالۍ خدمات",
+        footDesc1: "افغانستان کې ترټولو معتبر خدمات",
+        footDesc2: "نړیوال د کډوالۍ خدمات",
+        footTitle2: "اړیکه",
+        footAddr: "ایبک, سمنګان، افغانستان",
+        footTitle3: "ټولنیزې شبکې",
         copy: "© 2026 VISA GUIDE AF — ټول حقونه خوندي"
       }
     };
@@ -851,14 +883,14 @@
       const data = faqs[currentCat][currentLang];
       if (!data) return;
       list.innerHTML = data.map((f, i) => `
-        <div class="faq-item" id="fi${i}">
-          <div class="faq-q" onclick="toggleItem(${i})">
-            <span>${f.q}</span>
-            <i class="fas fa-plus"></i>
-          </div>
-          <div class="faq-a"><p>${f.a}</p></div>
-        </div>
-      `).join('');
+                <div class="faq-item" id="fi${i}">
+                    <div class="faq-q" onclick="toggleItem(${i})">
+                        <span>${f.q}</span>
+                        <i class="fas fa-plus"></i>
+                    </div>
+                    <div class="faq-a"><p>${f.a}</p></div>
+                </div>
+            `).join('');
     }
 
     function toggleItem(i) {
@@ -888,17 +920,16 @@
       renderFaqs();
     }
 
-    // ذرات
     const pc = document.getElementById('particles');
     for (let i = 0; i < 40; i++) {
       const p = document.createElement('div');
       p.className = 'p';
       const s = Math.random() * 8 + 3;
-      p.style.cssText = `width:${s}px;height:${s}px;left:${Math.random() * 100}%;top:${Math.random() * 100}%;animation-delay:${Math.random() * 12}s;animation-duration:${12 + Math.random() * 10}s`;
+      p.style.cssText =
+        `width:${s}px;height:${s}px;left:${Math.random() * 100}%;top:${Math.random() * 100}%;animation-delay:${Math.random() * 12}s;animation-duration:${12 + Math.random() * 10}s`;
       pc.appendChild(p);
     }
 
-    // تم شب/روز
     const themeBtn = document.getElementById('themeBtn');
     const savedTheme = localStorage.getItem('srs-theme') || 'dark';
     document.body.className = savedTheme + '-mode';
@@ -910,10 +941,12 @@
       localStorage.setItem('srs-theme', isDark ? 'light' : 'dark');
     });
 
-    // منوی زبان
     const dropdown = document.getElementById('langDropdown');
     const trigger = document.getElementById('langTrigger');
-    trigger.addEventListener('click', (e) => { e.stopPropagation(); dropdown.classList.toggle('open'); });
+    trigger.addEventListener('click', (e) => {
+      e.stopPropagation();
+      dropdown.classList.toggle('open');
+    });
     document.addEventListener('click', (e) => { if (!dropdown.contains(e.target)) dropdown.classList.remove('open'); });
     document.querySelectorAll('.lang-option').forEach(opt => {
       opt.addEventListener('click', (e) => {
@@ -923,7 +956,6 @@
       });
     });
 
-    // تب‌ها
     document.querySelectorAll('.faq-tab').forEach(tab => {
       tab.addEventListener('click', () => {
         document.querySelectorAll('.faq-tab').forEach(t => t.classList.remove('active'));
@@ -932,18 +964,25 @@
       });
     });
 
-    // منوی همبرگری موبایل
     const menuBtn = document.getElementById('menuBtn');
     const navLinks = document.getElementById('navLinks');
-    function closeMenu() { navLinks.classList.remove('open'); if (menuBtn) menuBtn.innerHTML = '☰'; }
+
+    function closeMenu() {
+      navLinks.classList.remove('open');
+      if (menuBtn) menuBtn.innerHTML = '☰';
+    }
     menuBtn.addEventListener('click', (e) => {
       e.stopPropagation();
       const isOpen = navLinks.classList.contains('open');
       if (isOpen) closeMenu();
-      else { navLinks.classList.add('open'); menuBtn.innerHTML = '✕'; }
+      else {
+        navLinks.classList.add('open');
+        menuBtn.innerHTML = '✕';
+      }
     });
     document.addEventListener('click', (e) => {
-      if (!navLinks.contains(e.target) && !menuBtn.contains(e.target) && navLinks.classList.contains('open')) closeMenu();
+      if (!navLinks.contains(e.target) && !menuBtn.contains(e.target) && navLinks.classList.contains('open'))
+        closeMenu();
     });
     navLinks.querySelectorAll('a').forEach(link => link.addEventListener('click', closeMenu));
 

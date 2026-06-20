@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=yes">
-    <title>VISA GUIDE AF | رهنمای ویزا</title>
+    <title>نمایندگان | VISA GUIDE AF</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <style>
         * {
@@ -26,8 +26,10 @@
             --muted-light: #475569;
             --primary: linear-gradient(135deg, #8b5cf6, #3b82f6);
             --primary-glow: rgba(139, 92, 246, 0.5);
-            --accent: linear-gradient(135deg, #f97316, #ef4444);
-            --font: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+            --font: 'Vazirmatn', 'Inter', system-ui, -apple-system, 'Segoe UI', Tahoma, sans-serif;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
         }
 
         body {
@@ -69,7 +71,7 @@
             left: -50%;
             background-image: linear-gradient(var(--border-dark) 1px, transparent 1px),
                 linear-gradient(90deg, var(--border-dark) 1px, transparent 1px);
-            background-size: 60px 60px;
+            background-size: 40px 40px;
             transform: rotateX(50deg) rotateZ(30deg) translateZ(-80px);
             animation: gridFlow 20s infinite linear;
             opacity: 0.3;
@@ -138,6 +140,7 @@
             transition: transform 0.35s cubic-bezier(0.2, 0.9, 0.4, 1.1), box-shadow 0.3s;
         }
 
+        /* ===== NAVBAR ===== */
         .navbar {
             position: sticky;
             top: 20px;
@@ -208,7 +211,7 @@
             width: 0;
             height: 2px;
             background: linear-gradient(90deg, #8b5cf6, #3b82f6);
-            transition: width 0.25s ease;
+            transition: width 0.25s;
             transform: translateX(-50%);
         }
 
@@ -237,6 +240,7 @@
             width: 20px;
             height: 20px;
             transition: filter 0.3s;
+            vertical-align: middle;
         }
 
         .dark-mode .nav-links a img {
@@ -247,6 +251,7 @@
             filter: brightness(0);
         }
 
+        /* ===== LANGUAGE ===== */
         .lang-globe {
             position: relative;
         }
@@ -328,172 +333,114 @@
             cursor: pointer;
         }
 
-        .hero {
+        /* ===== CONTACT PAGE ===== */
+        .contact-container {
             max-width: 1300px;
-            margin: 40px auto 30px;
+            margin: 40px auto 60px;
             padding: 0 20px;
         }
 
-        .hero-card {
-            padding: 40px 20px;
+        .contact-header {
             text-align: center;
+            margin-bottom: 40px;
         }
 
-        .badge-3d {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            background: rgba(139, 92, 246, 0.15);
-            border: 1px solid rgba(139, 92, 246, 0.3);
-            border-radius: 60px;
-            padding: 5px 18px;
-            font-weight: 600;
-            font-size: 0.8rem;
-            margin-bottom: 20px;
-        }
-
-        .hero-logo-3d {
-            width: 90px;
-            height: 90px;
-            border-radius: 50%;
-            border: 3px solid #8b5cf6;
-            margin-bottom: 20px;
-        }
-
-        .hero-title {
-            font-size: 2rem;
+        .contact-header h1 {
+            font-size: 2.5rem;
             font-weight: 800;
-            margin-bottom: 12px;
-        }
-
-        .hero-desc {
-            max-width: 700px;
-            margin: 0 auto 25px;
-            font-size: 0.95rem;
-            line-height: 1.6;
-            color: var(--muted-dark);
-        }
-
-        .btn-3d {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            background: var(--primary);
-            padding: 10px 24px;
-            border-radius: 60px;
-            font-weight: 700;
-            font-size: 0.9rem;
-            text-decoration: none;
-            color: white;
-        }
-
-        .stats-3d {
-            max-width: 1300px;
-            margin: 30px auto;
-            padding: 0 20px;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-            gap: 20px;
-        }
-
-        .stat-item {
-            padding: 20px 15px;
-            text-align: center;
-        }
-
-        .stat-number {
-            font-size: 2rem;
-            font-weight: 900;
             background: linear-gradient(135deg, #c084fc, #60a5fa);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-        }
-
-        .stat-label {
-            font-size: 0.85rem;
-        }
-
-        .section-header {
-            max-width: 1300px;
-            margin: 50px auto 20px;
-            padding: 0 20px;
-        }
-
-        .section-title-3d {
-            font-size: 1.8rem;
-            font-weight: 800;
-            position: relative;
             display: inline-block;
         }
 
-        .section-title-3d::after {
-            content: '';
-            position: absolute;
-            bottom: -8px;
-            right: 0;
-            width: 60px;
-            height: 3px;
-            background: var(--primary);
-            border-radius: 3px;
-        }
-
-        .news-grid {
-            max-width: 1300px;
-            margin: 30px auto 60px;
-            padding: 0 20px;
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 25px;
-        }
-
-        .news-card {
-            overflow: hidden;
-            cursor: pointer;
-        }
-
-        .news-img {
-            width: 100%;
-            height: 180px;
-            object-fit: cover;
-            transition: transform 0.4s;
-        }
-
-        .news-card:hover .news-img {
-            transform: scale(1.03);
-        }
-
-        .news-body {
-            padding: 18px;
-        }
-
-        .news-title {
-            font-weight: 800;
-            margin-bottom: 10px;
-            font-size: 1rem;
-            line-height: 1.4;
-        }
-
-        .news-meta {
-            font-size: 0.7rem;
+        .contact-header p {
             color: var(--muted-dark);
-            margin-bottom: 15px;
+            font-size: 1.05rem;
+            margin-top: 10px;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+
+        .contact-info {
             display: flex;
-            gap: 8px;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .contact-card {
+            padding: 24px 20px;
+            display: flex;
             align-items: center;
-            flex-wrap: wrap;
+            gap: 16px;
+            transition: transform 0.3s, box-shadow 0.3s;
         }
 
-        .btn-sm {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid var(--border-dark);
-            border-radius: 40px;
-            padding: 6px 16px;
-            display: inline-block;
-            font-size: 0.8rem;
+        .contact-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 30px rgba(139, 92, 246, 0.15);
+        }
+
+        .contact-card .icon-circle {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: rgba(139, 92, 246, 0.15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .contact-card .icon-circle i {
+            font-size: 1.5rem;
+            color: #8b5cf6;
+        }
+
+        .contact-card .info-content h3 {
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .contact-card .info-content p {
+            color: var(--muted-dark);
+            font-size: 0.9rem;
+        }
+
+        .contact-card .info-content a {
+            color: var(--muted-dark);
             text-decoration: none;
-            color: var(--text-dark);
+            transition: color 0.2s;
         }
 
+        .contact-card .info-content a:hover {
+            color: #8b5cf6;
+        }
+
+        /* ===== MAP ===== */
+        .map-container {
+            border-radius: 32px;
+            overflow: hidden;
+            border: 1px solid var(--border-dark);
+            min-height: 400px;
+            background: var(--glass-dark);
+            backdrop-filter: blur(14px);
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            min-height: 400px;
+            border: none;
+            display: block;
+        }
+
+        /* ===== FOOTER ===== */
         .footer-3d {
             background: rgba(0, 0, 0, 0.35);
             backdrop-filter: blur(12px);
@@ -531,6 +478,18 @@
             margin-top: 30px;
             padding-top: 15px;
             font-size: 0.75rem;
+            border-top: 1px solid var(--border-dark);
+        }
+
+        html[dir="ltr"] .lang-dropdown {
+            left: auto;
+            right: 0;
+        }
+
+        @media (max-width: 992px) {
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
         }
 
         @media (max-width: 768px) {
@@ -578,28 +537,6 @@
                 justify-content: center;
             }
 
-            .hero-title {
-                font-size: 1.8rem;
-            }
-
-            .hero-desc {
-                font-size: 0.9rem;
-            }
-
-            .stats-3d {
-                grid-template-columns: 1fr 1fr;
-                gap: 15px;
-            }
-
-            .stat-number {
-                font-size: 1.6rem;
-            }
-
-            .news-grid {
-                grid-template-columns: 1fr;
-                gap: 20px;
-            }
-
             .globe-trigger span {
                 display: none;
             }
@@ -607,32 +544,36 @@
             .globe-trigger {
                 padding: 6px 10px;
             }
+
+            .contact-header h1 {
+                font-size: 1.8rem;
+            }
+
+            .map-container {
+                min-height: 300px;
+            }
+
+            .map-container iframe {
+                min-height: 300px;
+            }
         }
 
         @media (max-width: 480px) {
-            .hero-card {
-                padding: 30px 15px;
-            }
-
-            .hero-title {
+            .contact-header h1 {
                 font-size: 1.5rem;
             }
 
-            .btn-3d {
-                padding: 8px 18px;
-                font-size: 0.8rem;
+            .contact-card {
+                padding: 16px 14px;
             }
 
-            .stat-item {
-                padding: 15px 10px;
+            .contact-card .icon-circle {
+                width: 44px;
+                height: 44px;
             }
 
-            .section-title-3d {
-                font-size: 1.5rem;
-            }
-
-            .news-title {
-                font-size: 0.95rem;
+            .contact-card .icon-circle i {
+                font-size: 1.2rem;
             }
 
             .footer-inner {
@@ -645,8 +586,12 @@
                 justify-content: center;
             }
 
-            .footer-col h4 {
-                text-align: center;
+            .map-container {
+                min-height: 250px;
+            }
+
+            .map-container iframe {
+                min-height: 250px;
             }
         }
 
@@ -670,6 +615,7 @@
         <div class="floating-orb orb3"></div>
     </div>
 
+    <!-- ===== NAVBAR ===== -->
     <nav class="navbar">
         <a href="index.html" class="logo-wrap">
             <img src="images/kha.jpg" alt="logo">
@@ -677,11 +623,11 @@
         </a>
         <button class="menu-btn" id="menuBtn">☰</button>
         <ul class="nav-links" id="navLinks">
-            <li><a href="index.html" class="active"><img src="images/home.png"> <span data-key="home">خانه</span></a>
-            </li>
+            <li><a href="index.html"><img src="images/home.png"> <span data-key="home">خانه</span></a></li>
             <li><a href="services.html"><img src="images/customer.png"> <span data-key="services">خدمات</span></a></li>
             <li><a href="agents.html"><img src="images/map.png"> <span data-key="agents">نماینده گی</span></a></li>
-            <li><a href="contact.html"><img src="images/call.png"> <span data-key="contact">تماس</span></a></li>
+            <li><a href="contact.html" class="active"><img src="images/call.png"> <span
+                        data-key="contact">تماس</span></a></li>
             <li><a href="faq.html"><img src="images/f&a.png"> <span data-key="faq">سوالات</span></a></li>
             <li><a href="news/day-news/day.html"><img src="images/event.png"> <span data-key="news">اخبار</span></a>
             </li>
@@ -703,47 +649,76 @@
         </div>
     </nav>
 
-    <div class="hero">
-        <div class="glass-3d hero-card">
-            <div class="badge-3d"><i class="fas fa-star-of-life"></i> <span data-key="trusted">خدمات معتبر مهاجرت</span>
+    <!-- ===== CONTENT ===== -->
+    <div class="contact-container">
+        <div class="contact-header">
+            <h1>نماینده گی</h1>
+            <p data-key="contactDesc">ما در کنار شما هستیم. از طریق اطلاعات زیر با ما در ارتباط باشید.</p>
+        </div>
+
+        <div class="contact-grid">
+            <!-- ===== CONTACT INFO ===== -->
+            <div class="contact-info">
+                <div class="glass-3d contact-card">
+                    <div class="icon-circle"><i class="fas fa-map-marker-alt"></i></div>
+                    <div class="info-content">
+                        <h3 data-key="addressTitle">آدرس</h3>
+                        <p data-key="footAddr">ایبک، سمنگان، افغانستان</p>
+                    </div>
+                </div>
+
+                <div class="glass-3d contact-card">
+                    <div class="icon-circle"><i class="fas fa-phone-alt"></i></div>
+                    <div class="info-content">
+                        <h3 data-key="phoneTitle">تلفن</h3>
+                        <p><a href="tel:+93792665622">0792665622</a></p>
+                    </div>
+                </div>
+
+                <div class="glass-3d contact-card">
+                    <div class="icon-circle"><i class="fas fa-envelope"></i></div>
+                    <div class="info-content">
+                        <h3 data-key="emailTitle">ایمیل</h3>
+                        <p><a href="mailto:visa.guide.af.123@gmail.com">visa.guide.af.123@gmail.com</a></p>
+                    </div>
+                </div>
+
+                <div class="glass-3d contact-card">
+                    <div class="icon-circle"><i class="fas fa-clock"></i></div>
+                    <div class="info-content">
+                        <h3 data-key="hoursTitle">ساعت کاری</h3>
+                        <p data-key="hoursText">شنبه تا پنجشنبه - ۸:۰۰ تا ۱۷:۰۰</p>
+                    </div>
+                </div>
+
+                <div class="glass-3d contact-card">
+                    <div class="icon-circle"><i class="fas fa-globe"></i></div>
+                    <div class="info-content">
+                        <h3 data-key="socialTitle">شبکه‌های اجتماعی</h3>
+                        <p>
+                            <a href="https://whatsapp.com/channel/0029Vae7U29AzNbpZIv5T81R" target="_blank"><i
+                                    class="fab fa-whatsapp"></i></a>
+                            <a href="https://t.me/visaguidee" target="_blank"><i class="fab fa-telegram"></i></a>
+                            <a href="https://www.facebook.com/profile.php?id=61589943461514" target="_blank"><i
+                                    class="fab fa-facebook-f"></i></a>
+                            <a href="https://www.instagram.com/sarfraz_refugee_service" target="_blank"><i
+                                    class="fab fa-instagram"></i></a>
+                        </p>
+                    </div>
+                </div>
             </div>
-            <img src="images/na.png" class="hero-logo-3d" alt="Visa Guide">
-            <h1 class="hero-title" data-key="heroTitle">خدمات مهاجرت برای افغان‌ها</h1>
-            <div class="hero-desc" id="heroDesc"><strong>VISA GUIDE AF</strong> بزرگترین مرجع مشاوره مهاجرت و ثبت‌نام
-                ویزای بشردوستانه برای <strong>افغان‌ها</strong> — همراه مطمئن شما تا امنیت و آرامش.</div>
-            <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
-                <a href="services.html" class="btn-3d"><i class="fas fa-passport"></i> <span
-                        data-key="seeServices">مشاهده خدمات</span></a>
-                <a href="contact.html" class="btn-3d" style="background: var(--accent);"><i class="fas fa-headset"></i>
-                    <span data-key="getHelp">دریافت مشاوره</span></a>
+
+            <!-- ===== MAP ===== -->
+            <div class="map-container glass-3d">
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3136.389297401813!2d67.7809523154562!3d36.27380708011646!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bde5c5d8d2b2b2b%3A0x2b2b2b2b2b2b2b2b!2sAibak%2C%20Samangan%2C%20Afghanistan!5e0!3m2!1sen!2sus!4v1700000000000"
+                    allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
             </div>
         </div>
     </div>
 
-    <div class="stats-3d">
-        <div class="glass-3d stat-item">
-            <div class="stat-number" id="statNum1">۵۰۰۰+</div>
-            <div class="stat-label" data-key="stat1">پرونده موفق</div>
-        </div>
-        <div class="glass-3d stat-item">
-            <div class="stat-number" id="statNum2">۱۵+</div>
-            <div class="stat-label" data-key="stat2">کشور مقصد</div>
-        </div>
-        <div class="glass-3d stat-item">
-            <div class="stat-number" id="statNum3">۲۴/۷</div>
-            <div class="stat-label" data-key="stat3">پشتیبانی آنلاین</div>
-        </div>
-        <div class="glass-3d stat-item">
-            <div class="stat-number" id="statNum4">۱۰+</div>
-            <div class="stat-label" data-key="stat4">سال تجربه</div>
-        </div>
-    </div>
-
-    <div class="section-header">
-        <h2 class="section-title-3d" data-key="latestNews">آخرین اخبار</h2>
-    </div>
-    <div class="news-grid" id="newsGrid"></div>
-
+    <!-- ===== FOOTER ===== -->
     <footer class="footer-3d">
         <div class="footer-inner">
             <div class="footer-col">
@@ -775,176 +750,83 @@
     <script>
         const T = {
             fa: {
-                home: "خانه", services: "خدمات", ai: "هوش مصنوعی", contact: "تماس", faq: "سوالات", news: "اخبار",
-                documents: "مستندات", agents: "نماینده گی", trusted: "خدمات معتبر مهاجرت",
-                heroTitle: "خدمات مهاجرت برای افغان‌ها",
-                heroDesc: '<strong>VISA GUIDE AF</strong> بزرگترین مرجع مشاوره مهاجرت و ثبت‌نام ویزای بشردوستانه برای <strong>افغان‌ها</strong> — همراه مطمئن شما تا امنیت و آرامش.',
-                seeServices: "مشاهده خدمات", getHelp: "دریافت مشاوره",
-                stat1: "پرونده موفق", stat2: "کشور مقصد", stat3: "پشتیبانی آنلاین", stat4: "سال تجربه",
-                latestNews: "آخرین اخبار",
-                footTitle1: "خدمات مهاجرت", footDesc1: "معتبرترین خدمات در افغانستان", footDesc2: "خدمات مهاجرتی جهانی",
-                footTitle2: "تماس با ما", footAddr: "ایبک، سمنگان، افغانستان", footTitle3: "شبکه‌های اجتماعی",
-                copy: "© 2026 VISA GUIDE AF — همه حقوق محفوظ است",
-                readMore: "بیشتر بخوانید", breaking: "لحظاتی پیش"
+                home: "خانه",
+                services: "خدمات",
+                ai: "هوش مصنوعی",
+                contact: "تماس",
+                faq: "سوالات",
+                news: "اخبار",
+                documents: "مستندات",
+                agents: "نماینده گی",
+                contactTitle: "📌 تماس با ما",
+                contactDesc: "ما در کنار شما هستیم. از طریق اطلاعات زیر با ما در ارتباط باشید.",
+                addressTitle: "آدرس",
+                phoneTitle: "تلفن",
+                emailTitle: "ایمیل",
+                hoursTitle: "ساعت کاری",
+                hoursText: "شنبه تا پنجشنبه - ۸:۰۰ تا ۱۷:۰۰",
+                socialTitle: "شبکه‌های اجتماعی",
+                footTitle1: "خدمات مهاجرت",
+                footDesc1: "معتبرترین خدمات در افغانستان",
+                footDesc2: "خدمات مهاجرتی جهانی",
+                footTitle2: "تماس با ما",
+                footAddr: "ایبک، سمنگان، افغانستان",
+                footTitle3: "شبکه‌های اجتماعی",
+                copy: "© 2026 VISA GUIDE AF — همه حقوق محفوظ است"
             },
             en: {
-                home: "Home", services: "Services", ai: "AI Assistant", contact: "Contact", faq: "FAQ", news: "News",
-                documents: "Documents", agents: "Agents", trusted: "Trusted Migration Services",
-                heroTitle: "Migration Services for Afghans",
-                heroDesc: '<strong>VISA GUIDE AF</strong> — the largest immigration consulting center for <strong>Afghans</strong>. Your trusted partner to safety and peace.',
-                seeServices: "View Services", getHelp: "Get Consultation",
-                stat1: "Successful Cases", stat2: "Destination Countries", stat3: "24/7 Support", stat4: "Years Experience",
-                latestNews: "Latest News",
-                footTitle1: "Immigration Services", footDesc1: "Most reliable services in Afghanistan", footDesc2: "Global immigration services",
-                footTitle2: "Contact Us", footAddr: "Aibak, Samangan, Afghanistan", footTitle3: "Social Networks",
-                copy: "© 2026 VISA GUIDE AF — All rights reserved",
-                readMore: "Read More", breaking: "Breaking"
+                home: "Home",
+                services: "Services",
+                ai: "AI Assistant",
+                contact: "Contact",
+                faq: "FAQ",
+                news: "News",
+                documents: "Documents",
+                agents: "Agents",
+                contactTitle: "📌 Contact Us",
+                contactDesc: "We are here for you. Reach out to us through the information below.",
+                addressTitle: "Address",
+                phoneTitle: "Phone",
+                emailTitle: "Email",
+                hoursTitle: "Working Hours",
+                hoursText: "Saturday to Thursday - 8:00 AM to 5:00 PM",
+                socialTitle: "Social Networks",
+                footTitle1: "Immigration Services",
+                footDesc1: "Most reliable services in Afghanistan",
+                footDesc2: "Global immigration services",
+                footTitle2: "Contact Us",
+                footAddr: "Aibak, Samangan, Afghanistan",
+                footTitle3: "Social Networks",
+                copy: "© 2026 VISA GUIDE AF — All rights reserved"
             },
             ps: {
-                home: "کور", services: "خدمات", ai: "AI", contact: "اړیکه", faq: "پوښتنې", news: "خبرونه",
-                documents: "اسناد", agents: "استازي", trusted: "د مهاجرت باوري خدمات",
-                heroTitle: "د افغانانو لپاره د مهاجرت خدمات",
-                heroDesc: '<strong>VISA GUIDE AF</strong> د افغانانو لپاره ترټولو لوی د کډوالۍ مرکز — ستاسو باوري ملګری.',
-                seeServices: "خدمات وګورئ", getHelp: "مشوره ترلاسه کړئ",
-                stat1: "بریالي قضیې", stat2: "مقصد هیوادونه", stat3: "آنلاین ملاتړ", stat4: "کلونه تجربه",
-                latestNews: "وروستي خبرونه",
-                footTitle1: "د کډوالۍ خدمات", footDesc1: "افغانستان کې ترټولو معتبر خدمات", footDesc2: "نړیوال د کډوالۍ خدمات",
-                footTitle2: "اړیکه", footAddr: "ایبک, سمنګان، افغانستان", footTitle3: "ټولنیزې شبکې",
-                copy: "© 2026 VISA GUIDE AF — ټول حقونه خوندي",
-                readMore: "نور ولولئ", breaking: "شیبې مخکې"
+                home: "کور",
+                services: "خدمات",
+                ai: "AI",
+                contact: "اړیکه",
+                faq: "پوښتنې",
+                news: "خبرونه",
+                documents: "اسناد",
+                agents: "استازي",
+                contactTitle: "📌 اړیکه",
+                contactDesc: "موږ ستاسو سره یو. لاندې معلوماتو له لارې له موږ سره اړیکه ونیسئ.",
+                addressTitle: "آدرس",
+                phoneTitle: "تلیفون",
+                emailTitle: "بریښنالیک",
+                hoursTitle: "د کار ساعتونه",
+                hoursText: "شنبه تر پنجشنبه - ۸:۰۰ تر ۱۷:۰۰",
+                socialTitle: "ټولنیزې شبکې",
+                footTitle1: "د کډوالۍ خدمات",
+                footDesc1: "افغانستان کې ترټولو معتبر خدمات",
+                footDesc2: "نړیوال د کډوالۍ خدمات",
+                footTitle2: "اړیکه",
+                footAddr: "ایبک، سمنګان، افغانستان",
+                footTitle3: "ټولنیزې شبکې",
+                copy: "© 2026 VISA GUIDE AF — ټول حقونه خوندي دي"
             }
         };
-
-        const statValues = {
-            fa: { num1: "۵۰۰۰+", num2: "۱۵+", num3: "۲۴/۷", num4: "۱۰+" },
-            en: { num1: "5000+", num2: "15+", num3: "24/7", num4: "10+" },
-            ps: { num1: "۵۰۰۰+", num2: "۱۵+", num3: "۲۴/۷", num4: "۱۰+" }
-        };
-
-        const newsData = [{
-            fa: "افزایش حمایت کنگره از پناهندگان؛ روزنه‌های امید برای متقاضیان P1 و P2",
-            en: "Increasing congressional support for refugees; hope for P1 and P2 applicants",
-            ps: "د کانګرس د پناهندګانو ملاتړ زیاتوالی؛ د P1 او P2 غوښتونکو لپاره د امید نوري",
-            img: "news/pic/congress.webp",
-            link: "news/13.html",
-            breaking: true,
-            date: "June 19, 2026 - 11:33 AM"
-        }, {
-            fa: "پیروزی بزرگ برای مهاجران افغان؛ دادگاه آمریکا سیاست محدودکننده مهاجرتی را لغو کرد",
-            en: "Big victory for Afghan immigrants; US court strikes down restrictive immigration policy",
-            ps: "د افغان کډوالو لویه بریا؛ د امریکا محکمې د کډوالۍ محدودونکی پالیسي لغوه کړه",
-            img: "news/pic/juj.jpg",
-            link: "news/12.html",
-            breaking: true,
-            date: "June 6, 2026 - 16:00 PM"
-        }, {
-            fa: "نامه دوحزبی کنگره برای انتقال افغان‌های باقی‌مانده در قطر",
-            en: "Bipartisan congressional letter for transfer of remaining Afghans in Qatar",
-            ps: "د کانګرس دوه اړخیز لیک د قطر کې پاتې افغانانو د لیږدولو لپاره",
-            img: "news/pic/man.png",
-            link: "news/11.html",
-            breaking: true,
-            date: "June 2, 2026 - 11:33 AM"
-        }, {
-            fa: "فشار کنگره آمریکا برای ازسرگیری صدور ویزای SIV برای متحدان افغان",
-            en: "US Congress pressure to resume SIV issuance for Afghan allies",
-            ps: "د امریکا کانګرس فشار د SIV ویزو بیا پیلولو لپاره د افغان متحدینو لپاره",
-            img: "news/pic/gess.jpg",
-            link: "news/10.html",
-            breaking: true,
-            date: "June 2, 2026 - 11:33 AM"
-        }, {
-            fa: "آمریکا برنامه پناهندگی را شدیداً محدود کرد؛ افزایش سهمیه‌ها هم فقط برای آفریکانرها",
-            en: "US severely restricts refugee program; quota increases only for Afrikaners",
-            ps: "امریکا د پناهندګۍ پروګرام په شدت سره محدود کړ؛ د سهمیو زیاتوالی یوازې د افریکانرانو لپاره",
-            img: "news/pic/nu.webp",
-            link: "news/9.html",
-            breaking: true,
-            date: "May 25, 2026 - 11:33 AM"
-        }, {
-            fa: "ممنوعیت صدور ویزه آمریکا برای افغان‌ها ادامه دارد؛ تمام ویزه‌های دارندگان پاسپورت افغانستان متوقف شد",
-            en: "US visa ban for Afghans continues; all visas for Afghan passport holders suspended",
-            ps: "د افغانانو لپاره د امریکا ویزه بند دوام لري؛ د افغان پاسپورت لرونکو ټول ویزې وځنډول شوې",
-            img: "news/pic/sus.jpg",
-            link: "news/8.html",
-            breaking: true,
-            date: "May 25, 2026 - 11:33 AM"
-        }, {
-            fa: "خبر فوری: ممنوعیت پناهندگان آمریکا وارد مرحله سرنوشت‌ساز شد",
-            en: "Breaking: US refugee ban enters final stage",
-            ps: "بیړنی خبر: د امریکا پناهندګۍ بند وروستي پړاو ته ننوت",
-            img: "news/pic/p.jpg",
-            link: "news/7.html",
-            breaking: true,
-            date: "۵ می ۲۰۲۶"
-        }, {
-            fa: "بلاتکلیفی ۱۱۰۰ افغان در کمپ قطر",
-            en: "Uncertainty of 1100 Afghans in Qatar camp",
-            ps: "د ۱۱۰۰ افغانانو ناڅرګنده حالت",
-            img: "news/pic/us.jpg",
-            link: "news/6.html",
-            breaking: false,
-            date: "۲۸ اپریل ۲۰۲۶"
-        }, {
-            fa: "افغان‌ها در قطر از اقدام ترامپ ابراز خیانت کردند",
-            en: "Afghans in Qatar express betrayal over Trump plan",
-            ps: "افغانان د ترامپ پلان خیانت بولي",
-            img: "news/pic/qater.jpg",
-            link: "news/1.html",
-            breaking: false,
-            date: "۲۵ اپریل"
-        }, {
-            fa: "طالبان به افغان‌های همراه آمریکا وعده عفو داد",
-            en: "Taliban promises amnesty to Afghans who helped US",
-            ps: "طالبان هغو افغانانو ته بښنه ورکوي",
-            img: "news/pic/talib.webp",
-            link: "news/2.html",
-            breaking: false,
-            date: "۲۵ اپریل"
-        }, {
-            fa: "سرنوشت نامعلوم پناهجویان در قطر",
-            en: "Unknown fate of Afghan refugees in Qatar",
-            ps: "د کډوالو ناڅرګند برخلیک",
-            img: "news/pic/afghan.jpg",
-            link: "news/3.html",
-            breaking: false,
-            date: "۲۷ اپریل"
-        }, {
-            fa: "پناهجوی افغان در آستانه اخراج از آمریکا",
-            en: "Afghan refugee faces deportation from US",
-            ps: "افغان پناه غوښتونکی د شړلو ګواښ",
-            img: "news/pic/homeland.jpg",
-            link: "news/4.html",
-            breaking: false,
-            date: "۲۷ اپریل"
-        }];
 
         let currentLang = 'fa';
-
-        function renderNews() {
-            const grid = document.getElementById('newsGrid');
-            if (!grid) return;
-            grid.innerHTML = newsData.map(n => `
-                <div class="glass-3d news-card" onclick="window.location.href='${n.link}'">
-                    <img src="${n.img}" class="news-img" alt="news">
-                    <div class="news-body">
-                        <div class="news-title">${n[currentLang]}</div>
-                        <div class="news-meta"><i class="fas fa-calendar-alt"></i> ${n.date} ${n.breaking ? `🔴 ${T[currentLang].breaking}` : ''}</div>
-                        <div class="btn-sm">${T[currentLang].readMore} →</div>
-                    </div>
-                </div>
-            `).join('');
-        }
-
-        function updateStatsNumbers(lang) {
-            const vals = statValues[lang];
-            if (vals) {
-                document.getElementById('statNum1').innerText = vals.num1;
-                document.getElementById('statNum2').innerText = vals.num2;
-                document.getElementById('statNum3').innerText = vals.num3;
-                document.getElementById('statNum4').innerText = vals.num4;
-            }
-        }
 
         function applyLanguage(lang) {
             currentLang = lang;
@@ -952,13 +834,11 @@
                 const key = el.getAttribute('data-key');
                 if (T[lang][key]) el.innerHTML = T[lang][key];
             });
-            document.getElementById('heroDesc').innerHTML = T[lang].heroDesc;
-            updateStatsNumbers(lang);
-            renderNews();
-            const labelMap = { fa: "فارسی", en: "English", ps: "پښتو" };
-            document.getElementById('currentLangLabel').innerText = labelMap[lang];
+            document.getElementById('currentLangLabel').innerText = lang === 'fa' ? 'فارسی' : lang === 'en' ? 'English' :
+                'پښتو';
         }
 
+        // Theme
         const themeBtn = document.getElementById('themeBtn');
         const savedTheme = localStorage.getItem('srs-theme') || 'dark';
         document.body.className = savedTheme === 'dark' ? 'dark-mode' : 'light-mode';
@@ -970,6 +850,7 @@
             localStorage.setItem('srs-theme', isDark ? 'light' : 'dark');
         });
 
+        // Language Dropdown
         const globe = document.getElementById('langGlobe');
         const trigger = document.getElementById('globeTrigger');
         trigger.addEventListener('click', (e) => {
@@ -985,6 +866,7 @@
             });
         });
 
+        // Mobile Menu
         const menuBtn = document.getElementById('menuBtn');
         const navLinks = document.getElementById('navLinks');
 
