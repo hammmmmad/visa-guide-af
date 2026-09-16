@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=yes">
     <title>VISA GUIDE AF | رهنمای ویزا</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="icon" type="image/svg+xml"
+        href="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/android/android-original.svg">
     <style>
         * {
             margin: 0;
@@ -27,6 +29,7 @@
             --primary: linear-gradient(135deg, #8b5cf6, #3b82f6);
             --primary-glow: rgba(139, 92, 246, 0.5);
             --accent: linear-gradient(135deg, #f97316, #ef4444);
+            --android: linear-gradient(135deg, #3ddc84, #10b981);
             --font: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
         }
 
@@ -76,13 +79,8 @@
         }
 
         @keyframes gridFlow {
-            0% {
-                transform: rotateX(50deg) rotateZ(30deg) translateZ(-80px) translateY(0);
-            }
-
-            100% {
-                transform: rotateX(50deg) rotateZ(30deg) translateZ(-80px) translateY(80px);
-            }
+            0% { transform: rotateX(50deg) rotateZ(30deg) translateZ(-80px) translateY(0); }
+            100% { transform: rotateX(50deg) rotateZ(30deg) translateZ(-80px) translateY(80px); }
         }
 
         .floating-orb {
@@ -93,41 +91,13 @@
             animation: floatGlow 22s infinite alternate;
         }
 
-        .orb1 {
-            width: 450px;
-            height: 450px;
-            background: #8b5cf6;
-            top: -15%;
-            left: -10%;
-        }
-
-        .orb2 {
-            width: 550px;
-            height: 550px;
-            background: #3b82f6;
-            bottom: -20%;
-            right: -15%;
-            animation-delay: -6s;
-        }
-
-        .orb3 {
-            width: 350px;
-            height: 350px;
-            background: #f97316;
-            top: 45%;
-            left: 30%;
-            filter: blur(110px);
-            animation-delay: -12s;
-        }
+        .orb1 { width: 450px; height: 450px; background: #8b5cf6; top: -15%; left: -10%; }
+        .orb2 { width: 550px; height: 550px; background: #3b82f6; bottom: -20%; right: -15%; animation-delay: -6s; }
+        .orb3 { width: 350px; height: 350px; background: #f97316; top: 45%; left: 30%; filter: blur(110px); animation-delay: -12s; }
 
         @keyframes floatGlow {
-            0% {
-                transform: translate(0, 0) scale(1);
-            }
-
-            100% {
-                transform: translate(70px, 50px) scale(1.2);
-            }
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(70px, 50px) scale(1.2); }
         }
 
         .glass-3d {
@@ -155,345 +125,187 @@
             border-radius: 80px;
         }
 
-        .logo-wrap {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            text-decoration: none;
-        }
+        .logo-wrap { display: flex; align-items: center; gap: 10px; text-decoration: none; }
 
         .logo-wrap img {
-            width: 42px;
-            height: 42px;
-            border-radius: 50%;
+            width: 42px; height: 42px; border-radius: 50%;
             border: 2px solid #8b5cf6;
             box-shadow: 0 0 15px var(--primary-glow);
             transition: transform 0.4s;
         }
 
         .logo-name {
-            font-weight: 800;
-            font-size: 0.75rem;
-            line-height: 1.2;
+            font-weight: 800; font-size: 0.75rem; line-height: 1.2;
             background: linear-gradient(120deg, #fff, #c084fc);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
-        .nav-links {
-            display: flex;
-            list-style: none;
-            gap: 5px;
-        }
+        .nav-links { display: flex; list-style: none; gap: 5px; }
 
         .nav-links a {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            padding: 6px 14px;
-            text-decoration: none;
-            color: var(--muted-dark);
-            font-weight: 600;
-            font-size: 0.85rem;
-            border-radius: 50px;
-            transition: 0.2s;
-            position: relative;
+            display: flex; align-items: center; gap: 6px;
+            padding: 6px 14px; text-decoration: none;
+            color: var(--muted-dark); font-weight: 600;
+            font-size: 0.85rem; border-radius: 50px;
+            transition: 0.2s; position: relative;
         }
 
         .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: 4px;
-            left: 50%;
-            width: 0;
-            height: 2px;
+            content: ''; position: absolute; bottom: 4px; left: 50%;
+            width: 0; height: 2px;
             background: linear-gradient(90deg, #8b5cf6, #3b82f6);
-            transition: width 0.25s ease;
-            transform: translateX(-50%);
+            transition: width 0.25s ease; transform: translateX(-50%);
         }
 
-        .nav-links a:hover::after,
-        .nav-links a.active::after {
-            width: 40%;
-        }
+        .nav-links a:hover::after, .nav-links a.active::after { width: 40%; }
 
         .nav-links a::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            border-radius: 50px;
-            background: var(--primary);
-            opacity: 0;
-            transition: opacity 0.3s;
-            z-index: -1;
+            content: ''; position: absolute; inset: 0;
+            border-radius: 50px; background: var(--primary);
+            opacity: 0; transition: opacity 0.3s; z-index: -1;
         }
 
-        .nav-links a:hover::before,
-        .nav-links a.active::before {
-            opacity: 0.15;
-        }
+        .nav-links a:hover::before, .nav-links a.active::before { opacity: 0.15; }
+        .nav-links a img { width: 20px; height: 20px; transition: filter 0.3s; }
+        .dark-mode .nav-links a img { filter: brightness(0) invert(1); }
+        .light-mode .nav-links a img { filter: brightness(0); }
 
-        .nav-links a img {
-            width: 20px;
-            height: 20px;
-            transition: filter 0.3s;
-        }
-
-        .dark-mode .nav-links a img {
-            filter: brightness(0) invert(1);
-        }
-
-        .light-mode .nav-links a img {
-            filter: brightness(0);
-        }
-
-        .lang-globe {
-            position: relative;
-        }
+        .lang-globe { position: relative; }
 
         .globe-trigger {
             background: rgba(255, 255, 255, 0.06);
             border: 1px solid var(--border-dark);
-            border-radius: 40px;
-            padding: 6px 12px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            font-size: 0.8rem;
+            border-radius: 40px; padding: 6px 12px;
+            cursor: pointer; display: flex;
+            align-items: center; gap: 6px; font-size: 0.8rem;
         }
 
         .lang-dropdown {
-            position: absolute;
-            top: 110%;
-            left: 0;
-            background: var(--glass-dark);
-            backdrop-filter: blur(20px);
-            border: 1px solid var(--border-dark);
-            border-radius: 20px;
-            min-width: 130px;
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(-10px);
-            transition: all 0.25s;
-            z-index: 300;
+            position: absolute; top: 110%; left: 0;
+            background: var(--glass-dark); backdrop-filter: blur(20px);
+            border: 1px solid var(--border-dark); border-radius: 20px;
+            min-width: 130px; opacity: 0; visibility: hidden;
+            transform: translateY(-10px); transition: all 0.25s; z-index: 300;
         }
 
-        .lang-globe.open .lang-dropdown {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0);
-        }
+        .lang-globe.open .lang-dropdown { opacity: 1; visibility: visible; transform: translateY(0); }
 
         .lang-option {
-            padding: 10px 16px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            cursor: pointer;
-            border-radius: 16px;
+            padding: 10px 16px; display: flex;
+            align-items: center; gap: 12px;
+            cursor: pointer; border-radius: 16px;
         }
 
-        .lang-option:hover {
-            background: rgba(139, 92, 246, 0.2);
-        }
+        .lang-option:hover { background: rgba(139, 92, 246, 0.2); }
 
-        .nav-actions {
-            display: flex;
-            gap: 8px;
-            align-items: center;
-        }
+        .nav-actions { display: flex; gap: 8px; align-items: center; }
 
         .theme-btn {
-            background: var(--primary);
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            border: none;
-            color: white;
+            background: var(--primary); width: 40px; height: 40px;
+            border-radius: 50%; display: flex; align-items: center;
+            justify-content: center; cursor: pointer; border: none; color: white;
         }
 
         .menu-btn {
-            display: none;
-            width: 44px;
-            height: 44px;
+            display: none; width: 44px; height: 44px;
             background: rgba(255, 255, 255, 0.05);
             border: 1px solid var(--border-dark);
-            border-radius: 30px;
-            font-size: 1.6rem;
-            cursor: pointer;
+            border-radius: 30px; font-size: 1.6rem; cursor: pointer;
         }
 
-        .hero {
-            max-width: 1300px;
-            margin: 40px auto 30px;
-            padding: 0 20px;
-        }
+        .hero { max-width: 1300px; margin: 40px auto 30px; padding: 0 20px; }
 
-        .hero-card {
-            padding: 40px 20px;
-            text-align: center;
-        }
+        .hero-card { padding: 40px 20px; text-align: center; }
 
         .badge-3d {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
+            display: inline-flex; align-items: center; gap: 8px;
             background: rgba(139, 92, 246, 0.15);
             border: 1px solid rgba(139, 92, 246, 0.3);
-            border-radius: 60px;
-            padding: 5px 18px;
-            font-weight: 600;
-            font-size: 0.8rem;
-            margin-bottom: 20px;
+            border-radius: 60px; padding: 5px 18px;
+            font-weight: 600; font-size: 0.8rem; margin-bottom: 20px;
         }
 
         .hero-logo-3d {
-            width: 90px;
-            height: 90px;
-            border-radius: 50%;
-            border: 3px solid #8b5cf6;
-            margin-bottom: 20px;
+            width: 90px; height: 90px; border-radius: 50%;
+            border: 3px solid #8b5cf6; margin-bottom: 20px;
         }
 
-        .hero-title {
-            font-size: 2rem;
-            font-weight: 800;
-            margin-bottom: 12px;
-        }
+        .hero-title { font-size: 2rem; font-weight: 800; margin-bottom: 12px; }
 
         .hero-desc {
-            max-width: 700px;
-            margin: 0 auto 25px;
-            font-size: 0.95rem;
-            line-height: 1.6;
-            color: var(--muted-dark);
+            max-width: 700px; margin: 0 auto 25px;
+            font-size: 0.95rem; line-height: 1.6; color: var(--muted-dark);
         }
 
         .btn-3d {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            background: var(--primary);
-            padding: 10px 24px;
-            border-radius: 60px;
-            font-weight: 700;
-            font-size: 0.9rem;
-            text-decoration: none;
-            color: white;
+            display: inline-flex; align-items: center; gap: 8px;
+            background: var(--primary); padding: 10px 24px;
+            border-radius: 60px; font-weight: 700;
+            font-size: 0.9rem; text-decoration: none; color: white;
         }
 
         .stats-3d {
-            max-width: 1300px;
-            margin: 30px auto;
-            padding: 0 20px;
+            max-width: 1300px; margin: 30px auto; padding: 0 20px;
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
             gap: 20px;
         }
 
-        .stat-item {
-            padding: 20px 15px;
-            text-align: center;
-        }
+        .stat-item { padding: 20px 15px; text-align: center; }
 
         .stat-number {
-            font-size: 2rem;
-            font-weight: 900;
+            font-size: 2rem; font-weight: 900;
             background: linear-gradient(135deg, #c084fc, #60a5fa);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
-        .stat-label {
-            font-size: 0.85rem;
-        }
+        .stat-label { font-size: 0.85rem; }
 
-        .section-header {
-            max-width: 1300px;
-            margin: 50px auto 20px;
-            padding: 0 20px;
-        }
+        .section-header { max-width: 1300px; margin: 50px auto 20px; padding: 0 20px; }
 
-        .section-title-3d {
-            font-size: 1.8rem;
-            font-weight: 800;
-            position: relative;
-            display: inline-block;
-        }
+        .section-title-3d { font-size: 1.8rem; font-weight: 800; position: relative; display: inline-block; }
 
         .section-title-3d::after {
-            content: '';
-            position: absolute;
-            bottom: -8px;
-            right: 0;
-            width: 60px;
-            height: 3px;
-            background: var(--primary);
-            border-radius: 3px;
+            content: ''; position: absolute; bottom: -8px; right: 0;
+            width: 60px; height: 3px; background: var(--primary); border-radius: 3px;
         }
 
         .news-grid {
-            max-width: 1300px;
-            margin: 30px auto 60px;
-            padding: 0 20px;
+            max-width: 1300px; margin: 30px auto 60px; padding: 0 20px;
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
             gap: 25px;
         }
 
-        .news-card {
-            overflow: hidden;
-            cursor: pointer;
-        }
+        .news-card { overflow: hidden; cursor: pointer; }
 
         .news-img {
-            width: 100%;
-            height: 180px;
-            object-fit: cover;
+            width: 100%; height: 180px; object-fit: cover;
             transition: transform 0.4s;
         }
 
-        .news-card:hover .news-img {
-            transform: scale(1.03);
-        }
+        .news-card:hover .news-img { transform: scale(1.03); }
 
-        .news-body {
-            padding: 18px;
-        }
+        .news-body { padding: 18px; }
 
-        .news-title {
-            font-weight: 800;
-            margin-bottom: 10px;
-            font-size: 1rem;
-            line-height: 1.4;
-        }
+        .news-title { font-weight: 800; margin-bottom: 10px; font-size: 1rem; line-height: 1.4; }
 
         .news-meta {
-            font-size: 0.7rem;
-            color: var(--muted-dark);
-            margin-bottom: 15px;
-            display: flex;
-            gap: 8px;
-            align-items: center;
-            flex-wrap: wrap;
+            font-size: 0.7rem; color: var(--muted-dark); margin-bottom: 15px;
+            display: flex; gap: 8px; align-items: center; flex-wrap: wrap;
         }
 
         .btn-sm {
             background: rgba(255, 255, 255, 0.05);
             border: 1px solid var(--border-dark);
-            border-radius: 40px;
-            padding: 6px 16px;
-            display: inline-block;
-            font-size: 0.8rem;
-            text-decoration: none;
-            color: var(--text-dark);
+            border-radius: 40px; padding: 6px 16px;
+            display: inline-block; font-size: 0.8rem;
+            text-decoration: none; color: var(--text-dark);
         }
 
+        /* ====== فوتر ====== */
         .footer-3d {
             background: rgba(0, 0, 0, 0.35);
             backdrop-filter: blur(12px);
@@ -503,161 +315,153 @@
         }
 
         .footer-inner {
-            max-width: 1300px;
-            margin: 0 auto;
+            max-width: 1300px; margin: 0 auto;
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
             gap: 30px;
         }
 
-        .footer-col h4 {
-            font-size: 1rem;
-            margin-bottom: 16px;
-        }
+        .footer-col h4 { font-size: 1rem; margin-bottom: 16px; }
 
-        .footer-col p,
-        .footer-col a {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-size: 0.85rem;
-            margin-bottom: 10px;
-            text-decoration: none;
-            color: var(--muted-dark);
+        .footer-col p, .footer-col a {
+            display: flex; align-items: center; gap: 10px;
+            font-size: 0.85rem; margin-bottom: 10px;
+            text-decoration: none; color: var(--muted-dark);
         }
 
         .footer-bottom {
-            text-align: center;
-            margin-top: 30px;
-            padding-top: 15px;
-            font-size: 0.75rem;
+            text-align: center; margin-top: 30px;
+            padding-top: 15px; font-size: 0.75rem;
         }
 
-        @media (max-width: 768px) {
-            .navbar {
-                width: calc(100% - 24px);
-                padding: 6px 16px;
-            }
+        /* ====== دکمه دانلود اپلیکیشن ====== */
+        .app-download-card {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
 
-            .logo-name {
-                display: none;
-            }
+        .app-download-desc {
+            color: var(--muted-dark);
+            font-size: 0.82rem;
+            line-height: 1.5;
+            margin-bottom: 6px;
+        }
+
+        .app-download-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            background: var(--android);
+            color: #fff !important;
+            padding: 13px 22px;
+            border-radius: 60px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            text-decoration: none;
+            border: 1px solid rgba(61, 220, 132, 0.45);
+            box-shadow:
+                0 4px 20px rgba(16, 185, 129, 0.35),
+                inset 0 1px 0 rgba(255, 255, 255, 0.25);
+            transition: all 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+            position: relative;
+            overflow: hidden;
+            margin-top: 6px;
+        }
+
+        .app-download-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.35), transparent);
+            transition: left 0.6s;
+        }
+
+        .app-download-btn:hover::before { left: 100%; }
+
+        .app-download-btn:hover {
+            transform: translateY(-3px) scale(1.03);
+            box-shadow:
+                0 8px 30px rgba(16, 185, 129, 0.65),
+                inset 0 1px 0 rgba(255, 255, 255, 0.35);
+        }
+
+        .app-download-btn i {
+            font-size: 1.35rem;
+            animation: androidPulse 2.5s infinite;
+        }
+
+        @keyframes androidPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.15); }
+        }
+
+        .app-version {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.72rem;
+            color: var(--muted-dark);
+            margin-top: 4px;
+        }
+
+        .app-version i { color: #3ddc84; }
+
+        /* ====== ریسپانسیو ====== */
+        @media (max-width: 768px) {
+            .navbar { width: calc(100% - 24px); padding: 6px 16px; }
+            .logo-name { display: none; }
 
             .nav-links {
-                position: fixed;
-                top: 80px;
-                left: 5%;
-                width: 90%;
+                position: fixed; top: 80px; left: 5%; width: 90%;
                 background: var(--glass-dark);
                 backdrop-filter: blur(30px);
-                flex-direction: column;
-                gap: 10px;
-                border-radius: 28px;
-                padding: 20px;
-                opacity: 0;
-                visibility: hidden;
-                transform: scale(0.95);
-                transition: all 0.3s;
-                z-index: 999;
+                flex-direction: column; gap: 10px;
+                border-radius: 28px; padding: 20px;
+                opacity: 0; visibility: hidden;
+                transform: scale(0.95); transition: all 0.3s; z-index: 999;
             }
 
-            .nav-links.open {
-                opacity: 1;
-                visibility: visible;
-                transform: scale(1);
-            }
+            .nav-links.open { opacity: 1; visibility: visible; transform: scale(1); }
+            .nav-links a { justify-content: center; padding: 10px; }
 
-            .nav-links a {
-                justify-content: center;
-                padding: 10px;
-            }
+            .menu-btn { display: flex; align-items: center; justify-content: center; }
 
-            .menu-btn {
-                display: flex;
-                align-items: center;
-                justify-content: center;
-            }
+            .hero-title { font-size: 1.8rem; }
+            .hero-desc { font-size: 0.9rem; }
 
-            .hero-title {
-                font-size: 1.8rem;
-            }
+            .stats-3d { grid-template-columns: 1fr 1fr; gap: 15px; }
+            .stat-number { font-size: 1.6rem; }
 
-            .hero-desc {
-                font-size: 0.9rem;
-            }
+            .news-grid { grid-template-columns: 1fr; gap: 20px; }
 
-            .stats-3d {
-                grid-template-columns: 1fr 1fr;
-                gap: 15px;
-            }
-
-            .stat-number {
-                font-size: 1.6rem;
-            }
-
-            .news-grid {
-                grid-template-columns: 1fr;
-                gap: 20px;
-            }
-
-            .globe-trigger span {
-                display: none;
-            }
-
-            .globe-trigger {
-                padding: 6px 10px;
-            }
+            .globe-trigger span { display: none; }
+            .globe-trigger { padding: 6px 10px; }
         }
 
         @media (max-width: 480px) {
-            .hero-card {
-                padding: 30px 15px;
-            }
+            .hero-card { padding: 30px 15px; }
+            .hero-title { font-size: 1.5rem; }
+            .btn-3d { padding: 8px 18px; font-size: 0.8rem; }
+            .stat-item { padding: 15px 10px; }
+            .section-title-3d { font-size: 1.5rem; }
+            .news-title { font-size: 0.95rem; }
 
-            .hero-title {
-                font-size: 1.5rem;
-            }
+            .footer-inner { grid-template-columns: 1fr; text-align: center; }
+            .footer-col p, .footer-col a { justify-content: center; }
+            .footer-col h4 { text-align: center; }
+            .app-download-card { align-items: center; }
 
-            .btn-3d {
-                padding: 8px 18px;
-                font-size: 0.8rem;
-            }
-
-            .stat-item {
-                padding: 15px 10px;
-            }
-
-            .section-title-3d {
-                font-size: 1.5rem;
-            }
-
-            .news-title {
-                font-size: 0.95rem;
-            }
-
-            .footer-inner {
-                grid-template-columns: 1fr;
-                text-align: center;
-            }
-
-            .footer-col p,
-            .footer-col a {
-                justify-content: center;
-            }
-
-            .footer-col h4 {
-                text-align: center;
-            }
+            .app-download-btn { padding: 11px 20px; font-size: 0.85rem; }
         }
 
         @supports (padding-bottom: env(safe-area-inset-bottom)) {
-            body {
-                padding-bottom: env(safe-area-inset-bottom);
-            }
-
-            .navbar {
-                margin-top: env(safe-area-inset-top);
-            }
+            body { padding-bottom: env(safe-area-inset-bottom); }
+            .navbar { margin-top: env(safe-area-inset-top); }
         }
     </style>
     <!-- PWA -->
@@ -687,21 +491,18 @@
         </a>
         <button class="menu-btn" id="menuBtn">☰</button>
         <ul class="nav-links" id="navLinks">
-            <li><a href="index.html" class="active"><img src="images/home.png"> <span data-key="home">خانه</span></a>
-            </li>
+            <li><a href="index.html" class="active"><img src="images/home.png"> <span data-key="home">خانه</span></a></li>
             <li><a href="services.html"><img src="images/customer.png"> <span data-key="services">خدمات</span></a></li>
             <li><a href="agents.html"><img src="images/map.png"> <span data-key="agents">نماینده گی</span></a></li>
             <li><a href="contact.html"><img src="images/call.png"> <span data-key="contact">تماس</span></a></li>
             <li><a href="faq.html"><img src="images/f&a.png"> <span data-key="faq">سوالات</span></a></li>
-            <li><a href="news/day-news/day.html"><img src="images/event.png"> <span data-key="news">اخبار</span></a>
-            </li>
+            <li><a href="news/day-news/day.html"><img src="images/event.png"> <span data-key="news">اخبار</span></a></li>
             <li><a href="document.html"><img src="images/event.png"> <span data-key="documents">مستندات</span></a></li>
         </ul>
         <div class="nav-actions">
             <div class="lang-globe" id="langGlobe">
                 <div class="globe-trigger" id="globeTrigger">
-                    <i class="fas fa-globe-americas"></i> <span id="currentLangLabel">فارسی</span> <i
-                        class="fas fa-chevron-down"></i>
+                    <i class="fas fa-globe-americas"></i> <span id="currentLangLabel">فارسی</span> <i class="fas fa-chevron-down"></i>
                 </div>
                 <div class="lang-dropdown">
                     <div class="lang-option" data-lang="fa"><span>🇦🇫</span> فارسی</div>
@@ -715,17 +516,13 @@
 
     <div class="hero">
         <div class="glass-3d hero-card">
-            <div class="badge-3d"><i class="fas fa-star-of-life"></i> <span data-key="trusted">خدمات معتبر مهاجرت</span>
-            </div>
+            <div class="badge-3d"><i class="fas fa-star-of-life"></i> <span data-key="trusted">خدمات معتبر مهاجرت</span></div>
             <img src="images/na.png" class="hero-logo-3d" alt="Visa Guide">
             <h1 class="hero-title" data-key="heroTitle">خدمات مهاجرت برای افغان‌ها</h1>
-            <div class="hero-desc" id="heroDesc"><strong>VISA GUIDE AF</strong> بزرگترین مرجع مشاوره مهاجرت و ثبت‌نام
-                ویزای بشردوستانه برای <strong>افغان‌ها</strong> — همراه مطمئن شما تا امنیت و آرامش.</div>
+            <div class="hero-desc" id="heroDesc"><strong>VISA GUIDE AF</strong> بزرگترین مرجع مشاوره مهاجرت و ثبت‌نام ویزای بشردوستانه برای <strong>افغان‌ها</strong> — همراه مطمئن شما تا امنیت و آرامش.</div>
             <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
-                <a href="services.html" class="btn-3d"><i class="fas fa-passport"></i> <span
-                        data-key="seeServices">مشاهده خدمات</span></a>
-                <a href="contact.html" class="btn-3d" style="background: var(--accent);"><i class="fas fa-headset"></i>
-                    <span data-key="getHelp">دریافت مشاوره</span></a>
+                <a href="services.html" class="btn-3d"><i class="fas fa-passport"></i> <span data-key="seeServices">مشاهده خدمات</span></a>
+                <a href="contact.html" class="btn-3d" style="background: var(--accent);"><i class="fas fa-headset"></i> <span data-key="getHelp">دریافت مشاوره</span></a>
             </div>
         </div>
     </div>
@@ -758,28 +555,48 @@
         <div class="footer-inner">
             <div class="footer-col">
                 <h4 data-key="footTitle1">خدمات مهاجرت</h4>
-                <p><i class="fas fa-check-circle"></i> <span data-key="footDesc1">معتبرترین خدمات در افغانستان</span>
-                </p>
+                <p><i class="fas fa-check-circle"></i> <span data-key="footDesc1">معتبرترین خدمات در افغانستان</span></p>
                 <p><i class="fas fa-globe"></i> <span data-key="footDesc2">خدمات مهاجرتی جهانی</span></p>
             </div>
+
             <div class="footer-col">
                 <h4 data-key="footTitle2">تماس با ما</h4>
                 <p><i class="fas fa-map-marker-alt"></i> <span data-key="footAddr">ایبک، سمنگان، افغانستان</span></p>
                 <p><i class="fas fa-phone-alt"></i> 0792665622</p>
                 <p><i class="fas fa-envelope"></i> visa.guide.af.123@gmail.com</p>
             </div>
+
             <div class="footer-col">
                 <h4 data-key="footTitle3">شبکه‌های اجتماعی</h4>
-                <a href="https://whatsapp.com/channel/0029Vae7U29AzNbpZIv5T81R" target="_blank"><i
-                        class="fab fa-whatsapp"></i> WhatsApp</a>
+                <a href="https://whatsapp.com/channel/0029Vae7U29AzNbpZIv5T81R" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a>
                 <a href="https://t.me/visaguidee" target="_blank"><i class="fab fa-telegram"></i> Telegram</a>
-                <a href="https://www.facebook.com/profile.php?id=61589943461514" target="_blank"><i
-                        class="fab fa-facebook-f"></i> Facebook</a>
-                <a href="https://www.instagram.com/sarfraz_refugee_service" target="_blank"><i
-                        class="fab fa-instagram"></i> Instagram</a>
+                <a href="https://www.facebook.com/profile.php?id=61589943461514" target="_blank"><i class="fab fa-facebook-f"></i> Facebook</a>
+                <a href="https://www.instagram.com/sarfraz_refugee_service" target="_blank"><i class="fab fa-instagram"></i> Instagram</a>
+            </div>
+
+            <!-- ====== ستون دانلود اپلیکیشن ====== -->
+            <div class="footer-col app-download-card">
+                <h4 data-key="footTitle4">📱 اپلیکیشن موبایل</h4>
+                <p class="app-download-desc" data-key="footAppDesc">
+                    اپلیکیشن اندروید ما را دانلود کنید و به تمام خدمات و اخبار مهاجرت دسترسی آسان داشته باشید.
+                </p>
+                <a href="https://github.com/hammmmmad/visa-guide-af/releases/download/v1.0.0/app-release.apk"
+                   class="app-download-btn"
+                   target="_blank"
+                   rel="noopener">
+                    <i class="fab fa-android"></i>
+                    <span data-key="downloadApp">دانلود اپلیکیشن</span>
+                </a>
+                <div class="app-version">
+                    <i class="fas fa-shield-alt"></i>
+                    <span data-key="appVersion">نسخه ۱.۰.۰ • اندروید • ۶۷.۷ MB</span>
+                </div>
             </div>
         </div>
-        <div class="footer-bottom"><span data-key="copy">© 2026 VISA GUIDE AF — همه حقوق محفوظ است</span></div>
+
+        <div class="footer-bottom">
+            <span data-key="copy">© 2026 VISA GUIDE AF — همه حقوق محفوظ است</span>
+        </div>
     </footer>
 
     <script>
@@ -794,6 +611,10 @@
                 latestNews: "آخرین اخبار",
                 footTitle1: "خدمات مهاجرت", footDesc1: "معتبرترین خدمات در افغانستان", footDesc2: "خدمات مهاجرتی جهانی",
                 footTitle2: "تماس با ما", footAddr: "ایبک، سمنگان، افغانستان", footTitle3: "شبکه‌های اجتماعی",
+                footTitle4: "📱 اپلیکیشن موبایل",
+                footAppDesc: "اپلیکیشن اندروید ما را دانلود کنید و به تمام خدمات و اخبار مهاجرت دسترسی آسان داشته باشید.",
+                downloadApp: "دانلود اپلیکیشن",
+                appVersion: "نسخه ۱.۰.۰ • اندروید • ۶۷.۷ MB",
                 copy: "© 2026 VISA GUIDE AF — همه حقوق محفوظ است",
                 readMore: "بیشتر بخوانید", breaking: "لحظاتی پیش"
             },
@@ -807,6 +628,10 @@
                 latestNews: "Latest News",
                 footTitle1: "Immigration Services", footDesc1: "Most reliable services in Afghanistan", footDesc2: "Global immigration services",
                 footTitle2: "Contact Us", footAddr: "Aibak, Samangan, Afghanistan", footTitle3: "Social Networks",
+                footTitle4: "📱 Mobile App",
+                footAppDesc: "Download our Android app and access all immigration services and news easily.",
+                downloadApp: "Download App",
+                appVersion: "Version 1.0.0 • Android • 67.7 MB",
                 copy: "© 2026 VISA GUIDE AF — All rights reserved",
                 readMore: "Read More", breaking: "Breaking"
             },
@@ -820,6 +645,10 @@
                 latestNews: "وروستي خبرونه",
                 footTitle1: "د کډوالۍ خدمات", footDesc1: "افغانستان کې ترټولو معتبر خدمات", footDesc2: "نړیوال د کډوالۍ خدمات",
                 footTitle2: "اړیکه", footAddr: "ایبک, سمنګان، افغانستان", footTitle3: "ټولنیزې شبکې",
+                footTitle4: "📱 موبایل اپلیکیشن",
+                footAppDesc: "زموږ اندروید اپ ډاونلوډ کړئ او ټولو خدماتو او خبرونو ته اسانه لاسرسی ومومئ.",
+                downloadApp: "اپلیکیشن ډاونلوډ",
+                appVersion: "نسخه ۱.۰.۰ • اندروید • ۶۷.۷ MB",
                 copy: "© 2026 VISA GUIDE AF — ټول حقونه خوندي",
                 readMore: "نور ولولئ", breaking: "شیبې مخکې"
             }
@@ -835,97 +664,73 @@
             fa: "افزایش حمایت کنگره از پناهندگان؛ روزنه‌های امید برای متقاضیان P1 و P2",
             en: "Increasing congressional support for refugees; hope for P1 and P2 applicants",
             ps: "د کانګرس د پناهندګانو ملاتړ زیاتوالی؛ د P1 او P2 غوښتونکو لپاره د امید نوري",
-            img: "news/pic/congress.webp",
-            link: "news/13.html",
-            breaking: true,
+            img: "news/pic/congress.webp", link: "news/13.html", breaking: true,
             date: "June 19, 2026 - 11:33 AM"
         }, {
             fa: "پیروزی بزرگ برای مهاجران افغان؛ دادگاه آمریکا سیاست محدودکننده مهاجرتی را لغو کرد",
             en: "Big victory for Afghan immigrants; US court strikes down restrictive immigration policy",
             ps: "د افغان کډوالو لویه بریا؛ د امریکا محکمې د کډوالۍ محدودونکی پالیسي لغوه کړه",
-            img: "news/pic/juj.jpg",
-            link: "news/12.html",
-            breaking: true,
+            img: "news/pic/juj.jpg", link: "news/12.html", breaking: true,
             date: "June 6, 2026 - 16:00 PM"
         }, {
             fa: "نامه دوحزبی کنگره برای انتقال افغان‌های باقی‌مانده در قطر",
             en: "Bipartisan congressional letter for transfer of remaining Afghans in Qatar",
             ps: "د کانګرس دوه اړخیز لیک د قطر کې پاتې افغانانو د لیږدولو لپاره",
-            img: "news/pic/man.png",
-            link: "news/11.html",
-            breaking: true,
+            img: "news/pic/man.png", link: "news/11.html", breaking: true,
             date: "June 2, 2026 - 11:33 AM"
         }, {
             fa: "فشار کنگره آمریکا برای ازسرگیری صدور ویزای SIV برای متحدان افغان",
             en: "US Congress pressure to resume SIV issuance for Afghan allies",
             ps: "د امریکا کانګرس فشار د SIV ویزو بیا پیلولو لپاره د افغان متحدینو لپاره",
-            img: "news/pic/gess.jpg",
-            link: "news/10.html",
-            breaking: true,
+            img: "news/pic/gess.jpg", link: "news/10.html", breaking: true,
             date: "June 2, 2026 - 11:33 AM"
         }, {
             fa: "آمریکا برنامه پناهندگی را شدیداً محدود کرد؛ افزایش سهمیه‌ها هم فقط برای آفریکانرها",
             en: "US severely restricts refugee program; quota increases only for Afrikaners",
             ps: "امریکا د پناهندګۍ پروګرام په شدت سره محدود کړ؛ د سهمیو زیاتوالی یوازې د افریکانرانو لپاره",
-            img: "news/pic/nu.webp",
-            link: "news/9.html",
-            breaking: true,
+            img: "news/pic/nu.webp", link: "news/9.html", breaking: true,
             date: "May 25, 2026 - 11:33 AM"
         }, {
             fa: "ممنوعیت صدور ویزه آمریکا برای افغان‌ها ادامه دارد؛ تمام ویزه‌های دارندگان پاسپورت افغانستان متوقف شد",
             en: "US visa ban for Afghans continues; all visas for Afghan passport holders suspended",
             ps: "د افغانانو لپاره د امریکا ویزه بند دوام لري؛ د افغان پاسپورت لرونکو ټول ویزې وځنډول شوې",
-            img: "news/pic/sus.jpg",
-            link: "news/8.html",
-            breaking: true,
+            img: "news/pic/sus.jpg", link: "news/8.html", breaking: true,
             date: "May 25, 2026 - 11:33 AM"
         }, {
             fa: "خبر فوری: ممنوعیت پناهندگان آمریکا وارد مرحله سرنوشت‌ساز شد",
             en: "Breaking: US refugee ban enters final stage",
             ps: "بیړنی خبر: د امریکا پناهندګۍ بند وروستي پړاو ته ننوت",
-            img: "news/pic/p.jpg",
-            link: "news/7.html",
-            breaking: true,
+            img: "news/pic/p.jpg", link: "news/7.html", breaking: true,
             date: "۵ می ۲۰۲۶"
         }, {
             fa: "بلاتکلیفی ۱۱۰۰ افغان در کمپ قطر",
             en: "Uncertainty of 1100 Afghans in Qatar camp",
             ps: "د ۱۱۰۰ افغانانو ناڅرګنده حالت",
-            img: "news/pic/us.jpg",
-            link: "news/6.html",
-            breaking: false,
+            img: "news/pic/us.jpg", link: "news/6.html", breaking: false,
             date: "۲۸ اپریل ۲۰۲۶"
         }, {
             fa: "افغان‌ها در قطر از اقدام ترامپ ابراز خیانت کردند",
             en: "Afghans in Qatar express betrayal over Trump plan",
             ps: "افغانان د ترامپ پلان خیانت بولي",
-            img: "news/pic/qater.jpg",
-            link: "news/1.html",
-            breaking: false,
+            img: "news/pic/qater.jpg", link: "news/1.html", breaking: false,
             date: "۲۵ اپریل"
         }, {
             fa: "طالبان به افغان‌های همراه آمریکا وعده عفو داد",
             en: "Taliban promises amnesty to Afghans who helped US",
             ps: "طالبان هغو افغانانو ته بښنه ورکوي",
-            img: "news/pic/talib.webp",
-            link: "news/2.html",
-            breaking: false,
+            img: "news/pic/talib.webp", link: "news/2.html", breaking: false,
             date: "۲۵ اپریل"
         }, {
             fa: "سرنوشت نامعلوم پناهجویان در قطر",
             en: "Unknown fate of Afghan refugees in Qatar",
             ps: "د کډوالو ناڅرګند برخلیک",
-            img: "news/pic/afghan.jpg",
-            link: "news/3.html",
-            breaking: false,
+            img: "news/pic/afghan.jpg", link: "news/3.html", breaking: false,
             date: "۲۷ اپریل"
         }, {
             fa: "پناهجوی افغان در آستانه اخراج از آمریکا",
             en: "Afghan refugee faces deportation from US",
             ps: "افغان پناه غوښتونکی د شړلو ګواښ",
-            img: "news/pic/homeland.jpg",
-            link: "news/4.html",
-            breaking: false,
+            img: "news/pic/homeland.jpg", link: "news/4.html", breaking: false,
             date: "۲۷ اپریل"
         }];
 
@@ -1022,4 +827,4 @@
     <script src="/pwa-assets/app-shell.js" defer></script>
 </body>
 
-    </html>
+</html>
