@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>ویزای بشردوستانه هالند ۲۰۲۶/۲۰۲۷ | VISA GUIDE AF</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* ========== VARIABLES ========== */
+        :root {
+            --bg-dark: #03050b;
+            --bg-light: #eef2ff;
+            --glass-dark: rgba(8, 12, 25, 0.45);
+            --glass-light: rgba(255, 255, 255, 0.55);
+            --border-dark: rgba(255, 255, 255, 0.1);
+            --border-light: rgba(0, 0, 0, 0.08);
+            --text-dark: #f1f5f9;
+            --text-light: #0a0f1c;
+            --muted-dark: #94a3b8;
+            --muted-light: #475569;
+            --primary: linear-gradient(135deg, #8b5cf6, #3b82f6);
+            --primary-glow: rgba(139, 92, 246, 0.5);
+            --accent: linear-gradient(135deg, #f97316, #ef4444);
+            --font: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+            --icon-filter: brightness(0) invert(1);
+        }
+
+        body {
+            background: var(--bg-dark);
+            color: var(--text-dark);
+            font-family: var(--font);
+            min-height: 100vh;
+            transition: background 0.4s, color 0.3s;
+        }
+
+        body.light-mode {
+            --bg-dark: var(--bg-light);
+            --glass-dark: var(--glass-light);
+            --border-dark: var(--border-light);
+            --text-dark: var(--text-light);
+            --muted-dark: var(--muted-light);
+            background: var(--bg-light);
+            color: var(--text-light);
+            --icon-filter: brightness(0);
+        }
+
+        /* ========== 3D BACKGROUND ========== */
+        .scene-3d {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            overflow: hidden;
+            perspective: 1200px;
+        }
+
+        .grid-3d {
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            top: -50%;
+            left: -50%;
+            background-image:
+                linear-gradient(var(--border-dark) 1px, transparent 1px),
+                linear-gradient(90deg, var(--border-dark) 1px, transparent 1px);
+            background-size: 60px 60px;
+            transform: rotateX(50deg) rotateZ(30deg) translateZ(-80px);
+            animation: gridFlow 20s infinite linear;
+            opacity: 0.3;
+        }
+
+        @keyframes gridFlow {
+            0% {
+                transform: rotateX(50deg) rotateZ(30deg) translateZ(-80px) translateY(0);
+            }
+
+            100% {
+                transform: rotateX(50deg) rotateZ(30deg) translateZ(-80px) translateY(80px);
+            }
+        }
+
+        .floating-orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(90px);
+            opacity: 0.5;
+            animation: floatGlow 22s infinite alternate;
+        }
+
+        .orb1 {
+            width: 450px;
+            height: 450px;
+            background: #8b5cf6;
+            top: -15%;
+            left: -10%;
+        }
+
+        .orb2 {
+            width: 550px;
+            height: 550px;
+            background: #3b82f6;
+            bottom: -20%;
+            right: -15%;
+            animation-delay: -6s;
+        }
+
+        .orb3 {
+            width: 350px;
+            height: 350px;
+            background: #f97316;
+            top: 45%;
+            left: 30%;
+            filter: blur(110px);
+            animation-delay: -12s;
+        }
+
+        @keyframes floatGlow {
+            0% {
+                transform: translate(0, 0) scale(1);
+            }
+
+            100% {
+                transform: translate(70px, 50px) scale(1.2);
+            }
+        }
+
+        /* ========== GLASS CORE ========== */
+        .glass-3d {
+            background: var(--glass-dark);
+            backdrop-filter: blur(14px);
+            border: 1px solid var(--border-dark);
+            border-radius: 32px;
+            transition: transform 0.35s cubic-bezier(0.2, 0.9, 0.4, 1.1), box-shadow 0.3s;
+        }
+
+        .glass-3d:hover {
+            transform: translateY(-6px) rotateX(2deg) rotateY(1deg);
+            box-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(139, 92, 246, 0.3);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+        }
+
+        /* ========== HEADER ========== */
+        .page-header {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            margin-bottom: 2.5rem;
+            padding: 1rem 2rem;
+        }
+
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo-img {
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid #8b5cf6;
+            box-shadow: 0 0 15px var(--primary-glow);
+        }
+
+        .logo-text {
+            font-weight: 600;
+            font-size: 0.9rem;
+            padding: 6px 16px;
+            border-radius: 40px;
+            background: rgba(139, 92, 246, 0.15);
+            color: #a78bfa;
+        }
+
+        .btn-back {
+            background: var(--primary);
+            color: white;
+            text-decoration: none;
+            padding: 0.7rem 1.5rem;
+            border-radius: 40px;
+            font-weight: 500;
+            font-size: 0.9rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.25s;
+            box-shadow: 0 4px 10px var(--primary-glow);
+        }
+
+        .btn-back:hover {
+            transform: translateY(-2px);
+        }
+
+        /* ========== LANGUAGE & THEME ========== */
+        .lang-globe {
+            position: relative;
+        }
+
+        .lang-trigger {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid var(--border-dark);
+            border-radius: 40px;
+            padding: 8px 14px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-dark);
+            font-size: 0.85rem;
+            font-weight: 500;
+            transition: 0.2s;
+        }
+
+        .lang-trigger i {
+            font-size: 1rem;
+            color: #60a5fa;
+        }
+
+        .lang-trigger:hover {
+            background: rgba(139, 92, 246, 0.2);
+            border-color: #8b5cf6;
+        }
+
+        .lang-menu {
+            position: absolute;
+            top: 110%;
+            left: 0;
+            background: var(--glass-dark);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--border-dark);
+            border-radius: 20px;
+            padding: 8px 0;
+            min-width: 130px;
+            z-index: 300;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.25s ease;
+        }
+
+        .lang-globe.open .lang-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .lang-option {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 8px 16px;
+            cursor: pointer;
+            transition: background 0.2s;
+            color: var(--text-dark);
+            font-size: 0.85rem;
+        }
+
+        .lang-option:hover {
+            background: rgba(139, 92, 246, 0.2);
+        }
+
+        .theme-btn {
+            background: var(--primary);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            border: none;
+            color: white;
+            box-shadow: 0 4px 12px var(--primary-glow);
+            transition: all 0.3s;
+        }
+
+        .theme-btn:hover {
+            transform: scale(1.05) rotate(15deg);
+        }
+
+        .nav-actions {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        /* ========== COUNTRY BANNER ========== */
+        .country-banner {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin-bottom: 2rem;
+            padding: 2rem;
+        }
+
+        .country-flag {
+            width: 100px;
+            height: 100px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            box-shadow: 0 0 0 5px rgba(139, 92, 246, 0.3), 0 0 0 8px rgba(139, 92, 246, 0.1);
+            transition: all 0.3s ease;
+            animation: borderPulse 2s infinite;
+        }
+
+        @keyframes borderPulse {
+            0% {
+                box-shadow: 0 0 0 5px rgba(139, 92, 246, 0.3), 0 0 0 8px rgba(139, 92, 246, 0.1);
+            }
+
+            50% {
+                box-shadow: 0 0 0 8px rgba(139, 92, 246, 0.5), 0 0 0 12px #8b5cf6;
+            }
+
+            100% {
+                box-shadow: 0 0 0 5px rgba(139, 92, 246, 0.3), 0 0 0 8px rgba(139, 92, 246, 0.1);
+            }
+        }
+
+        .country-flag img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .country-title h1 {
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .country-title p {
+            opacity: 0.8;
+        }
+
+        /* ========== DETAILS SECTION ========== */
+        .details-section {
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .details-section h2 {
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            margin-top: 1.5rem;
+            border-right: 4px solid #8b5cf6;
+            padding-right: 1rem;
+        }
+
+        .details-section h2:first-of-type {
+            margin-top: 0;
+        }
+
+        .details-section p {
+            line-height: 1.8;
+            margin-bottom: 1rem;
+            color: var(--muted-dark);
+        }
+
+        .info-list {
+            list-style: none;
+            margin: 1.5rem 0;
+        }
+
+        .info-list li {
+            padding: 0.75rem 0;
+            border-bottom: 1px solid var(--border-dark);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .info-list li i {
+            color: #a78bfa;
+            width: 24px;
+        }
+
+        .eligible-list {
+            list-style: none;
+            margin: 1rem 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 0.75rem;
+        }
+
+        .eligible-list li {
+            padding: 0.75rem 1rem;
+            background: rgba(239, 68, 68, 0.1);
+            border-right: 3px solid #ef4444;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s;
+        }
+
+        .eligible-list li:hover {
+            transform: translateX(-5px);
+        }
+
+        .eligible-list li i {
+            color: #ef4444;
+            width: 28px;
+        }
+
+        .warning-note {
+            background: rgba(245, 158, 11, 0.08);
+            border-right: 4px solid #f59e0b;
+            padding: 1rem;
+            border-radius: 1rem;
+            margin: 1rem 0;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: #fbbf24;
+        }
+
+        body.light-mode .warning-note {
+            background: #fffbeb;
+            color: #92400e;
+        }
+
+        .btn-whatsapp {
+            display: inline-block;
+            background: #25D366;
+            color: white;
+            text-decoration: none;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            margin-top: 1rem;
+            transition: all 0.25s;
+        }
+
+        .btn-whatsapp i {
+            margin-left: 10px;
+        }
+
+        .btn-whatsapp:hover {
+            background: #128C7E;
+            transform: translateY(-2px);
+        }
+
+        .footer-note {
+            text-align: center;
+            margin-top: 2rem;
+            padding-top: 1.8rem;
+            border-top: 1px solid var(--border-dark);
+            color: var(--muted-dark);
+            font-size: 0.8rem;
+        }
+
+        @media (max-width: 768px) {
+            .page-header {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .logo-area {
+                justify-content: center;
+            }
+
+            .nav-actions {
+                justify-content: center;
+            }
+
+            .country-banner {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .country-title h1 {
+                font-size: 1.3rem;
+            }
+
+            .eligible-list {
+                grid-template-columns: 1fr;
+            }
+
+            .details-section {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="scene-3d">
+        <div class="grid-3d"></div>
+        <div class="floating-orb orb1"></div>
+        <div class="floating-orb orb2"></div>
+        <div class="floating-orb orb3"></div>
+    </div>
+
+    <div class="container">
+        <!-- هدر با منوی زبان و دکمه شب/روز -->
+        <div class="page-header glass-3d">
+            <div class="logo-area">
+                <img class="logo-img" src="../images/kha.jpg" alt="لوگو">
+                <span class="logo-text"><i class="fas fa-hand-holding-heart"></i> <span data-key="visaTitle">ویزای
+                        بشردوستانه</span></span>
+            </div>
+            <div class="nav-actions">
+                <div class="lang-globe" id="langGlobe">
+                    <div class="lang-trigger" id="langTrigger">
+                        <i class="fas fa-globe-americas"></i>
+                        <span id="currentLangLabel">فارسی</span>
+                        <i class="fas fa-chevron-down" style="font-size: 0.7rem;"></i>
+                    </div>
+                    <div class="lang-menu">
+                        <div class="lang-option" data-lang="fa"><span>🇦🇫</span> فارسی</div>
+                        <div class="lang-option" data-lang="en"><span>🇬🇧</span> English</div>
+                        <div class="lang-option" data-lang="ps"><span>🇦🇫</span> پښتو</div>
+                    </div>
+                </div>
+                <button class="theme-btn" id="themeBtn"><i class="fas fa-moon"></i></button>
+            </div>
+            <a href="visa.html" class="btn-back">
+                <i class="fas fa-arrow-right"></i> <span data-key="backBtn">برگشت به لیست کشورها</span>
+            </a>
+        </div>
+
+        <!-- بنر کشور شیشه‌ای (هلند) -->
+        <div class="country-banner glass-3d">
+            <div class="country-flag">
+                <img src="visa-pic/netherlands.png" alt="پرچم هلند"
+                    onerror="this.src='https://placehold.co/100x100?text=NL'">
+            </div>
+            <div class="country-title">
+                <h1><i class="fas fa-map-marker-alt"></i> <span data-key="pageTitle">ویزای بشردوستانه هالند ۲۰۲۷ / ۲۰۲۶</span></h1>
+                <p><span data-key="subtitle">مسیرهای حمایتی برای افراد در معرض خطر | بررسی موردی</span></p>
+            </div>
+        </div>
+
+        <!-- محتوای اصلی شیشه‌ای -->
+        <div class="details-section glass-3d">
+            <h2><i class="fas fa-star-of-life"></i> <span data-key="introTitle">ویزای بشردوستانه هالند</span></h2>
+            <p data-key="introText">اگر به دلیل شرایط امنیتی، تهدید، عقاید، فعالیت‌های اجتماعی یا وضعیت آسیب‌پذیر خود در افغانستان با خطر مواجه هستید، ممکن است واجد شرایط بررسی برای برخی مسیرهای حمایتی و بشردوستانه هالند باشید.</p>
+
+            <div class="warning-note">
+                <i class="fas fa-exclamation-triangle" style="font-size: 1.2rem;"></i>
+                <span data-key="warning">توجه: شرایط پذیرش و مسیرهای بشردوستانه بر اساس قوانین و برنامه‌های رسمی هالند متفاوت است و داشتن یکی از شرایط زیر به‌تنهایی به معنی تضمین ویزا یا پذیرش نیست.</span>
+            </div>
+
+            <h2><i class="fas fa-users"></i> <span data-key="eligibleTitle">چه کسانی می‌توانند درخواست بدهند؟</span></h2>
+            <ul class="eligible-list" id="eligibleList"></ul>
+
+            <h2><i class="fas fa-file-invoice-dollar"></i> <span data-key="costTitle">هزینه خدمات</span></h2>
+            <p data-key="costText">برای ثبت درخواست و استفاده از خدمات ما، هزینه خدمات در نظر گرفته می‌شود. قبل از آغاز پروسه، جزئیات خدمات و هزینه مربوطه به متقاضی توضیح داده خواهد شد.</p>
+
+            <a href="https://wa.me/message/ZY2KWEKZLQCXF1?src=qr" class="btn-whatsapp" target="_blank">
+                <i class="fab fa-whatsapp"></i> <span data-key="whatsappBtn">ثبت درخواست از طریق واتساپ</span>
+            </a>
+        </div>
+
+        <div class="footer-note">
+            <i class="fas fa-heart" style="color: #e11d48;"></i> <span data-key="footerText">همراه شما تا امنیت و آرامش | VISA GUIDE AF</span>
+        </div>
+    </div>
+
+    <script>
+        // ========== MULTILINGUAL DATA ==========
+        const T = {
+            fa: {
+                visaTitle: "ویزای بشردوستانه",
+                backBtn: "برگشت به لیست کشورها",
+                pageTitle: "ویزای بشردوستانه هالند ۲۰۲۷ / ۲۰۲۶",
+                subtitle: "مسیرهای حمایتی برای افراد در معرض خطر | بررسی موردی",
+                introTitle: "ویزای بشردوستانه هالند",
+                introText: "اگر به دلیل شرایط امنیتی، تهدید، عقاید، فعالیت‌های اجتماعی یا وضعیت آسیب‌پذیر خود در افغانستان با خطر مواجه هستید، ممکن است واجد شرایط بررسی برای برخی مسیرهای حمایتی و بشردوستانه هالند باشید.",
+                warning: "توجه: شرایط پذیرش و مسیرهای بشردوستانه بر اساس قوانین و برنامه‌های رسمی هالند متفاوت است و داشتن یکی از شرایط زیر به‌تنهایی به معنی تضمین ویزا یا پذیرش نیست.",
+                eligibleTitle: "چه کسانی می‌توانند درخواست بدهند؟",
+                costTitle: "هزینه خدمات",
+                costText: "برای ثبت درخواست و استفاده از خدمات ما، هزینه خدمات در نظر گرفته می‌شود. قبل از آغاز پروسه، جزئیات خدمات و هزینه مربوطه به متقاضی توضیح داده خواهد شد.",
+                whatsappBtn: "ثبت درخواست از طریق واتساپ",
+                footerText: "همراه شما تا امنیت و آرامش | VISA GUIDE AF"
+            },
+            en: {
+                visaTitle: "Humanitarian Visa",
+                backBtn: "Back to Countries List",
+                pageTitle: "Netherlands Humanitarian Visa 2027 / 2026",
+                subtitle: "Support pathways for at-risk individuals | Case-by-case review",
+                introTitle: "Netherlands Humanitarian Visa",
+                introText: "If you face danger in Afghanistan due to security conditions, threats, beliefs, social activities, or your vulnerable situation, you may be eligible for consideration under certain Dutch support and humanitarian pathways.",
+                warning: "Note: Eligibility conditions and humanitarian pathways vary according to official Dutch laws and programs. Meeting one of the conditions below alone does not guarantee a visa or admission.",
+                eligibleTitle: "Who can apply?",
+                costTitle: "Service Fee",
+                costText: "A service fee applies for submitting an application and using our services. Before starting the process, the service details and corresponding fee will be explained to the applicant.",
+                whatsappBtn: "Submit Request via WhatsApp",
+                footerText: "With you until safety and peace | VISA GUIDE AF"
+            },
+            ps: {
+                visaTitle: "بشري ویزه",
+                backBtn: "بیرته د هیوادونو لیست ته",
+                pageTitle: "د هالند بشري ویزه ۲۰۲۷ / ۲۰۲۶",
+                subtitle: "د خطر سره مخ کسانو لپاره د ملاتړ لارې | د قضیې په اساس بیاکتنه",
+                introTitle: "د هالند بشري ویزه",
+                introText: "که تاسو په افغانستان کې د امنیتي شرایطو، ګواښونو، عقیدو، ټولنیزو فعالیتونو یا خپل زیانمنونکي وضعیت له امله له خطر سره مخ یاست، تاسو کیدای شي د هالند د ځینو ملاتړ او بشري لارو لپاره د بیاکتنې وړ اوسئ.",
+                warning: "پاملرنه: د منلو شرایط او بشري لارې د هالند د رسمي قوانینو او پروګرامونو له مخې توپیر لري. یوازې د لاندې شرایطو درلودل د ویزې یا منلو تضمین نه دی.",
+                eligibleTitle: "څوک کولی شي غوښتنلیک ورکړي؟",
+                costTitle: "د خدماتو فیس",
+                costText: "د غوښتنلیک سپارلو او زموږ د خدماتو کارولو لپاره د خدماتو فیس په پام کې نیول کیږي. د پروسې د پیل دمخه، د خدماتو توضیحات او اړوند فیس غوښتونکي ته تشریح کیږي.",
+                whatsappBtn: "د واټس اپ له لارې غوښتنلیک وسپارئ",
+                footerText: "تر امنیت او آرامۍ پورې ستاسو ملګری | VISA GUIDE AF"
+            }
+        };
+
+        const eligibleItems = {
+            fa: [
+                "افرادی که جان یا آزادی‌شان در کشور خود در خطر است",
+                "افرادی که به دلیل عقاید سیاسی، مذهب، قومیت یا فعالیت‌های اجتماعی تحت تهدید قرار دارند",
+                "زنان، کودکان و خانواده‌های آسیب‌پذیر",
+                "زنان فعال مدنی",
+                "زنان فعال در زمینه حقوق بشر",
+                "زنان متعلق به اقلیت‌های مذهبی",
+                "زنان بی‌سرپرست و بدون حمایت خانوادگی",
+                "زنان آرایشگر و شاغل در این زمینه",
+                "زنان کارمند یا کارمند سابق دفاتر و سازمان‌های خارجی"
+            ],
+            en: [
+                "Individuals whose life or freedom is in danger in their country",
+                "Individuals threatened due to political beliefs, religion, ethnicity, or social activities",
+                "Vulnerable women, children, and families",
+                "Women civil activists",
+                "Women human rights activists",
+                "Women belonging to religious minorities",
+                "Women without a guardian or family support",
+                "Women beauticians and workers in this field",
+                "Women employees or former employees of foreign offices and organizations"
+            ],
+            ps: [
+                "هغه کسان چې ژوند یا آزادي یې په خپل هیواد کې له خطر سره مخ ده",
+                "هغه کسان چې د سیاسي عقیدو، مذهب، قومیت یا ټولنیزو فعالیتونو له امله ګواښل کیږي",
+                "زیانمنونکې ښځې، ماشومان او کورنۍ",
+                "مدني فعالې ښځې",
+                "د بشري حقونو فعالې ښځې",
+                "د مذهبي اقلیتونو پورې اړوندې ښځې",
+                "هغه ښځې چې سرپرست یا د کورنۍ ملاتړ نلري",
+                "د ښکلا salon ښځې او په دې برخه کې کارکوونکې",
+                "د بهرنیو دفترونو او سازمانونو ښځینه کارکوونکې یا پخوانۍ کارکوونکې"
+            ]
+        };
+
+        let currentLang = 'fa';
+
+        function updateLists() {
+            document.getElementById('eligibleList').innerHTML = eligibleItems[currentLang].map(item => `<li><i class="fas fa-check-circle"></i> ${item}</li>`).join('');
+        }
+
+        function applyLanguage(lang) {
+            currentLang = lang;
+            document.querySelectorAll('[data-key]').forEach(el => {
+                const key = el.getAttribute('data-key');
+                if (T[lang][key]) {
+                    if (key === 'introText' || key === 'warning' || key === 'costText') {
+                        el.innerHTML = T[lang][key];
+                    } else {
+                        el.innerText = T[lang][key];
+                    }
+                }
+            });
+            const labelMap = { fa: "فارسی", en: "English", ps: "پښتو" };
+            document.getElementById('currentLangLabel').innerText = labelMap[lang];
+            updateLists();
+        }
+
+        // ========== THEME TOGGLE ==========
+        const themeBtn = document.getElementById('themeBtn');
+        const savedTheme = localStorage.getItem('srs-theme') || 'dark';
+        if (savedTheme === 'light') {
+            document.body.classList.add('light-mode');
+            themeBtn.innerHTML = '<i class="fas fa-sun"></i>';
+        } else {
+            document.body.classList.remove('light-mode');
+            themeBtn.innerHTML = '<i class="fas fa-moon"></i>';
+        }
+
+        themeBtn.addEventListener('click', () => {
+            const isLight = document.body.classList.contains('light-mode');
+            if (isLight) {
+                document.body.classList.remove('light-mode');
+                themeBtn.innerHTML = '<i class="fas fa-moon"></i>';
+                localStorage.setItem('srs-theme', 'dark');
+            } else {
+                document.body.classList.add('light-mode');
+                themeBtn.innerHTML = '<i class="fas fa-sun"></i>';
+                localStorage.setItem('srs-theme', 'light');
+            }
+        });
+
+        // ========== LANGUAGE GLOBE ==========
+        const globe = document.getElementById('langGlobe');
+        const trigger = document.getElementById('langTrigger');
+        trigger.addEventListener('click', (e) => { e.stopPropagation(); globe.classList.toggle('open'); });
+        document.addEventListener('click', (e) => { if (!globe.contains(e.target)) globe.classList.remove('open'); });
+        document.querySelectorAll('.lang-option').forEach(opt => {
+            opt.addEventListener('click', (e) => {
+                const newLang = opt.getAttribute('data-lang');
+                if (newLang) applyLanguage(newLang);
+                globe.classList.remove('open');
+            });
+        });
+
+        applyLanguage('fa');
+    </script>
+</body>
+
+</html>
