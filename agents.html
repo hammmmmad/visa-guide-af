@@ -360,20 +360,42 @@
             margin-top: 10px;
         }
 
-        .contact-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 30px;
+        /* ===== AGENT SECTION (each city) ===== */
+        .agent-section {
+            margin-bottom: 48px;
+            padding: 28px 24px;
         }
 
-        .contact-info {
+        .agent-section h2 {
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            border-right: 5px solid #8b5cf6;
+            padding-right: 18px;
+        }
+
+        .agent-section h2 i {
+            color: #8b5cf6;
+        }
+
+        .agent-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 28px;
+            align-items: stretch;
+        }
+
+        .agent-info {
             display: flex;
             flex-direction: column;
-            gap: 20px;
+            gap: 16px;
         }
 
         .contact-card {
-            padding: 24px 20px;
+            padding: 20px 18px;
             display: flex;
             align-items: center;
             gap: 16px;
@@ -386,8 +408,8 @@
         }
 
         .contact-card .icon-circle {
-            width: 56px;
-            height: 56px;
+            width: 52px;
+            height: 52px;
             border-radius: 50%;
             background: rgba(139, 92, 246, 0.15);
             display: flex;
@@ -397,12 +419,12 @@
         }
 
         .contact-card .icon-circle i {
-            font-size: 1.5rem;
+            font-size: 1.4rem;
             color: #8b5cf6;
         }
 
         .contact-card .info-content h3 {
-            font-size: 1rem;
+            font-size: 0.95rem;
             font-weight: 700;
             margin-bottom: 4px;
         }
@@ -410,6 +432,7 @@
         .contact-card .info-content p {
             color: var(--muted-dark);
             font-size: 0.9rem;
+            line-height: 1.5;
         }
 
         .contact-card .info-content a {
@@ -422,12 +445,11 @@
             color: #8b5cf6;
         }
 
-        /* ===== MAP ===== */
         .map-container {
-            border-radius: 32px;
+            border-radius: 24px;
             overflow: hidden;
             border: 1px solid var(--border-dark);
-            min-height: 400px;
+            min-height: 300px;
             background: var(--glass-dark);
             backdrop-filter: blur(14px);
         }
@@ -435,7 +457,7 @@
         .map-container iframe {
             width: 100%;
             height: 100%;
-            min-height: 400px;
+            min-height: 300px;
             border: none;
             display: block;
         }
@@ -487,7 +509,7 @@
         }
 
         @media (max-width: 992px) {
-            .contact-grid {
+            .agent-grid {
                 grid-template-columns: 1fr;
             }
         }
@@ -549,12 +571,16 @@
                 font-size: 1.8rem;
             }
 
+            .agent-section h2 {
+                font-size: 1.3rem;
+            }
+
             .map-container {
-                min-height: 300px;
+                min-height: 250px;
             }
 
             .map-container iframe {
-                min-height: 300px;
+                min-height: 250px;
             }
         }
 
@@ -587,11 +613,11 @@
             }
 
             .map-container {
-                min-height: 250px;
+                min-height: 220px;
             }
 
             .map-container iframe {
-                min-height: 250px;
+                min-height: 220px;
             }
         }
 
@@ -625,12 +651,10 @@
         <ul class="nav-links" id="navLinks">
             <li><a href="index.html"><img src="images/home.png"> <span data-key="home">خانه</span></a></li>
             <li><a href="services.html"><img src="images/customer.png"> <span data-key="services">خدمات</span></a></li>
-            <li><a href="agents.html"><img src="images/map.png"> <span data-key="agents">نماینده گی</span></a></li>
-            <li><a href="contact.html" class="active"><img src="images/call.png"> <span
-                        data-key="contact">تماس</span></a></li>
+            <li><a href="agents.html" class="active"><img src="images/map.png"> <span data-key="agents">نماینده گی</span></a></li>
+            <li><a href="contact.html"><img src="images/call.png"> <span data-key="contact">تماس</span></a></li>
             <li><a href="faq.html"><img src="images/f&a.png"> <span data-key="faq">سوالات</span></a></li>
-            <li><a href="news/day-news/day.html"><img src="images/event.png"> <span data-key="news">اخبار</span></a>
-            </li>
+            <li><a href="news/day-news/day.html"><img src="images/event.png"> <span data-key="news">اخبار</span></a></li>
             <li><a href="document.html"><img src="images/event.png"> <span data-key="documents">مستندات</span></a></li>
         </ul>
         <div class="nav-actions">
@@ -652,68 +676,89 @@
     <!-- ===== CONTENT ===== -->
     <div class="contact-container">
         <div class="contact-header">
-            <h1>نماینده گی</h1>
+            <h1>نماینده گی ها</h1>
             <p data-key="contactDesc">ما در کنار شما هستیم. از طریق اطلاعات زیر با ما در ارتباط باشید.</p>
         </div>
 
-        <div class="contact-grid">
-            <!-- ===== CONTACT INFO ===== -->
-            <div class="contact-info">
-                <div class="glass-3d contact-card">
-                    <div class="icon-circle"><i class="fas fa-map-marker-alt"></i></div>
-                    <div class="info-content">
-                        <h3 data-key="addressTitle">آدرس</h3>
-                        <p data-key="footAddr">ایبک، سمنگان، افغانستان</p>
+        <!-- ===== AGENT 1: AIBAK ===== -->
+        <div class="agent-section glass-3d">
+            <h2><i class="fas fa-map-pin"></i> <span data-key="aibakTitle">نماینده گی ایبک</span></h2>
+            <div class="agent-grid">
+                <div class="agent-info">
+                    <div class="contact-card glass-3d">
+                        <div class="icon-circle"><i class="fas fa-map-marker-alt"></i></div>
+                        <div class="info-content">
+                            <h3 data-key="addressTitle">آدرس</h3>
+                            <p data-key="footAddr">ایبک، سمنگان، افغانستان</p>
+                        </div>
+                    </div>
+                    <div class="contact-card glass-3d">
+                        <div class="icon-circle"><i class="fas fa-phone-alt"></i></div>
+                        <div class="info-content">
+                            <h3 data-key="phoneTitle">تلفن</h3>
+                            <p><a href="tel:+93792665622">0792665622</a></p>
+                        </div>
+                    </div>
+                    <div class="contact-card glass-3d">
+                        <div class="icon-circle"><i class="fas fa-envelope"></i></div>
+                        <div class="info-content">
+                            <h3 data-key="emailTitle">ایمیل</h3>
+                            <p><a href="mailto:visa.guide.af.123@gmail.com">visa.guide.af.123@gmail.com</a></p>
+                        </div>
+                    </div>
+                    <div class="contact-card glass-3d">
+                        <div class="icon-circle"><i class="fas fa-clock"></i></div>
+                        <div class="info-content">
+                            <h3 data-key="hoursTitle">ساعت کاری</h3>
+                            <p data-key="hoursText">شنبه تا پنجشنبه - ۸:۰۰ تا ۱۷:۰۰</p>
+                        </div>
                     </div>
                 </div>
-
-                <div class="glass-3d contact-card">
-                    <div class="icon-circle"><i class="fas fa-phone-alt"></i></div>
-                    <div class="info-content">
-                        <h3 data-key="phoneTitle">تلفن</h3>
-                        <p><a href="tel:+93792665622">0792665622</a></p>
-                    </div>
-                </div>
-
-                <div class="glass-3d contact-card">
-                    <div class="icon-circle"><i class="fas fa-envelope"></i></div>
-                    <div class="info-content">
-                        <h3 data-key="emailTitle">ایمیل</h3>
-                        <p><a href="mailto:visa.guide.af.123@gmail.com">visa.guide.af.123@gmail.com</a></p>
-                    </div>
-                </div>
-
-                <div class="glass-3d contact-card">
-                    <div class="icon-circle"><i class="fas fa-clock"></i></div>
-                    <div class="info-content">
-                        <h3 data-key="hoursTitle">ساعت کاری</h3>
-                        <p data-key="hoursText">شنبه تا پنجشنبه - ۸:۰۰ تا ۱۷:۰۰</p>
-                    </div>
-                </div>
-
-                <div class="glass-3d contact-card">
-                    <div class="icon-circle"><i class="fas fa-globe"></i></div>
-                    <div class="info-content">
-                        <h3 data-key="socialTitle">شبکه‌های اجتماعی</h3>
-                        <p>
-                            <a href="https://whatsapp.com/channel/0029Vae7U29AzNbpZIv5T81R" target="_blank"><i
-                                    class="fab fa-whatsapp"></i></a>
-                            <a href="https://t.me/visaguidee" target="_blank"><i class="fab fa-telegram"></i></a>
-                            <a href="https://www.facebook.com/profile.php?id=61589943461514" target="_blank"><i
-                                    class="fab fa-facebook-f"></i></a>
-                            <a href="https://www.instagram.com/sarfraz_refugee_service" target="_blank"><i
-                                    class="fab fa-instagram"></i></a>
-                        </p>
-                    </div>
+                <div class="map-container">
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3136.389297401813!2d67.7809523154562!3d36.27380708011646!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bde5c5d8d2b2b2b%3A0x2b2b2b2b2b2b2b2b!2sAibak%2C%20Samangan%2C%20Afghanistan!5e0!3m2!1sen!2sus!4v1700000000000"
+                        allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
                 </div>
             </div>
+        </div>
 
-            <!-- ===== MAP ===== -->
-            <div class="map-container glass-3d">
-                <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3136.389297401813!2d67.7809523154562!3d36.27380708011646!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bde5c5d8d2b2b2b%3A0x2b2b2b2b2b2b2b2b!2sAibak%2C%20Samangan%2C%20Afghanistan!5e0!3m2!1sen!2sus!4v1700000000000"
-                    allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
-                </iframe>
+        <!-- ===== AGENT 2: KABUL ===== -->
+        <div class="agent-section glass-3d">
+            <h2><i class="fas fa-map-pin"></i> <span data-key="kabulTitle">نماینده گی کابل</span></h2>
+            <div class="agent-grid">
+                <div class="agent-info">
+                    <div class="contact-card glass-3d">
+                        <div class="icon-circle"><i class="fas fa-map-marker-alt"></i></div>
+                        <div class="info-content">
+                            <h3 data-key="addressTitle">آدرس</h3>
+                            <p data-key="kabulAddress">کابل، پل سرخ، روبروی شفاخانه کلثوم</p>
+                        </div>
+                    </div>
+                    <div class="contact-card glass-3d">
+                        <div class="icon-circle"><i class="fas fa-phone-alt"></i></div>
+                        <div class="info-content">
+                            <h3 data-key="phoneTitle">تلفن</h3>
+                            <p>
+                                <a href="tel:+93766669709">0766669709</a><br>
+                                <a href="tel:+93728111011">0728111011</a>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="contact-card glass-3d">
+                        <div class="icon-circle"><i class="fas fa-clock"></i></div>
+                        <div class="info-content">
+                            <h3 data-key="hoursTitle">ساعت کاری</h3>
+                            <p data-key="hoursText">شنبه تا پنجشنبه - ۸:۰۰ تا ۱۷:۰۰</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="map-container">
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3152.5!2d69.1713!3d34.5253!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sPul-e-Sorkh%2C%20Kabul%2C%20Afghanistan!5e0!3m2!1sen!2sus!4v1700000000000"
+                        allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+                </div>
             </div>
         </div>
     </div>
@@ -731,6 +776,7 @@
                 <h4 data-key="footTitle2">تماس با ما</h4>
                 <p><i class="fas fa-map-marker-alt"></i> <span data-key="footAddr">ایبک، سمنگان، افغانستان</span></p>
                 <p><i class="fas fa-phone-alt"></i> 0792665622</p>
+                <p><i class="fas fa-phone-alt"></i> 0766669709 / 0728111011</p>
                 <p><i class="fas fa-envelope"></i> visa.guide.af.123@gmail.com</p>
             </div>
             <div class="footer-col">
@@ -758,14 +804,15 @@
                 news: "اخبار",
                 documents: "مستندات",
                 agents: "نماینده گی",
-                contactTitle: "📌 تماس با ما",
                 contactDesc: "ما در کنار شما هستیم. از طریق اطلاعات زیر با ما در ارتباط باشید.",
+                aibakTitle: "نماینده گی ایبک",
+                kabulTitle: "نماینده گی کابل",
                 addressTitle: "آدرس",
                 phoneTitle: "تلفن",
                 emailTitle: "ایمیل",
                 hoursTitle: "ساعت کاری",
                 hoursText: "شنبه تا پنجشنبه - ۸:۰۰ تا ۱۷:۰۰",
-                socialTitle: "شبکه‌های اجتماعی",
+                kabulAddress: "کابل، پل سرخ، روبروی شفاخانه کلثوم",
                 footTitle1: "خدمات مهاجرت",
                 footDesc1: "معتبرترین خدمات در افغانستان",
                 footDesc2: "خدمات مهاجرتی جهانی",
@@ -783,14 +830,15 @@
                 news: "News",
                 documents: "Documents",
                 agents: "Agents",
-                contactTitle: "📌 Contact Us",
                 contactDesc: "We are here for you. Reach out to us through the information below.",
+                aibakTitle: "Aibak Agency",
+                kabulTitle: "Kabul Agency",
                 addressTitle: "Address",
                 phoneTitle: "Phone",
                 emailTitle: "Email",
                 hoursTitle: "Working Hours",
                 hoursText: "Saturday to Thursday - 8:00 AM to 5:00 PM",
-                socialTitle: "Social Networks",
+                kabulAddress: "Kabul, Pul-e-Sorkh, opposite Kalthom Hospital",
                 footTitle1: "Immigration Services",
                 footDesc1: "Most reliable services in Afghanistan",
                 footDesc2: "Global immigration services",
@@ -808,14 +856,15 @@
                 news: "خبرونه",
                 documents: "اسناد",
                 agents: "استازي",
-                contactTitle: "📌 اړیکه",
                 contactDesc: "موږ ستاسو سره یو. لاندې معلوماتو له لارې له موږ سره اړیکه ونیسئ.",
+                aibakTitle: "د ایبک استازیتوب",
+                kabulTitle: "د کابل استازیتوب",
                 addressTitle: "آدرس",
                 phoneTitle: "تلیفون",
                 emailTitle: "بریښنالیک",
                 hoursTitle: "د کار ساعتونه",
                 hoursText: "شنبه تر پنجشنبه - ۸:۰۰ تر ۱۷:۰۰",
-                socialTitle: "ټولنیزې شبکې",
+                kabulAddress: "کابل، پل سرخ، د کلثوم روغتون مخې ته",
                 footTitle1: "د کډوالۍ خدمات",
                 footDesc1: "افغانستان کې ترټولو معتبر خدمات",
                 footDesc2: "نړیوال د کډوالۍ خدمات",
@@ -887,10 +936,4 @@
             if (!navLinks.contains(e.target) && !menuBtn.contains(e.target) && navLinks.classList.contains('open'))
                 closeMenu();
         });
-        navLinks.querySelectorAll('a').forEach(link => link.addEventListener('click', closeMenu));
-
-        applyLanguage('fa');
-    </script>
-</body>
-
-</html>
+        navLinks.querySelectorAll('a').forEach(link
